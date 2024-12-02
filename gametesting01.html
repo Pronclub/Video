@@ -134,7 +134,7 @@
             // Add event listener to the red button 
             redButton.addEventListener('click', function () {
                 // Redirect to the red page 
-                window.location.href = ' ads.html ';
+                window.location.href = 'https://www.instagram.com/reel/DDBZZgFIzgP/?igsh=MXF6aXhkc3QzeGtjcg== ';
                 // Store the state of the red button 
                 sessionStorage.setItem('redButtonClicked', true);
             });
@@ -145,10 +145,10 @@
                 const redButtonClicked = sessionStorage.getItem('redButtonClicked');
                 if (!redButtonClicked) {
                     // Redirect to the error page if the red button was not clicked 
-                    window.location.href = 'ads.html';
+                    window.location.href = 'error.html';
                 } else {
                     // Redirect to the green page if the red button was clicked 
-                    window.location.href = 'game.html';
+                    window.location.href = 'http://www.space/game.html';
                 }
             });
 
@@ -156,7 +156,7 @@
             // Refresh the page every 5 seconds 
             setInterval(function () {
                 window.location.reload();
-            }, 150000); // 150000 milliseconds = 15 seconds 
+            }, 10000); // 10000 milliseconds = 10 seconds 
 
         </script>
 
