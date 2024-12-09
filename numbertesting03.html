@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Hub</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        margin-top: 0px;
+        background-color: #121212;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120vh;
+        text-align: center;
+    }
+
+    .container {
+        background-color: #1c1c1c93;
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .image {
+
+        background-image: url("http://www.videohub.space/IMG_4296.jpeg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    header h1 {
+        /* border: solid; */
+        /* padding: 5px; */
+        background-color: #1c1c1c93;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+        -webkit-text-size-adjust: auto;
+        font-family: helvetica;
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .black-text {
+        color: white;
+        font-weight: bold;
+    }
+
+    .hub-text {
+        color: orange;
+        font-weight: bold;
+    }
+
+
+    .instructions p {
+        margin-bottom: 10px;
+    }
+
+    .btnRed {
+        -webkit-text-size-adjust: auto;
+        background-color: red;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        height: 60px;
+        margin: 0px auto;
+        width: 200px;
+    }
+
+    .btnGreen {
+        -webkit-text-size-adjust: auto;
+        background-color: green;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        height: 60px;
+        margin: 0px auto;
+        width: 200px;
+    }
+
+    .btnBule{
+        -webkit-text-size-adjust: auto;
+        background-color: rgb(6, 184, 255);
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        height: 60px;
+        margin: 0px auto;
+        width: 200px;
+    }
+</style>
+
+<body class="image">
+    <div class="container">
+        <header>
+            <h1>Welcome to <span class="hub-text">Movie Luxe !</span></h1>
+        </header>
+
+
+        <div class="instructions">
+            <span style="text-align: center;">&nbsp;<span
+                    style="font-family: verdana;-webkit-text-size-adjust: auto; font-size: 9px; text-align: center;">
+
+                    <p><b>Movies බලන්න නම් මෙ විදියට කරන්න.</b></p>
+                    <p>To watch the Movies, follow these rules.</p><br>
+
+                    <p>මුලින්ම තියෙන රතු පාට බටන් එක ඔබන්න ඊටපස්සෙ ඔයාව වෙන පිටුවකට යයි.</p>
+                    <p>First, press the red button,Then you will be taken to another page.</p><br>
+
+                    <p> ඒ පිටුවේ තප්පර 20ක් විතර ඉන්න.</p>
+                    <p>Stay on the page for about 20 seconds.</p><br>
+
+                    <p> ඊටපස්සෙ බැක් වෙලා ඇවිත් ආපහු දෙවෙනියට තියෙන කොළ පාට බටන් එක ඔබන්න.</p>
+                    <p>Then come back and press the green button.</p><br>
+
+                    <p> එතකොට ඔයාව Movie එකට කෙලින්ම යයි.</p>
+                    <p> Then you will go directly to the Movie.</p><br>
+
+                    <p> කියලා තියන විදියට කරොත් විතරයි ඔයාට Movies බලන්න පුළුවන්.</p>
+                    <p> You can watch the Movies only if you follow the instructions.</p><br>
+
+                    <p>ඒක නිසා කියපු විදිහට පිලිවෙලට කරන්න.</p>
+                    <p>fallow this Rules.</p><br>
+
+                </span>
+        </div>
+
+        <div class="btn">
+            <div>
+                <button id="clickButton" onclick="openLink()" class="btnRed" style="display: block;">Click</button><br>
+            </div>
+
+            <div>
+                <button id="playButton" onclick="openGame()" disabled class="btnGreen" style="display: none;">Watch the Movie</button><br>
+            </div>
+
+            <div>
+                <button id="playButton" onclick="openGame()" disabled class="btnBule" >Telegram</button><br>
+            </div>
+        </div>
+
+
+        <script>
+            let countdownInterval;
+            let popupWindow;
+            let countdownValue = 15;
+
+            function openGame() {
+                window.open("https://prongame.github.io/PornGame/menu.html");
+            }
+
+            function openLink() {
+                popupWindow = window.open("https://prongame.github.io/PornGame/ads.html");
+
+                countdownValue = 15;
+                // document.getElementById("count").style = "display:block";
+                // document.getElementById("countdown").innerText = countdownValue;
+                // document.getElementById("instructions").style = "display:none";
+
+
+                countdownInterval = setInterval(() => {
+                    countdownValue--;
+                    // document.getElementById("countdown").innerText = countdownValue;
+
+                    if (countdownValue <= 0) {
+                        popupWindow.close();
+                        clearInterval(countdownInterval);
+                        document.getElementById("playButton").disabled = false;
+                        document.getElementById("playButton").style = "display:block";
+                        document.getElementById("clickButton").style = "display:none";
+                        // document.getElementById("count").style = "display:none";
+
+                    }
+                }, 1000);
+            }
+
+            function stopCountdown() {
+                if (popupWindow && popupWindow.closed) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("countdown").innerText = "Stopped";
+                }
+            }
+
+            setInterval(stopCountdown, 500);
+        </script>
+
+    </div>
+</body>
+
+</html>
