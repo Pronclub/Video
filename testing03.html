@@ -70,6 +70,39 @@
     .instructions p {
         margin-bottom: 10px;
     }
+
+    .btnRed {
+        -webkit-text-size-adjust: auto;
+        background-color: red;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        height: 60px;
+        margin: 0px auto;
+        width: 200px;
+    }
+
+    .btnGreen {
+        -webkit-text-size-adjust: auto;
+        background-color: green;
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        height: 60px;
+        margin: 0px auto;
+        width: 200px;
+    }
+
+    .btnBule{
+        -webkit-text-size-adjust: auto;
+        background-color: rgb(6, 184, 255);
+        border-radius: 10px;
+        color: white;
+        font-size: 16px;
+        height: 60px;
+        margin: 0px auto;
+        width: 200px;
+    }
 </style>
 
 <body class="image">
@@ -77,7 +110,7 @@
         <header>
             <h1>Welcome to <span class="hub-text">Movie Luxe !</span></h1>
         </header>
-        
+
 
         <div class="instructions">
             <span style="text-align: center;">&nbsp;<span
@@ -104,62 +137,66 @@
                     <p>ඒක නිසා කියපු විදිහට පිලිවෙලට කරන්න.</p>
                     <p>fallow this Rules.</p><br>
 
-            </span>
+                </span>
         </div>
 
-        <div class="buttons">
+        <div class="btn">
             <div>
-                <button id="redButton" class="btnRed2"
-                    style="-webkit-text-size-adjust: auto; background-color: red; border-radius: 10px;
-        color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 200px;">Click</button><br>
+                <button id="clickButton" onclick="openLink()" class="btnRed" style="display: block;">Click</button><br>
             </div>
 
             <div>
-                <button id="greenButton" disabled class="btnGreen2" style="-webkit-text-size-adjust: auto; background-color: green; border-radius: 10px;
-        color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 200px;">Watch the
-                    Movie</button>
+                <button id="playButton" onclick="openGame()" disabled class="btnGreen" style="display: none;">Watch the Movie</button><br>
+            </div>
+
+            <div>
+                <button id="playButton" onclick="openGame()" disabled class="btnBule" >Telegram</button><br>
             </div>
         </div>
 
 
         <script>
-            // Get references to the buttons
-            const redButton = document.getElementById('redButton');
-            const greenButton = document.getElementById('greenButton');
+            let countdownInterval;
+            let popupWindow;
+            let countdownValue = 15;
 
-            // Check if the red button was previously clicked
-            const redButtonClicked = sessionStorage.getItem('redButtonClicked');
-            if (redButtonClicked) {
-                greenButton.removeAttribute('disabled');
+            function openGame() {
+                window.open("https://prongame.github.io/PornGame/menu.html");
             }
 
-            // Add event listener to the red button
-            redButton.addEventListener('click', function () {
-                // Redirect to the red page
-                window.location.href = 'https://www.instagram.com/p/DC6o9rlIavA/?igsh=MW51MG43NnNteTJuag==';
-                // Store the state of the red button
-                sessionStorage.setItem('redButtonClicked', true);
-            });
+            function openLink() {
+                popupWindow = window.open("https://prongame.github.io/PornGame/ads.html");
 
-            // Add event listener to the green button
-            greenButton.addEventListener('click', function () {
-                // Check if the red button was clicked
-                const redButtonClicked = sessionStorage.getItem('redButtonClicked');
-                if (!redButtonClicked) {
-                    // Redirect to the error page if the red button was not clicked
-                    window.location.href = 'error.html';
-                } else {
-                    // Redirect to the green page if the red button was clicked
-                    window.location.href = 'https://12ft.io';
+                countdownValue = 15;
+                // document.getElementById("count").style = "display:block";
+                // document.getElementById("countdown").innerText = countdownValue;
+                // document.getElementById("instructions").style = "display:none";
+
+
+                countdownInterval = setInterval(() => {
+                    countdownValue--;
+                    // document.getElementById("countdown").innerText = countdownValue;
+
+                    if (countdownValue <= 0) {
+                        popupWindow.close();
+                        clearInterval(countdownInterval);
+                        document.getElementById("playButton").disabled = false;
+                        document.getElementById("playButton").style = "display:block";
+                        document.getElementById("clickButton").style = "display:none";
+                        // document.getElementById("count").style = "display:none";
+
+                    }
+                }, 1000);
+            }
+
+            function stopCountdown() {
+                if (popupWindow && popupWindow.closed) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("countdown").innerText = "Stopped";
                 }
-            });
+            }
 
-
-            // Refresh the page every 5 seconds
-            setInterval(function () {
-                window.location.reload();
-            }, 150000); // 150000 milliseconds = 15 seconds
-
+            setInterval(stopCountdown, 500);
         </script>
 
     </div>
