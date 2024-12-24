@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hub</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        margin-top: 0px;
+        background-color: #121212;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120vh;
+        text-align: center;
+    }
+
+    .container {
+        background-color: #1c1c1c93;
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .image {
+
+        background-image: url("http://www.videohub.space/IMG_4350.jpeg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    header h1 {
+        /* border: solid; */
+        /* padding: 5px; */
+        background-color: #1c1c1c93;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+        -webkit-text-size-adjust: auto;
+        font-family: helvetica;
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .black-text {
+        color: white;
+        font-weight: bold;
+    }
+
+    .hub-text {
+
+        board-style: solid;
+        color: orange;
+        font-weight: bold;
+    }
+
+
+    .instructions p {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body class="image">
+    <div class="container">
+        <header>
+            <h1>Welcome to <span class="hub-text"> Video Hub !</span></h1>
+        </header>
+        
+
+        <div class="instructions">
+            <span style="text-align: center;">&nbsp;<span
+                    style="font-family: verdana;-webkit-text-size-adjust: auto; font-size: 9px; text-align: center;">
+
+                    <p><b> video සහ story බලන්න නම් මෙ විදියට කරන්න.</b></p>
+                    <p>To watch the video & story , follow these rules.</p><br>
+
+                    <p>මුලින්ම තියෙන රතු පාට බටන් එක ඔබන්න ඊටපස්සෙ ඔයාව වෙන පිටුවකට යයි.</p>
+                    <p>First, press the red button,Then you will be taken to another page.</p><br>
+
+                    <p> ඒ පිටුවේ තප්පර 20ක් විතර ඉන්න.</p>
+                    <p>Stay on the page for about 20 seconds.</p><br>
+
+                    <p> ඊටපස්සෙ බැක් වෙලා ඇවිත් ආපහු දෙවෙනියට තියෙන කොළ පාට බටන් එක ඔබන්න.</p>
+                    <p>Then come back and press the green button.</p><br>
+
+                    <p> එතකොට ඔයාව විඩියොවට හො කතාවට කෙලින්ම යයි.</p>
+                    <p> Then you will go directly to the video / story.</p><br>
+
+                    <p> කියලා තියන විදියට කරොත් විතරයි ඔයාට video / story  බලන්න පුළුවන්.</p>
+                    <p> You can watch the video / story only if you follow the instructions.</p><br>
+
+                    <p>ඒක නිසා කියපු විදිහට පිලිවෙලට කරන්න.</p>
+                    <p>fallow this Rules.</p><br>
+
+            </span>
+        </div>
+
+        <div class="buttons">
+            <div>
+                <button id="redButton" class="btnRed2"
+                    style="-webkit-text-size-adjust: auto; background-color: red; border-radius: 10px;
+        color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 200px;">Click</button><br>
+            </div>
+
+            <div>
+                <button id="greenButton" disabled class="btnGreen2" style="-webkit-text-size-adjust: auto; background-color: green; border-radius: 10px;
+        color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 200px;"> View Story / Video </button>
+            </div>
+        </div>
+
+
+        <script>
+            // Get references to the buttons
+            const redButton = document.getElementById('redButton');
+            const greenButton = document.getElementById('greenButton');
+
+            // Check if the red button was previously clicked
+            const redButtonClicked = sessionStorage.getItem('redButtonClicked');
+            if (redButtonClicked) {
+                greenButton.removeAttribute('disabled');
+            }
+
+            // Add event listener to the red button
+            redButton.addEventListener('click', function () {
+                // Redirect to the red page
+                window.location.href = 'https://verseexposurethanksgiving.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802';
+                // Store the state of the red button
+                sessionStorage.setItem('redButtonClicked', true);
+            });
+
+            // Add event listener to the green button
+            greenButton.addEventListener('click', function () {
+                // Check if the red button was clicked
+                const redButtonClicked = sessionStorage.getItem('redButtonClicked');
+                if (!redButtonClicked) {
+                    // Redirect to the error page if the red button was not clicked
+                    window.location.href = 'error.html';
+                } else {
+                    // Redirect to the green page if the red button was clicked
+                    window.location.href = 'https://srilankavideoclub.blogspot.com/2024/10/step-sister_25.html';
+                }
+            });
+
+
+            // Refresh the page every 5 seconds
+            setInterval(function () {
+                window.location.reload();
+            }, 10000); // 10000 milliseconds = 10 seconds
+
+        </script>
+
+    </div>
+</body>
+
+</html>
