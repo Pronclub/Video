@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Explorer - Discover the Beauty of Our Planet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <a href="index.html">
+          <h1>Global Explorer</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="popular-locations.html">Popular Locations</a></li>
+          <li><a href="photo-gallery.html">Photo Gallery</a></li>
+          <li><a href="hotels-restaurants.html">Hotels & Restaurants</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+      <div class="search-container">
+        <form action="#" method="get">
+          <input type="text" placeholder="Search destinations, countries..." class="search-input">
+          <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
+      <div class="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-slider">
+      <div class="hero-slide active">
+        <img src="/placeholder.svg?height=800&width=1600" alt="Santorini, Greece">
+        <div class="hero-content">
+          <h2>Discover the Beauty of Our Planet</h2>
+          <p>Explore breathtaking destinations and immerse yourself in diverse cultures</p>
+          <a href="popular-locations.html" class="btn btn-primary">Start Exploring</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+<!-- Featured Destinations -->
+  <section class="featured-destinations">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Destinations</h2>
+        <p>Explore some of the world's most breathtaking places</p>
+      </div>
+      <div class="destinations-grid">
+        <div class="destination-card">
+          <div class="destination-img">
+            <img src="/placeholder.svg?height=400&width=600" alt="Santorini, Greece">
+            <div class="destination-region">Europe</div>
+          </div>
+          <div class="destination-content">
+            <h3>Santorini, Greece</h3>
+            <p>Famous for its stunning sunsets, white-washed buildings, and blue domes.</p>
+            <div class="destination-meta">
+              <span><i class="fas fa-calendar-alt"></i> Best time: April-October</span>
+              <span><i class="fas fa-eye"></i> 24.5K views</span>
+            </div>
+            <a href="article.html" class="btn btn-secondary">Explore More</a>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-img">
+            <img src="/placeholder.svg?height=400&width=600" alt="Kyoto, Japan">
+            <div class="destination-region">Asia</div>
+          </div>
+          <div class="destination-content">
+            <h3>Kyoto, Japan</h3>
+            <p>Home to numerous temples, shrines, and traditional gardens.</p>
+            <div class="destination-meta">
+              <span><i class="fas fa-calendar-alt"></i> Best time: March-May, Oct-Nov</span>
+              <span><i class="fas fa-eye"></i> 18.3K views</span>
+            </div>
+            <a href="article.html" class="btn btn-secondary">Explore More</a>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-img">
+            <img src="/placeholder.svg?height=400&width=600" alt="Machu Picchu, Peru">
+            <div class="destination-region">South America</div>
+          </div>
+          <div class="destination-content">
+            <h3>Machu Picchu, Peru</h3>
+            <p>Ancient Incan citadel set high in the Andes Mountains.</p>
+            <div class="destination-meta">
+              <span><i class="fas fa-calendar-alt"></i> Best time: May-September</span>
+              <span><i class="fas fa-eye"></i> 22.1K views</span>
+            </div>
+            <a href="article.html" class="btn btn-secondary">Explore More</a>
+          </div>
+        </div>
+        <div class="destination-card">
+          <div class="destination-img">
+            <img src="/placeholder.svg?height=400&width=600" alt="Serengeti, Tanzania">
+            <div class="destination-region">Africa</div>
+          </div>
+          <div class="destination-content">
+            <h3>Serengeti, Tanzania</h3>
+            <p>Famous for its annual migration of over 1.5 million wildebeest.</p>
+            <div class="destination-meta">
+              <span><i class="fas fa-calendar-alt"></i> Best time: June-September</span>
+              <span><i class="fas fa-eye"></i> 15.7K views</span>
+            </div>
+            <a href="article.html" class="btn btn-secondary">Explore More</a>
+          </div>
+        </div>
+      </div>
+      <div class="view-more-container">
+        <a href="popular-locations.html" class="btn btn-outline">View All Destinations</a>
+      </div>
+    </div>
+  </section>
+
+<!-- World Map Section -->
+  <section class="world-map-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Explore by Region</h2>
+        <p>Click on a continent to discover amazing destinations</p>
+      </div>
+      <div class="world-map-container">
+        <div class="world-map">
+          <img src="/placeholder.svg?height=600&width=1200" alt="World Map" class="map-img">
+          <div class="map-region north-america" data-region="North America">
+            <span class="region-name">North America</span>
+          </div>
+          <div class="map-region south-america" data-region="South America">
+            <span class="region-name">South America</span>
+          </div>
+          <div class="map-region europe" data-region="Europe">
+            <span class="region-name">Europe</span>
+          </div>
+          <div class="map-region africa" data-region="Africa">
+            <span class="region-name">Africa</span>
+          </div>
+          <div class="map-region asia" data-region="Asia">
+            <span class="region-name">Asia</span>
+          </div>
+          <div class="map-region oceania" data-region="Oceania">
+            <span class="region-name">Oceania</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Categories -->
+  <section class="popular-categories">
+    <div class="container">
+      <div class="section-header">
+        <h2>Explore by Interest</h2>
+        <p>Find destinations that match your travel style</p>
+      </div>
+      <div class="categories-grid">
+        <a href="#" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-mountain"></i>
+          </div>
+          <h3>Adventure</h3>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-umbrella-beach"></i>
+          </div>
+          <h3>Beaches</h3>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-city"></i>
+          </div>
+          <h3>Urban</h3>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <h3>Cultural</h3>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>Culinary</h3>
+        </a>
+        <a href="#" class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <h3>Nature</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+<!-- Photo Gallery Preview -->
+  <section class="gallery-preview">
+    <div class="container">
+      <div class="section-header">
+        <h2>Photo Gallery</h2>
+        <p>Stunning images from travelers around the world</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="/placeholder.svg?height=300&width=400" alt="Eiffel Tower, Paris">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Eiffel Tower</h4>
+              <p>Paris, France</p>
+              <div class="gallery-meta">
+                <span><i class="fas fa-heart"></i> 1.2K</span>
+                <span><i class="fas fa-user"></i> @traveler123</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/placeholder.svg?height=300&width=400" alt="Grand Canyon, USA">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Grand Canyon</h4>
+              <p>Arizona, USA</p>
+              <div class="gallery-meta">
+                <span><i class="fas fa-heart"></i> 956</span>
+                <span><i class="fas fa-user"></i> @natureexplorer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/placeholder.svg?height=300&width=400" alt="Taj Mahal, India">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Taj Mahal</h4>
+              <p>Agra, India</p>
+              <div class="gallery-meta">
+                <span><i class="fas fa-heart"></i> 1.5K</span>
+                <span><i class="fas fa-user"></i> @worldtraveler</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/placeholder.svg?height=300&width=400" alt="Great Barrier Reef, Australia">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Great Barrier Reef</h4>
+              <p>Queensland, Australia</p>
+              <div class="gallery-meta">
+                <span><i class="fas fa-heart"></i> 1.1K</span>
+                <span><i class="fas fa-user"></i> @oceanlover</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/placeholder.svg?height=300&width=400" alt="Santorini, Greece">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Santorini</h4>
+              <p>Greece</p>
+              <div class="gallery-meta">
+                <span><i class="fas fa-heart"></i> 2.3K</span>
+                <span><i class="fas fa-user"></i> @islandhopper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/placeholder.svg?height=300&width=400" alt="Northern Lights, Iceland">
+          <div class="gallery-overlay">
+            <div class="gallery-info">
+              <h4>Northern Lights</h4>
+              <p>Iceland</p>
+              <div class="gallery-meta">
+                <span><i class="fas fa-heart"></i> 1.8K</span>
+                <span><i class="fas fa-user"></i> @aurorahunter</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="view-more-container">
+        <a href="photo-gallery.html" class="btn btn-outline">View Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+<!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>Traveler Experiences</h2>
+        <p>Hear what fellow explorers have to say</p>
+      </div>
+      <div class="testimonials-slider">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"Global Explorer helped me plan the perfect trip to Japan. The detailed articles about Kyoto were incredibly helpful and accurate!"</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="/placeholder.svg?height=80&width=80" alt="Sarah Johnson">
+            <div class="author-info">
+              <h4>Sarah Johnson</h4>
+              <p>Visited Kyoto, Japan</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"The hotel recommendations for my trip to Bali were spot on! I stayed at three different places suggested by Global Explorer and each one was amazing."</p>
+          </div>
+          <div class="testimonial-author">
+            <img src="/placeholder.svg?height=80&width=80" alt="Michael Rodriguez">
+            <div class="author-info">
+              <h4>Michael Rodriguez</h4>
+              <p>Visited Bali, Indonesia</p>
+              <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Stay Updated with Global Explorer</h2>
+        <p>Subscribe to our newsletter for travel inspiration, tips, and exclusive updates</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <p class="newsletter-disclaimer">We respect your privacy. Unsubscribe at any time.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <h2>Global Explorer</h2>
+          </div>
+          <p>Discover the beauty of our planet through immersive travel experiences and stunning destinations.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="popular-locations.html">Popular Locations</a></li>
+            <li><a href="photo-gallery.html">Photo Gallery</a></li>
+            <li><a href="hotels-restaurants.html">Hotels & Restaurants</a></li>
+            <li><a href="#">Travel Guides</a></li>
+            <li><a href="#">Travel Tips</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Continents</h3>
+          <ul>
+            <li><a href="#">Africa</a></li>
+            <li><a href="#">Asia</a></li>
+            <li><a href="#">Europe</a></li>
+            <li><a href="#">North America</a></li>
+            <li><a href="#">South America</a></li>
+            <li><a href="#">Oceania</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Information</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Global Explorer. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
