@@ -1,0 +1,38 @@
+<div>
+  <button onclick="openAds()" class="btnRed2" style="background-color: skyblue; border-radius: 10px; color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">
+    සම්පූර්ණ Video බලන්න
+  </button>
+</div>
+
+<script>
+  function openAds() {
+    // Open the first ad link immediately (user-triggered)
+    let win1 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+
+    // Use a single setTimeout chain to ensure Safari compatibility
+    setTimeout(function () {
+      let win2 = window.open('https://insightspendadvancement.com/nwjmymevv?key=6c8179d87763a9364ad324886ff22af2', '_blank');
+
+      setTimeout(function () {
+        let win3 = window.open('https://insightspendadvancement.com/z44gstiaj4?key=4b5aa598dd0f1dd89b289e75aa220b58', '_blank');
+
+        setTimeout(function () {
+          let win4 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+
+          setTimeout(function () {
+            let win5 = window.open('https://insightspendadvancement.com/nwjmymevv?key=6c8179d87763a9364ad324886ff22af2', '_blank');
+
+            setTimeout(function () {
+              let win6 = window.open('https://insightspendadvancement.com/z44gstiaj4?key=4b5aa598dd0f1dd89b289e75aa220b58', '_blank');
+
+              // After all ads are opened, open the video link automatically
+              setTimeout(function () {
+                window.open('http://www.videohub.space/xpage05.html', '_blank');
+              }, 3000); // 3-second delay after the last ad
+            }, 5000); // 25 seconds from start
+          }, 5000); // 20 seconds from start
+        }, 5000); // 15 seconds from start
+      }, 5000); // 10 seconds from start
+    }, 5000); // 5 seconds from start
+  }
+</script>
