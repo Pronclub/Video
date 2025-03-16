@@ -1,0 +1,64 @@
+<div>
+  <button onclick="openAds()" class="btnRed2" style="background-color: skyblue; border-radius: 10px; color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">
+    සම්පූර්ණ Video බලන්න
+  </button>
+  <br>
+  <!-- Hidden button for the video link -->
+  <button id="videoButton" onclick="openVideo()" class="btnRed2" style="background-color: green; border-radius: 10px; color: white; display: none; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">
+    Watch Video
+  </button>
+</div>
+
+<script>
+  let isTaskCompleted = false; // Track if the task is completed
+  let timeoutId; // Store the timeout ID for automatic navigation
+  let isManualBack = false; // Track if the user manually navigates back
+
+  function openAds() {
+    // Open ad links
+    let win1 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+
+    setTimeout(function () {
+      let win2 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 5000); // 5 second delay
+
+    setTimeout(function () {
+      let win3 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 10000); // 10 second delay
+
+    setTimeout(function () {
+      let win4 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 15000); // 15 second delay
+
+    setTimeout(function () {
+      let win5 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 20000); // 20 second delay
+
+    setTimeout(function () {
+      let win6 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 25000); // 25 second delay
+
+    // After all ads are opened, show the video button
+    setTimeout(function () {
+      document.getElementById('videoButton').style.display = 'block';
+      isTaskCompleted = true; // Mark the task as completed
+    }, 30000); // 30 second delay
+
+    // Automatically navigate to the home page after 30 seconds
+    timeoutId = setTimeout(function () {
+      if (isTaskCompleted && !isManualBack) {
+        window.location.href = 'http://www.videohub.space/newslvideo80.html'; // Replace with your home page URL
+      }
+    }, 30000); // 30 seconds
+  }
+
+  function openVideo() {
+    window.open('video link', '_blank');
+  }
+
+  // Detect manual back navigation
+  window.onbeforeunload = function () {
+    isManualBack = true; // Set flag if the user manually navigates back
+    clearTimeout(timeoutId); // Cancel the automatic navigation
+  };
+</script>
