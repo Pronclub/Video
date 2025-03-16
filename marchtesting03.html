@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Hub</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        margin-top: 0px;
+        background-color: #121212;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 120vh;
+        text-align: center;
+    }
+
+    .container {
+        background-color: #1c1c1c93;
+        padding: 20px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .image {
+
+        background-image: url("http://www.videohub.space/IMG_4350.jpeg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    header h1 {
+        /* border: solid; */
+        /* padding: 5px; */
+        background-color: #1c1c1c93;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+        -webkit-text-size-adjust: auto;
+        font-family: helvetica;
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .black-text {
+        color: white;
+        font-weight: bold;
+    }
+
+    .hub-text {
+
+        board-style: solid;
+        color: orange;
+        font-weight: bold;
+    }
+
+
+    .instructions p {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body class="image">
+    <div class="container">
+        <header>
+            <h1>Welcome to <span class="hub-text"> Video Hub !</span></h1>
+        </header>
+        
+
+        <div class="instructions">
+            <span style="text-align: center;">&nbsp;<span
+                    style="font-family: verdana;-webkit-text-size-adjust: auto; font-size: 9px; text-align: center;">
+
+                    <p><b> video සහ story බලන්න නම් මෙ විදියට කරන්න.</b></p>
+                    <p>To watch the video & story , follow these rules.</p><br>
+
+                    <p>මුලින්ම තියෙන රතු පාට බටන් එක ඔබන්න ඊටපස්සෙ ඔයාව වෙන පිටුවකට යයි.</p>
+                    <p>First, press the red button,Then you will be taken to another page.</p><br>
+
+                    <p> ඒ පිටුවේ තප්පර 20ක් විතර ඉන්න.</p>
+                    <p>Stay on the page for about 20 seconds.</p><br>
+
+                    <p> ඊටපස්සෙ බැක් වෙලා ඇවිත් ආපහු දෙවෙනියට තියෙන කොළ පාට බටන් එක ඔබන්න.</p>
+                    <p>Then come back and press the green button.</p><br>
+
+                    <p> එතකොට ඔයාව විඩියොවට හො කතාවට කෙලින්ම යයි.</p>
+                    <p> Then you will go directly to the video / story.</p><br>
+
+                    <p> කියලා තියන විදියට කරොත් විතරයි ඔයාට video / story  බලන්න පුළුවන්.</p>
+                    <p> You can watch the video / story only if you follow the instructions.</p><br>
+
+                    <p>ඒක නිසා කියපු විදිහට පිලිවෙලට කරන්න.</p>
+                    <p>fallow this Rules.</p><br>
+
+            </span>
+        </div>
+
+<div>
+  <button onclick="openAds()" class="btnRed2" style="background-color: skyblue; border-radius: 10px; color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">
+    සම්පූර්ණ Video බලන්න
+  </button>
+  <br>
+  <!-- Hidden button for the video link -->
+  <button id="videoButton" onclick="openVideo()" class="btnRed2" style="background-color: green; border-radius: 10px; color: white; display: none; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">
+    Watch Video
+  </button>
+</div>
+
+<script>
+  let isTaskCompleted = false; // Track if the task is completed
+  let timeoutId; // Store the timeout ID for automatic navigation
+  let isManualBack = false; // Track if the user manually navigates back
+
+  function openAds() {
+    // Open ad links
+    let win1 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+
+    setTimeout(function () {
+      let win2 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 5000); // 5 second delay
+
+    setTimeout(function () {
+      let win3 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 10000); // 10 second delay
+
+    setTimeout(function () {
+      let win4 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 15000); // 15 second delay
+
+    setTimeout(function () {
+      let win5 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 20000); // 20 second delay
+
+    setTimeout(function () {
+      let win6 = window.open('https://insightspendadvancement.com/h1wvfksd8?key=c99b5b1d9881dfef5e1cfad8ce758b00', '_blank');
+    }, 25000); // 25 second delay
+
+    // After all ads are opened, show the video button
+    setTimeout(function () {
+      document.getElementById('videoButton').style.display = 'block';
+      isTaskCompleted = true; // Mark the task as completed
+    }, 30000); // 30 second delay
+
+    // Automatically navigate to the home page after 30 seconds
+    timeoutId = setTimeout(function () {
+      if (isTaskCompleted && !isManualBack) {
+        window.location.href = 'http://www.videohub.space/newslvideo80.html'; // Replace with your home page URL
+      }
+    }, 30000); // 30 seconds
+  }
+
+  function openVideo() {
+    window.open('video link', '_blank');
+  }
+
+  // Detect manual back navigation
+  window.onbeforeunload = function () {
+    isManualBack = true; // Set flag if the user manually navigates back
+    clearTimeout(timeoutId); // Cancel the automatic navigation
+  };
+</script>
+
+    </div>
+</body>
+
+</html>
