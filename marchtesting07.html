@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Video</title>
+    <style>
+        /* Disable text selection */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Embedded Video -->
+    <div style="position:relative;padding-top:56.25%;">
+        <iframe src="https://iframe.mediadelivery.net/embed/379390/813779f2-8a1d-438d-bd8f-bb326c37f968?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+            loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;"
+            allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
+    </div>
+
+    <br><br>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <div>
+            <button id="redButton" class="btnRed2"
+                style="background-color: skyblue; border-radius: 10px; color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">
+                Join Telegram Channel
+            </button><br>
+        </div>
+
+        <script>
+            // Disable right-click and inspect element
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+            });
+
+            // Disable keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Disable Ctrl+S, Ctrl+Shift+I, etc.
+                if (e.ctrlKey || e.metaKey) {
+                    e.preventDefault();
+                }
+            });
+
+            // Handle red button click
+            const redButton = document.getElementById('redButton');
+            redButton.addEventListener('click', function () {
+                window.location.href = 'https://t.me/htwvideo/7';
+                sessionStorage.setItem('redButtonClicked', true);
+            });
+        </script>
+    </div>
+</body>
+
+</html>
