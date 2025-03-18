@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Video</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2c3e50); /* Dark gradient background */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Container for the button */
+        .container {
+            text-align: center;
+            z-index: 2; /* Ensure content is above the animation */
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b; /* Red accent color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Subheading */
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+
+        /* Red Button */
+        .watch-button {
+            background-color: #ff4757; /* Red color */
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); /* Glow effect */
+            transition: all 0.3s ease;
+        }
+
+        /* Button Hover Effect */
+        .watch-button:hover {
+            background-color: #ff6b81; /* Lighter red on hover */
+            box-shadow: 0 6px 20px rgba(255, 107, 129, 0.6); /* Enhanced glow */
+            transform: translateY(-2px); /* Slight lift */
+        }
+
+        /* Button Active Effect */
+        .watch-button:active {
+            transform: translateY(0); /* Reset lift */
+        }
+
+        /* Lips Animation Container */
+        .lips-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Behind the content */
+            overflow: hidden;
+        }
+
+        /* Lips SVG */
+        .lips-animation svg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            animation: float 10s infinite ease-in-out;
+            fill: #ff6b6b; /* Red color for lips */
+            opacity: 0.7; /* Semi-transparent */
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20vh) translateX(20vw) rotate(20deg);
+            }
+            50% {
+                transform: translateY(10vh) translateX(-20vw) rotate(-20deg);
+            }
+            75% {
+                transform: translateY(-10vh) translateX(10vw) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+        }
+
+        /* Add multiple lips */
+        .lips-animation svg:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-duration: 12s;
+        }
+
+        .lips-animation svg:nth-child(2) {
+            top: 30%;
+            left: 70%;
+            animation-duration: 15s;
+        }
+
+        .lips-animation svg:nth-child(3) {
+            top: 60%;
+            left: 20%;
+            animation-duration: 10s;
+        }
+
+        .lips-animation svg:nth-child(4) {
+            top: 80%;
+            left: 60%;
+            animation-duration: 14s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Lips Animation -->
+    <div class="lips-animation">
+        <!-- SVG for honey lips -->
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 56c-13.255 0-24-10.745-24-24v-8c0-13.255 10.745-24 24-24s24 10.745 24 24v8c0 13.255-10.745 24-24 24zm0-48c-8.837 0-16 7.163-16 16v8c0 8.837 7.163 16 16 16s16-7.163 16-16v-8c0-8.837-7.163-16-16-16z" />
+            <path d="M32 48c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12s12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-28c-4.418 0-8 3.582-8 8v8c0 4.418 3.582 8 8 8s8-3.582 8-8v-8c0-4.418-3.582-8-8-8z" />
+        </svg>
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 56c-13.255 0-24-10.745-24-24v-8c0-13.255 10.745-24 24-24s24 10.745 24 24v8c0 13.255-10.745 24-24 24zm0-48c-8.837 0-16 7.163-16 16v8c0 8.837 7.163 16 16 16s16-7.163 16-16v-8c0-8.837-7.163-16-16-16z" />
+            <path d="M32 48c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12s12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-28c-4.418 0-8 3.582-8 8v8c0 4.418 3.582 8 8 8s8-3.582 8-8v-8c0-4.418-3.582-8-8-8z" />
+        </svg>
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 56c-13.255 0-24-10.745-24-24v-8c0-13.255 10.745-24 24-24s24 10.745 24 24v8c0 13.255-10.745 24-24 24zm0-48c-8.837 0-16 7.163-16 16v8c0 8.837 7.163 16 16 16s16-7.163 16-16v-8c0-8.837-7.163-16-16-16z" />
+            <path d="M32 48c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12s12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-28c-4.418 0-8 3.582-8 8v8c0 4.418 3.582 8 8 8s8-3.582 8-8v-8c0-4.418-3.582-8-8-8z" />
+        </svg>
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 56c-13.255 0-24-10.745-24-24v-8c0-13.255 10.745-24 24-24s24 10.745 24 24v8c0 13.255-10.745 24-24 24zm0-48c-8.837 0-16 7.163-16 16v8c0 8.837 7.163 16 16 16s16-7.163 16-16v-8c0-8.837-7.163-16-16-16z" />
+            <path d="M32 48c-6.627 0-12-5.373-12-12v-8c0-6.627 5.373-12 12-12s12 5.373 12 12v8c0 6.627-5.373 12-12 12zm0-28c-4.418 0-8 3.582-8 8v8c0 4.418 3.582 8 8 8s8-3.582 8-8v-8c0-4.418-3.582-8-8-8z" />
+        </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <h1>Watch Now</h1>
+        <p>Click the button below to watch the video.</p>
+
+<script type='text/javascript' src='//verseexposurethanksgiving.com/12/2e/88/122e88334ccb4f2e09e74baa5b144114.js'></script>
+
+        <button class="watch-button" onclick="window.open('https://t.me/Filesendx3bot?start=Z2V0LTc1NDEyMDgwODA0NzEwMzQy', '_blank')">
+            Watch Video
+        </button>
+    </div>
+</body>
+
+</html>
