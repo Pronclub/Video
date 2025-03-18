@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0a192f; /* Dark blue background */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+        }
+
+        .blocked-message {
+            display: none; /* Hidden by default */
+            font-size: 1.5rem;
+            color: #ff8a00; /* Orange accent color */
+        }
+    </style>
+    <!-- Ad Script -->
+    <script type='text/javascript' src='//verseexposurethanksgiving.com/6c/86/bb/6c86bbbc301c99a5678b2c7f0c3dd7fa.js'></script>
+    <script>
+        // Function to detect ad blocker
+        function detectAdBlocker() {
+            return new Promise((resolve) => {
+                const testAd = document.createElement('div');
+                testAd.innerHTML = '&nbsp;';
+                testAd.className = 'adsbox'; // Common class name used by ad blockers
+                document.body.appendChild(testAd);
+
+                setTimeout(() => {
+                    const isAdBlocked = testAd.offsetHeight === 0 || testAd.style.display === 'none';
+                    document.body.removeChild(testAd); // Remove the test element
+                    resolve(isAdBlocked);
+                }, 100); // Wait for ad blocker to act
+            });
+        }
+
+        // Function to detect VPN
+        async function detectVPN() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                // Use a VPN detection API (e.g., IPHub) to check if the IP is a VPN
+                const vpnResponse = await fetch(`https://v2.api.iphub.info/ip/${data.ip}`, {
+                    headers: {
+                        'X-Key': 'YOUR_IPHUB_API_KEY' // Replace with your IPHub API key
+                    }
+                });
+                const vpnData = await vpnResponse.json();
+                return vpnData.block === 1; // 1 = VPN/Proxy, 0 = Clean IP
+            } catch (error) {
+                console.error('Error detecting VPN:', error);
+                return false; // Assume no VPN if there's an error
+            }
+        }
+
+        // Check ad blocker and VPN status
+        async function initializePage() {
+            const isAdBlocked = await detectAdBlocker();
+            const isVPN = await detectVPN();
+
+            if (isAdBlocked || isVPN) {
+                // Block the page and show a message
+                document.body.innerHTML = ''; // Clear the page
+                document.body.style.backgroundColor = '#0a192f'; // Set background color
+                document.body.innerHTML = `
+                    <div class="blocked-message">
+                        ${isAdBlocked ? 'Please disable your ad blocker to access this page.<br>' : ''}
+                        ${isVPN ? 'VPN usage is not allowed on this site.<br>' : ''}
+                        Refresh the page after making changes.
+                    </div>
+                `;
+            } else {
+                // Load the page content
+                document.body.innerHTML = `
+                    <header class="header">
+                        <div class="logo">
+                            SL VIDEO <span>CLUB</span>
+                        </div>
+                    </header>
+                    <div class="video-container">
+                        <div class="video-wrapper">
+                            <iframe src="https://iframe.mediadelivery.net/embed/379390/b3cca0b9-e326-46b5-a4ad-b31bcc98c2f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+                                loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                                allowfullscreen="true"></iframe>
+                        </div>
+                    </div>
+                `;
+
+                // Automatically open a popunder ad after 30 seconds
+                setTimeout(function () {
+                    window.open('https://verseexposurethanksgiving.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991', '_blank').blur(); // Replace with your popunder URL
+                    window.focus(); // Keep the main window focused
+                }, 30000); // 30 seconds delay
+            }
+        }
+
+        // Run the checks when the page loads
+        window.onload = initializePage;
+    </script>
+</head>
+
+<body>
+    <!-- Default message (hidden unless blocked) -->
+    <div class="blocked-message">Please disable your ad blocker or VPN to access this page.</div>
+</body>
+
+</html>
