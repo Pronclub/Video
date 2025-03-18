@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Video</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a, #2c3e50); /* Dark gradient background */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container for the button */
+        .container {
+            text-align: center;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b; /* Red accent color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Subheading */
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+
+        /* Red Button */
+        .watch-button {
+            background-color: #ff4757; /* Red color */
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); /* Glow effect */
+            transition: all 0.3s ease;
+        }
+
+        /* Button Hover Effect */
+        .watch-button:hover {
+            background-color: #ff6b81; /* Lighter red on hover */
+            box-shadow: 0 6px 20px rgba(255, 107, 129, 0.6); /* Enhanced glow */
+            transform: translateY(-2px); /* Slight lift */
+        }
+
+        /* Button Active Effect */
+        .watch-button:active {
+            transform: translateY(0); /* Reset lift */
+        }
+
+        /* Background Animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 71, 87, 0.1), transparent);
+            animation: pulse 5s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Watch Now</h1>
+        <p>Click the button below to watch the video.</p>
+        <button class="watch-button" onclick="window.open('https://t.me/Filesendx3bot?start=Z2V0LTc1NDEyMDgwODA0NzEwMzQy', '_blank')">
+            Watch Video
+        </button>
+    </div>
+</body>
+
+</html>
