@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0a192f; /* Dark blue background */
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+        }
+
+        .ad-blocked-message {
+            display: none; /* Hidden by default */
+            font-size: 1.5rem;
+            color: #ff8a00; /* Orange accent color */
+        }
+    </style>
+    <!-- Ad Script -->
+    <script type='text/javascript' src='//verseexposurethanksgiving.com/6c/86/bb/6c86bbbc301c99a5678b2c7f0c3dd7fa.js'></script>
+    <script>
+        // Check if the ad script was blocked
+        function checkAdBlock() {
+            // Create a test element to detect ad blocking
+            const testAd = document.createElement('div');
+            testAd.innerHTML = '&nbsp;';
+            testAd.className = 'adsbox'; // Common class name used by ad blockers
+            document.body.appendChild(testAd);
+
+            // Check if the ad element is blocked
+            setTimeout(function () {
+                if (testAd.offsetHeight === 0 || testAd.style.display === 'none') {
+                    // Ad blocker detected
+                    document.body.innerHTML = ''; // Clear the page
+                    document.body.style.backgroundColor = '#0a192f'; // Set background color
+                    document.body.innerHTML = '<div class="ad-blocked-message">Please disable your ad blocker to access this page.</div>';
+                } else {
+                    // Ad blocker not detected, proceed with page functionality
+                    initializePage();
+                }
+                document.body.removeChild(testAd); // Remove the test element
+            }, 100); // Wait for ad blocker to act
+        }
+
+        // Initialize the page if ads are not blocked
+        function initializePage() {
+            // Add your page content and functionality here
+            document.body.innerHTML = `
+                <header class="header">
+                    <div class="logo">
+                        SL VIDEO <span>CLUB</span>
+                    </div>
+                </header>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe src="https://iframe.mediadelivery.net/embed/379390/507a076e-fa79-4cbe-8820-3d210a39da6c?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+                            loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                            allowfullscreen="true"></iframe>
+                    </div>
+                </div>
+            `;
+
+            // Automatically open a popunder ad after 30 seconds
+            setTimeout(function () {
+                window.open('https://verseexposurethanksgiving.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9', '_blank').blur(); // Replace with your popunder URL
+                window.focus(); // Keep the main window focused
+            }, 30000); // 30 seconds delay
+        }
+
+        // Run the ad blocker check when the page loads
+        window.onload = checkAdBlock;
+    </script>
+</head>
+
+<body>
+    <!-- Default message (hidden unless ad blocker is detected) -->
+    <div class="ad-blocked-message">Please disable your ad blocker to access this page.</div>
+</body>
+
+</html>
