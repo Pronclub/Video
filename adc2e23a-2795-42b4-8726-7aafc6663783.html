@@ -90,6 +90,34 @@
 
 <script type='text/javascript' src='//berthfrankly.com/1a/0d/a4/1a0da4edd63f1b537186d46163ed2769.js'></script>
 
+        <div class="buttons"> 
+        <div> 
+            <button id="redButton" class="btnRed2" style="-webkit-text-size-adjust: auto; background-color: skyblue; border-radius: 10px; 
+        color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">Join Telegram 
+                Channel</button><br> 
+        </div> 
+ 
+        <script> 
+            // Get referencesm to the buttons 
+            const redButton = document.getElementById('redButton'); 
+            const greenButton = document.getElementById('greenButton'); 
+ 
+            // Check if the red button was previously clicked 
+            const redButtonClicked = sessionStorage.getItem('redButtonClicked'); 
+            if (redButtonClicked) { 
+                greenButton.removeAttribute('disabled'); 
+            } 
+ 
+            // Add event listener to the red button 
+            redButton.addEventListener('click', function () { 
+                // Redirect to the red page 
+                window.location.href = '  https://t.me/+PElAWHd3G_lhMWU9 '; 
+                // Store the state of the red button 
+                sessionStorage.setItem('redButtonClicked', true); 
+            }); 
+        </script> 
+
+
         </div>
     </div>
 </body>
