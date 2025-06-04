@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0a192f;
+            /* Dark blue background */
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Semi-transparent black */
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: aliceblue;
+        }
+
+        .logo span {
+            color: #ff8a00;
+            /* Orange accent color */
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            /* Reduce emptiness */
+            padding: 2rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            /* Limit video width */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            /* Add shadow for depth */
+        }
+
+        .video-wrapper iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <style>
+        body.disabled {
+            pointer-events: none;
+            /* Disable click interaction */
+        }
+
+        body.disabled * {
+            pointer-events: none;
+            /* Disable child interaction */
+        }
+
+        body.allow-scroll {
+            overflow-y: auto !important;
+            /* Allow vertical scroll */
+        }
+
+        /* Optional dark overlay for visual block */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            font-size: 24px;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            pointer-events: none;
+            /* Allows scroll through the overlay */
+        }
+
+        #overlay.hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://berthfrankly.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
+            "https://berthfrankly.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
+            "https://berthfrankly.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://berthfrankly.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://berthfrankly.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 4) + 2; // Random 2-5 clicks
+        let adsEnabled = true;
+
+        // DOM elements
+        // const overlay = document.getElementById('overlay');
+        // const body = document.body;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    // overlay.classList.add('hidden');
+                    // body.classList.remove('disabled');
+                    document.getElementById("overlay").classList.add("hidden");
+                    document.body.classList.remove("disabled");
+                }, 1000);
+
+                // Reset after 60 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 60000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            // overlay.classList.remove('hidden');
+            // body.classList.add('disabled');
+            document.getElementById("overlay").classList.remove("hidden");
+            document.body.classList.add("disabled");
+        }
+
+        // Initialize
+        document.addEventListener('click', handleClick);
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://berthfrankly.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991', '_blank ').blur(); // Replace with your popunder URL         
+            window.focus(); // Keep the main window focused
+        }, 30000); // 30 seconds delay
+    </script>
+</head>
+
+<body class="disabled allow-scroll">
+
+    <div id="overlay"></div>
+    <header class="header">
+        <div class="logo">
+            SL VIDEO <span>CLUB</span>
+        </div>
+    </header>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe
+                src=" https://iframe.mediadelivery.net/embed/382076/4fa2532b-b15f-401b-8c9e-344f4735d44e?autoplay=false&loop=false&muted=false&preload=true&responsive=true "
+                loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                allowfullscreen="true"></iframe>
+
+
+             <script type='text/javascript' src='//berthfrankly.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js'></script>
+
+        </div>
+    </div>
+</body>
+
+</html>
