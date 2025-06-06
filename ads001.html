@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head> 
+
+<body> 
+
+<div style="position:relative;padding-top:56.25%;"><iframe src="https://iframe.mediadelivery.net/embed/379390/e063cc65-15fe-4f08-9d89-c31f891d2b55?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe></div>
+
+    <br> 
+    <br> 
+ 
+    <div class="buttons"> 
+        <div> 
+            <button id="redButton" class="btnRed2" style="-webkit-text-size-adjust: auto; background-color: skyblue; border-radius: 10px; 
+        color: white; display: block; font-size: 16px; height: 60px; margin: 0px auto; width: 250px;">Join Telegram 
+                Channel</button><br> 
+        </div> 
+ 
+        <script> 
+            // Get references to the buttons 
+            const redButton = document.getElementById('redButton'); 
+            const greenButton = document.getElementById('greenButton'); 
+ 
+            // Check if the red button was previously clicked 
+            const redButtonClicked = sessionStorage.getItem('redButtonClicked'); 
+            if (redButtonClicked) { 
+                greenButton.removeAttribute('disabled'); 
+            } 
+ 
+            // Add event listener to the red button 
+            redButton.addEventListener('click', function () { 
+                // Redirect to the red page 
+                window.location.href = ' https://t.me/Slvideoclub '; 
+                // Store the state of the red button 
+                sessionStorage.setItem('redButtonClicked', true); 
+            }); 
+        </script> 
+
+<script>document.write(atob("PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnIHNyYz0nLy9hc2hvcmVub3JyaXMuY29tLzZjLzg2L2JiLzZjODZiYmJjMzAxYzk5YTU2NzhiMmM3ZjBjM2RkN2ZhLmpzJz48L3NjcmlwdD4="));</script>
+
+    </div> 
+</body> 
+ 
+</html>
