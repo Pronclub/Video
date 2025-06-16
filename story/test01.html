@@ -1,308 +1,430 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>රහස්ය කතාව - අනන්ය අත්දැකීම</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --primary-color: #8e44ad;
+            --secondary-color: #3498db;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+        
+        * {
             margin: 0;
-            background-color: #0a192f;
-            color: white;
-            font-family: Arial, sans-serif;
-            /* Copy protection styles */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        /* Copy attempt notification */
-        body::after {
-            content: "Copying is disabled on this site";
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff8a00;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 10000;
-        }
-
-        body.copy-attempt::after {
-            opacity: 1;
-        }
-
-        /* Ad blocker notification */
-        #adblock-notification {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #ff3b3b;
-            color: white;
+        
+        body {
+            font-family: 'Noto Sans Sinhala', Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
             padding: 20px;
-            border-radius: 10px;
-            z-index: 10000;
-            display: none;
-            max-width: 80%;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
-
-        .header {
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.7rem;
-            font-weight: bold;
-            color: aliceblue;
-        }
-
-        .logo span {
-            color: #ff8a00;
-        }
-
-        .video-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 80vh;
-            padding: 2rem;
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
+        
+        .container {
             max-width: 800px;
-            border-radius: 10px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
-
-        .video-wrapper iframe {
-            border: 0;
-            width: 100%;
-            height: 100%;
+        
+        .header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
         }
-
-        body.disabled {
-            pointer-events: none;
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
-
-        body.disabled * {
-            pointer-events: none;
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--warning-color), var(--danger-color));
         }
-
-        body.allow-scroll {
-            overflow-y: auto !important;
+        
+        .warning-banner {
+            background-color: var(--warning-color);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-bottom: 3px solid var(--danger-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-
-        #overlay {
+        
+        .warning-banner i {
+            font-size: 20px;
+        }
+        
+        .story-content {
+            padding: 30px;
+            font-size: 18px;
+            text-align: justify;
+            white-space: pre-line;
+            background-color: #fff;
+            border-left: 5px solid var(--primary-color);
+            line-height: 1.9;
+            position: relative;
+        }
+        
+        .story-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(to right, transparent, rgba(142, 68, 173, 0.3), transparent);
+        }
+        
+        .story-content p {
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+        
+        .protection-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0);
-            color: white;
-            font-size: 24px;
-            font-family: sans-serif;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.9);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            pointer-events: none;
-        }
-
-        #overlay.hidden {
+            color: white;
+            padding: 30px;
+            text-align: center;
             display: none;
         }
+        
+        .protection-overlay h2 {
+            color: var(--danger-color);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .protection-overlay p {
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px auto;
+                border-radius: 10px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .story-content {
+                padding: 20px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Decorative elements */
+        .corner-decoration {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.1;
+        }
+        
+        .top-left {
+            top: 10px;
+            left: 10px;
+            border-top: 3px solid var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .top-right {
+            top: 10px;
+            right: 10px;
+            border-top: 3px solid var(--secondary-color);
+            border-right: 3px solid var(--secondary-color);
+        }
+        
+        .bottom-left {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 3px solid var(--primary-color);
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .bottom-right {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            border-right: 3px solid var(--secondary-color);
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<body>
+    <div class="container">
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+        
+        <div class="header">
+            <h1>රහස්ය කතාව - අනන්ය අත්දැකීම</h1>
+        </div>
+        
+        <div class="warning-banner">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>කරුණාකර වෙනත් පිටු ඕපන් නොකරන්න! ඔබ මෙම පිටුවෙන් පිටවුවහොත්, කතාවේ අඛණ්ඩතාවය අහිමි විය හැකිය.</span>
+        </div>
+        
+        <div class="story-content" id="storyContent">
+වෙනත් පිටු ඕපන් උනොත් ආපහු ලින්ක් එක ඔබලා එන්න කතාවට 
 
-<body class="disabled allow-scroll">
-    <!-- Ad blocker notification -->
-    <div id="adblock-notification">
-        <h2>Ad Blocker Detected!</h2>
-        <p>Please disable your ad blocker to continue using this site.</p>
-        <p>Ads support our free service.</p>
-        <button onclick="checkAdsAgain()">I've disabled it</button>
+අද හවස මාර සීන් එකක් වුනේ 
+
+අපේ නාන තැන තියෙන්නෙ ගෙදරින් එලියේ.. 
+
+ඉතින් මම චිල් එකේ නාගන්නම් කියලා දැන් 6.30 ට විතර එලියට බැස්සා..
+
+තුවායත් කරේ දාගෙන යද්දි.. කලුවරේ මං දැක්කා වැට ලග අම්මා කාත් එක්කද කතා කර කර ඉන්නවා.. 
+
+ටිකක් ලගට ලගට යනකොට තමයි දැක්කේ.. මේ අපේ ගමේ කුපාඩි ඩයල් එක කපිල අන්කල් කියලා 
+
+මං ශේප් එකේ නාන තැනට යන්නෙ නැතුව බලන් හිටියා 
+
+දෙන්නා මොනාද කතා කර කර ඉන්නවා.. වැට ලග කැලේ වගේ නිසා හරියට පේන්නෙ නෑ.. 
+
+ටිකක් වෙලා ඉන්නකොට කපිල අන්කල් කාරයා ශේප් එකේ වත්ත ඇතුලටම ආවා වැටෙන් 
+
+ඊටපස්සෙ එතන ගස් වලට මුවා වෙලා මොනාද බර කතාවක්. 
+
+ටිකක් වෙලා යද්දිනෙ මීටර් උනේ කපිල අන්කල් කාරයගෙ එක අතක් අම්මගෙ පස්ස උඩ 
+
+ඌ ශේප් එකේ පස්ස අතගානවා. අම්මත් ගානක් නෑ වගේ කතා කර කර ඉන්නවා.. 
+
+ටිකක් වෙලා උඩින් අතගගා හිටපු ඩයල් එක දැන් අම්මගෙ ඇගටම හේත්තු වෙලා හොදට පුක මිරිකනව.. 
+
+ගෙදර මොකෙක් වත් නෑ මේ වෙලාවේ ඒ නිසා හොදයි. නැත්තම් ඉවරයි 
+
+ටිකක් වෙලා යද්දි කපිල අන්කල් කාරයා අම්මගේ මූන ඉබිනවා ශේප් එකේ ලංවෙලා.. 
+
+ඊටපස්සෙ පොර අම්මට මොනාද කිව්වා කනට ලං වෙලා.. 
+
+ඊටපස්සෙ අම්ම එහෙම්ම බිම වාඩි වුනා.. 
+
+ඊටපස්සෙ තමයි දැක්කේ මිනිහගෙ පයිය මෙච්චර වෙලා එලියෙනෙ තිබිලා තියෙන්නේ 
+
+අම්මා බිම වාඩි වුනාට පස්සෙ පොර ඔලුවෙන් අල්ලලා පයිය කටට එබුවා.. 
+
+කොහොම හරි විනාඩි 10ක් විතර කටට ගද්දි මිනිහා ඇඹරෙනව හොදට ඊටපස්සෙ පයිය කටෙන් එලියට අරන් අතේ ගහන්න පටන් ගත්තා 
+
+ශෙනිකව බඩු පාරක් අම්මගෙ ඇග පුරා විද්දා 
+
+ඊටපස්සෙ අරූ පයිය ඇතුලට දාගෙන ශේප් එකේ මාරු වුනා.. 
+
+අම්මත් එහෙම්ම නාන තැනට ගියා.. 
+
+නාන්න ගියපු මාත් ශේප් එකේ මොකුත් දැක්කෙ නෑ වගේ ගෙට ආවා..
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2023 රහස්ය කතා සංග්රහය. සියලුම හිමිකම් ඇවිරිණි. අනවසරයෙන් පිටපත් කිරීම හෝ බෙදා හැරීම නොකරන්න.</p>
+        </div>
     </div>
-
-    <div id="overlay"></div>
-    <header class="header">
-        <div class="logo">
-            SL VIDEO <span>CLUB</span>
-        </div>
-    </header>
-
-    <div class="video-container">
-        <div class="video-wrapper">
-            <iframe src="https://iframe.mediadelivery.net/embed/382076/0f2c59c5-0a8c-458e-9579-22268a71a6d5?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
-        </div>
+    
+    <div class="protection-overlay" id="protectionOverlay">
+        <h2><i class="fas fa-shield-alt"></i> ආරක්ෂණ අනතුරු ඇඟවීම</h2>
+        <p>ඔබ VPN හෝ පෞද්ගලික ගවේෂණ මාදිලිය භාවිතා කරන බව අපට හඳුනාගෙන ඇත. මෙම අන්තර්ගතය විශේෂ අත්දැකීමක් වන අතර, එය VPN හෝ පෞද්ගලික ගවේෂණ මාදිලිය හරහා ප්රවේශ විය නොහැක.</p>
+        <p>කරුණාකර ඔබගේ VPN අක්රිය කර නැවත උත්සාහ කරන්න.</p>
+        <button class="btn" id="reloadBtn"><i class="fas fa-sync-alt"></i> පිටුව යාවත්කාලීන කරන්න</button>
     </div>
 
     <script>
-        // Ad links
-        const adLinks = [
-            "https://sawutser.top/4/9165231",
-            "https://sawutser.top/4/8724649",
-            "https://sawutser.top/4/8940319",
-            "https://sawutser.top/4/9165477",
-            "https://sawutser.top/4/9165231"
-        ];
-
-        // State variables
-        let clickCount = 0;
-        const requiredClicks = Math.floor(Math.random() * 4) + 2; // Random 2-5 clicks
-        let adsEnabled = true;
-        let adBlockDetected = false;
-
-        // DOM elements
-        const overlay = document.getElementById('overlay');
-        const adblockNotification = document.getElementById('adblock-notification');
-
-        // Detect ad blockers
-        function detectAdBlock() {
-            return new Promise((resolve) => {
-                const ad = document.createElement('div');
-                ad.innerHTML = '&nbsp;';
-                ad.className = 'ad adsbox doubleclick ad-placement carbon-ads';
-                ad.style.position = 'absolute';
-                ad.style.left = '-9999px';
-                ad.style.height = '1px';
-                document.body.appendChild(ad);
-                
-                setTimeout(() => {
-                    const detected = ad.offsetHeight === 0;
-                    document.body.removeChild(ad);
-                    resolve(detected);
-                }, 100);
-            });
-        }
-
-        // Check for ad blocker periodically
-        async function checkAdBlock() {
-            const detected = await detectAdBlock();
-            if (detected && !adBlockDetected) {
-                adBlockDetected = true;
-                showAdBlockNotification();
-            }
-            return detected;
-        }
-
-        // Show ad block notification
-        function showAdBlockNotification() {
-            adblockNotification.style.display = 'block';
-            document.body.classList.add('disabled');
-        }
-
-        // Hide ad block notification
-        function hideAdBlockNotification() {
-            adblockNotification.style.display = 'none';
-            document.body.classList.remove('disabled');
-        }
-
-        // Re-check if user claims to have disabled ad blocker
-        async function checkAdsAgain() {
-            const stillBlocked = await checkAdBlock();
-            if (!stillBlocked) {
-                hideAdBlockNotification();
-                adBlockDetected = false;
-            } else {
-                alert('Ad blocker is still active! Please disable it completely.');
-            }
-        }
-
-        // Handle clicks
-        function handleClick() {
-            if (!adsEnabled || adBlockDetected) return;
-
-            clickCount++;
-
-            // Open ad immediately for each click
-            if (clickCount <= adLinks.length) {
-                const newWindow = window.open(adLinks[clickCount - 1], '_blank');
-                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
-                    // Popup was blocked
-                    showAdBlockNotification();
-                    return;
-                }
-            }
-
-            // Grant access when requirements met
-            if (clickCount >= requiredClicks) {
-                adsEnabled = false;
-                setTimeout(() => {
-                    overlay.classList.add('hidden');
-                    document.body.classList.remove('disabled');
-                }, 1000);
-
-                // Reset after 60 seconds
-                setTimeout(() => {
-                    resetAccess();
-                }, 60000);
-            }
-        }
-
-        // Reset access
-        function resetAccess() {
-            adsEnabled = true;
-            clickCount = 0;
-            overlay.classList.remove('hidden');
-            document.body.classList.add('disabled');
-        }
-
-        // Copy protection
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            document.body.classList.add('copy-attempt');
-            setTimeout(() => {
-                document.body.classList.remove('copy-attempt');
-            }, 2000);
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 88)) {
+        // Enhanced protection against copying
+        document.addEventListener('DOMContentLoaded', function() {
+            // Disable right-click
+            document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
-                document.body.classList.add('copy-attempt');
-                setTimeout(() => {
-                    document.body.classList.remove('copy-attempt');
-                }, 2000);
-            }
+                showWarning('දකුණු මූසික බොත්තම භාවිතා කිරීම අක්‍රීය කර ඇත!');
+            });
+            
+            // Disable text selection
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+            });
+            
+            // Disable copy/cut
+            document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                showWarning('මෙම අන්තර්ගතය පිටපත් කිරීම තහනම් කර ඇත!');
+            });
+            
+            document.addEventListener('cut', function(e) {
+                e.preventDefault();
+            });
+            
+            // Disable drag
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+            
+            // Disable keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Disable Ctrl+A, Ctrl+C, Ctrl+X
+                if ((e.ctrlKey || e.metaKey) && (e.keyCode === 65 || e.keyCode === 67 || e.keyCode === 88)) {
+                    e.preventDefault();
+                    showWarning('කෙටි යතුරු සංයෝජන භාවිතා කිරීම තහනම් කර ඇත!');
+                }
+                
+                // Disable F12 and Ctrl+Shift+I
+                if (e.keyCode === 123 || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 73)) {
+                    e.preventDefault();
+                    showWarning('සංවර්ධක මෙවලම් භාවිතා කිරීම තහනම් කර ඇත!');
+                }
+            });
+            
+            // Beforeunload event
+            window.addEventListener('beforeunload', function(e) {
+                e.preventDefault();
+                e.returnValue = 'ඔබ මෙම පිටුවෙන් පිටවන්නේ නම්, කතාවේ අඛණ්ඩතාවය අහිමි විය හැකිය. ඔබට ඇත්තෙන්ම පිටවීමට අවශ්‍යද?';
+                return e.returnValue;
+            });
+            
+            // VPN/Proxy detection
+            checkForVPN();
+            
+            // Reload button
+            document.getElementById('reloadBtn').addEventListener('click', function() {
+                location.reload();
+            });
         });
-
-        // Initialize
-        document.addEventListener('click', handleClick);
         
-        // Check for ad blocker every 10 seconds
-        setInterval(checkAdBlock, 10000);
+        // Function to show warning messages
+        function showWarning(message) {
+            const warning = document.createElement('div');
+            warning.style.position = 'fixed';
+            warning.style.bottom = '20px';
+            warning.style.right = '20px';
+            warning.style.backgroundColor = '#e74c3c';
+            warning.style.color = 'white';
+            warning.style.padding = '15px';
+            warning.style.borderRadius = '5px';
+            warning.style.zIndex = '9999';
+            warning.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+            warning.style.animation = 'fadeIn 0.3s';
+            warning.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            
+            document.body.appendChild(warning);
+            
+            setTimeout(function() {
+                warning.style.animation = 'fadeOut 0.3s';
+                setTimeout(function() {
+                    warning.remove();
+                }, 300);
+            }, 3000);
+        }
         
-        // Initial check
-        checkAdBlock();
+        // VPN detection function
+        function checkForVPN() {
+            // Method 1: Check timezone offset
+            const timezoneOffset = new Date().getTimezoneOffset();
+            const expectedOffset = -330; // Expected offset for Sri Lanka (UTC+5:30)
+            
+            // Method 2: Check language settings
+            const userLanguage = navigator.language || navigator.userLanguage;
+            
+            // Method 3: Check if private browsing mode is detected
+            let isPrivate = false;
+            try {
+                if (window.sessionStorage) {
+                    const testKey = 'test';
+                    sessionStorage.setItem(testKey, '1');
+                    sessionStorage.removeItem(testKey);
+                } else {
+                    isPrivate = true;
+                }
+            } catch (e) {
+                isPrivate = true;
+            }
+            
+            // If any of these checks fail, show VPN warning
+            if (Math.abs(timezoneOffset - expectedOffset) > 60 || 
+                !userLanguage.includes('si') || 
+                isPrivate) {
+                document.getElementById('protectionOverlay').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        // Add some style for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(20px); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
-
 </html>
