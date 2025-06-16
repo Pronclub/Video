@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            background-color: #0a192f;
+            color: white;
+            font-family: Arial, sans-serif;
+            /* Copy protection styles */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Copy attempt notification */
+        body::after {
+            content: "Copying is disabled on this site";
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff8a00;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        body.copy-attempt::after {
+            opacity: 1;
+        }
+
+        /* Ad blocker notification */
+        #adblock-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ff3b3b;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            display: none;
+            max-width: 80%;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: aliceblue;
+        }
+
+        .logo span {
+            color: #ff8a00;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body.disabled {
+            pointer-events: none;
+        }
+
+        body.disabled * {
+            pointer-events: none;
+        }
+
+        body.allow-scroll {
+            overflow-y: auto !important;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            color: white;
+            font-size: 24px;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        #overlay.hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="disabled allow-scroll">
+    <!-- Ad blocker notification -->
+    <div id="adblock-notification">
+        <h2>Ad Blocker Detected!</h2>
+        <p>Please disable your ad blocker to continue using this site.</p>
+        <p>Ads support our free service.</p>
+        <button onclick="checkAdsAgain()">I've disabled it</button>
+    </div>
+
+    <div id="overlay"></div>
+    <header class="header">
+        <div class="logo">
+            SL VIDEO <span>CLUB</span>
+        </div>
+    </header>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://iframe.mediadelivery.net/embed/382076/0f2c59c5-0a8c-458e-9579-22268a71a6d5?autoplay=false&loop=false&muted=false&preload=true&responsive=true" loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen="true"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://sawutser.top/4/9165231",
+            "https://sawutser.top/4/8724649",
+            "https://sawutser.top/4/8940319",
+            "https://sawutser.top/4/9165477",
+            "https://sawutser.top/4/9165231"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 4) + 2; // Random 2-5 clicks
+        let adsEnabled = true;
+        let adBlockDetected = false;
+
+        // DOM elements
+        const overlay = document.getElementById('overlay');
+        const adblockNotification = document.getElementById('adblock-notification');
+
+        // Detect ad blockers
+        function detectAdBlock() {
+            return new Promise((resolve) => {
+                const ad = document.createElement('div');
+                ad.innerHTML = '&nbsp;';
+                ad.className = 'ad adsbox doubleclick ad-placement carbon-ads';
+                ad.style.position = 'absolute';
+                ad.style.left = '-9999px';
+                ad.style.height = '1px';
+                document.body.appendChild(ad);
+                
+                setTimeout(() => {
+                    const detected = ad.offsetHeight === 0;
+                    document.body.removeChild(ad);
+                    resolve(detected);
+                }, 100);
+            });
+        }
+
+        // Check for ad blocker periodically
+        async function checkAdBlock() {
+            const detected = await detectAdBlock();
+            if (detected && !adBlockDetected) {
+                adBlockDetected = true;
+                showAdBlockNotification();
+            }
+            return detected;
+        }
+
+        // Show ad block notification
+        function showAdBlockNotification() {
+            adblockNotification.style.display = 'block';
+            document.body.classList.add('disabled');
+        }
+
+        // Hide ad block notification
+        function hideAdBlockNotification() {
+            adblockNotification.style.display = 'none';
+            document.body.classList.remove('disabled');
+        }
+
+        // Re-check if user claims to have disabled ad blocker
+        async function checkAdsAgain() {
+            const stillBlocked = await checkAdBlock();
+            if (!stillBlocked) {
+                hideAdBlockNotification();
+                adBlockDetected = false;
+            } else {
+                alert('Ad blocker is still active! Please disable it completely.');
+            }
+        }
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled || adBlockDetected) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                const newWindow = window.open(adLinks[clickCount - 1], '_blank');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                    // Popup was blocked
+                    showAdBlockNotification();
+                    return;
+                }
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                    document.body.classList.remove('disabled');
+                }, 1000);
+
+                // Reset after 60 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 60000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            overlay.classList.remove('hidden');
+            document.body.classList.add('disabled');
+        }
+
+        // Copy protection
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            document.body.classList.add('copy-attempt');
+            setTimeout(() => {
+                document.body.classList.remove('copy-attempt');
+            }, 2000);
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 65 || e.keyCode === 88)) {
+                e.preventDefault();
+                document.body.classList.add('copy-attempt');
+                setTimeout(() => {
+                    document.body.classList.remove('copy-attempt');
+                }, 2000);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('click', handleClick);
+        
+        // Check for ad blocker every 10 seconds
+        setInterval(checkAdBlock, 10000);
+        
+        // Initial check
+        checkAdBlock();
+    </script>
+</body>
+
+</html>
