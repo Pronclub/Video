@@ -185,34 +185,27 @@
             font-size: 1.2rem;
         }
         
-        /* Enhanced Locked Content Area with Perfect Alignment */
+        /* Locked Content Area - Redesigned */
         .locked-content {
             text-align: center;
-            padding: 30px 25px;
-            background: rgba(20, 20, 30, 0.8);
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
             border-radius: 14px;
             margin: 0 auto 25px;
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: inset 0 4px 20px rgba(0,0,0,0.2), 
-                        0 5px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
             transition: all 0.4s ease;
             max-width: 580px;
         }
         
         .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--gold);
-            text-shadow: 0 2px 5px rgba(255, 215, 0, 0.3);
-        }
-        
-        .locked-content h3 i {
-            font-size: 1.3rem;
-            vertical-align: middle;
+            gap: 8px;
         }
         
         .locked-content p {
@@ -222,11 +215,9 @@
             max-width: 480px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6;
-            padding: 0 15px;
         }
         
-        /* Premium Unlock Button - Enhanced */
+        /* Premium Unlock Button */
         .unlock-btn {
             display: inline-flex;
             align-items: center;
@@ -236,24 +227,24 @@
             padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             margin: 10px 0;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
             border: none;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
             font-size: 1rem;
             letter-spacing: 1px;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.4);
             min-width: 240px;
             cursor: pointer;
         }
         
         .unlock-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.7);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
         }
         
         .unlock-btn i {
@@ -307,7 +298,7 @@
             padding: 0 10px;
             display: none;
             animation: fadeIn 0.8s ease forwards;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Reduced space */
         }
         
         @keyframes fadeIn {
@@ -336,7 +327,7 @@
         /* Footer - Redesigned with reduced space */
         footer {
             text-align: center;
-            padding: 15px 0 5px;
+            padding: 15px 0 5px; /* Reduced padding */
             margin-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -345,7 +336,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 10px; /* Reduced gap */
         }
         
         .copyright {
@@ -359,7 +350,7 @@
             color: var(--text);
             opacity: 0.6;
             font-size: 0.75rem;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Reduced space */
             max-width: 80%;
             margin-left: auto;
             margin-right: auto;
@@ -377,7 +368,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            margin: 5px 0;
+            margin: 5px 0; /* Reduced margin */
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
             border: 1px solid rgba(255,255,255,0.25);
@@ -399,7 +390,7 @@
         /* Copyright Protection */
         .copyright-notice {
             position: fixed;
-            bottom: 10px;
+            bottom: 10px; /* Adjusted position */
             left: 0;
             right: 0;
             text-align: center;
@@ -431,27 +422,16 @@
                 padding: 14px 28px;
                 min-width: 220px;
                 font-size: 0.95rem;
-                margin: 3px 0;
+                margin: 3px 0; /* Adjusted margin */
             }
             
             .locked-content, .unlock-process {
                 padding: 25px 20px;
                 border-radius: 12px;
-                max-width: 90%;
             }
             
             .locked-content h3 {
-                font-size: 1.4rem;
-                gap: 8px;
-            }
-            
-            .locked-content h3 i {
-                font-size: 1.2rem;
-            }
-            
-            .locked-content p {
-                font-size: 0.95rem;
-                padding: 0 10px;
+                font-size: 1.3rem;
             }
             
             .story-container p {
@@ -466,12 +446,12 @@
             }
             
             footer {
-                padding: 10px 0 5px;
+                padding: 10px 0 5px; /* Further reduced padding */
                 margin-top: 15px;
             }
             
             .footer-content {
-                gap: 8px;
+                gap: 8px; /* Smaller gap on mobile */
             }
         }
         
@@ -495,36 +475,6 @@
                 padding: 12px 24px;
                 min-width: 200px;
                 font-size: 0.9rem;
-            }
-            
-            /* Enhanced Mobile Lock Section */
-            .locked-content {
-                padding: 20px 15px;
-                margin-bottom: 15px;
-                background: rgba(20, 20, 30, 0.85);
-            }
-            
-            .locked-content h3 {
-                font-size: 1.3rem;
-                margin-bottom: 12px;
-                gap: 6px;
-            }
-            
-            .locked-content h3 i {
-                font-size: 1.1rem;
-            }
-            
-            .locked-content p {
-                font-size: 0.9rem;
-                margin-bottom: 15px;
-                line-height: 1.6;
-            }
-            
-            .unlock-btn {
-                padding: 12px 20px;
-                font-size: 0.95rem;
-                min-width: 180px;
-                box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
             }
             
             .story-container p {
@@ -558,12 +508,12 @@
             </a>
         </header>
         
-        <!-- Enhanced Locked Content Area with Perfect Alignment -->
+        <!-- Locked Content Area -->
         <div class="locked-content" id="lockedContent">
-            <h3><i class="fas fa-lock"></i> Premium Content Locked</h3>
+            <h3> Story Locked</h3>
             <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
             <button class="unlock-btn" id="unlockBtn">
-                <i class="fas fa-gem"></i> UNLOCK STORY
+                <i class="fas fa-gem"></i> Unlock Story
             </button>
         </div>
         
@@ -676,7 +626,6 @@
         });
         
         // ===== AD LOADING =====
-
         
         
         // ===== SCREENSHOT PROTECTION =====
@@ -692,7 +641,7 @@
     </script>
 
     <!-- Ad Scripts with Performance Optimization -->
+   
 
-    
 </body>
 </html>
