@@ -2,8 +2,8 @@
 <html lang="si">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>චාමරගේ රහස් ලෝකය | VIP Exclusive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>හබීගේ අයිය | VIP Exclusive</title>
     
     <!-- නව සිංහල අකුරු රටා -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,14 +17,15 @@
         :root {
             --black: #0A0A0F;
             --dark: #16161D;
-            --glass: rgba(30, 30, 40, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
             --accent: #FF2D55;
             --neon-pink: #FF2D55;
             --neon-purple: #B13DFF;
             --text: #F0F0F0;
             --gold: #FFD700;
-            --soft-glow: rgba(255, 45, 85, 0.25);
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
         }
         
         body {
@@ -33,18 +34,18 @@
             color: var(--text);
             margin: 0;
             padding: 0;
-            line-height: 1.9;
+            line-height: 1.8;
             overflow-x: hidden;
-            user-select: none;
-            -webkit-user-select: none;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             word-spacing: normal;
-            letter-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
         }
 
-        /* === New Background Animation === */
+        /* === Optimized Background Animation === */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -53,6 +54,7 @@
             height: 100%;
             z-index: -2;
             overflow: hidden;
+            pointer-events: none;
         }
         
         .particle {
@@ -61,7 +63,8 @@
             background: radial-gradient(circle, var(--neon-pink), transparent 70%);
             opacity: 0;
             animation: float-up 15s infinite;
-            filter: blur(15px);
+            filter: blur(12px);
+            will-change: transform;
         }
         
         @keyframes float-up {
@@ -78,23 +81,24 @@
             }
         }
         
-        /* Glassmorphism Container */
+        /* Enhanced Glassmorphism Container */
         .modern-container {
             max-width: 800px;
-            margin: 40px auto;
-            padding: 50px 50px 30px;
+            margin: 30px auto;
+            padding: 40px;
             background: var(--glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             flex: 1;
+            transition: all 0.3s ease;
         }
         
-        /* Neon Glow Effect */
+        /* Performance Optimized Neon Glow */
         .modern-container::before {
             content: "";
             position: absolute;
@@ -103,186 +107,149 @@
             width: 200%;
             height: 200%;
             background: 
-                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 30%),
-                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 30%);
-            opacity: 0.15;
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
             z-index: -1;
-            animation: float 18s infinite alternate ease-in-out;
-            will-change: transform;
+            animation: float 20s infinite alternate ease-in-out;
         }
         
         @keyframes float {
             0% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-10%, 10%) rotate(2deg); }
-            100% { transform: translate(10%, -10%) rotate(-2deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
         }
         
-        /* Header */
+        /* Header Styles */
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--neon-pink), var(--gold));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: -0.5px;
             text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
         }
         
         .subtitle {
             color: var(--text);
-            opacity: 0.9;
+            opacity: 0.85;
             font-weight: 300;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 1rem;
-            margin-bottom: 30px;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
         }
         
-        /* WhatsApp Button */
+        /* WhatsApp Button - Enhanced */
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
             color: white !important;
-            padding: 18px 36px;
+            padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             margin: 0 auto;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 6px 30px rgba(255, 45, 85, 0.5);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
             border: none;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            font-size: 1.1rem;
-            letter-spacing: 1.5px;
+            font-size: 1rem;
+            letter-spacing: 1px;
             border: 1px solid rgba(255,255,255,0.25);
-            min-width: 250px;
+            min-width: 240px;
+            cursor: pointer;
         }
         
         .whatsapp-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 40px rgba(255, 45, 85, 0.7);
-            background: linear-gradient(135deg, #FF1A4B, #A82AFF);
-        }
-        
-        .whatsapp-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                        transparent, 
-                        rgba(255,255,255,0.2), 
-                        transparent);
-            transition: 0.6s;
-        }
-        
-        .whatsapp-btn:hover::before {
-            left: 100%;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
         }
         
         .whatsapp-btn i {
-            margin-right: 12px;
-            font-size: 1.4rem;
+            margin-right: 10px;
+            font-size: 1.2rem;
         }
         
-        /* Locked Content Area */
+        /* Locked Content Area - Redesigned */
         .locked-content {
             text-align: center;
-            padding: 40px 30px;
-            background: rgba(10, 10, 15, 0.5);
-            border-radius: 16px;
-            margin: 0 auto 30px;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: inset 0 4px 30px rgba(0,0,0,0.2);
-            transition: all 0.6s ease;
-            max-width: 600px;
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
         }
         
         .locked-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
             color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .locked-content p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
-            margin-bottom: 30px;
-            max-width: 500px;
+            margin-bottom: 25px;
+            max-width: 480px;
             margin-left: auto;
             margin-right: auto;
         }
         
-        /* === New Unlock Button === */
+        /* Premium Unlock Button */
         .unlock-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             color: #111 !important;
-            padding: 18px 36px;
+            padding: 16px 32px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             margin: 10px 0;
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
             border: none;
             position: relative;
             overflow: hidden;
             text-transform: uppercase;
-            font-size: 1.1rem;
-            letter-spacing: 1.5px;
-            border: 1px solid rgba(255,255,255,0.5);
-            min-width: 250px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
             cursor: pointer;
         }
         
         .unlock-btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.7);
-            background: linear-gradient(135deg, #FFA500, #FFD700);
-        }
-        
-        .unlock-btn::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                        transparent, 
-                        rgba(255,255,255,0.3), 
-                        transparent);
-            transition: 0.6s;
-        }
-        
-        .unlock-btn:hover::before {
-            left: 100%;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
         }
         
         .unlock-btn i {
-            margin-right: 12px;
-            font-size: 1.4rem;
+            margin-right: 10px;
+            font-size: 1.2rem;
             animation: pulse 2s infinite;
         }
         
@@ -298,20 +265,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 30px;
+            padding: 35px 25px;
             text-align: center;
             margin: 0 auto;
-            max-width: 600px;
+            max-width: 580px;
         }
         
         .loading-circle {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.1);
-            border-top: 5px solid var(--gold);
-            margin: 20px auto;
-            animation: spin 1.5s linear infinite;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
         }
         
         @keyframes spin {
@@ -320,110 +287,220 @@
         }
         
         .loading-text {
-            margin-top: 20px;
-            font-size: 1.1rem;
+            margin-top: 15px;
+            font-size: 1rem;
             opacity: 0.8;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
-        /* Story Content */
+        /* Story Content - Improved Readability */
         .story-content {
-            padding: 0 15px;
+            padding: 0 10px;
             display: none;
-            animation: fadeIn 1s ease forwards;
-            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px; /* Reduced space */
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            line-height: 1.9;
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
             position: relative;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
             word-spacing: normal;
-            letter-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
         }
         
-        p.visible {
+        .story-container p.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* Footer */
+        /* Footer - Redesigned with reduced space */
         footer {
             text-align: center;
-            padding: 30px 0 0;
-            margin-top: auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0 5px; /* Reduced padding */
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
         
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 10px; /* Reduced gap */
         }
         
         .copyright {
             color: var(--text);
             opacity: 0.7;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 5px;
         }
         
         .disclaimer {
             color: var(--text);
             opacity: 0.6;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
+            font-size: 0.75rem;
+            margin-bottom: 10px; /* Reduced space */
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0; /* Reduced margin */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
         }
         
         /* Copyright Protection */
         .copyright-notice {
             position: fixed;
-            bottom: 15px;
+            bottom: 10px; /* Adjusted position */
             left: 0;
             right: 0;
             text-align: center;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
             z-index: 1000;
             pointer-events: none;
+            transition: opacity 0.3s ease;
         }
         
-        /* Responsive */
+        /* ===== MOBILE RESPONSIVENESS ===== */
         @media (max-width: 768px) {
             .modern-container {
-                margin: 20px;
-                padding: 30px 25px 20px;
+                margin: 15px;
+                padding: 30px 20px;
                 border-radius: 16px;
             }
             
             h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+                line-height: 1.3;
             }
             
-            .whatsapp-btn, .unlock-btn {
-                padding: 16px 30px;
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
                 min-width: 220px;
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin: 3px 0; /* Adjusted margin */
             }
             
             .locked-content, .unlock-process {
-                padding: 30px 20px;
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px; /* Further reduced padding */
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px; /* Smaller gap on mobile */
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
             }
         }
     </style>
 </head>
+
+<!-- Ad Scripts with Performance Optimization -->
+   
+
 <body>
-    <!-- === New Background Animation === -->
+    <!-- Optimized Background Animation -->
     <div class="bg-animation" id="bgAnimation"></div>
     
     <div class="modern-container">
@@ -437,28 +514,25 @@
         
         <!-- Locked Content Area -->
         <div class="locked-content" id="lockedContent">
-            <h3><i class="fas fa-lock"></i> Premium Content Locked</h3>
+            <h3> Story Locked</h3>
             <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
             <button class="unlock-btn" id="unlockBtn">
                 <i class="fas fa-gem"></i> Unlock Story
             </button>
         </div>
         
-        <!-- Unlock Process (Hidden Initially) -->
+        <!-- Unlock Process -->
         <div class="unlock-process" id="unlockProcess">
             <div class="loading-circle"></div>
             <div class="loading-text">Verifying access...</div>
         </div>
         
-        <!-- Story Content (Hidden Initially) -->
-
-        <script async="async" data-cfasync="false" src="//ashorenorris.com/c5d9f2cae8084a2f8b0fbae9f4ca90a1/invoke.js"></script>
-<div id="container-c5d9f2cae8084a2f8b0fbae9f4ca90a1"></div>
-
+        <!-- Story Content -->
         <div class="story-content" id="storyContent">
             <div class="story-container">
-                <!-- All your original story content here -->
-                <!-- Example paragraph: -->
+                <script async="async" data-cfasync="false" src="//ashorenorris.com/c5d9f2cae8084a2f8b0fbae9f4ca90a1/invoke.js"></script>
+<div id="container-c5d9f2cae8084a2f8b0fbae9f4ca90a1"></div>
+                <!-- Your story content here -->
                 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">යාලුවනේ ඔයාලට කෝමද ගොඩක් කාලෙකින් කතාවක් ලියන්න බැරි උන නිසා ඔන්න මම අද නිවාඩුවක් දාල ඔයාලට කියවන කතාවක් හදන්න තීරනය කලා.</p>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මගේ ගෙදර අස් පස් කරන දවසක උන සිදුවීමක් ඔයලත් එක්ක් බෙදාගන්න මම තීරනය කලා. ඉතින් මම වැඩි කතා නැතිව මගේ ස්ටෝරි එකඔයාලට කියන්නම්.</p>
@@ -474,17 +548,6 @@
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">ඉතින් මම 8ට විතර පටන් අරගෙන මම පුටු මේස අයින් කරල අස් පස් කරල අතු ගගා ඉද්දි අපේ හබීගේ අයිය ආව අපෙ ගෙදර ඇවිල්ල වාඩි වෙලා හිටිය ඉතින් මම වැඩ කරන දිහා බලාගෙන මමත් ඉතින් පාලු නිසා ඔහේ කයිය ගහ ගහ මම මගේ වැඩ කලා.</p>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">අයියගෙ ගෙදර තුයෙන්නෙත් අපි ඉන්න ගෙදරට ටිකක් එහාට වෙන්න. එයාගෙ නෝන නැති උනා ඇක්සිඩන්ට් එකක් වෙලා ඉතින් අයිය ඉන්නෙ එයගෙ දරුවො දෙන්නත් එක්ක.</p>
-
-<script type="text/javascript">
- atOptions = {
-  'key' : '1638c68a15d2a5451b4d263477058c6a',
-  'format' : 'iframe',
-  'height' : 60,
-  'width' : 468,
-  'params' : {}
- };
-</script>
-<script type="text/javascript" src="//ashorenorris.com/1638c68a15d2a5451b4d263477058c6a/invoke.js"></script>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">ඉතින් එයා වැඩ කරන්නෙ ටෙලිකොම් එකේ සල්ලි නම් තියෙනව හොදට මිනිහට වැඩිය වැඩක් කරන්නත් නෑ කොහේහරි බ්‍රේක් ඩව්න් එකක් ගියාම වැඩ කරන අය එක්කන් ගිහිල්ල හදන එක තමයි එයාගෙ ඩියුටි එක. එයා ගැන කියනව නම් ටිකක් කෙට්ටුයි උසයි කලුයි.</p>
 
@@ -522,18 +585,18 @@
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මම තාම වොශ් එකක්වත් දාල නෑ මට ආස හිතුන අයිය එක්ක මොනාහරි කරල බලන්න ඉතින් මම බබාව එක්කන් අයියලගෙ ගෙදරට ගිහිල්ල ස්කූල් වෙඩ කරන්න කියල අයියට කිව්ව අයියෙ අර ගල්වපු ෆ්ටෝ එක හයි කරගන්න ඕන පොඩ්ඩක් එන්නකෝ කියල</p>
 
-<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">ඔයා යන්න නන්ගි මම එන්නම් කියල අයිය කිව්ව මම ඉතින් ගෙදරට ගියා පුතාව තියල ඔක්කොම ලමයි ඉන්න නිසා. මට අද හරිම අමුතුයි අයිය මාව බදාගතපු නිසා වෙන්න ඇති දවල් ටෝයි එකෙන් කරගන්නත් බැරි උනා හරියට ඒක නිසා අයියට කියල කරගන්න මාර මොලක් මට තිබුනෙ.</p>
-
 <script type="text/javascript">
  atOptions = {
-  'key' : '1638c68a15d2a5451b4d263477058c6a',
+  'key' : '7b7f80d8d83e1aafc1463cff50bf4424',
   'format' : 'iframe',
-  'height' : 60,
-  'width' : 468,
+  'height' : 250,
+  'width' : 300,
   'params' : {}
  };
 </script>
-<script type="text/javascript" src="//ashorenorris.com/1638c68a15d2a5451b4d263477058c6a/invoke.js"></script>
+<script type="text/javascript" src="//ashorenorris.com/7b7f80d8d83e1aafc1463cff50bf4424/invoke.js"></script>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">ඔයා යන්න නන්ගි මම එන්නම් කියල අයිය කිව්ව මම ඉතින් ගෙදරට ගියා පුතාව තියල ඔක්කොම ලමයි ඉන්න නිසා. මට අද හරිම අමුතුයි අයිය මාව බදාගතපු නිසා වෙන්න ඇති දවල් ටෝයි එකෙන් කරගන්නත් බැරි උනා හරියට ඒක නිසා අයියට කියල කරගන්න මාර මොලක් මට තිබුනෙ.</p>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මම ගෙදරට ගිහිල්ල වටේම ලයිට් දාල සාලෙ අපි ඉන්න ටිකේ විතරක් ලයිට් එක ටිකක් ඩිම් කරල එලියට පේන්නෙ නැති වෙන්න වගේ අඩු කලා මොකද අපි දෙන්න මෙහෙම ඉන්නව කවුරුහරි දැක්කොත් හරි නැති නිසා. ටිකකින් ඔන්න අයිය ආව නන්ගි කියාගෙන මම කිව්ව නන්ගි තමයි මෙන්න බලන්න මගේ තට්ටම ලග රතු වෙලා ඔයා හපපු පාර කියල</p>
 
@@ -546,6 +609,17 @@
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මම ෆ්ටෝ එක හයිකර කර ඉද්දි මම අයියගේ පයිය බලන්න ඕන නිසා පහල බැලුව ශේප් එකේ මුගේ අත් දෙකට මුකුත්ම පෙන්නෙ නෙ මටත් දැන් දවල් දැකපු පයිය බලනකල් ඉවසිල්ලක් නෑ අවුරුදු ගානකට පස්සෙ වේලි වේලි තිබුන කිම්බට පයියක් දාගන්නව කියන්නෙ අමුතුම ෆීලින්ග් එකක් ඕන දෙයක් උනාවේ කියල මම වඩාගෙන උස්සන් ඉන්න අතරෙ ෆ්‍රොක් එකෙන් එලියට ගෙඩි දෙකත් එලියට දාගත්ත.</p>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මිනිහ තාම දන්නෙ නෑ මම ගෙඩි දෙක එලියට දාගෙන ඉන්නව කියල මම හරි අයියෙ දැන් සෝෆ එකෙන් තියන්න කියල කිව්ව්ම මිනිහ ආදරෙන් වගේ හෙමිහිට මිනිහගෙ බඩේ ඇතිල්ලිගෙන එන විදිහට ආදරෙන් පහලට ගත්ත කකුක් දෙක අස්සෙන් මට දැනෙනව මොනාහරි දෙයක් මගේ ගල් දෙකේ ඇතිල්ලීගෙන වදිනව වගේ දෙය්යනේ මම දවල් දැකපු කලු පොල්ල මගේ ගල් දෙකේ වැදීගෙන කිම්බ ලග නැවතුනා පහලට ඇවිල්ල අයියත් කිසි සද්දයක් නෑ මිනිහ අත් දෙක ඇතෑරල මුකුත් නොඋන ගානට ඉන්නව</p>
+
+<script type="text/javascript">
+ atOptions = {
+  'key' : '7b7f80d8d83e1aafc1463cff50bf4424',
+  'format' : 'iframe',
+  'height' : 250,
+  'width' : 300,
+  'params' : {}
+ };
+</script>
+<script type="text/javascript" src="//ashorenorris.com/7b7f80d8d83e1aafc1463cff50bf4424/invoke.js"></script>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">දැන් මිනිහගේ නැගපු පයිය මගේ ගල් දෙක අස්සෙ මම කකුල් දෙක තවත් ලන් කරගෙන පයිය හිරකරගෙන මගේ කොන්ඩෙ එකතු කරල උඩට කරල ගෙඩියක් ගහගත්ත මේ මිනිහත් එක්ක පොර බදන්න ඕන නිසා. මන් ජෝක් එකට ඇහුව කොන්ඩෙ ගෙඩිය ගහන ගමන් අයියෙ සරම ඇදගන්නෙ නැද්ද කියල කිව්වම</p>
 
@@ -563,6 +637,17 @@
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මම කිව්ව අනේ ඒක නම් කරන්න එපා මම ආස නෑ කියල කියනවත් එක්කම පයිය තියල තද කලා පුකේ හිලට දාල පසාරු කරගෙන පයිය ඇතුලට බස්සගෙන ගියා ගෙඩි මිරික මිරික අයිය මගේ ඇග උඩ ඉදන් ගහනව හයියෙන්ම මම හොදටම කෙදිරි ගානව ඉන්නම බැරි තැන</p>
 
+<script type="text/javascript">
+ atOptions = {
+  'key' : '7b7f80d8d83e1aafc1463cff50bf4424',
+  'format' : 'iframe',
+  'height' : 250,
+  'width' : 300,
+  'params' : {}
+ };
+</script>
+<script type="text/javascript" src="//ashorenorris.com/7b7f80d8d83e1aafc1463cff50bf4424/invoke.js"></script>
+
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">අයියෙ අනේ මට රිද්ව්නව ගොඩක් කියල් හයියෙන් මම කෑ ගහන්න ගත්ත පස්සෙ අයිය පයිය එලියට අරගෙන මුනින් අතට හරවල කකුල් දෙක උස්සගෙන කිම්බට දාල ගහන්න ගත්ත මම බෙඩ් ශීට් එකෙන් තද කරන් දැන් දැපෙත්තෙ අත් වලින් අල්ලගෙන කාගෙන ඉන්නව මෙයා හුකනව වල්ල ඇවිල්ල මගේ කිම්බ යට පැත්තෙ වදිනව මට හොදටම දැනෙනනව</p>
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">ඔය විදිහට විනඩි 15 ක් වගේ කරද්දි අයියට යන්න ගියා පයිය එලියට අරගෙන කැරි ටික කිම්බ වටේ දැම්ම ඇතුලට නොයන විදිහට යවල ආයෙත් මගේ කටට ලන් කලා උරන්න කියල මම ටිකක් උරල නැවැත්තුව. පස්සෙ අයිය මාව බදාගෙන බෙඩ් එකට වෙල මහන්සි ඇරිය.</p>
@@ -571,17 +656,26 @@
 
 <p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">අයිය කඩෙන් රයිස් ගෙනැල්ල අපිටත් එක්ක මම ඒව අරගෙන පුතත් එක්ක ගෙදරට ඇවිල්ල කෑව කාල මහන්සි නිසා දොයියගත්ත. මෙන්න මෙ විදිහට තමයි යාලුවනේ මට හබීගෙ අයියව සෙට් උනේ. හබී නැති අඩුව එයාගෙන පුරවගන්න මට පුලුවන් උනා.</p>
 
-<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මගේ අත්දැකීම කියවපු ඔයාලට ගොඩක්ම ස්තූතියි.</p>
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;">මගේ අත්දැකීම කියවපු ඔයාලට ගොඩක්ම ස්තූතියි.</p><!-- Rest of your story paragraphs -->
+            
+            <script type="text/javascript">
+ atOptions = {
+  'key' : '7b7f80d8d83e1aafc1463cff50bf4424',
+  'format' : 'iframe',
+  'height' : 250,
+  'width' : 300,
+  'params' : {}
+ };
+</script>
+<script type="text/javascript" src="//ashorenorris.com/7b7f80d8d83e1aafc1463cff50bf4424/invoke.js"></script>
             </div>
-        
-            <script async="async" data-cfasync="false" src="//ashorenorris.com/c5d9f2cae8084a2f8b0fbae9f4ca90a1/invoke.js"></script>
-<div id="container-c5d9f2cae8084a2f8b0fbae9f4ca90a1"></div>
+        </div>
         
         <footer>
             <div class="footer-content">
-                <p class="copyright">© 2025 <strong>X-වසන්තය </strong>  All Rights Reserved</p>
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
                 <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
-                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="whatsapp-btn" target="_blank">
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
                     <i class="fab fa-telegram"></i> Join for More Content
                 </a>
             </div>
@@ -590,25 +684,24 @@
 
     <!-- Copyright Watermark -->
     <div class="copyright-notice" id="copyrightNotice">
-        © 2025 SL VIDEO CLUB  Property of VIP Content Network  Unauthorized access prohibited.
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
     </div>
 
-
     <script>
-        // ===== NEW BACKGROUND ANIMATION =====
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
         function createParticles() {
             const container = document.getElementById('bgAnimation');
-            const particleCount = 15;
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // Random properties
-                const size = Math.random() * 100 + 50;
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
                 const posX = Math.random() * 100;
                 const delay = Math.random() * 15;
-                const duration = 10 + Math.random() * 20;
+                const duration = 12 + Math.random() * 20;
                 
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
@@ -620,99 +713,74 @@
             }
         }
         
-        // ===== ELEGANT UNLOCK SYSTEM ===== //
+        // ===== IMPROVED UNLOCK SYSTEM =====
         const unlockBtn = document.getElementById('unlockBtn');
         const lockedContent = document.getElementById('lockedContent');
         const unlockProcess = document.getElementById('unlockProcess');
         const storyContent = document.getElementById('storyContent');
         
         unlockBtn.addEventListener('click', function() {
-            // Show beautiful loading animation
+            // Show loading animation
             lockedContent.style.display = 'none';
             unlockProcess.style.display = 'flex';
             
-            // Open WhatsApp channel in new tab
-            const whatsappTab = window.open('https://ashorenorris.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb', '_blank');
+            // Open ad in new tab
+            window.open('https://ashorenorris.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb', '_blank');
             
-            // Start hidden countdown (12 seconds)
-            let seconds = 12;
-            const countdown = setInterval(() => {
-                seconds--;
-                
-                if (seconds <= 0) {
-                    clearInterval(countdown);
-                    unlockProcess.style.display = 'none';
-                    storyContent.style.display = 'block';
-                    
-                    // Animate paragraphs one by one
-                    const paragraphs = document.querySelectorAll('.fade-in');
-                    paragraphs.forEach((p, index) => {
-                        setTimeout(() => {
-                            p.classList.add('visible');
-                        }, 150 * index);
-                    });
-                    
-                    // Play unlock sound
-                    const unlockSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3');
-                    unlockSound.volume = 0.3;
-                    unlockSound.play();
-                }
-            }, 1000);
-            
-            // Focus back on original tab after delay
+            // Simulate verification process
             setTimeout(() => {
-                window.focus();
-            }, 2000);
+                unlockProcess.style.display = 'none';
+                storyContent.style.display = 'block';
+                
+                // Animate paragraphs
+                const paragraphs = document.querySelectorAll('.fade-in');
+                paragraphs.forEach((p, index) => {
+                    setTimeout(() => {
+                        p.classList.add('visible');
+                    }, 100 * index);
+                });
+            }, 12000); // 12 seconds delay
         });
         
-        // ===== CONTENT PROTECTION ===== //
-        // Disable right-click
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
         document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert('Content protection: Right-click disabled.');
-        });
-        
-        // Disable text selection
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
-        
-        // Disable keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's')) {
+            if (window.innerWidth > 768) {
                 e.preventDefault();
-                alert('Content protection: This action is restricted.');
             }
-        });
+        }, false);
         
-        // ===== INITIALIZE ===== //
-        window.addEventListener('load', () => {
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
             // Create background animation
-            createParticles();
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
             
             // Smooth page load
-            document.body.style.opacity = 0;
-            document.body.style.transition = 'opacity 0.8s ease';
             document.body.style.opacity = 1;
+            
+            // Load ads after a delay
+            setTimeout(loadAdScripts, 2000);
         });
         
-        // ===== SCREENSHOT PROTECTION ===== //
+        
+        // ===== SCREENSHOT PROTECTION =====
         window.addEventListener('keyup', (e) => {
             if (e.key === 'PrintScreen') {
-                document.getElementById('copyrightNotice').style.opacity = '1';
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
                 setTimeout(() => {
-                    document.getElementById('copyrightNotice').style.opacity = '0.4';
+                    notice.style.opacity = '0.35';
                 }, 3000);
             }
         });
     </script>
-
 <script type='text/javascript' src='//ashorenorris.com/f2/8a/a9/f28aa917b011613de103e87486df2700.js'></script>
 
 <script type='text/javascript' src='//ashorenorris.com/c5/b9/4e/c5b94ed0484706927249b01fe8ea57f0.js'></script>
 
-
-    <script>
+ <script>
         // Ad links
         const adLinks = [
             "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
@@ -783,5 +851,7 @@
         }, 30000); // 30 seconds delay
     </script>
 </head>
+
+    
 </body>
 </html>
