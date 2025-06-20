@@ -185,7 +185,7 @@
             font-size: 1.2rem;
         }
         
-        /* Enhanced Locked Content Area */
+        /* Enhanced Locked Content Area with Perfect Alignment */
         .locked-content {
             text-align: center;
             padding: 30px 25px;
@@ -200,14 +200,19 @@
         }
         
         .locked-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--gold);
             text-shadow: 0 2px 5px rgba(255, 215, 0, 0.3);
+        }
+        
+        .locked-content h3 i {
+            font-size: 1.3rem;
+            vertical-align: middle;
         }
         
         .locked-content p {
@@ -437,6 +442,11 @@
             
             .locked-content h3 {
                 font-size: 1.4rem;
+                gap: 8px;
+            }
+            
+            .locked-content h3 i {
+                font-size: 1.2rem;
             }
             
             .locked-content p {
@@ -497,6 +507,11 @@
             .locked-content h3 {
                 font-size: 1.3rem;
                 margin-bottom: 12px;
+                gap: 6px;
+            }
+            
+            .locked-content h3 i {
+                font-size: 1.1rem;
             }
             
             .locked-content p {
@@ -543,7 +558,7 @@
             </a>
         </header>
         
-        <!-- Enhanced Locked Content Area -->
+        <!-- Enhanced Locked Content Area with Perfect Alignment -->
         <div class="locked-content" id="lockedContent">
             <h3><i class="fas fa-lock"></i> Premium Content Locked</h3>
             <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
@@ -661,6 +676,8 @@
         });
         
         // ===== AD LOADING =====
+
+        
         
         // ===== SCREENSHOT PROTECTION =====
         window.addEventListener('keyup', (e) => {
@@ -675,6 +692,7 @@
     </script>
 
     <!-- Ad Scripts with Performance Optimization -->
+
     
 </body>
 </html>
