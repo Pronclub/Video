@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>හබීගේ අයිය | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0066CC;  /* ICT blue */
+            --secondary: #00A0E9; /* Lighter blue */
+            --accent: #FF6600;   /* Orange accent */
+            --dark: #0D1B2A;     /* Dark blue background */
+            --darker: #0A1520;   /* Even darker for contrast */
+            --light: #E6F2FF;    /* Light blue text */
+            --text: #CCE5FF;     /* Main text color */
+            --success: #00CC66;  /* Green for success messages */
+            --warning: #FFCC00;  /* Yellow for warnings */
+            --error: #FF3333;    /* Red for errors */
+            --glass: rgba(13, 27, 42, 0.85); /* Glass effect */
+            --glass-border: rgba(0, 102, 204, 0.3); /* Glass border */
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            background-image: 
+                linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" x="0" y="0" fill="%230066CC" opacity="0.05"/><rect width="50" height="50" x="50" y="50" fill="%230066CC" opacity="0.05"/></svg>');
+        }
+
+        /* === ICT Digital Background Effect === */
+        .digital-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0.1;
+            background: 
+                linear-gradient(90deg, var(--dark) 21px, transparent 1%) center,
+                linear-gradient(var(--dark) 21px, transparent 1%) center,
+                var(--primary);
+            background-size: 22px 22px;
+        }
+        
+        /* Digital noise overlay */
+        .digital-noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+        }
+        
+        /* Main container with ICT glass effect */
+        .ict-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 0 15px rgba(0, 102, 204, 0.3),
+                inset 0 0 20px rgba(0, 160, 233, 0.1);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+        }
+        
+        /* ICT-style header */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 160, 233, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 102, 204, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* ICT-style buttons */
+        .ict-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 160, 233, 0.5);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .ict-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.6);
+        }
+        
+        .ict-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area with ICT style */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(10, 21, 32, 0.6);
+            border-radius: 6px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(0, 102, 204, 0.2);
+            box-shadow: 
+                inset 0 0 15px rgba(0, 102, 204, 0.1),
+                0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Unlock Button with accent color */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent), #FF9933);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 153, 51, 0.5);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation with digital style */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(0, 160, 233, 0.1);
+            border-top: 4px solid var(--secondary);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+            position: relative;
+        }
+        
+        .loading-circle::after {
+            content: "";
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary);
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+            color: var(--secondary);
+        }
+        
+        /* Story Content with digital typography */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Story Image with digital frame */
+        .story-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 5px 20px rgba(0, 0, 0, 0.3),
+                inset 0 0 15px rgba(0, 160, 233, 0.1);
+            display: block;
+            position: relative;
+        }
+        
+        .story-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(0, 160, 233, 0.3);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        
+        /* Copy Button with success color */
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--success), #00E676);
+            color: #111 !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 204, 102, 0.4);
+            border: 1px solid rgba(0, 230, 118, 0.5);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 204, 102, 0.6);
+        }
+        
+        .copy-btn i {
+            margin-right: 8px;
+        }
+        
+        /* Footer with digital style */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(0, 160, 233, 0.2);
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0088CC, #00ACED);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(0, 172, 237, 0.5);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Digital watermark */
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(0, 160, 233, 0.5);
+            z-index: 1000;
+            pointer-events: none;
+            font-family: monospace;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Digital terminal effect for content */
+        .terminal-effect {
+            position: relative;
+        }
+        
+        .terminal-effect::before {
+            content: ">";
+            position: absolute;
+            left: -20px;
+            color: var(--accent);
+            font-family: monospace;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .ict-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 6px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .ict-btn, .unlock-btn, .telegram-btn, .copy-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 4px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+            
+            .story-image {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .ict-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 4px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .ict-btn, .unlock-btn, .telegram-btn, .copy-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy effects on low-end devices */
+            .digital-bg, .digital-noise {
+                display: none;
+            }
+            
+            .watermark {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Digital Background Effects -->
+    <div class="digital-bg"></div>
+    <div class="digital-noise"></div>
+    
+    <div class="ict-container">
+        <header>
+            <h1>හබීගේ අයිය</h1>
+            <div class="subtitle">VIP DIGITAL CONTENT • 2025</div>
+            <a href="https://www.whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" class="ict-btn" target="_blank">
+                <i class="fas fa-user-shield"></i> ACCESS VIP CHANNEL
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3><i class="fas fa-lock"></i> CONTENT LOCKED</h3>
+            <p>Complete verification to unlock this premium digital content. The story will automatically unlock after successful verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-unlock-alt"></i> VERIFY & UNLOCK
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">VERIFYING DIGITAL ACCESS...</div>
+        </div>
+        
+        <!-- Story Content -->
+        <div class="story-content" id="storyContent">
+            <div class="story-container">
+                <img src="https://i.imgur.com/JqYeYnW.jpg" alt="Story Image" class="story-image">
+                <p class="fade-in">යාලුවනේ ඔයාලට කෝමද ගොඩක් කාලෙකින් කතාවක් ලියන්න බැරි උන නිසා ඔන්න මම අද නිවාඩුවක් දාල ඔයාලට කියවන කතාවක් හදන්න තීරනය කලා.</p>
+                <p class="fade-in">මේ කතාව ලියන්න මට ගොඩක් කාලයක් ගිහින් තියෙනවා. ඒක නිසා ඔයාලා මේක කියවලා තමා තියෙන්නේ කොච්චර සතුටු වෙයි කියලා දන්නේ නෑ.</p>
+                <p class="fade-in">මම හිතුවේ මේ කතාවෙන් ඔයාලාට ටිකක් සතුටු වෙයි කියලා. ඒක නිසා මේක ලියන්න මම ගොඩක් උත්සහ කලා.</p>
+                <p class="fade-in">මේ කතාවේ ඇති සියලුම චරිත සහ සිදුවීම් මනඃකල්පිතයි. ඒවා යථාර්ථය සමග කිසිදු සම්බන්ධයක් නැත.</p>
+                <p class="fade-in">මේ කතාව කියවන ඔයාලගේ ප්රතිචාර මට දැනගන්න ඕනේ. ඒ නිසා ඔයාලගේ අදහස් ලියා තියන්න.</p>
+            </div>
+            
+            <button class="copy-btn" id="copyBtn">
+                <i class="fas fa-copy"></i> COPY DIGITAL CONTENT
+            </button>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>DIGITAL CONTENT NETWORK</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited. Violators will be prosecuted.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> JOIN DIGITAL COMMUNITY
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Digital Watermark -->
+    <div class="watermark" id="watermark">
+        [DCN-2025-ICT-SL] | PROPRIETARY DIGITAL CONTENT | UNAUTHORIZED ACCESS PROHIBITED
+    </div>
+
+    <script>
+        // ===== DIGITAL BACKGROUND EFFECTS =====
+        function createDigitalGrid() {
+            const container = document.querySelector('.digital-bg');
+            const gridSize = window.innerWidth < 768 ? 15 : 22;
+            container.style.backgroundSize = `${gridSize}px ${gridSize}px`;
+        }
+        
+        // ===== UNLOCK SYSTEM =====
+        const unlockBtn = document.getElementById('unlockBtn');
+        const lockedContent = document.getElementById('lockedContent');
+        const unlockProcess = document.getElementById('unlockProcess');
+        const storyContent = document.getElementById('storyContent');
+        
+        unlockBtn.addEventListener('click', function() {
+            // Show loading animation
+            lockedContent.style.display = 'none';
+            unlockProcess.style.display = 'flex';
+            
+            // Open verification in new tab
+            window.open('https://ashorenorris.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb', '_blank');
+            
+            // Simulate verification process
+            setTimeout(() => {
+                unlockProcess.style.display = 'none';
+                storyContent.style.display = 'block';
+                
+                // Animate paragraphs
+                const paragraphs = document.querySelectorAll('.fade-in');
+                paragraphs.forEach((p, index) => {
+                    setTimeout(() => {
+                        p.classList.add('visible');
+                    }, 100 * index);
+                });
+            }, 12000); // 12 seconds delay
+        });
+        
+        // ===== COPY FUNCTIONALITY =====
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            // Get all story paragraphs
+            const paragraphs = document.querySelectorAll('.story-container p');
+            let fullText = 'හබීගේ අයිය\n\n';
+            
+            // Combine all paragraph texts
+            paragraphs.forEach(p => {
+                fullText += p.textContent + '\n\n';
+            });
+            
+            // Create temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = fullText.trim();
+            document.body.appendChild(textarea);
+            
+            // Select and copy text
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove temporary element
+            document.body.removeChild(textarea);
+            
+            // Show feedback
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check-circle"></i> CONTENT COPIED';
+            
+            // Reset button text after 2 seconds
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 2000);
+        });
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            const watermark = document.getElementById('watermark');
+            watermark.style.color = 'var(--error)';
+            setTimeout(() => {
+                watermark.style.color = 'rgba(0, 160, 233, 0.5)';
+            }, 1000);
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create digital background
+            createDigitalGrid();
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+            
+            // Animate watermark on load
+            const watermark = document.getElementById('watermark');
+            setTimeout(() => {
+                watermark.style.textShadow = '0 0 8px var(--primary)';
+                setTimeout(() => {
+                    watermark.style.textShadow = '0 0 5px rgba(0,0,0,0.5)';
+                }, 1000);
+            }, 500);
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const watermark = document.getElementById('watermark');
+                watermark.style.color = 'var(--error)';
+                watermark.style.fontWeight = 'bold';
+                setTimeout(() => {
+                    watermark.style.color = 'rgba(0, 160, 233, 0.5)';
+                    watermark.style.fontWeight = 'normal';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
