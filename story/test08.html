@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Beauty | Premium Beauty Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        :root {
+            --primary: #FF9AA2;
+            --secondary: #FFB7B2;
+            --accent: #FFDAC1;
+            --light: #E2F0CB;
+            --dark: #B5EAD7;
+            --text: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        /* Hide scrollbars but keep functionality */
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            background-color: #fafafa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        body::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari and Opera */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: var(--radius);
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            color: var(--text);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius) var(--radius);
+            margin-bottom: 40px;
+        }
+
+        .hero-slide {
+            height: 500px;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-slide-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-slide h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-slide p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #ff7e88;
+            transform: translateY(-2px);
+        }
+
+        .products-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image-container {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--light);
+            color: var(--text);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+
+        .product-name-container {
+            margin-bottom: 12px;
+            min-height: 44px;
+            overflow: hidden;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            border-radius: 4px;
+            margin: 0 5px;
+            font-size: 16px;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .buy-btn:hover {
+            background-color: #ff7e88;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 60px 0;
+            background-color: var(--white);
+            margin-top: 60px;
+        }
+
+        .testimonials .section-title h2 {
+            color: var(--primary);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 0 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .rating {
+            color: #FFD700;
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        .slick-dots {
+            bottom: -40px;
+        }
+
+        .slick-dots li button:before {
+            font-size: 12px;
+            color: var(--primary);
+        }
+
+        .slick-dots li.slick-active button:before {
+            color: var(--primary);
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+            z-index: 99;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: var(--white);
+            padding: 40px 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            color: var(--text-light);
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .hero-slide {
+                height: 400px;
+            }
+            
+            .hero-slide h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero-slide p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                order: 1;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                order: 3;
+                margin-left: auto;
+            }
+
+            .search-bar {
+                order: 4;
+                width: 100%;
+                margin: 15px 0 0 0;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                order: 5;
+                padding: 15px 0;
+                border-top: 1px solid #f0f0f0;
+                margin-top: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .cart-icon {
+                order: 2;
+            }
+
+            .hero-slide {
+                height: 350px;
+            }
+            
+            .hero-slide h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero-slide p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .product-image-container {
+                height: 160px;
+            }
+
+            .product-info {
+                padding: 15px;
+            }
+
+            .product-name {
+                font-size: 15px;
+            }
+
+            .product-price {
+                font-size: 16px;
+            }
+
+            .buy-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .testimonial-card {
+                padding: 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 16px;
+            }
+            
+            .author-avatar {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slide {
+                height: 300px;
+            }
+            
+            .hero-slide h1 {
+                font-size: 1.8rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-image-container {
+                height: 150px;
+            }
+
+            .product-name {
+                font-size: 14px;
+            }
+
+            .product-price {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .quantity-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .quantity-input {
+                width: 40px;
+                height: 28px;
+                font-size: 14px;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-spa"></i>
+                Bloom Beauty
+            </a>
+            
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>Premium Beauty Essentials</h1>
+                <p>Discover our collection of vegan, cruelty-free products that enhance your natural beauty</p>
+                <a href="#products" class="btn">Shop Now</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>New Lipstick Collection</h1>
+                <p>Long-lasting, vibrant colors for every occasion. Now available in 12 shades</p>
+                <a href="#products" class="btn">Explore Colors</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>Summer Skincare Essentials</h1>
+                <p>Keep your skin hydrated and protected all season long with our special formulas</p>
+                <a href="#products" class="btn">View Collection</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Best Sellers</h2>
+                <p>Products loved by our community</p>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Real experiences from our beauty community</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been using Bloom Beauty's serum for a month now and my skin has never looked better! The glow is real and my fine lines have visibly reduced."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The lipstick set is amazing! The colors are so pigmented and last all day without drying my lips. I get compliments every time I wear them."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria L." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Maria L.</h4>
+                            <p>Makeup Artist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"As someone with sensitive skin, finding good products is hard. Bloom Beauty's moisturizer is gentle yet effective. My skin feels nourished all day."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily T." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Emily T.</h4>
+                            <p>Skincare Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The hair mask transformed my dry, damaged hair. After just two uses, my hair felt softer and looked shinier. Will definitely repurchase!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Jessica K." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Jessica K.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Bloom Beauty</h3>
+                    <p>Your destination for premium, ethical beauty products that make you look and feel amazing.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Haircare</a></li>
+                        <li><a href="#">Body Care</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for exclusive offers and beauty tips.</p>
+                    <form>
+                        <input type="email" placeholder="Your email" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: var(--radius);">
+                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Bloom Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Initialize hero slider
+        $('.hero-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 5000,
+            arrows: false
+        });
+
+        // Initialize testimonial slider
+        $('.testimonial-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            autoplay: true,
+            autoplaySpeed: 7000
+        });
+
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Hydrating Facial Serum with Vitamin E",
+                price: 29.99,
+                category: "skincare",
+                image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 2,
+                name: "Matte Lipstick Set - 6 Colors",
+                price: 24.99,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 3,
+                name: "Nourishing Hair Mask with Argan Oil",
+                price: 19.99,
+                category: "haircare",
+                image: "https://images.unsplash.com/photo-1608248543803-ba9b230689a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 4,
+                name: "Detoxifying Clay Mask with Charcoal",
+                price: 22.99,
+                category: "skincare",
+                image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 5,
+                name: "Neutral Eyeshadow Palette - 12 Shades",
+                price: 34.99,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 6,
+                name: "Volumizing Shampoo for Fine Hair",
+                price: 17.99,
+                category: "haircare",
+                image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 7,
+                name: "Vitamin C Brightening Moisturizer",
+                price: 27.99,
+                category: "skincare",
+                image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                id: 8,
+                name: "Waterproof Liquid Eyeliner - Black",
+                price: 14.99,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        // Display products
+        const productsGrid = document.getElementById('products-grid');
+        
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            
+            productCard.innerHTML = `
+                <div class="product-image-container">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">${product.category}</span>
+                    <div class="product-name-container">
+                        <h3 class="product-name">${product.name}</h3>
+                    </div>
+                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" class="quantity-input">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="buy-btn" data-id="${product.id}">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            `;
+            
+            productsGrid.appendChild(productCard);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Quantity selector functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('quantity-btn')) {
+                const input = e.target.parentElement.querySelector('.quantity-input');
+                let value = parseInt(input.value);
+                
+                if (e.target.classList.contains('minus') && value > 1) {
+                    input.value = value - 1;
+                } else if (e.target.classList.contains('plus')) {
+                    input.value = value + 1;
+                }
+            }
+        });
+
+        // Add to cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy-btn')) {
+                const productId = e.target.getAttribute('data-id');
+                const product = products.find(p => p.id == productId);
+                const quantity = parseInt(e.target.parentElement.querySelector('.quantity-input').value);
+                
+                cartCount += quantity;
+                cartCountElement.textContent = cartCount;
+                
+                // Animation for feedback
+                const originalText = e.target.innerHTML;
+                e.target.innerHTML = '<i class="fas fa-check"></i> Added!';
+                e.target.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    e.target.innerHTML = originalText;
+                    e.target.style.backgroundColor = 'var(--primary)';
+                }, 1500);
+                
+                // In a real app, you would add the product to a cart array
+                console.log(`Added ${quantity} ${product.name} to cart`);
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                const name = card.querySelector('.product-name').textContent.toLowerCase();
+                const category = card.querySelector('.product-category').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
