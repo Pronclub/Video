@@ -1,394 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SL Video Club - Premium Video Content</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>SL Video Club - Premium Content</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         :root {
-            --primary: #0a192f;
-            --secondary: #172a45;
-            --accent: #ff8a00;
-            --text: #ccd6f6;
-            --text-light: #a8b2d1;
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --text-color: #333;
+            --light-text: #f5f5f5;
+            --card-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
+        
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
-            background-color: var(--primary);
-            color: var(--text);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: var(--text-color);
             line-height: 1.6;
-        }
-
-        .header {
-            padding: 1.5rem;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: rgba(10, 25, 47, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            flex-direction: column;
         }
-
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: white;
-            text-decoration: none;
-            transition: transform 0.3s ease;
+            margin-bottom: 0.5rem;
         }
-
-        .logo:hover {
-            transform: scale(1.03);
+        
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
         }
-
-        .logo span {
-            color: var(--accent);
+        
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
         }
-
-        .logo i {
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
             position: relative;
+            padding-bottom: 0.5rem;
+            transition: opacity 0.3s;
         }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-links a::after {
+        
+        .section-title::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
         }
-
-        .nav-links a:hover::after {
+        
+        .video-embed-container {
             width: 100%;
-        }
-
-        .main-content {
-            padding: 2rem;
-            max-width: 1400px;
+            max-width: 800px;
             margin: 0 auto;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .video-card {
-            background-color: var(--secondary);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .video-wrapper {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            transition: all 0.3s ease;
+        }
+        
+        .responsive-embed {
+            position: relative;
+            padding-top: 56.25%;
+            height: 0;
             overflow: hidden;
         }
-
-        .video-wrapper iframe {
+        
+        .responsive-embed iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        .footer {
-            background-color: var(--secondary);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-logo {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-icons a {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            color: var(--text-light);
-            font-size: 0.8rem;
-        }
-
-        /* Loading and interaction styles */
-        body.disabled {
             pointer-events: none;
         }
-
-        body.disabled * {
+        
+        /* Fullscreen mode styles */
+        body.fullscreen {
+            overflow: hidden;
+        }
+        
+        body.fullscreen header,
+        body.fullscreen .section-title,
+        body.fullscreen footer {
+            opacity: 0;
             pointer-events: none;
+            transform: translateY(-100%);
         }
-
-        body.allow-scroll {
-            overflow-y: auto !important;
-        }
-
-        #overlay {
+        
+        body.fullscreen .video-embed-container {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            max-width: none;
+            border-radius: 0;
+            z-index: 1000;
+            background: #000;
+        }
+        
+        body.fullscreen .responsive-embed {
+            padding-top: 0;
+            height: 100vh;
+        }
+        
+        body.fullscreen .responsive-embed iframe {
+            pointer-events: auto;
+        }
+        
+        /* Transparent overlay to capture clicks */
+        .video-overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
+            z-index: 2;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.01);
+            transition: opacity 0.3s;
         }
-
-        #overlay.hidden {
+        
+        .video-overlay.hidden {
             opacity: 0;
+            pointer-events: none;
         }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 138, 0, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--accent);
-            animation: spin 1s ease-in-out infinite;
-            margin-bottom: 1rem;
+        
+        /* Custom fullscreen button */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        
+        footer {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--light-text);
+            padding: 3rem 0;
+            width: 100%;
+            transition: opacity 0.3s, transform 0.3s;
         }
-
-        .loading-text {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            color: var(--text-light);
+        
+        .footer-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        /* Responsive adjustments */
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icons a {
+            color: var(--light-text);
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                width: 100%;
+                padding: 0 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                padding-left: 1rem;
+            }
+            
+            .video-embed-container {
+                border-radius: 8px;
+            }
+            
+            .footer-links {
                 gap: 1rem;
-                padding: 1rem;
+                padding: 0 1rem;
             }
-
-            .nav-links {
-                gap: 1.5rem;
+            
+            .social-icons {
+                gap: 1.2rem;
             }
-
-            .video-grid {
-                grid-template-columns: 1fr;
+        }
+        
+        @media (max-width: 480px) {
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
             }
-
-            .main-content {
-                padding: 1rem;
+            
+            .fullscreen-btn {
+                bottom: 10px;
+                right: 10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
-
-    <script>
-        // Ad links
-        const adLinks = [
-            "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
-            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
-            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
-            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
-            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
-        ];
-
-        // State variables
-        let clickCount = 0;
-        const requiredClicks = Math.floor(Math.random() * 4) + 2; // Random 2-5 clicks
-        let adsEnabled = true;
-
-        // DOM elements
-        // const overlay = document.getElementById('overlay');
-        // const body = document.body;
-
-        // Handle clicks
-        function handleClick() {
-            if (!adsEnabled) return;
-
-            clickCount++;
-
-            // Open ad immediately for each click
-            if (clickCount <= adLinks.length) {
-                window.open(adLinks[clickCount - 1], '_blank');
-            }
-
-            // Grant access when requirements met
-            if (clickCount >= requiredClicks) {
-                adsEnabled = false;
-                setTimeout(() => {
-                    // overlay.classList.add('hidden');
-                    // body.classList.remove('disabled');
-                    document.getElementById("overlay").classList.add("hidden");
-                    document.body.classList.remove("disabled");
-                }, 1000);
-
-                // Reset after 60 seconds
-                setTimeout(() => {
-                    resetAccess();
-                }, 60000);
-            }
-        }
-
-        // Reset access
-        function resetAccess() {
-            adsEnabled = true;
-            clickCount = 0;
-            // overlay.classList.remove('hidden');
-            // body.classList.add('disabled');
-            document.getElementById("overlay").classList.remove("hidden");
-            document.body.classList.add("disabled");
-        }
-
-        // Initialize
-        document.addEventListener('click', handleClick);
-    </script>
-    <script type='text/javascript' src="socialAds.js"></script>
-    <script type='text/javascript' src="popAds.js"></script>
-    <!-- Popunder Ads Script -->
-    <script>
-        // Automatically open a popunder ad after 30 seconds
-        setTimeout(function () {
-            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank ').blur(); // Replace with your popunder URL         
-            window.focus(); // Keep the main window focused
-        }, 30000); // 30 seconds delay
-    </script>
-</head>
-
-  <script type='text/javascript' src='//ashorenorris.com/cb/1e/4d/cb1e4d4714d6f0dd34f54f1683ef97ec.js'></script>
-
-<body class="disabled allow-scroll">
-    <div id="overlay">
-        <div class="spinner"></div>
-        <div class="loading-text">Loading premium content...</div>
-    </div>
-
-    <header class="header">
-        <a href="https://www.slvideo.club" class="logo">
-            <i class="fas fa-play-circle"></i>
-            SL VIDEO <span>CLUB</span>
-        </a>
-        <nav class="nav-links">
-            <a href="https://www.slvideo.club">Home</a>
-            <a href="https://www.slvideo.club/">Category</a>
-            <a href="https://www.slvideo.club/">Videos</a>
-            <a href="https://www.slvideo.club/">About</a>
-        </nav>
+<body>
+    <header>
+        <div class="logo">SL VIDEO CLUB</div>
+        <div class="tagline">Your Premium Entertainment Destination</div>
     </header>
 
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://iframe.mediadelivery.net/embed/379390/95b16e49-fcef-4850-a5e2-fbfddb8b5d8f?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
-                        loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+    <div class="container">
+        <h2 class="section-title">Featured Video</h2>
+        
+        <div class="video-embed-container" id="videoContainer">
+            <!-- Transparent overlay to capture clicks -->
+            <div class="video-overlay" id="videoOverlay"></div>
+            
+            <div class="responsive-embed">
+                <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/b8d0e52a-012a-40b3-b770-b8659735e241?autoplay=false&loop=false&muted=false&preload=true&responsive=true" 
+                        loading="lazy" 
+                        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" 
                         allowfullscreen="true"></iframe>
-                </div>
             </div>
+            
+            <!-- Custom fullscreen button -->
+            <button class="fullscreen-btn" id="fullscreenBtn">
+                <i class="fas fa-expand"></i> Fullscreen
+            </button>
+        </div>
+    </div>
 
-      
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                SL VIDEO <span>CLUB</span>
-            </div>
+    <footer>
+        <div class="footer-container">
             <div class="footer-links">
-                <a href="https://www.slvideo.club">Home</a>
-                <a href="https://www.slvideo.club/">About</a>
-                <a href="https://www.slvideo.club/">Terms</a>
-                <a href="https://www.slvideo.club/">Privacy</a>
-                <a href="https://www.slvideo.club/">Contact</a>
+                <a href="/about">About Us</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/contact">Contact Us</a>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -397,25 +325,200 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
             <div class="copyright">
-                &copy; 2023 SL VIDEO CLUB. All rights reserved.
+                &copy; 2023 SL VIDEO CLUB. All Rights Reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // Simulate loading
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.body.classList.remove('disabled');
-                document.getElementById('overlay').classList.add('hidden');
+        // Ad configuration
+        const adConfig = {
+            links: [
+                "https://example.com/ad1",
+                "https://example.com/ad2",
+                "https://example.com/ad3",
+                "https://example.com/ad4",
+                "https://example.com/ad5"
+            ],
+            requiredClicks: Math.floor(Math.random() * 4) + 5, // 5-8 clicks
+            clickDelay: 1000, // 1 second between ads
+            resetTime: 60000 // 60 seconds
+        };
+
+        // DOM elements
+        const body = document.body;
+        const videoContainer = document.getElementById('videoContainer');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const videoFrame = document.getElementById('videoFrame');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        
+        // State variables
+        let clickCount = 0;
+        let lastClickTime = 0;
+        let adsEnabled = true;
+        let isFullscreen = false;
+
+        // Toggle fullscreen function
+        function toggleFullscreen() {
+            isFullscreen = !isFullscreen;
+            
+            if (isFullscreen) {
+                // Enter fullscreen
+                body.classList.add('fullscreen');
                 
-                // Remove overlay completely after fade out
-                setTimeout(function() {
-                    document.getElementById('overlay').style.display = 'none';
-                }, 500);
-            }, 2000);
+                // Hide browser UI (works in most modern browsers)
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                } else if (document.documentElement.webkitRequestFullscreen) {
+                    document.documentElement.webkitRequestFullscreen();
+                } else if (document.documentElement.msRequestFullscreen) {
+                    document.documentElement.msRequestFullscreen();
+                }
+                
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+                
+                // Enable pointer events in fullscreen
+                videoFrame.style.pointerEvents = 'auto';
+            } else {
+                // Exit fullscreen
+                body.classList.remove('fullscreen');
+                
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                
+                // Disable pointer events if requirements not met
+                if (clickCount < adConfig.requiredClicks) {
+                    videoFrame.style.pointerEvents = 'none';
+                }
+            }
+        }
+
+        // Fullscreen button click handler
+        fullscreenBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleFullscreen();
         });
+
+        // Handle fullscreen change events
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('msfullscreenchange', handleFullscreenChange);
+
+        function handleFullscreenChange() {
+            const isCurrentlyFullscreen = !!(document.fullscreenElement || 
+                                          document.webkitFullscreenElement || 
+                                          document.msFullscreenElement);
+            
+            if (isCurrentlyFullscreen !== isFullscreen) {
+                isFullscreen = isCurrentlyFullscreen;
+                body.classList.toggle('fullscreen', isFullscreen);
+                
+                if (isFullscreen) {
+                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> Exit Fullscreen';
+                    videoFrame.style.pointerEvents = 'auto';
+                } else {
+                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> Fullscreen';
+                    if (clickCount < adConfig.requiredClicks) {
+                        videoFrame.style.pointerEvents = 'none';
+                    }
+                }
+            }
+        }
+
+        // Handle escape key to exit fullscreen
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isFullscreen) {
+                toggleFullscreen();
+            }
+        });
+
+        // Main click handler
+        function handleAdClick() {
+            if (!adsEnabled) return;
+            
+            const now = Date.now();
+            if (now - lastClickTime < adConfig.clickDelay) return;
+            
+            clickCount++;
+            lastClickTime = now;
+
+            // Open ad if available
+            if (clickCount <= adConfig.links.length) {
+                const adWindow = window.open(adConfig.links[clickCount-1], '_blank');
+                if (adWindow) {
+                    adWindow.blur();
+                    window.focus();
+                }
+            }
+
+            // Check if requirements met
+            if (clickCount >= adConfig.requiredClicks) {
+                adsEnabled = false;
+                
+                // Enable video interaction
+                videoFrame.style.pointerEvents = 'auto';
+                videoOverlay.classList.add('hidden');
+                
+                // Auto-play video
+                const iframeSrc = videoFrame.src;
+                videoFrame.src = iframeSrc.includes('autoplay=true') ? iframeSrc : iframeSrc + '&autoplay=true';
+                
+                // Reset after 60 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, adConfig.resetTime);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            videoFrame.style.pointerEvents = 'none';
+            videoOverlay.classList.remove('hidden');
+            
+            // Reset video
+            const iframeSrc = videoFrame.src.replace('&autoplay=true', '');
+            videoFrame.src = iframeSrc;
+        }
+
+        // Set up event listeners
+        function setupAdTracking() {
+            // Standard clicks
+            document.addEventListener('click', handleAdClick, {capture: true});
+            
+            // Video overlay click
+            videoOverlay.addEventListener('click', handleAdClick);
+            
+            // Scroll-based triggers
+            window.addEventListener('scroll', () => {
+                if (Math.random() > 0.95) handleAdClick();
+            });
+            
+            // Mouse movement triggers
+            document.addEventListener('mousemove', (e) => {
+                if (e.clientY < 50 && Math.random() > 0.98) {
+                    handleAdClick();
+                }
+            });
+            
+            // Initial popunder after 30s
+            setTimeout(() => {
+                const popunder = window.open('https://example.com/popunder', '_blank');
+                if (popunder) popunder.blur();
+                window.focus();
+            }, 30000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', setupAdTracking);
     </script>
 </body>
-
 </html>
