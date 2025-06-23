@@ -10,6 +10,7 @@
     <style>
         :root {
             --primary: #FF9AA2;
+            --primary-dark: #e87a83;
             --secondary: #FFB7B2;
             --accent: #FFDAC1;
             --light: #E2F0CB;
@@ -17,28 +18,33 @@
             --text: #333333;
             --text-light: #666666;
             --white: #ffffff;
+            --light-bg: #fff9fa;
             --radius: 12px;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
 
-        /* Hide scrollbars but keep functionality */
-        body {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-            background-color: #fafafa;
+        /* Fix horizontal scrolling */
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            background-color: var(--light-bg);
             color: var(--text);
             line-height: 1.6;
         }
+        
         body::-webkit-scrollbar {
-            display: none;  /* Chrome, Safari and Opera */
+            display: none;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .container {
@@ -90,10 +96,12 @@
             font-size: 16px;
             outline: none;
             transition: var(--transition);
+            background-color: #f9f9f9;
         }
 
         .search-bar input:focus {
             border-color: var(--primary);
+            background-color: var(--white);
         }
 
         .search-bar button {
@@ -120,10 +128,26 @@
             font-weight: 500;
             transition: var(--transition);
             white-space: nowrap;
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        .nav-links a:not(.cart-icon)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .cart-icon {
@@ -194,6 +218,7 @@
             font-size: 2.8rem;
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
         }
 
         .hero-slide p {
@@ -214,11 +239,13 @@
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
+            box-shadow: 0 4px 8px rgba(255, 154, 162, 0.3);
         }
 
         .btn:hover {
-            background-color: #ff7e88;
+            background-color: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 154, 162, 0.4);
         }
 
         .products-section {
@@ -234,10 +261,24 @@
             font-size: 2rem;
             color: var(--text);
             margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .section-title p {
             color: var(--text-light);
+            font-size: 1.1rem;
         }
 
         .products-grid {
@@ -260,7 +301,7 @@
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-hover);
         }
 
         .product-image-container {
@@ -301,6 +342,7 @@
             font-weight: 600;
             margin-bottom: 12px;
             align-self: flex-start;
+            text-transform: capitalize;
         }
 
         .product-name-container {
@@ -325,6 +367,10 @@
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 16px;
+        }
+
+        .product-price::before {
+            content: 'LKR ';
         }
 
         .quantity-selector {
@@ -380,7 +426,7 @@
         }
 
         .buy-btn:hover {
-            background-color: #ff7e88;
+            background-color: var(--primary-dark);
         }
 
         /* Testimonials Section */
@@ -502,6 +548,18 @@
             font-size: 18px;
             margin-bottom: 20px;
             color: var(--text);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 0;
         }
 
         .footer-column ul {
@@ -516,10 +574,12 @@
             color: var(--text-light);
             text-decoration: none;
             transition: var(--transition);
+            display: inline-block;
         }
 
         .footer-column ul li a:hover {
             color: var(--primary);
+            transform: translateX(5px);
         }
 
         .social-links {
@@ -532,10 +592,54 @@
             color: var(--text-light);
             font-size: 20px;
             transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .social-links a:hover {
             color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
         }
 
         .copyright {
@@ -733,6 +837,7 @@
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -922,9 +1027,9 @@
                 <div class="footer-column">
                     <h3>Newsletter</h3>
                     <p>Subscribe for exclusive offers and beauty tips.</p>
-                    <form>
-                        <input type="email" placeholder="Your email" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: var(--radius);">
-                        <button type="submit" class="btn" style="width: 100%;">Subscribe</button>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
                     </form>
                 </div>
             </div>
@@ -969,60 +1074,65 @@
             {
                 id: 1,
                 name: "Hydrating Facial Serum with Vitamin E",
-                price: 29.99,
+                price: 2999.99,
                 category: "skincare",
                 image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 2,
                 name: "Matte Lipstick Set - 6 Colors",
-                price: 24.99,
+                price: 2499.99,
                 category: "makeup",
                 image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 3,
                 name: "Nourishing Hair Mask with Argan Oil",
-                price: 19.99,
+                price: 1999.99,
                 category: "haircare",
                 image: "https://images.unsplash.com/photo-1608248543803-ba9b230689a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 4,
                 name: "Detoxifying Clay Mask with Charcoal",
-                price: 22.99,
+                price: 2299.99,
                 category: "skincare",
                 image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 5,
                 name: "Neutral Eyeshadow Palette - 12 Shades",
-                price: 34.99,
+                price: 3499.99,
                 category: "makeup",
                 image: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 6,
                 name: "Volumizing Shampoo for Fine Hair",
-                price: 17.99,
+                price: 1799.99,
                 category: "haircare",
                 image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 7,
                 name: "Vitamin C Brightening Moisturizer",
-                price: 27.99,
+                price: 2799.99,
                 category: "skincare",
                 image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 8,
                 name: "Waterproof Liquid Eyeliner - Black",
-                price: 14.99,
+                price: 1499.99,
                 category: "makeup",
                 image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             }
         ];
+
+        // Format price as LKR with commas and 2 decimal places
+        function formatPrice(price) {
+            return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
 
         // Display products
         const productsGrid = document.getElementById('products-grid');
@@ -1040,7 +1150,7 @@
                     <div class="product-name-container">
                         <h3 class="product-name">${product.name}</h3>
                     </div>
-                    <div class="product-price">$${product.price.toFixed(2)}</div>
+                    <div class="product-price">${formatPrice(product.price)}</div>
                     <div class="quantity-selector">
                         <button class="quantity-btn minus">-</button>
                         <input type="number" value="1" min="1" class="quantity-input">
