@@ -129,6 +129,10 @@
             pointer-events: none;
         }
 
+        .video-wrapper.active iframe {
+            pointer-events: auto;
+        }
+
         .content-info {
             max-width: 1000px;
             margin: 2rem auto;
@@ -213,7 +217,7 @@
             SL VIDEO <span>CLUB</span>
         </a>
         
-        <div class="nav-links">
+         <div class="nav-links">
             <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
             <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story </a>
             <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign </a>
@@ -274,6 +278,12 @@
         const requiredClicks = 4;
         let adsEnabled = true;
 
+        // DOM elements
+        const videoWrapper = document.getElementById('videoWrapper');
+        const videoFrame = document.getElementById('videoFrame');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
         // Function to get random ad
         function getRandomAd() {
             const randomIndex = Math.floor(Math.random() * adLinks.length);
@@ -281,10 +291,6 @@
         }
 
         // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const videoWrapper = document.getElementById('videoWrapper');
-        
         mobileMenuBtn.addEventListener('click', function() {
             mobileMenu.classList.toggle('active');
         });
@@ -305,14 +311,16 @@
             const randomAd = getRandomAd();
             window.open(randomAd, '_blank');
 
-            // Disable ads after required clicks
+            // Disable ads after required clicks and enable video
             if (clickCount >= requiredClicks) {
                 adsEnabled = false;
+                videoWrapper.classList.add('active');
                 
                 // Re-enable ads after 60 seconds
                 setTimeout(() => {
                     adsEnabled = true;
                     clickCount = 0;
+                    videoWrapper.classList.remove('active');
                 }, 60000);
             }
         });
