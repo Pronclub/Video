@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloom Beauty | Premium Beauty Products</title>
+    <title>Bloom Beauty | Korean-Inspired Premium Beauty</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         :root {
-            --primary: #FF9AA2;
-            --primary-dark: #e87a83;
-            --secondary: #FFB7B2;
-            --accent: #FFDAC1;
-            --light: #E2F0CB;
-            --dark: #B5EAD7;
+            --primary: #FF5A5F; /* Korean cherry blossom pink */
+            --primary-dark: #E84A5F;
+            --secondary: #FFD3B6; /* Soft peach */
+            --accent: #D8B5FF; /* Lavender */
+            --light: #FFF6F6; /* Very light pink */
+            --dark: #A8E6CE; /* Mint green */
             --text: #333333;
             --text-light: #666666;
             --white: #ffffff;
-            --light-bg: #fff9fa;
+            --light-bg: #FFF9F9;
             --radius: 12px;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --korean-red: #FF5A5F;
+            --korean-beige: #FFF6F6;
+            --korean-blue: #A8E6CE;
         }
 
-        /* Fix horizontal scrolling */
+        /* Fix horizontal scrolling and base styles */
         html, body {
             width: 100%;
             overflow-x: hidden;
@@ -34,6 +37,7 @@
             background-color: var(--light-bg);
             color: var(--text);
             line-height: 1.6;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
         }
         
         body::-webkit-scrollbar {
@@ -44,7 +48,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Korean-style animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
 
         .container {
@@ -53,6 +68,7 @@
             padding: 0 20px;
         }
 
+        /* Header with Korean styling */
         header {
             background-color: var(--white);
             box-shadow: var(--shadow);
@@ -60,6 +76,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            animation: fadeIn 0.8s ease-out;
         }
 
         .header-content {
@@ -71,14 +88,16 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--korean-red);
             text-decoration: none;
             display: flex;
             align-items: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         .logo i {
             margin-right: 10px;
+            animation: float 3s ease-in-out infinite;
         }
 
         .search-bar {
@@ -92,15 +111,15 @@
             width: 100%;
             padding: 12px 20px;
             border: 2px solid #f0f0f0;
-            border-radius: var(--radius);
+            border-radius: 30px;
             font-size: 16px;
             outline: none;
             transition: var(--transition);
-            background-color: #f9f9f9;
+            background-color: var(--korean-beige);
         }
 
         .search-bar input:focus {
-            border-color: var(--primary);
+            border-color: var(--korean-red);
             background-color: var(--white);
         }
 
@@ -111,7 +130,7 @@
             transform: translateY(-50%);
             background: none;
             border: none;
-            color: var(--primary);
+            color: var(--korean-red);
             cursor: pointer;
             font-size: 18px;
         }
@@ -129,10 +148,11 @@
             transition: var(--transition);
             white-space: nowrap;
             position: relative;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--korean-red);
         }
 
         .nav-links a:not(.cart-icon)::after {
@@ -142,7 +162,7 @@
             height: 2px;
             bottom: -4px;
             left: 0;
-            background-color: var(--primary);
+            background-color: var(--korean-red);
             transition: var(--transition);
         }
 
@@ -158,14 +178,15 @@
         }
 
         .cart-icon:hover {
-            color: var(--primary);
+            color: var(--korean-red);
+            transform: scale(1.1);
         }
 
         .cart-count {
             position: absolute;
             top: -8px;
             right: -8px;
-            background-color: var(--primary);
+            background-color: var(--korean-red);
             color: white;
             border-radius: 50%;
             width: 18px;
@@ -176,17 +197,18 @@
             justify-content: center;
         }
 
-        /* Hero Slider */
+        /* Korean-style Hero Slider */
         .hero-slider {
             width: 100%;
             position: relative;
             overflow: hidden;
             border-radius: 0 0 var(--radius) var(--radius);
             margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(255, 90, 95, 0.1);
         }
 
         .hero-slide {
-            height: 500px;
+            height: 550px;
             display: flex;
             align-items: center;
             background-size: cover;
@@ -201,7 +223,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
         }
 
         .hero-slide-content {
@@ -212,66 +234,74 @@
             padding: 0 20px;
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeIn 1s ease-out;
         }
 
         .hero-slide h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             font-weight: 700;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .hero-slide p {
             font-size: 1.3rem;
             margin-bottom: 30px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--primary);
+            padding: 14px 28px;
+            background-color: var(--korean-red);
             color: white;
             border: none;
-            border-radius: var(--radius);
+            border-radius: 30px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
-            box-shadow: 0 4px 8px rgba(255, 154, 162, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 90, 95, 0.4);
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 154, 162, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 90, 95, 0.5);
         }
 
+        /* Products Section */
         .products-section {
-            padding: 40px 0;
+            padding: 60px 0;
+            background-color: var(--light-bg);
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--text);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .section-title h2::after {
             content: '';
             position: absolute;
-            width: 60px;
+            width: 80px;
             height: 3px;
-            background: var(--primary);
-            bottom: -10px;
+            background: var(--korean-red);
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -279,6 +309,7 @@
         .section-title p {
             color: var(--text-light);
             font-size: 1.1rem;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .products-grid {
@@ -297,15 +328,16 @@
             flex-direction: column;
             height: 100%;
             position: relative;
+            animation: fadeIn 0.6s ease-out;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
         }
 
         .product-image-container {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -322,7 +354,7 @@
         }
 
         .product-card:hover .product-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .product-info {
@@ -335,7 +367,7 @@
         .product-category {
             display: inline-block;
             padding: 6px 12px;
-            background-color: var(--light);
+            background-color: var(--korean-blue);
             color: var(--text);
             border-radius: 20px;
             font-size: 12px;
@@ -343,6 +375,7 @@
             margin-bottom: 12px;
             align-self: flex-start;
             text-transform: capitalize;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .product-name-container {
@@ -360,23 +393,27 @@
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 1.4;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .product-price {
             font-size: 18px;
             font-weight: 700;
-            color: var(--primary);
+            color: var(--korean-red);
             margin-bottom: 16px;
+            text-align: center;
         }
 
         .product-price::before {
             content: 'LKR ';
         }
 
+        /* Centered Quantity Selector */
         .quantity-selector {
             display: flex;
             align-items: center;
             margin-bottom: 16px;
+            justify-content: center;
         }
 
         .quantity-btn {
@@ -384,7 +421,7 @@
             height: 32px;
             background-color: #f0f0f0;
             border: none;
-            border-radius: 4px;
+            border-radius: 50%;
             font-size: 16px;
             cursor: pointer;
             transition: var(--transition);
@@ -394,7 +431,8 @@
         }
 
         .quantity-btn:hover {
-            background-color: #e0e0e0;
+            background-color: var(--korean-blue);
+            color: white;
         }
 
         .quantity-input {
@@ -403,17 +441,17 @@
             text-align: center;
             border: 1px solid #f0f0f0;
             border-radius: 4px;
-            margin: 0 5px;
+            margin: 0 10px;
             font-size: 16px;
         }
 
         .buy-btn {
             width: 100%;
             padding: 12px;
-            background-color: var(--primary);
+            background-color: var(--korean-red);
             color: white;
             border: none;
-            border-radius: var(--radius);
+            border-radius: 30px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -423,21 +461,43 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .buy-btn:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
-        /* Testimonials Section */
+        /* Korean-style Testimonials Section */
         .testimonials {
-            padding: 60px 0;
+            padding: 80px 0;
             background-color: var(--white);
             margin-top: 60px;
+            background-image: url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .testimonials .container {
+            position: relative;
+            z-index: 2;
         }
 
         .testimonials .section-title h2 {
-            color: var(--primary);
+            color: var(--korean-red);
         }
 
         .testimonial-slider {
@@ -452,7 +512,13 @@
             margin: 0 15px;
             box-shadow: var(--shadow);
             text-align: center;
-            border: 1px solid #f0f0f0;
+            border: 1px solid rgba(255, 90, 95, 0.2);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 90, 95, 0.15);
         }
 
         .testimonial-text {
@@ -461,6 +527,7 @@
             color: var(--text-light);
             margin-bottom: 20px;
             line-height: 1.6;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .testimonial-author {
@@ -475,18 +542,20 @@
             height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary);
+            border: 3px solid var(--korean-red);
         }
 
         .author-info h4 {
             font-size: 18px;
             margin-bottom: 5px;
             color: var(--text);
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .author-info p {
             font-size: 14px;
             color: var(--text-light);
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .rating {
@@ -501,13 +570,14 @@
 
         .slick-dots li button:before {
             font-size: 12px;
-            color: var(--primary);
+            color: var(--korean-red);
         }
 
         .slick-dots li.slick-active button:before {
-            color: var(--primary);
+            color: var(--korean-red);
         }
 
+        /* Korean-style WhatsApp button */
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -521,35 +591,39 @@
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
             transition: var(--transition);
             z-index: 99;
             text-decoration: none;
+            animation: float 2s ease-in-out infinite;
         }
 
         .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
 
+        /* Renewed Korean-style Footer */
         footer {
-            background-color: var(--white);
-            padding: 40px 0;
-            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+            background-color: #2C2C2C;
+            padding: 50px 0 20px;
+            color: #ddd;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
+            margin-bottom: 30px;
         }
 
         .footer-column h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--text);
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: white;
             position: relative;
             padding-bottom: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .footer-column h3::after {
@@ -557,7 +631,7 @@
             position: absolute;
             width: 40px;
             height: 2px;
-            background: var(--primary);
+            background: var(--korean-red);
             bottom: 0;
             left: 0;
         }
@@ -567,42 +641,53 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .footer-column ul li a {
-            color: var(--text-light);
+            color: #bbb;
             text-decoration: none;
             transition: var(--transition);
             display: inline-block;
+            font-size: 14px;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .footer-column ul li a:hover {
-            color: var(--primary);
+            color: var(--korean-red);
             transform: translateX(5px);
         }
 
+        .footer-column p {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* Renewed Social Media Icons */
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             margin-top: 20px;
         }
 
         .social-links a {
-            color: var(--text-light);
-            font-size: 20px;
+            color: white;
+            font-size: 16px;
             transition: var(--transition);
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background: #f5f5f5;
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .social-links a:hover {
-            color: var(--primary);
+            background: var(--korean-red);
             transform: translateY(-3px);
         }
 
@@ -614,28 +699,36 @@
 
         .newsletter-form input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: var(--radius);
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
             font-size: 14px;
             transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #999;
         }
 
         .newsletter-form input:focus {
-            border-color: var(--primary);
+            border-color: var(--korean-red);
             outline: none;
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .newsletter-form button {
-            padding: 12px;
-            background-color: var(--primary);
+            padding: 10px;
+            background-color: var(--korean-red);
             color: white;
             border: none;
-            border-radius: var(--radius);
-            font-size: 15px;
+            border-radius: 4px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .newsletter-form button:hover {
@@ -646,8 +739,10 @@
             text-align: center;
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #f0f0f0;
-            color: var(--text-light);
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 13px;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         /* Mobile menu toggle */
@@ -660,13 +755,14 @@
             cursor: pointer;
         }
 
+        /* Responsive Styles */
         @media (max-width: 992px) {
             .hero-slide {
-                height: 400px;
+                height: 450px;
             }
             
             .hero-slide h1 {
-                font-size: 2.4rem;
+                font-size: 2.5rem;
             }
             
             .hero-slide p {
@@ -727,7 +823,7 @@
             }
 
             .hero-slide {
-                height: 350px;
+                height: 400px;
             }
             
             .hero-slide h1 {
@@ -741,17 +837,18 @@
             }
             
             .btn {
-                padding: 10px 20px;
+                padding: 12px 24px;
                 font-size: 15px;
             }
 
+            /* Maintain 2-column product grid on mobile */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
 
             .product-image-container {
-                height: 160px;
+                height: 180px;
             }
 
             .product-info {
@@ -787,20 +884,21 @@
 
         @media (max-width: 480px) {
             .hero-slide {
-                height: 300px;
+                height: 350px;
             }
             
             .hero-slide h1 {
                 font-size: 1.8rem;
             }
 
+            /* Maintain 2-column product grid on mobile */
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
 
             .product-image-container {
-                height: 150px;
+                height: 160px;
             }
 
             .product-name {
@@ -835,9 +933,13 @@
             .testimonial-author {
                 flex-direction: column;
             }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -869,27 +971,27 @@
         </div>
     </header>
 
-    <!-- Hero Slider -->
+    <!-- Korean-style Hero Slider -->
     <div class="hero-slider">
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
             <div class="hero-slide-content">
-                <h1>Premium Beauty Essentials</h1>
-                <p>Discover our collection of vegan, cruelty-free products that enhance your natural beauty</p>
-                <a href="#products" class="btn">Shop Now</a>
-            </div>
-        </div>
-        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
-            <div class="hero-slide-content">
-                <h1>New Lipstick Collection</h1>
-                <p>Long-lasting, vibrant colors for every occasion. Now available in 12 shades</p>
-                <a href="#products" class="btn">Explore Colors</a>
+                <h1>Korean Beauty Secrets</h1>
+                <p>Discover the art of Korean skincare with our premium products</p>
+                <a href="#products" class="btn">Explore Now</a>
             </div>
         </div>
         <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
             <div class="hero-slide-content">
-                <h1>Summer Skincare Essentials</h1>
-                <p>Keep your skin hydrated and protected all season long with our special formulas</p>
-                <a href="#products" class="btn">View Collection</a>
+                <h1>Glass Skin Collection</h1>
+                <p>Achieve the perfect Korean glass skin look with our special formulas</p>
+                <a href="#products" class="btn">Shop Collection</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>New Cushion Compact</h1>
+                <p>Lightweight coverage with skincare benefits - the Korean way</p>
+                <a href="#products" class="btn">View Product</a>
             </div>
         </div>
     </div>
@@ -898,7 +1000,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Best Sellers</h2>
-                <p>Products loved by our community</p>
+                <p>Products loved by our beauty community</p>
             </div>
             
             <div class="products-grid" id="products-grid">
@@ -907,7 +1009,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Korean-style Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <div class="section-title">
@@ -926,7 +1028,7 @@
                     </div>
                     <p class="testimonial-text">"I've been using Bloom Beauty's serum for a month now and my skin has never looked better! The glow is real and my fine lines have visibly reduced."</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J." class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Sarah J." class="author-avatar">
                         <div class="author-info">
                             <h4>Sarah J.</h4>
                             <p>Verified Buyer</p>
@@ -944,7 +1046,7 @@
                     </div>
                     <p class="testimonial-text">"The lipstick set is amazing! The colors are so pigmented and last all day without drying my lips. I get compliments every time I wear them."</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria L." class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Maria L." class="author-avatar">
                         <div class="author-info">
                             <h4>Maria L.</h4>
                             <p>Makeup Artist</p>
@@ -962,28 +1064,10 @@
                     </div>
                     <p class="testimonial-text">"As someone with sensitive skin, finding good products is hard. Bloom Beauty's moisturizer is gentle yet effective. My skin feels nourished all day."</p>
                     <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily T." class="author-avatar">
+                        <img src="https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Emily T." class="author-avatar">
                         <div class="author-info">
                             <h4>Emily T.</h4>
                             <p>Skincare Enthusiast</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonial-text">"The hair mask transformed my dry, damaged hair. After just two uses, my hair felt softer and looked shinier. Will definitely repurchase!"</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Jessica K." class="author-avatar">
-                        <div class="author-info">
-                            <h4>Jessica K.</h4>
-                            <p>Verified Buyer</p>
                         </div>
                     </div>
                 </div>
@@ -991,16 +1075,17 @@
         </div>
     </section>
 
+    <!-- Renewed Korean-style Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Bloom Beauty</h3>
-                    <p>Your destination for premium, ethical beauty products that make you look and feel amazing.</p>
+                    <p>Your destination for premium Korean-inspired beauty products that make you look and feel amazing.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
@@ -1073,57 +1158,57 @@
         const products = [
             {
                 id: 1,
-                name: "Hydrating Facial Serum with Vitamin E",
-                price: 2999.99,
+                name: "Korean Hydrating Facial Serum",
+                price: 3999.99,
                 category: "skincare",
                 image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 2,
-                name: "Matte Lipstick Set - 6 Colors",
-                price: 2499.99,
+                name: "Korean Matte Lipstick Set (6 Colors)",
+                price: 3499.99,
                 category: "makeup",
                 image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 3,
-                name: "Nourishing Hair Mask with Argan Oil",
-                price: 1999.99,
+                name: "Korean Hair Mask with Argan Oil",
+                price: 2799.99,
                 category: "haircare",
                 image: "https://images.unsplash.com/photo-1608248543803-ba9b230689a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 4,
-                name: "Detoxifying Clay Mask with Charcoal",
-                price: 2299.99,
+                name: "Korean Clay Mask with Charcoal",
+                price: 3299.99,
                 category: "skincare",
                 image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 5,
-                name: "Neutral Eyeshadow Palette - 12 Shades",
-                price: 3499.99,
+                name: "Korean Eyeshadow Palette (12 Shades)",
+                price: 4499.99,
                 category: "makeup",
                 image: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 6,
-                name: "Volumizing Shampoo for Fine Hair",
-                price: 1799.99,
+                name: "Korean Volumizing Shampoo",
+                price: 2499.99,
                 category: "haircare",
                 image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 7,
-                name: "Vitamin C Brightening Moisturizer",
-                price: 2799.99,
+                name: "Korean Vitamin C Moisturizer",
+                price: 3799.99,
                 category: "skincare",
                 image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             },
             {
                 id: 8,
-                name: "Waterproof Liquid Eyeliner - Black",
-                price: 1499.99,
+                name: "Korean Liquid Eyeliner - Black",
+                price: 1999.99,
                 category: "makeup",
                 image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
             }
@@ -1207,7 +1292,7 @@
                 
                 setTimeout(() => {
                     e.target.innerHTML = originalText;
-                    e.target.style.backgroundColor = 'var(--primary)';
+                    e.target.style.backgroundColor = 'var(--korean-red)';
                 }, 1500);
                 
                 // In a real app, you would add the product to a cart array
