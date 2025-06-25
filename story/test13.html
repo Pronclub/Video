@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceramide Sunscreen | Bloom Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF5A5F;
+            --primary-dark: #E84A5F;
+            --secondary: #FFD3B6;
+            --accent: #D8B5FF;
+            --light: #FFF6F6;
+            --dark: #A8E6CE;
+            --text: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --light-bg: #FFF9F9;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --korean-red: #FF5A5F;
+            --korean-beige: #FFF6F6;
+            --korean-blue: #A8E6CE;
+            --pink-animation: #ff9a9e;
+            --whatsapp-green: #25D366;
+            --whatsapp-dark-green: #128C7E;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 13px;
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .breadcrumb::-webkit-scrollbar {
+            display: none;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--korean-red);
+        }
+
+        .breadcrumb span {
+            margin: 0 5px;
+        }
+
+        /* Product Layout - UPDATED */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .product-gallery {
+            flex: 0 0 45%;
+            max-width: 500px;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-details {
+            flex: 0 0 calc(55% - 30px);
+            min-width: 280px;
+        }
+
+        .main-image-container {
+            width: 100%;
+            position: relative;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gradientAnimation 8s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .main-image:hover {
+            transform: scale(1.03);
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--korean-red) var(--light-bg);
+        }
+
+        .thumbnail-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .thumbnail-container::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        .thumbnail-container::-webkit-scrollbar-thumb {
+            background-color: var(--korean-red);
+            border-radius: 20px;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            background: var(--white);
+            padding: 5px;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--korean-red);
+        }
+
+        .product-title {
+            font-size: 24px;
+            margin: 0 0 8px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .product-subtitle {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .product-specs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item {
+            background-color: var(--korean-blue);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .rating-count {
+            margin-left: 8px;
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--korean-red);
+            margin-bottom: 15px;
+        }
+
+        .product-price::before {
+            content: "LKR ";
+        }
+
+        .total-price-container {
+            background-color: var(--korean-beige);
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .total-price-label {
+            font-size: 20px;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+
+        .total-price-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--korean-red);
+        }
+
+        .total-price-value::before {
+            content: "LKR ";
+        }
+
+        .product-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .feature-icon {
+            color: var(--korean-red);
+            font-size: 14px;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .product-details-list {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .product-details-list li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .product-details-list li::before {
+            content: "•";
+            color: var(--korean-red);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .benefit-icon {
+            color: var(--korean-red);
+            font-size: 14px;
+        }
+
+        /* Size Selection - Improved */
+        .size-selection {
+            margin-bottom: 25px;
+        }
+
+        .size-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .size-option {
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+            position: relative;
+        }
+
+        .size-option:hover {
+            border-color: var(--korean-red);
+        }
+
+        .size-option.selected {
+            border-color: var(--korean-red);
+            background-color: rgba(255, 90, 95, 0.05);
+            box-shadow: 0 0 0 1px var(--korean-red);
+        }
+
+        .size-checkbox {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .size-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .size-price {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .size-price::before {
+            content: "LKR ";
+        }
+
+        .size-discount {
+            font-size: 13px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .size-discount::before {
+            content: "LKR ";
+        }
+
+        .size-savings {
+            color: #4CAF50;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .quantity-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+        }
+
+        .quantity-btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            -moz-appearance: textfield;
+        }
+
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            
+        }
+
+        .action-btn {
+            padding: 11px 01px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--korean-red);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 90, 95, 0.4);
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 90, 95, 0.5);
+        }
+
+        .whatsapp-btn {
+            background-color: var(--whatsapp-green);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            background-color: var(--whatsapp-dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .shipping-info {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        /* Promotion */
+        .promotion-banner {
+            background-color: var(--korean-beige-dark);
+            padding: 12px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            justify-content: center;
+        }
+
+        .promotion-text {
+            flex: center;
+        }
+
+        .promotion-code {
+            font-weight: 700;
+            color: var(--korean-red);
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .product-container {
+                gap: 20px;
+            }
+            
+            .product-gallery, .product-details {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .product-title {
+                font-size: 22px;
+            }
+            
+            .product-price {
+                font-size: 22px;
+            }
+            
+            .size-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-btn {
+                min-width: 100%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-gallery {
+                flex: 0 0 40%;
+            }
+            .product-details {
+                flex: 0 0 calc(60% - 30px);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .product-gallery {
+                flex: 0 0 35%;
+            }
+            .product-details {
+                flex: 0 0 calc(65% - 30px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .breadcrumb {
+                font-size: 12px;
+            }
+            
+            .product-title {
+                font-size: 20px;
+            }
+            
+            .product-subtitle {
+                font-size: 14px;
+            }
+            
+            .spec-item {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            
+            .product-price {
+                font-size: 20px;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .quantity-selector {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span>/</span>
+            <a href="#">Sunscreen</a>
+            <span>/</span>
+            <a href="#">Ceramide Sunscreen</a>
+        </div>
+
+        <!-- Product Main Section -->
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ceramide Sunscreen" class="main-image" id="mainImage">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Front" class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Side" class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Ingredients" class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Application" class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title">Sun Drink™ - Ceramide Sunscreen</h1>
+                <p class="product-subtitle">For all skin types</p>
+                
+                <div class="product-specs">
+                    <span class="spec-item">SPF 50 PA++++</span>
+                    <span class="spec-item">Water Resistant</span>
+                    <span class="spec-item">50 gms</span>
+                </div>
+                
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="rating-count">(351 Reviews)</span>
+                </div>
+                
+                <div class="product-price">2,000.00</div>
+                
+                <div class="total-price-container" id="totalPriceContainer">
+                    <span class="total-price-label">Total :</span>
+                    <span class="total-price-value" id="totalPriceValue">0.00</span>
+                </div>
+                
+                <div class="product-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>No Harmful Toxins</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Clinically Tested</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Fragrance Free</span>
+                    </div>
+                </div>
+                
+                <div class="product-description">
+                    <p>Our ceramide-infused sunscreen provides superior protection while nourishing your skin. The lightweight formula absorbs quickly without leaving a white cast, perfect for daily use.</p>
+                </div>
+                
+                <ul class="product-details-list">
+                    <li>Contains ceramides to strengthen skin barrier</li>
+                    <li>SPF 50+ PA++++ for maximum UV protection</li>
+                    <li>Water-resistant formula lasts up to 80 minutes</li>
+                    <li>Non-greasy, fast-absorbing texture</li>
+                    <li>Dermatologist tested and approved</li>
+                </ul>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-shield-alt benefit-icon"></i>
+                        <span>Blocks UVA & UVB</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-feather-alt benefit-icon"></i>
+                        <span>Lightweight texture</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-paint-brush benefit-icon"></i>
+                        <span>Leaves no white cast</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-tint benefit-icon"></i>
+                        <span>Water & sweat proof</span>
+                    </div>
+                </div>
+                
+                <!-- Size Selection - Improved -->
+                <div class="size-selection">
+                    <h3 class="size-title">Select Size (Multiple Selection Available):</h3>
+                    <div class="size-options">
+                        <label class="size-option">
+                            <input type="checkbox" class="size-checkbox" data-price="2000.00" data-name="Travel Size 50ml">
+                            <div class="size-name">Travel Size 50ml</div>
+                            <div class="price-container">
+                                <div class="size-price">2,074.00</div>
+                                <div class="size-discount">2,139.00</div>
+                                <div class="size-savings">3% OFF</div>
+                            </div>
+                        </label>
+                        <label class="size-option">
+                            <input type="checkbox" class="size-checkbox" data-price="3715.00" data-name="Medium Size 100ml">
+                            <div class="size-name">Medium Size 100ml</div>
+                            <div class="price-container">
+                                <div class="size-price">3,715.00</div>
+                                <div class="size-discount">3,993.00</div>
+                                <div class="size-savings">7% OFF</div>
+                            </div>
+                        </label>
+                        <label class="size-option">
+                            <input type="checkbox" class="size-checkbox" data-price="5090.00" data-name="Large Size 200ml">
+                            <div class="size-name">Large Size 200ml</div>
+                            <div class="price-container">
+                                <div class="size-price">5,090.00</div>
+                                <div class="size-discount">5,990.00</div>
+                                <div class="size-savings">15% OFF</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Quantity Selector -->
+                <div class="quantity-selector">
+                    <div class="quantity-title">Quantity:</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" id="decreaseQty">-</button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" id="increaseQty">+</button>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn add-to-cart-btn" id="addToCartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        ADD TO CART
+                    </button>
+                    <a href="#" class="action-btn whatsapp-btn" id="whatsappBtn" style="display: none;">
+                        <i class="fab fa-whatsapp"></i>
+                        ORDER VIA WHATSAPP
+                    </a>
+                </div>
+                
+                <div class="shipping-info">
+                    <i class="fas fa-truck"></i> Free shipping on orders over LKR 5,000
+                </div>
+                
+                <!-- Promotion -->
+                <div class="promotion-banner">
+                    <i class="fas fa-gift" style="color: var(--korean-red);"></i>
+                    <div class="promotion-text">
+                        Buy 3 Items. Get 15% OFF
+                        <span class="promotion-code">Use code: CC04</span>
+                        <i class="far fa-copy" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp number
+        const whatsappNumber = "+94724630983";
+        
+        // Selected items array
+        let selectedItems = [];
+        
+        // Size selection functionality
+        const sizeCheckboxes = document.querySelectorAll('.size-checkbox');
+        sizeCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const sizeOption = this.closest('.size-option');
+                if (this.checked) {
+                    sizeOption.classList.add('selected');
+                    addSelectedItem(this);
+                } else {
+                    sizeOption.classList.remove('selected');
+                    removeSelectedItem(this);
+                }
+                calculateTotal();
+                updateButtons();
+            });
+        });
+
+        // Add item to selected items
+        function addSelectedItem(checkbox) {
+            selectedItems.push({
+                name: checkbox.dataset.name,
+                price: parseFloat(checkbox.dataset.price),
+                quantity: parseInt(document.getElementById('quantity').value)
+            });
+        }
+
+        // Remove item from selected items
+        function removeSelectedItem(checkbox) {
+            selectedItems = selectedItems.filter(item => item.name !== checkbox.dataset.name);
+        }
+
+        // Calculate total price
+        function calculateTotal() {
+            const totalPriceContainer = document.getElementById('totalPriceContainer');
+            const totalPriceValue = document.getElementById('totalPriceValue');
+            
+            if (selectedItems.length === 0) {
+                totalPriceContainer.style.display = 'none';
+                return;
+            }
+            
+            let total = 0;
+            selectedItems.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            
+            totalPriceValue.textContent = total.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            totalPriceContainer.style.display = 'flex';
+        }
+
+        // Update buttons based on selection
+        function updateButtons() {
+            const addToCartBtn = document.getElementById('addToCartBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            
+            if (selectedItems.length > 0) {
+                addToCartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> LKR ${document.getElementById('totalPriceValue').textContent} | ADD TO CART`;
+                whatsappBtn.style.display = 'flex';
+            } else {
+                addToCartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> ADD TO CART`;
+                whatsappBtn.style.display = 'flex';
+            }
+        }
+
+        // Quantity selector functionality
+        const quantityInput = document.getElementById('quantity');
+        const decreaseBtn = document.getElementById('decreaseQty');
+        const increaseBtn = document.getElementById('increaseQty');
+
+        quantityInput.addEventListener('change', updateQuantities);
+        decreaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+                updateQuantities();
+            }
+            decreaseBtn.disabled = quantityInput.value <= 1;
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value < 10) {
+                quantityInput.value = value + 1;
+                updateQuantities();
+            }
+            decreaseBtn.disabled = false;
+        });
+
+        function updateQuantities() {
+            let value = parseInt(quantityInput.value);
+            if (isNaN(value) || value < 1) {
+                quantityInput.value = 1;
+            } else if (value > 10) {
+                quantityInput.value = 10;
+            }
+            decreaseBtn.disabled = quantityInput.value <= 1;
+            
+            // Update quantities in selected items
+            selectedItems.forEach(item => {
+                item.quantity = parseInt(quantityInput.value);
+            });
+            
+            calculateTotal();
+        }
+
+        // Image gallery functionality
+        function changeImage(thumbnail, newSrc) {
+            document.getElementById('mainImage').src = newSrc;
+            document.querySelectorAll('.thumbnail').forEach(img => {
+                img.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+
+        // Copy promo code functionality
+        document.querySelector('.fa-copy').addEventListener('click', function() {
+            const code = 'CC04';
+            navigator.clipboard.writeText(code);
+            
+            // Show feedback
+            const original = this;
+            original.classList.remove('far', 'fa-copy');
+            original.classList.add('fas', 'fa-check');
+            
+            setTimeout(() => {
+                original.classList.remove('fas', 'fa-check');
+                original.classList.add('far', 'fa-copy');
+            }, 2000);
+        });
+
+        // WhatsApp order functionality
+        document.getElementById('whatsappBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            if (selectedItems.length === 0) return;
+            
+            let message = "I would like to order:\n\n";
+            
+            selectedItems.forEach(item => {
+                message += `- ${item.name} (Qty: ${item.quantity}) - LKR ${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            
+            message += `\nTotal: LKR ${document.getElementById('totalPriceValue').textContent}\n\n`;
+            message += "Please confirm my order. Thank you!";
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        });
+
+        // Add to cart functionality
+        document.getElementById('addToCartBtn').addEventListener('click', function() {
+            if (selectedItems.length === 0) {
+                alert("Please select at least one item");
+                return;
+            }
+            
+            // Here you would normally add to cart
+            // For this example, we'll just show an alert
+            let cartMessage = "Added to cart:\n\n";
+            
+            selectedItems.forEach(item => {
+                cartMessage += `- ${item.name} (Qty: ${item.quantity}) - LKR ${(item.price * item.quantity).toFixed(2)}\n`;
+            });
+            
+            cartMessage += `\nTotal: LKR ${document.getElementById('totalPriceValue').textContent}`;
+            
+            alert(cartMessage);
+        });
+    </script>
+</body>
+</html>
