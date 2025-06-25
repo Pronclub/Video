@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 SPARK CONNECT | Dating App 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff2d75;
+            --secondary: #ff6b9d;
+            --accent: #ffb3cb;
+            --dark: #1a1a2e;
+            --light: #fef6f9;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --text: #2b2d42;
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --online: #4ade80;
+            --offline: #94a3b8;
+            --neon-purple: #c724f9;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @font-face {
+            font-family: 'Neue Montreal';
+            src: url('https://fonts.cdnfonts.com/css/neue-montreal') format('woff2');
+        }
+
+        body {
+            font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .app-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 45, 117, 0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            color: white;
+            position: relative;
+        }
+
+        .nav-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: var(--primary);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        #search:focus {
+            outline: none;
+            box-shadow: 0 5px 25px rgba(255, 45, 117, 0.3);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: white;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 15px 20px;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255, 45, 117, 0.3);
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .profile-card:hover .profile-image {
+            transform: scale(1.1);
+        }
+
+        .online-status {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 2;
+        }
+
+        .online {
+            background: var(--online);
+        }
+
+        .offline {
+            background: var(--offline);
+        }
+
+        .profile-info {
+            padding: 15px;
+        }
+
+        .profile-name-age {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .profile-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .profile-age {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .profile-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-bio {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .profile-tag {
+            background: rgba(255, 45, 117, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .chat-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+        }
+
+        .chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.4);
+        }
+
+        .call-btn {
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+        }
+
+        .call-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .modal h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .modal p {
+            margin-bottom: 20px;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin: 5px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 45, 117, 0.4);
+        }
+
+        .modal-btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+        }
+
+        .unlock-now-btn {
+            background: linear-gradient(135deg, var(--whatsapp-green) 0%, #128C7E 100%) !important;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .unlock-status {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: var(--text);
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .unlock-status i {
+            font-size: 1.5rem;
+        }
+
+        .unlock-timer {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .unlock-progress {
+            width: 100%;
+            height: 5px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .unlock-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--neon-purple));
+            transition: width 1s linear;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 45, 117, 0.3);
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .profiles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .profile-image-container {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .profiles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            }
+            
+            .profile-image-container {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .profile-image-container {
+                height: 200px;
+            }
+            
+            .profile-info {
+                padding: 12px;
+            }
+            
+            .profile-name {
+                font-size: 1.1rem;
+            }
+            
+            .profile-bio {
+                font-size: 0.8rem;
+                -webkit-line-clamp: 3;
+            }
+            
+            .action-btn {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+            
+            .filter-chips {
+                padding: 8px 15px;
+            }
+            
+            .filter-chip {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .profiles-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .profile-image-container {
+                height: 280px;
+            }
+            
+            .profile-actions {
+                flex-direction: row;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .logo span {
+                font-size: 1.3rem;
+            }
+            
+            .nav-icons {
+                gap: 15px;
+            }
+            
+            .nav-icon {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .profile-image-container {
+                height: 240px;
+            }
+            
+            .logo span {
+                font-size: 1.2rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .nav-icons {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="logo">
+            <i class="fas fa-sparkles"></i>
+            <span>SPARK CONNECT</span>
+        </div>
+        <div class="nav-icons">
+            <a href="#" class="nav-icon">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-envelope"></i>
+                <span class="badge">3</span>
+            </a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-bell"></i>
+                <span class="badge">5</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="app-container">
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Find your perfect match...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="filter-chips">
+                <div class="filter-chip active">All</div>
+                <div class="filter-chip">Online</div>
+                <div class="filter-chip">Nearby</div>
+                <div class="filter-chip">Verified</div>
+                <div class="filter-chip">New</div>
+                <div class="filter-chip">Popular</div>
+            </div>
+
+            <div class="profiles-grid" id="profilesGrid">
+                <!-- Profiles will be generated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-compass"></i>
+            <span>Discover</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Matches</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Unlock Modal -->
+    <div class="modal" id="unlockModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3>Unlock Chat Features</h3>
+            <p>To start chatting, please complete verification:</p>
+            
+            <a href="https://www.slvideo.club" target="_blank" class="modal-btn unlock-now-btn" id="unlockLink">
+                <i class="fas fa-external-link-alt"></i> Verify Now
+            </a>
+            
+            <div class="unlock-status" id="unlockStatus">
+                <i class="fas fa-sync-alt fa-spin"></i>
+                <span>Verifying your access...</span>
+                <div class="unlock-progress">
+                    <div class="unlock-progress-bar" id="progressBar"></div>
+                </div>
+                <div class="unlock-timer" id="timer">5 seconds remaining</div>
+            </div>
+            
+            <button class="modal-btn secondary" id="cancelUnlockBtn">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Profile Data
+        const profilesData = [
+            {
+                id: 1,
+                name: "Emma Johnson",
+                age: 27,
+                number: "15551234567",
+                image: "https://randomuser.me/api/portraits/women/1.jpg",
+                location: "New York, NY",
+                distance: "3 miles away",
+                bio: "Adventure seeker and coffee lover. Looking for someone to explore the world with!",
+                tags: ["Travel", "Coffee", "Yoga"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 2,
+                name: "Sophia Williams",
+                age: 25,
+                number: "15552345678",
+                image: "https://randomuser.me/api/portraits/women/2.jpg",
+                location: "Brooklyn, NY",
+                distance: "1 mile away",
+                bio: "Artist and dog mom. Enjoy gallery openings and long walks in the park.",
+                tags: ["Art", "Dogs", "Brunch"],
+                verified: true,
+                online: false,
+                lastActive: "2 hours ago"
+            },
+            {
+                id: 3,
+                name: "Olivia Brown",
+                age: 29,
+                number: "15553456789",
+                image: "https://randomuser.me/api/portraits/women/3.jpg",
+                location: "Manhattan, NY",
+                distance: "5 miles away",
+                bio: "Finance professional who loves jazz and fine dining. Let's try that new restaurant!",
+                tags: ["Finance", "Jazz", "Foodie"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 4,
+                name: "Ava Jones",
+                age: 24,
+                number: "15554567890",
+                image: "https://randomuser.me/api/portraits/women/4.jpg",
+                location: "Queens, NY",
+                distance: "7 miles away",
+                bio: "Graduate student studying psychology. Love books, hiking, and deep conversations.",
+                tags: ["Books", "Hiking", "Student"],
+                verified: true,
+                online: false,
+                lastActive: "Yesterday"
+            },
+            {
+                id: 5,
+                name: "Isabella Garcia",
+                age: 26,
+                number: "15555678901",
+                image: "https://randomuser.me/api/portraits/women/5.jpg",
+                location: "Jersey City, NJ",
+                distance: "10 miles away",
+                bio: "Fitness trainer and nutrition coach. Let's get healthy together!",
+                tags: ["Fitness", "Health", "Gym"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 6,
+                name: "Mia Miller",
+                age: 28,
+                number: "15556789012",
+                image: "https://randomuser.me/api/portraits/women/6.jpg",
+                location: "Staten Island, NY",
+                distance: "12 miles away",
+                bio: "Software engineer by day, gamer by night. Let's play something together!",
+                tags: ["Tech", "Gaming", "Coding"],
+                verified: false,
+                online: false,
+                lastActive: "3 days ago"
+            },
+            {
+                id: 7,
+                name: "Charlotte Davis",
+                age: 23,
+                number: "15557890123",
+                image: "https://randomuser.me/api/portraits/women/7.jpg",
+                location: "Bronx, NY",
+                distance: "4 miles away",
+                bio: "Music producer and DJ. Always looking for new sounds and creative people.",
+                tags: ["Music", "DJ", "Creative"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 8,
+                name: "Amelia Rodriguez",
+                age: 30,
+                number: "15558901234",
+                image: "https://randomuser.me/api/portraits/women/8.jpg",
+                location: "Hoboken, NJ",
+                distance: "8 miles away",
+                bio: "Marketing director who loves to travel. 30 countries and counting!",
+                tags: ["Travel", "Marketing", "Adventure"],
+                verified: true,
+                online: false,
+                lastActive: "1 hour ago"
+            },
+            {
+                id: 9,
+                name: "Harper Martinez",
+                age: 25,
+                number: "15559012345",
+                image: "https://randomuser.me/api/portraits/women/9.jpg",
+                location: "Long Island, NY",
+                distance: "15 miles away",
+                bio: "Elementary teacher with a passion for baking and photography.",
+                tags: ["Teaching", "Baking", "Photography"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 10,
+                name: "Evelyn Hernandez",
+                age: 27,
+                number: "15550123456",
+                image: "https://randomuser.me/api/portraits/women/10.jpg",
+                location: "Newark, NJ",
+                distance: "9 miles away",
+                bio: "Fashion designer and sustainability advocate. Let's make the world greener!",
+                tags: ["Fashion", "Eco", "Design"],
+                verified: true,
+                online: false,
+                lastActive: "5 hours ago"
+            },
+            {
+                id: 11,
+                name: "Abigail Lopez",
+                age: 24,
+                number: "15551234567",
+                image: "https://randomuser.me/api/portraits/women/11.jpg",
+                location: "Brooklyn, NY",
+                distance: "2 miles away",
+                bio: "Medical student who loves dancing and trying new cuisines.",
+                tags: ["Medicine", "Dance", "Food"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 12,
+                name: "Emily Gonzalez",
+                age: 26,
+                number: "15552345678",
+                image: "https://randomuser.me/api/portraits/women/12.jpg",
+                location: "Manhattan, NY",
+                distance: "3 miles away",
+                bio: "Architect with an eye for design. Love museums and urban exploration.",
+                tags: ["Architecture", "Design", "Art"],
+                verified: true,
+                online: false,
+                lastActive: "Yesterday"
+            },
+            {
+                id: 13,
+                name: "Elizabeth Wilson",
+                age: 29,
+                number: "15553456789",
+                image: "https://randomuser.me/api/portraits/women/13.jpg",
+                location: "Queens, NY",
+                distance: "6 miles away",
+                bio: "Professional chef specializing in Italian cuisine. Food is my love language!",
+                tags: ["Chef", "Italian", "Cooking"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 14,
+                name: "Mila Anderson",
+                age: 22,
+                number: "15554567890",
+                image: "https://randomuser.me/api/portraits/women/14.jpg",
+                location: "Brooklyn, NY",
+                distance: "1 mile away",
+                bio: "College athlete and sports enthusiast. Let's go to a game sometime!",
+                tags: ["Sports", "Athlete", "Fitness"],
+                verified: false,
+                online: false,
+                lastActive: "4 days ago"
+            },
+            {
+                id: 15,
+                name: "Camila Thomas",
+                age: 28,
+                number: "15555678901",
+                image: "https://randomuser.me/api/portraits/women/15.jpg",
+                location: "Manhattan, NY",
+                distance: "4 miles away",
+                bio: "Investment banker who unwinds with yoga and meditation. Seeking balance.",
+                tags: ["Finance", "Yoga", "Meditation"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 16,
+                name: "Layla Taylor",
+                age: 25,
+                number: "15556789012",
+                image: "https://randomuser.me/api/portraits/women/16.jpg",
+                location: "Jersey City, NJ",
+                distance: "10 miles away",
+                bio: "Graphic designer and illustrator. Coffee and creativity keep me going.",
+                tags: ["Design", "Art", "Coffee"],
+                verified: false,
+                online: false,
+                lastActive: "2 hours ago"
+            },
+            {
+                id: 17,
+                name: "Scarlett Moore",
+                age: 27,
+                number: "15557890123",
+                image: "https://randomuser.me/api/portraits/women/17.jpg",
+                location: "Staten Island, NY",
+                distance: "12 miles away",
+                bio: "Marine biologist passionate about ocean conservation. Let's save the seas!",
+                tags: ["Science", "Ocean", "Environment"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 18,
+                name: "Victoria Jackson",
+                age: 24,
+                number: "15558901234",
+                image: "https://randomuser.me/api/portraits/women/18.jpg",
+                location: "Bronx, NY",
+                distance: "5 miles away",
+                bio: "Aspiring actress and theater lover. The world is my stage!",
+                tags: ["Acting", "Theater", "Drama"],
+                verified: false,
+                online: false,
+                lastActive: "1 day ago"
+            },
+            {
+                id: 19,
+                name: "Penelope Martin",
+                age: 26,
+                number: "15559012345",
+                image: "https://randomuser.me/api/portraits/women/19.jpg",
+                location: "Long Island, NY",
+                distance: "14 miles away",
+                bio: "Journalist who loves storytelling and meeting new people with interesting stories.",
+                tags: ["Writing", "News", "Books"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 20,
+                name: "Chloe Lee",
+                age: 23,
+                number: "15550123456",
+                image: "https://randomuser.me/api/portraits/women/20.jpg",
+                location: "Hoboken, NJ",
+                distance: "9 miles away",
+                bio: "UX designer and tech geek. Always excited about the next big innovation!",
+                tags: ["Tech", "Design", "Innovation"],
+                verified: true,
+                online: false,
+                lastActive: "Yesterday"
+            }
+        ];
+
+        // DOM Elements
+        const profilesGrid = document.getElementById('profilesGrid');
+        const searchInput = document.getElementById('search');
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const unlockModal = document.getElementById('unlockModal');
+        const unlockLink = document.getElementById('unlockLink');
+        const unlockStatus = document.getElementById('unlockStatus');
+        const timer = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        const cancelUnlockBtn = document.getElementById('cancelUnlockBtn');
+        const floatingHearts = document.getElementById('floatingHearts');
+
+        // State
+        let currentProfile = null;
+        let isUnlocked = false;
+        let unlockAttempted = false;
+        let timeLeft = 5;
+        let timerInterval;
+
+        // Create floating hearts
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDuration = `${10 + Math.random() * 20}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                floatingHearts.appendChild(heart);
+            }
+        }
+
+        // Modal functions
+        function showModal(modal) {
+            modal.classList.add('active');
+        }
+
+        function hideModal(modal) {
+            modal.classList.remove('active');
+        }
+
+        // Display profiles
+        function displayProfiles(profiles) {
+            profilesGrid.innerHTML = '';
+            
+            if (profiles.length === 0) {
+                profilesGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <i class="fas fa-user-slash" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <p>No profiles found. Try adjusting your search filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            profiles.forEach((profile, index) => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="profile-image-container">
+                        <img src="${profile.image}" alt="${profile.name}" class="profile-image">
+                        ${profile.verified ? '<div class="online-status ' + (profile.online ? 'online' : 'offline') + '" title="' + profile.lastActive + '"></div>' : ''}
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name-age">
+                            <span class="profile-name">${profile.name}</span>
+                            <span class="profile-age">${profile.age}</span>
+                        </div>
+                        <div class="profile-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${profile.location} • ${profile.distance}</span>
+                        </div>
+                        <p class="profile-bio">${profile.bio}</p>
+                        <div class="profile-tags">
+                            ${profile.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="profile-actions">
+                            <button class="action-btn chat-btn" data-id="${profile.id}">
+                                <i class="fas fa-comment-dots"></i> Chat
+                            </button>
+                            <button class="action-btn call-btn" data-id="${profile.id}">
+                                <i class="fas fa-phone"></i> Call
+                            </button>
+                        </div>
+                    </div>
+                `;
+                profilesGrid.appendChild(card);
+            });
+
+            // Add event listeners to action buttons
+            document.querySelectorAll('.chat-btn, .call-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const profileId = parseInt(this.getAttribute('data-id'));
+                    currentProfile = profilesData.find(p => p.id === profileId);
+                    
+                    if (!isUnlocked) {
+                        showModal(unlockModal);
+                    } else {
+                        openWhatsApp();
+                    }
+                });
+            });
+        }
+
+        // Open WhatsApp function
+        function openWhatsApp() {
+            if (!currentProfile) return;
+            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SparkConnect!`;
+            window.open(url, '_blank');
+        }
+
+        // Start unlock process
+        function startUnlockProcess() {
+            unlockAttempted = true;
+            unlockStatus.style.display = 'flex';
+            timeLeft = 5;
+            timer.textContent = `${timeLeft} seconds remaining`;
+            progressBar.style.width = '0%';
+            setTimeout(() => progressBar.style.width = '100%', 10);
+            
+            // Open unlock page in new tab
+            window.open('https://www.slvideo.club', '_blank');
+            
+            // Start timer
+            timerInterval = setInterval(updateUnlockTimer, 1000);
+        }
+
+        // Update unlock timer
+        function updateUnlockTimer() {
+            timeLeft--;
+            timer.textContent = `${timeLeft} seconds remaining`;
+            
+            if(timeLeft <= 0) {
+                clearInterval(timerInterval);
+                completeUnlock();
+            }
+        }
+
+        // Complete unlock process
+        function completeUnlock() {
+            unlockStatus.innerHTML = `
+                <i class="fas fa-check-circle" style="color:var(--success)"></i>
+                <span>Verified successfully!</span>
+            `;
+            
+            setTimeout(() => {
+                isUnlocked = true;
+                hideModal(unlockModal);
+                if(currentProfile) {
+                    openWhatsApp();
+                }
+                localStorage.setItem('lastUnlock', Date.now());
+            }, 1500);
+        }
+
+        // Check if already unlocked recently
+        function checkPreviousUnlock() {
+            const lastUnlock = localStorage.getItem('lastUnlock');
+            if(lastUnlock && (Date.now() - lastUnlock) < (24 * 60 * 60 * 1000)) {
+                isUnlocked = true;
+            }
+        }
+
+        // Event listeners
+        unlockLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            startUnlockProcess();
+        });
+
+        cancelUnlockBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            hideModal(unlockModal);
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredProfiles = profilesData.filter(profile => 
+                profile.name.toLowerCase().includes(searchTerm) ||
+                profile.bio.toLowerCase().includes(searchTerm) ||
+                profile.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            displayProfiles(filteredProfiles);
+        });
+
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                
+                const filter = chip.textContent.toLowerCase();
+                let filteredProfiles = [];
+                
+                switch(filter) {
+                    case 'all':
+                        filteredProfiles = profilesData;
+                        break;
+                    case 'online':
+                        filteredProfiles = profilesData.filter(p => p.online);
+                        break;
+                    case 'nearby':
+                        filteredProfiles = [...profilesData].sort((a, b) => 
+                            parseInt(a.distance) - parseInt(b.distance));
+                        break;
+                    case 'verified':
+                        filteredProfiles = profilesData.filter(p => p.verified);
+                        break;
+                    case 'new':
+                        filteredProfiles = [...profilesData].reverse();
+                        break;
+                    case 'popular':
+                        filteredProfiles = [...profilesData].sort(() => Math.random() - 0.5);
+                        break;
+                    default:
+                        filteredProfiles = profilesData;
+                }
+                
+                displayProfiles(filteredProfiles);
+            });
+        });
+
+        // Content protection
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+                (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+            }
+        });
+
+        // Initialize
+        checkPreviousUnlock();
+        createHearts();
+        displayProfiles(profilesData);
+    </script>
+</body>
+</html>
