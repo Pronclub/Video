@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptMarket | AI Prompt Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #564FD9;
+            --secondary: #8B85FF;
+            --accent: #FF6584;
+            --light: #1A1A2E;
+            --dark: #121212;
+            --text: #E0E0E0;
+            --text-light: #B0B0B0;
+            --white: #ffffff;
+            --card-bg: #252525;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(108, 99, 255, 0.25);
+            --transition: all 0.3s ease;
+        }
+
+        /* Disable text selection */
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        /* Allow selection in input fields */
+        input, textarea {
+            user-select: text;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dark);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #333;
+            border-radius: var(--radius);
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+            background-color: #252525;
+            color: var(--text);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            background-color: #2d2d2d;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius) var(--radius);
+            margin-bottom: 0; /* Reduced space below slider */
+        }
+
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .slide-content h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .slide-content .btn {
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        /* ========== NEW CATEGORIES SECTION ========== */
+        .categories-section {
+            padding: 15px 0;
+            background: rgba(26, 26, 46, 0.8);
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .categories-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+        }
+
+        .categories-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            flex: 0 0 auto;
+            padding: 10px 22px;
+            border-radius: 30px;
+            background: var(--card-bg);
+            color: var(--text-light);
+            border: 1px solid #333;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            font-size: 15px;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Auto-scroll animation container */
+        .categories-scroll-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Prompts Section */
+        .prompts-section {
+            padding: 40px 0 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .prompts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .prompt-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid #333;
+        }
+
+        .prompt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .prompt-image-container {
+            height: 180px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            position: relative;
+        }
+
+        .prompt-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .prompt-card:hover .prompt-image {
+            transform: scale(1.05);
+        }
+
+        .prompt-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prompt-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .prompt-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+        }
+
+        .prompt-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tag.midjourney {
+            background: rgba(101, 163, 13, 0.1);
+            color: #65A30D;
+        }
+
+        .tag.chatgpt {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3B82F6;
+        }
+
+        .tag.perplexity {
+            background: rgba(168, 85, 247, 0.1);
+            color: #A855F7;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .social-links a.twitter {
+            background: #1DA1F2;
+        }
+
+        .social-links a.discord {
+            background: #5865F2;
+        }
+
+        .social-links a.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .social-links a.linkedin {
+            background: #0077B5;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 99;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+
+        /* ========== RESPONSIVE STYLES ========== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin: 0;
+            }
+
+            .hero-slider {
+                height: 400px;
+            }
+
+            .slide-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            /* Maintain 2-column grid on mobile */
+            .prompts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .prompt-image-container {
+                height: 120px;
+            }
+
+            .prompt-info {
+                padding: 15px;
+            }
+
+            .prompt-title {
+                font-size: 1rem;
+            }
+
+            .prompt-description {
+                font-size: 0.85rem;
+                -webkit-line-clamp: 2;
+                margin-bottom: 15px;
+            }
+
+            .tag {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+
+            .buy-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            /* Mobile category buttons */
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slider {
+                height: 350px;
+            }
+
+            .slide-content h1 {
+                font-size: 1.8rem;
+            }
+
+            /* Maintain 2-column grid on small mobile */
+            .prompts-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .prompt-image-container {
+                height: 100px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-robot"></i>
+                PromptMarket
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search AI prompts...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Slider Section -->
+    <section class="hero-slider">
+        <div class="slides-container" id="slides-container">
+            <!-- Slide 1 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="AI Technology">
+                <div class="slide-content">
+                    <h1>Premium AI Prompts Marketplace</h1>
+                    <p>Discover and sell high-quality prompts for ChatGPT, Midjourney, and other cutting-edge AI platforms</p>
+                    <a href="#prompts" class="btn">Browse Prompts</a>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="AI Creativity">
+                <div class="slide-content">
+                    <h1>Boost Your AI Creativity</h1>
+                    <p>Unlock the full potential of AI tools with expertly crafted prompts for any use case</p>
+                    <a href="#prompts" class="btn">Get Started</a>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="AI Marketplace">
+                <div class="slide-content">
+                    <h1>Sell Your AI Prompts</h1>
+                    <p>Join our marketplace and earn money by selling your best AI prompts to a global audience</p>
+                    <a href="#" class="btn">Become a Seller</a>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1677442136020-2397d5a5a7d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="AI Art">
+                <div class="slide-content">
+                    <h1>Create Stunning AI Art</h1>
+                    <p>Generate breathtaking visuals with our specialized Midjourney and DALL-E prompts</p>
+                    <a href="#prompts" class="btn">Explore Art Prompts</a>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80" alt="AI Coding">
+                <div class="slide-content">
+                    <h1>AI-Powered Coding</h1>
+                    <p>Enhance your development workflow with our ChatGPT coding assistant prompts</p>
+                    <a href="#prompts" class="btn">View Coding Prompts</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-container" id="categories-container">
+                <!-- Categories will be added dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Prompts Section -->
+    <section class="prompts-section" id="prompts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Prompts</h2>
+                <p>High-quality prompts to unlock your AI's full potential</p>
+            </div>
+            
+            <div class="prompts-grid" id="prompts-grid">
+                <!-- Prompt cards will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PromptMarket</h3>
+                    <p>The premier marketplace for AI prompts and creative tools.</p>
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="discord"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">ChatGPT</a></li>
+                        <li><a href="#">Midjourney</a></li>
+                        <li><a href="#">Stable Diffusion</a></li>
+                        <li><a href="#">DALL-E</a></li>
+                        <li><a href="#">Other AI Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Content Protection</h3>
+                    <p>All prompts and content are protected. Unauthorized copying or saving is prohibited.</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 PromptMarket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/yourphonenumber" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ========== CONTENT PROTECTION ========== //
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Content protection is enabled. Saving is restricted.');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.ctrlKey && 
+                (e.key === 'c' || e.key === 'x' || e.key === 's' || e.key === 'i')
+            ) {
+                e.preventDefault();
+                alert('This action is restricted.');
+            }
+            
+            if (e.key === 'F12') {
+                e.preventDefault();
+                alert('Developer tools are disabled.');
+            }
+        });
+
+        document.querySelectorAll('img').forEach(img => {
+            img.setAttribute('draggable', 'false');
+            img.addEventListener('dragstart', (e) => e.preventDefault());
+        });
+
+        // ========== SLIDER ========== //
+        const slidesContainer = document.getElementById('slides-container');
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        let direction = 1;
+        let isAnimating = false;
+
+        function showSlide(index) {
+            if (isAnimating) return;
+            
+            isAnimating = true;
+            slidesContainer.style.transition = 'transform 0.5s ease';
+            slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }
+
+        function nextSlide() {
+            if (currentSlide === slides.length - 1) {
+                direction = -1;
+            } else if (currentSlide === 0) {
+                direction = 1;
+            }
+            
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 5000);
+        showSlide(currentSlide);
+
+        // ========== CATEGORIES ========== //
+        const categories = [
+            { id: "all", name: "All Prompts" },
+            { id: "chatgpt", name: "ChatGPT" },
+            { id: "midjourney", name: "Midjourney" },
+            { id: "dalle", name: "DALL-E" },
+            { id: "coding", name: "Coding" },
+            { id: "writing", name: "Content Writing" },
+            { id: "art", name: "Digital Art" },
+            { id: "business", name: "Business" },
+            { id: "social", name: "Social Media" },
+            { id: "video", name: "Video Scripts" }
+        ];
+
+        const categoriesContainer = document.getElementById('categories-container');
+        let currentCategoryIndex = 0;
+        let autoScrollInterval;
+
+        // Render categories
+        categories.forEach((category, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'category-btn';
+            btn.textContent = category.name;
+            btn.dataset.category = category.id;
+            btn.dataset.index = index;
+            
+            if (category.id === "all") {
+                btn.classList.add('active');
+            }
+            
+            categoriesContainer.appendChild(btn);
+        });
+
+        // Auto-scroll categories
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+                const nextBtn = document.querySelector(`.category-btn[data-index="${currentCategoryIndex}"]`);
+                
+                // Update active state
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                nextBtn.classList.add('active');
+                
+                // Smooth scroll to category
+                nextBtn.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+                
+                // Filter prompts
+                filterPrompts(nextBtn.dataset.category);
+            }, 3000); // Change every 3 seconds
+        }
+
+        // Start auto-scroll
+        startAutoScroll();
+
+        // Pause auto-scroll on hover
+        categoriesContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoScrollInterval);
+        });
+
+        // Resume auto-scroll when mouse leaves
+        categoriesContainer.addEventListener('mouseleave', startAutoScroll);
+
+        // Manual category selection
+        categoriesContainer.addEventListener('click', function(e) {
+            if (e.target.classList.contains('category-btn')) {
+                clearInterval(autoScrollInterval);
+                
+                currentCategoryIndex = parseInt(e.target.dataset.index);
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                
+                filterPrompts(e.target.dataset.category);
+                
+                // Restart auto-scroll after manual selection
+                setTimeout(startAutoScroll, 5000);
+            }
+        });
+
+        // ========== PROMPTS DATA ========== //
+        const prompts = [
+            {
+                id: 1,
+                title: "Professional LinkedIn Post Generator",
+                description: "Generate engaging LinkedIn posts that establish thought leadership and drive engagement. Perfect for professionals and marketers.",
+                image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "ChatGPT", class: "chatgpt" },
+                    { name: "Perplexity", class: "perplexity" },
+                    { name: "Business", class: "" }
+                ]
+            },
+            {
+                id: 2,
+                title: "Midjourney Fantasy Art Prompt",
+                description: "Create stunning fantasy art with this detailed Midjourney prompt. Includes parameters for style, lighting and composition.",
+                image: "https://images.unsplash.com/photo-1682695796954-bad0d0f59ff1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "Midjourney", class: "midjourney" },
+                    { name: "Art", class: "" }
+                ]
+            },
+            {
+                id: 3,
+                title: "SEO-Optimized Blog Post Outline",
+                description: "Generate comprehensive blog post outlines with SEO in mind. Includes headings, keywords and content suggestions.",
+                image: "https://images.unsplash.com/photo-1546074177-ffdda98d214f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "ChatGPT", class: "chatgpt" },
+                    { name: "Perplexity", class: "perplexity" },
+                    { name: "Writing", class: "" }
+                ]
+            },
+            {
+                id: 4,
+                title: "Stable Diffusion Portrait Master",
+                description: "Create hyper-realistic portraits with this advanced Stable Diffusion prompt. Works best with SD 1.5 and 2.0 models.",
+                image: "https://images.unsplash.com/photo-1682695797221-8164ff1fafc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "Midjourney", class: "midjourney" },
+                    { name: "Art", class: "" }
+                ]
+            },
+            {
+                id: 5,
+                title: "E-commerce Product Description",
+                description: "Generate compelling product descriptions that convert. Perfect for Shopify, Amazon and other e-commerce platforms.",
+                image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "ChatGPT", class: "chatgpt" },
+                    { name: "Business", class: "" }
+                ]
+            },
+            {
+                id: 6,
+                title: "DALL-E Character Design Prompt",
+                description: "Create unique character designs with this DALL-E prompt. Includes style parameters for consistent results.",
+                image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "Midjourney", class: "midjourney" },
+                    { name: "Art", class: "" }
+                ]
+            },
+            {
+                id: 7,
+                title: "YouTube Video Script Template",
+                description: "Generate engaging YouTube video scripts with this template. Includes hooks, transitions and call-to-actions.",
+                image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "ChatGPT", class: "chatgpt" },
+                    { name: "Perplexity", class: "perplexity" },
+                    { name: "Video", class: "" }
+                ]
+            },
+            {
+                id: 8,
+                title: "ChatGPT Coding Assistant",
+                description: "Prompt to get the best coding assistance from ChatGPT. Includes examples for debugging, explaining and writing code.",
+                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                tags: [
+                    { name: "ChatGPT", class: "chatgpt" },
+                    { name: "Coding", class: "" }
+                ]
+            }
+        ];
+
+        // ========== DISPLAY PROMPTS ========== //
+        const promptsGrid = document.getElementById('prompts-grid');
+        
+        function renderPrompts(promptsToRender) {
+            promptsGrid.innerHTML = '';
+            
+            promptsToRender.forEach(prompt => {
+                const promptCard = document.createElement('div');
+                promptCard.className = 'prompt-card';
+                
+                let tagsHTML = '';
+                prompt.tags.forEach(tag => {
+                    const tagClass = tag.class ? ` ${tag.class}` : '';
+                    tagsHTML += `<span class="tag${tagClass}">${tag.name}</span>`;
+                });
+                
+                promptCard.innerHTML = `
+                    <div class="prompt-image-container">
+                        <img src="${prompt.image}" alt="${prompt.title}" class="prompt-image">
+                    </div>
+                    <div class="prompt-info">
+                        <h3 class="prompt-title">${prompt.title}</h3>
+                        <p class="prompt-description">${prompt.description}</p>
+                        <div class="prompt-tags">
+                            ${tagsHTML}
+                        </div>
+                        <button class="buy-btn" data-id="${prompt.id}">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                    </div>
+                `;
+                
+                promptsGrid.appendChild(promptCard);
+            });
+        }
+
+        // Initial render
+        renderPrompts(prompts);
+
+        // Filter prompts by category
+        function filterPrompts(category) {
+            if (category === "all") {
+                renderPrompts(prompts);
+                return;
+            }
+            
+            const filtered = prompts.filter(prompt => 
+                prompt.tags.some(tag => 
+                    tag.name.toLowerCase() === category || 
+                    tag.class === category
+                )
+            );
+            
+            renderPrompts(filtered);
+        }
+
+        // ========== BUY BUTTON FUNCTIONALITY ========== //
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy-btn')) {
+                const promptId = e.target.getAttribute('data-id');
+                const prompt = prompts.find(p => p.id == promptId);
+                
+                const originalText = e.target.innerHTML;
+                e.target.innerHTML = '<i class="fas fa-check"></i> Added!';
+                e.target.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    e.target.innerHTML = originalText;
+                    e.target.style.backgroundColor = 'var(--primary)';
+                }, 1500);
+                
+                console.log(`Added ${prompt.title} to cart`);
+            }
+        });
+
+        // ========== SEARCH FUNCTIONALITY ========== //
+        const searchInput = document.querySelector('.search-bar input');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const promptCards = document.querySelectorAll('.prompt-card');
+            
+            promptCards.forEach(card => {
+                const title = card.querySelector('.prompt-title').textContent.toLowerCase();
+                const description = card.querySelector('.prompt-description').textContent.toLowerCase();
+                const tags = card.querySelector('.prompt-tags').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
