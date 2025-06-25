@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceramide Sunscreen | Bloom Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF5A5F;
+            --primary-dark: #E84A5F;
+            --secondary: #FFD3B6;
+            --accent: #D8B5FF;
+            --light: #FFF6F6;
+            --dark: #A8E6CE;
+            --text: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --light-bg: #FFF9F9;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --korean-red: #FF5A5F;
+            --korean-beige: #FFF6F6;
+            --korean-blue: #A8E6CE;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            font-size: 13px;
+            color: var(--text-light);
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .breadcrumb::-webkit-scrollbar {
+            display: none;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            color: var(--korean-red);
+        }
+
+        .breadcrumb span {
+            margin: 0 5px;
+        }
+
+        /* Product Layout */
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-gallery {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .main-image-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: block;
+            cursor: pointer;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--korean-red);
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .product-title {
+            font-size: 24px;
+            margin: 0 0 8px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .product-subtitle {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .product-specs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item {
+            background-color: var(--korean-blue);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .rating-count {
+            margin-left: 8px;
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--korean-red);
+            margin-bottom: 15px;
+        }
+
+        .product-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .feature-icon {
+            color: var(--korean-red);
+            font-size: 14px;
+        }
+
+        .product-description {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .benefit-icon {
+            color: var(--korean-red);
+            font-size: 14px;
+        }
+
+        /* Size Selection - Improved */
+        .size-selection {
+            margin-bottom: 25px;
+        }
+
+        .size-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .size-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .size-option {
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .size-option:hover {
+            border-color: var(--korean-red);
+        }
+
+        .size-option.active {
+            border-color: var(--korean-red);
+            background-color: rgba(255, 90, 95, 0.05);
+            box-shadow: 0 0 0 1px var(--korean-red);
+        }
+
+        .size-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .size-price {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .size-discount {
+            font-size: 13px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .size-savings {
+            color: #4CAF50;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Quantity Selector */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .quantity-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+        }
+
+        .quantity-btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .quantity-input {
+            width: 50px;
+            text-align: center;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            -moz-appearance: textfield;
+        }
+
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Add to Cart */
+        .add-to-cart {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .add-to-cart-btn {
+            padding: 12px 25px;
+            background-color: var(--korean-red);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 90, 95, 0.4);
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 90, 95, 0.5);
+        }
+
+        .shipping-info {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Promotion */
+        .promotion-banner {
+            background-color: var(--korean-beige);
+            padding: 12px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .promotion-text {
+            flex: 1;
+        }
+
+        .promotion-code {
+            font-weight: 700;
+            color: var(--korean-red);
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .product-container {
+                gap: 20px;
+            }
+            
+            .product-title {
+                font-size: 22px;
+            }
+            
+            .product-price {
+                font-size: 22px;
+            }
+            
+            .size-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .add-to-cart-btn {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .breadcrumb {
+                font-size: 12px;
+            }
+            
+            .product-title {
+                font-size: 20px;
+            }
+            
+            .product-subtitle {
+                font-size: 14px;
+            }
+            
+            .spec-item {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+            
+            .product-price {
+                font-size: 20px;
+            }
+            
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .quantity-selector {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span>/</span>
+            <a href="#">Sunscreen</a>
+            <span>/</span>
+            <a href="#">Ceramide Sunscreen</a>
+        </div>
+
+        <!-- Product Main Section -->
+        <div class="product-container">
+            <div class="product-gallery">
+                <div class="main-image-container">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ceramide Sunscreen" class="main-image" id="mainImage">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Front" class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Side" class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Ingredients" class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                    <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sunscreen Application" class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title">Sun Drink™ - Ceramide Sunscreen</h1>
+                <p class="product-subtitle">For all skin types</p>
+                
+                <div class="product-specs">
+                    <span class="spec-item">SPF 50 PA++++</span>
+                    <span class="spec-item">Water Resistant</span>
+                    <span class="spec-item">50 gms</span>
+                </div>
+                
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="rating-count">(351 Reviews)</span>
+                </div>
+                
+                <div class="product-price">Rs. 599</div>
+                
+                <div class="product-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>No Harmful Toxins</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Clinically Tested</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Fragrance Free</span>
+                    </div>
+                </div>
+                
+                <div class="product-description">
+                    <p>Our ceramide-infused sunscreen provides superior protection while nourishing your skin. The lightweight formula absorbs quickly without leaving a white cast, perfect for daily use.</p>
+                </div>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-shield-alt benefit-icon"></i>
+                        <span>Blocks UVA & UVB</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-feather-alt benefit-icon"></i>
+                        <span>Lightweight texture</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-paint-brush benefit-icon"></i>
+                        <span>Leaves no white cast</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-tint benefit-icon"></i>
+                        <span>Water & sweat proof</span>
+                    </div>
+                </div>
+                
+                <!-- Size Selection - Improved -->
+                <div class="size-selection">
+                    <h3 class="size-title">Select Size:</h3>
+                    <div class="size-options">
+                        <div class="size-option active">
+                            <div class="size-name">Travel Size 50ml</div>
+                            <div class="price-container">
+                                <div class="size-price">Rs. 599</div>
+                            </div>
+                        </div>
+                        <div class="size-option">
+                            <div class="size-name">Medium Size 100ml</div>
+                            <div class="price-container">
+                                <div class="size-price">Rs. 1,115</div>
+                                <div class="size-discount">Rs. 1,198</div>
+                                <div class="size-savings">7% OFF</div>
+                            </div>
+                        </div>
+                        <div class="size-option">
+                            <div class="size-name">Large Size 200ml</div>
+                            <div class="price-container">
+                                <div class="size-price">Rs. 1,527</div>
+                                <div class="size-discount">Rs. 1,797</div>
+                                <div class="size-savings">15% OFF</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quantity Selector -->
+                <div class="quantity-selector">
+                    <div class="quantity-title">Quantity:</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" id="decreaseQty">-</button>
+                        <input type="number" class="quantity-input" id="quantity" value="1" min="1" max="10">
+                        <button class="quantity-btn" id="increaseQty">+</button>
+                    </div>
+                </div>
+                
+                <!-- Add to Cart -->
+                <div class="add-to-cart">
+                    <button class="add-to-cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        Rs. 599 | ADD TO CART
+                    </button>
+                </div>
+                
+                <div class="shipping-info">
+                    <i class="fas fa-truck"></i> Ships within 4-5 days
+                </div>
+                
+                <!-- Promotion -->
+                <div class="promotion-banner">
+                    <i class="fas fa-gift" style="color: var(--korean-red);"></i>
+                    <div class="promotion-text">
+                        Buy 3 Items. Get 15% OFF
+                        <span class="promotion-code">Use code: CC04</span>
+                        <i class="far fa-copy" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Size selection functionality
+        const sizeOptions = document.querySelectorAll('.size-option');
+        sizeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove active class from all options
+                sizeOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked option
+                this.classList.add('active');
+                
+                // Update price in add to cart button
+                const price = this.querySelector('.size-price').textContent;
+                document.querySelector('.add-to-cart-btn').innerHTML = 
+                    `<i class="fas fa-shopping-cart"></i> ${price} | ADD TO CART`;
+            });
+        });
+
+        // Quantity selector functionality
+        const quantityInput = document.getElementById('quantity');
+        const decreaseBtn = document.getElementById('decreaseQty');
+        const increaseBtn = document.getElementById('increaseQty');
+
+        decreaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+            decreaseBtn.disabled = quantityInput.value <= 1;
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value < 10) {
+                quantityInput.value = value + 1;
+            }
+            decreaseBtn.disabled = false;
+        });
+
+        quantityInput.addEventListener('change', () => {
+            let value = parseInt(quantityInput.value);
+            if (isNaN(value) || value < 1) {
+                quantityInput.value = 1;
+            } else if (value > 10) {
+                quantityInput.value = 10;
+            }
+            decreaseBtn.disabled = quantityInput.value <= 1;
+        });
+
+        // Image gallery functionality
+        function changeImage(thumbnail, newSrc) {
+            document.getElementById('mainImage').src = newSrc;
+            document.querySelectorAll('.thumbnail').forEach(img => {
+                img.classList.remove('active');
+            });
+            thumbnail.classList.add('active');
+        }
+
+        // Copy promo code functionality
+        document.querySelector('.fa-copy').addEventListener('click', function() {
+            const code = 'CC04';
+            navigator.clipboard.writeText(code);
+            
+            // Show feedback
+            const original = this;
+            original.classList.remove('far', 'fa-copy');
+            original.classList.add('fas', 'fa-check');
+            
+            setTimeout(() => {
+                original.classList.remove('fas', 'fa-check');
+                original.classList.add('far', 'fa-copy');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
