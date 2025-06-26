@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Bloom Beauty - Korean-Inspired Premium Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        :root {
+            --primary: #FF5A5F; /* Korean cherry blossom pink */
+            --primary-dark: #E84A5F;
+            --secondary: #FFD3B6; /* Soft peach */
+            --accent: #D8B5FF; /* Lavender */
+            --light: #FFF6F6; /* Very light pink */
+            --dark: #A8E6CE; /* Mint green */
+            --text: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --light-bg: #FFF9F9;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --korean-red: #FF5A5F;
+            --korean-beige: #FFF6F6;
+            --korean-blue: #A8E6CE;
+        }
+
+        /* Base styles */
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Korean-style animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header with Korean styling */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--korean-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+            background-color: var(--korean-beige);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--korean-red);
+            background-color: var(--white);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--korean-red);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            position: relative;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: var(--korean-red);
+        }
+
+        .nav-links a:not(.cart-icon)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--korean-red);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: var(--text);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--korean-red);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--korean-red);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-out;
+            border-radius: 0 0 var(--radius) var(--radius);
+            box-shadow: 0 10px 30px rgba(255, 90, 95, 0.1);
+        }
+
+        .about-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 700;
+        }
+
+        .about-hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'Noto Sans KR', sans-serif;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background-color: var(--korean-red);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 90, 95, 0.4);
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 90, 95, 0.5);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--korean-red);
+            color: var(--korean-red);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--korean-red);
+            color: white;
+        }
+
+        .breadcrumb {
+            padding: 20px 0;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--korean-red);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            color: var(--text-light);
+        }
+
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--korean-red);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--korean-red);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .mission-card, .vision-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--korean-red);
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mission-card h3, .vision-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--korean-red);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .mission-card p, .vision-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            background-color: var(--korean-beige);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--korean-red);
+            font-size: 30px;
+        }
+
+        .team-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 20px;
+        }
+
+        .team-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .team-info p {
+            color: var(--korean-red);
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light-bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--korean-red);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Korean-style WhatsApp button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+            z-index: 99;
+            text-decoration: none;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C2C2C;
+            padding: 50px 0 20px;
+            color: #ddd;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--korean-red);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            font-size: 13px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--korean-red);
+            transform: translateX(5px);
+        }
+
+        .footer-column p {
+            color: #bbb;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .social-links-footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-links-footer a {
+            color: white;
+            font-size: 14px;
+            transition: var(--transition);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links-footer a:hover {
+            background: var(--korean-red);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #999;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--korean-red);
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-form button {
+            padding: 10px;
+            background-color: var(--korean-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 12px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                order: 1;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                order: 3;
+                margin-left: auto;
+            }
+
+            .search-bar {
+                order: 4;
+                width: 100%;
+                margin: 15px 0 0 0;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                order: 5;
+                padding: 15px 0;
+                border-top: 1px solid #f0f0f0;
+                margin-top: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .cart-icon {
+                order: 2;
+            }
+
+            .about-hero {
+                height: 400px;
+            }
+            
+            .about-hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero {
+                height: 350px;
+            }
+            
+            .about-hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .about-hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .team-image {
+                height: 250px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-spa"></i>
+                Bloom Beauty
+            </a>
+            
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#">Shop</a>
+                <a href="about.html">About</a>
+                <a href="#">Contact</a>
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Our Korean Beauty Journey</h1>
+            <p>Discover the story behind Miss Cosmetics SL and our passion for bringing authentic Korean beauty to Sri Lanka</p>
+            <a href="#our-story" class="btn">Explore Our Story</a>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="about.html">About Us</a>
+    </div>
+
+    <!-- Our Story Section -->
+    <section class="about-section" id="our-story">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Welcome to Miss Cosmetics SL</h3>
+                    <p>Miss Cosmetics SL is your premier destination for authentic Korean beauty products in Sri Lanka. Founded in 2018, we've dedicated ourselves to bringing the latest and most effective Korean skincare and makeup innovations to the Sri Lankan market.</p>
+                    <p>Our journey began when our founder, Nadeesha Perera, discovered the transformative power of Korean beauty during her studies in Seoul. Inspired by the meticulous Korean approach to skincare and the innovative formulations, she set out to make these products accessible to Sri Lankan beauty enthusiasts.</p>
+                    <p>What sets us apart is our direct partnerships with leading Korean beauty laboratories and manufacturers. We carefully curate our selection to include only products that meet our high standards for quality, efficacy, and safety. Each product in our collection is personally tested by our team to ensure it delivers real results.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Miss Cosmetics SL Team">
+                </div>
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <div class="icon-container">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To revolutionize Sri Lanka's beauty industry by introducing authentic Korean beauty innovations that promote healthy, radiant skin through science-backed formulations and holistic skincare philosophies.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <div class="icon-container">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To become Sri Lanka's most trusted Korean beauty destination, known for our authentic products, expert guidance, and commitment to helping customers achieve their skincare goals through the transformative power of K-beauty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Korean Beauty Philosophy Section -->
+    <section class="about-section" style="background-color: var(--korean-beige);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Korean Beauty?</h2>
+                <p>The science and philosophy behind our products</p>
+            </div>
+
+            <div class="about-content reverse">
+                <div class="about-text">
+                    <h3>The Korean Beauty Difference</h3>
+                    <p>Korean beauty products are renowned worldwide for their innovative formulations, cutting-edge technology, and gentle yet effective ingredients. Unlike Western beauty approaches that often focus on quick fixes, Korean skincare emphasizes prevention and long-term skin health.</p>
+                    <p>At Miss Cosmetics SL, we carefully select products that follow the Korean skincare philosophy of layering lightweight, nutrient-rich products that work in harmony with your skin's natural processes. Our products are formulated with:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; color: var(--text); line-height: 1.8; font-family: 'Noto Sans KR', sans-serif;">
+                        <li>Natural fermented ingredients that enhance absorption</li>
+                        <li>Gentle yet potent actives suitable for Asian skin types</li>
+                        <li>Advanced delivery systems for maximum efficacy</li>
+                        <li>Minimal irritation and maximum hydration</li>
+                    </ul>
+                    <p>We're proud to bring these innovative formulations to Sri Lanka, adapting them to our tropical climate while maintaining their authentic Korean essence.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Korean Beauty Products">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>The passionate individuals behind Miss Cosmetics SL</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nadeesha Perera">
+                    </div>
+                    <div class="team-info">
+                        <h4>Nadeesha Perera</h4>
+                        <p>Founder & CEO</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Minji Park">
+                    </div>
+                    <div class="team-info">
+                        <h4>Minji Park</h4>
+                        <p>Product Development (Seoul Office)</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573497019709-4a9d8a427f7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Priyanka Fernando">
+                    </div>
+                    <div class="team-info">
+                        <h4>Priyanka Fernando</h4>
+                        <p>Customer Experience Manager</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dilini Silva">
+                    </div>
+                    <div class="team-info">
+                        <h4>Dilini Silva</h4>
+                        <p>Skincare Specialist</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="about-section" style="padding: 80px 0; background: linear-gradient(135deg, var(--korean-red), var(--primary-dark)); color: white;">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-size: 2rem; margin-bottom: 20px; font-family: 'Noto Sans KR', sans-serif;">Ready to Experience Korean Beauty?</h2>
+            <p style="max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.8; font-family: 'Noto Sans KR', sans-serif;">
+                Join thousands of satisfied customers who have transformed their skincare routines with our authentic Korean products. Our team is always here to help you find the perfect products for your skin type and concerns.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="#" class="btn" style="background-color: white; color: var(--korean-red);">Shop Now</a>
+                <a href="#" class="btn btn-outline" style="border-color: white; color: white;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Bloom Beauty</h3>
+                    <p>Your destination for premium Korean-inspired beauty products that make you look and feel amazing.</p>
+                    <div class="social-links-footer">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Haircare</a></li>
+                        <li><a href="#">Body Care</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for exclusive offers and beauty tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Bloom Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Add to cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy-btn')) {
+                cartCount += 1;
+                cartCountElement.textContent = cartCount;
+                
+                // Animation for feedback
+                const originalText = e.target.innerHTML;
+                e.target.innerHTML = '<i class="fas fa-check"></i> Added!';
+                e.target.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    e.target.innerHTML = originalText;
+                    e.target.style.backgroundColor = 'var(--korean-red)';
+                }, 1500);
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
