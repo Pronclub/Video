@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> බැංකුවේ කෙල්ල  | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
+            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
+            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 3; // 3-5 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 60 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 60000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank').blur();
+            window.focus();
+        }, 30000);
+    </script>
+</head>
+
+<script type='text/javascript' src='//ashorenorris.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js'></script>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> බැංකුවේ කෙල්ල </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://www.whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <!-- Story Content -->
+        <div class="story-content" id="storyContent">
+            <div class="story-container">
+
+
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මේ කතාව සිද්ද වෙන්නෙ මීට අවුරුදු කිහිපයක කලින් බැංකුවක ඒක ප්‍රධාන ශාකාවක් ඒකෙ ඉන්න ලොක්කෙකුට හිටියා පුද්ගලික ලේකම් කෙනෙක් වගේ වැඩ කරන ලිපිකාරිණියක් නම සුරනි මෙයාගෙ විශේෂත්වය තමයි පුළුල් උකුල ඕනම කෙනෙක් හැරිලා බලන විදිහෙ පුකක් තමයි මෙයාට තියෙන්නෙ. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> ඉන සාමාන්ය ගැහැනියකගෙ වගේ වුණාට පුකයි උකුලයි රවුමට පිම්බිලා තියෙනවා ඇවිදිනකොට තට්ටම් ඉස්සරහට පස්සට වෙවී නැටවි නැටවි ගැස්සෙනවා ඒ නිසා මෙයා ඇවිදින්නෙත් ටිකක් අමුතු විදිහට පියයුරු නම් පුක වගේ අසාමාන්ය විදිහට ලොකු නැහැ ඒත් සාමාන්ය ප්රමාණයට වඩා ලොකු වටකුරු පියයුරු දෙකකුත් තිබුණා පුකේ සයිස් එක නිසා තන් දෙක කැපිලා පෙනුනේ නැහැ හමත් සුදුම නැතත් කලුත් නැහැ රත්තරන් පාටක් වගේ ලස්සන පාටක් තිබුණෙ මුහුණෙ පරණ කුරුළෑ කැලල් වල ලකුණු තිබුණට ලස්සනයි කන්නාඩි දෙකක් දානවා ඒ දෙකට ගෑනිට තවත් සරාගී පෙනුමක් එනවා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> සුරනි බැඳලා ඉන්නේ පාසල් ගුරුවරයෙක් ගෑනිට වඩා අවුරුදු 10ක් වැඩිමල් ගෑනිට වයස තාම 35 වුණාට ඉස්කෝලෙ 4 වසරේ ඉගෙන ගන්න පිරිමි ළමයෙකුත් හිටියා මේ ඔෆිස් එකේම හිටියා අසංක කියලා පොරක් පොරට වයස අවුරුදු 35 ක් විතර ඇති හැඩි දැඩි විනෝද කාමී පොරක් තාම බැඳලා නැහැ පොරගෙ හොඳම යාලුවා තමයි ‍කාර්යාල කාර්ය සහයක වැඩේ කරන කමල් , කමල් කියන්නෙත් අවුරුදු 40ක විතර බැඳපු නැති පොරක් මේ දෙන්නා පදිංචි වෙලා ඉන්නේ එකිනෙකාට කිට්ටුවෙන් ඒ නිසා හවසට ගෙදර යන වෙලාවට සමහර දාට දෙන්නා සෙට් වෙලා භාගයකට විතර වග කියලා තමයි ගෙදර යන්නේ මේ දෙන්නට දෙන්නා නොකියන රහසක් නැති තරම් , සුරනිගේ සරාගී ඇඟපත හා ගමන ගැන ඔෆිස් එකේ ලොක්කා හැර අනිත් හැම මිනිහෙක්ම පිස්සු වැටිලා වගේ තමයි හිටියෙ ඒත් කිසිම කෙනෙක් ඒ බවක යන්තම්වත් ඇඟෙවුවෙ නැහැ. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අසංකත් තනිකඩයා කමල්ට අනුව පොර බඩු කාරයා කලින් කෙල්ලො දෙන්නෙක් ආශ්රය කරලා තියෙනවා එකෙක්ගෙ පෙට්ටියත් කඩලා තියෙන්නෙ අසංක ඒත් කෙල්ලන්ගේ වැරදි නිසා ඒ දෙකම අතහැරලා තියෙනවා ඒ නිසා පොර දැන් ඉන්නෙ ටිකක් අසහනෙන් වගෙයි අසංක සුරනි ගැන උනන්දුව වැඩි කරන්න ඒක හේතු වුණා කමල් ඉතින් තමන්ගෙ යාලුවට උදව් කළා. අසංක ටික ටික සුරනි ගැන විස්තර හෙවුවා සුරනි එක්ක වැඩිපුර කතාවට වැටුණා සුරනිගෙ සැමියා ටිකක් ආගමට දහමට නැඹුරු කෙනෙක් බව දැනගත්ත පොරට ලොකු සතුටක් දැනුනා. මොකද සුරනි තාම තෙල් බේරෙන කෑල්ලක් නිසා සුරනිගෙ ඇඟ ඇතුලෙ හැංගිලා තියෙන දඟකාර සෙල්ලක්කාර ගති සැමියගෙ ගති ගුණ 
+නිසා හැංගිලා තියෙන බව අසංක අත්දැකීමෙන් තේරුම් ගත්තා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අසංක කමල්ගෙ උදවුවෙන් ටික ටික සුරනිට ලං වුණා සුරනිගෙ ගේ තියෙන්නෙ අසංකගේ ගෙවල් තියෙන පැත්තෙමයි ඒ නිසා දෙන්නා එන්නේ යන්නේ එක බස් පාරෙ , අසංක කමල්ගෙ උදවු ඇතිව සුරනි යන එන වෙලාවල් වලටම පිට වෙලා බස් එකේ යන ගමන් සුරනි එක්ක කතාවට සෙට් වුණා දෙන්නගෙ කතා එන්න එන්න පැනි කතා බවට පත් වුණා මේ හැම දේම කමල් එක්ක ‍බොන්න සෙට් වුණ ගමන් අසංක එකක් නෑර කියනවා. සුරනි තමන්ගෙ සැමියා ගැන තරමක් කලකිරීමෙන් ඉන්න බව අසංකට තේරුණා සුරනිට සමහර ඇඳුම් අඳින්න පවා සැමියා නීති දාලා තියෙනවා සුරනි සාමාන්යයෙන් ඔෆිස් අඳින්නේ දිග සායයි හැට්ටෙයි අත් කොට හැට්ට අඳිනකොටත් සුරනිගෙ ලස්සන අත් දෙක පේන නිසාත් පියයුරු කැපිලා පේන නිසාත් සැමියා විරුද්ධලු සාරිය අඳිනවටනම් කැමතිලු ඒත් සුරනිගෙ පුක වඩාත් නෙරලා කැපිලා පේන්නෙ සාරියෙන් බව අසංකයි කමලුයි කතා වුණා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> සුරනි සාය ඇන්ද දවස් ‍වලට සුරනිගෙ පෑන්ටියෙ දාර ත්රිකෝණයක් වගේ පුක උඩ ඇඳිලා පේනවා අනිත් ගෑනුන්ගෙ පෑන්ටි ලයින් එක නොපෙනෙන්නත් සුරනිගෙ පේන්නත් හේතුව අසංකයි කමලුයි දවසක් කතා වුණා. අසංකට අනුව ඒ සුරනිගෙ තට්ටම් ලොකු නිසා පෑන්ටිය තදින් පුකට ඇදෙන නිසයි එතකොට පුක හිර වෙලා පෑන්ටියෙ දාර හමට තද වෙලා පේනවා මේ වගේ දේවල් තමයි මුන් දෙන්නා කතා වෙන්නෙ. සුරනි ටික ටික පුද්ගලික දේවල් පවා අසංකට කියන්න පෙලඹුනා ඒ සුරනිට ඒවා කියන්න වෙන කෙනෙක් නැති නිසා වෙන්න ඇති ඒ වගේම අසංකගේ කඩවසම් හැඩිදැඩි පෙනුම නිසා සුරනි අසංකගෙ ආශ්රයට කැමති වෙන්න ඇති අසංකත් තැටිය රත් වේගෙන එන බව තේරුම් අරගෙන වැඩේට එන්ටර් වුණා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> පළවෙනි දවස වුණේ බස් එකේ හිටගෙන ගිය දවසක් එදා සුරනි ඇඳන් හිටියෙ දිග මෙරූන් පාට සායක් හා හැට්ටයක් බස් එකේ හැම මිනිහටම ඕන වුණේ සුරනි දැක්ක ගමන් සුරනිට ජැක් එකක් ගහන්න ඒත් අසංක සුරනිගෙ ආරක්ෂාවට වගේ හිටියා. දෙන්නා ආවේ පිටකොටුව මොරටුව බස් එකක ඒක වැල්ලවත්ත හරියෙදි හොඳටම පිරිලා ගියා අසංකට මාර සතුටුයි පොර ටික ටික සුරනිගෙ ඇඟට පැත්තෙන් හේත්තු වුණා සුරනිට තේරුණා සීන් එක ඒත් දෙන්නා කතා කර කර ආව පැනි හැලෙන මාතෘකා නිසා ගෑනිත් ටිකක් රත් වෙලා හිටියෙ ඒ නිසා ‍නොදන්නවා වගේ හිටියා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අසංක හොඳට සුරනිගෙ මූණ දිහා බලන් හිටියෙ මූඩ් එක මාරු වුණොත් අයින් වෙන්න  ඒත් ගෑනි වෙනසක් නැහැ වගේ කතාව පොර තවත් දිරිමත් වුණා ටික ටික ගෑනිගෙ පස්සට වෙලා තට්ටං දෙක මැද්දටම සෙට් වුණා දැන් සුරන්ගෙ පිට අසංකගේ බඩේ. සුරනිගෙ පෘෂ්ටිමත් රවුම් ලොකු තට්ටං දෙක අසංකගේ පයිය උඩට තද වෙලා ඒක ගෑවුණ ගමන් අසංකට දැනුනේ පුදුම සනීපයක් එක පාරටම පයිය නැගලා එන්න ගත්තා ඔරලෝසුවෙ තප්පර කට්ට වගේ ගැස්සි ගැස්සි නගින පයිය සුරනිගෙ පුකට තද වෙලා නිසා ගෑනිටත් ඒක දැනෙන්න ඇති ඒත් ගෑනිගෙ අකමැත්තක් පෙනුනෙ නැහැ අසංකට මාර ෆන් පොර බස් එක බ්රේක් කරන ඇද්දෙන වාර වලට පොර වැඩි පුරත් එක්ක වැනි වැනි පයිය ගෑනිගෙ තට්ටං වල අතුල්ලන්න ගත්තා එක වෙලාවක පොරගෙ කලිසම ඉස්සරහට තල්ලු කරගෙන ඉස්සිලා තිබුණ පයිය සුරනිගෙ තට්ටං දෙක මැද්දට සෙට් වෙලා තිබුණා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> ඒ පාර බ්රේක් එකකට අසංක පැත්තට වැනුනා ඒත් එක්කම තට්ටම ඈත් කරගෙන පයියත් පැත්තට ගියා ඒ පාරනම් සුරනිගෙ මූණෙ වෙනසක් පෙනුනා ගෑනි එකපාරටම ගැස්සුනා ඒත් ඊලඟ මොහෙතෙ වෙනසක් නෑ වගේ හිටියා. සුරනිටයි අසංකටයි සෙට් වෙන්න අවස්ථාව දීලා කමල් එන්නෙ පස්සෙ බස් එකක ඒත් අසංක කමල්ට මේ හැම සිද්ධියක්ම අකුරක් නෑර කියනවා. කොහොම හරි එදා රෑ අසංක සුරන්ගෙ තට්ටං දෙකේ සනීපෙ මතක් කර කර අතේ ගැහුවා පහු වෙනිදා ඒක අහලා කමලුත් අතේ ගැහුවා සුරනිත් තමන්ගෙ තට්ටං අතරට දැනුන් දාර පයිය මතක් කරලා සතුටු වෙන්න ඇති. අසංකයි කමලුයි දෙන්නා කවුරුත් නැති තැනක සෙට් වුණොත් ඉතින් කතාව සුරනි ගැන තමයි අසංක ලෝබ නැතිව හැම දෙයක්ම කමල්ට කියන්නෙ පොර අතිජාත මිත්රයා නිසා විතරක් නෙවෙයි, කමල් තමයි මේ වැඩේ ගොඩදාගන්න හෙල්ප් එක දෙන්නෙ කමල් දන්නවා කවදාවත් තමන්ට ඒ වගේ නෝනා කෙනෙකුගෙ පහස ලබා ගන්න බැරි බව ඒත් අසංක මහත්තයගෙ වැඩේට උදව් කරලා හරි සතුටක් ලබාගන්න තමයි පොරට වුවමනා කළේ . </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අසංක සුරනි ගෙදර යන වෙලාවට සෙට් වුණොත් කොහොම හරි සුරනිගෙ පස්සෙන් සෙට් වෙලා බස් එකේ සෙනග අඩු වෙනකල්ම ජැක් ගහන එක තමයි කරන්නෙ ටික ටික ජැක් එක දියුණු වුණා සුරනි එක්ක කතා කර කරම තමයි දැන් ජැක් එක ගහන්නෙ ගෑනිත් කිසි වෙනසක් නැතිව අසංක එක්ක කතා කර කර යනවා. දෙන්නම ටිකක් රත් වෙලා යන නිසා බස් එකේ අනිත් අය දකින එක ගැන ඒ හැටි ගානක් නැහැ අනික ඒක පේන්නෙ සාමාන්යයෙන් අඳුරන දෙන්නෙකුගෙ කතා බහක් වගේ සුරනි සාරි ඇන්ද දවස් වලට සෙක්සි පෙනුම වැඩියි ඇයි බඩයි පිටයි සෑහෙන්න එළියෙනෙ එදාට ජැක් ගහද්දි සුරනිගෙ ලප කැළැල් නැති ඇඟ පත දිහා හොඳට බලාගන්නත් පුලුවන් සුරනිගෙ බුරිය පේනකොටත් අසංකට මාර ආතල් එදා හවසට ජැක් ගහනකොට අසංක ගන්න ආතල් එක වෙනස් දවසක් සුරනි හැට්ටයක් හා සායක් ඇඳන් ඇවිත් හිටියා ඒ සාය ටිකක් ඇදෙනසුලු තුනී රෙද්දකින් මහපු එකක් ඒ නිසා ගෑනිගෙ පෑන්ටි ලයින් එක පුක හරහා හොඳට පෙනුනා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> සුරනි ඔෆස් එකේ එහා මෙහා යන කොට කමලුයි අසංකයි කට ඇරගෙන තමයි ඒ ගැස්සෙන නැලවෙන නලියන තට්ටං දිහා බලන් හිටියෙ. එදා නම් හවස බස් එකේ කොහෙම හරි ජැක් එකකට සෙට් වෙන්න අසංක පුන පුනා බලන් හිටියා  කොහොම හරි සුරනි එක්කම පිට වෙන්න පොරට එදා පුළුවන් වුණා. එදා බස් එකේ සෙනගත් වැඩියි අසංක සුරනි එක්ක රෑට ටී වී එකේ යන නාට්යක් ගැන කතා කර කර ගෑනිගෙ පිටි පස්සෙන් සෙට් වුණා අසංකගෙ සෙට් එකයි යටි බඩයි කලවා දෙකයි ගෑනිගෙ පෘෂ්ටිමත් පුකට තද වුණා. දැනුන සනීපෙට පොරට ඇස් වැහෙන්න වගේ සුරනිගෙ පුක හරිම මෘදුයි කලිසම නිසා ඒ සනීපෙ අඩු වෙන්න ඇති කියලා අසංකට හිතුණා. ඒ සැප කඳ රෙදි දෙක තුනක් හරහා නැතිව හෙලුවෙන්ම අල්ලලා බලන්න ඇත්නම් කියලා හිත හිත තමයි අසංක හිටියෙ මෙහෙම ඉද්දි වැල්ලවත්තෙදි තවත් බස් එක පිරුණා. අසංකට ආසාව තවත් ඉවසගෙන ඉන්න බැරි වුණා ඒ නිසා පොර තමන් උඩ පොල්ලෙන් අල්ලගෙන හිටි අතක් අත හැරලා පහතට දැම්මා ඒක සුරනිගෙ නෙරලා තියෙන පෘෂ්ටිමත් තට්ටමක පැත්තෙන් ගෑවෙන විදිහට තියාගෙන හිටියා සුරනිට ඒක දැනුනට ගෑනිත් නොදැනුනා වගේ ඉන්නවා. ඒ අස්සෙ අසංක අර නාට්ය ගැන හෝ ගාලා කතාව. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අසංකට තවත් ඉවසන්න බැරිම වුණා. පොර හිමීට සුරනිගෙ තට්ටමක් සාය උඩින් යන්තම් අතගෑවා සුරනිට එකපාරටම කරන්ට් එකක් වැදුනා වගේ ගැස්සුණා ඒ පාරනම් ගෑනිට වෙනසක් නැහැ වගේ ඉන්න බැරි වුණා ඒ නිසා අසංක දිහා නොබලා ජනේලෙන් එලිය බලන විදිහට ටිකක පාත් වෙලා බැලුවා. එතකොට පුක තවත් නෙරලා වගේ පස්සට ආවා ඒක ගෑනි හිතලා කලාද නැද්ද කියලා අසංකට හිතාගන්න බැරි වුණා ඒත් අසංක තවත් ෆෝම් වුණා. පොර අත ටිකක් තද කරලා තවත් අතගෑවා සුරනි කිසි කතාවක් නැතිව එලියබලාගෙනම ඉන්නවා අසංකට දැනුන සතුට කියාගන්න බැහැ ගෑනිගෙ විරුද්ධත්වයක් නැහැ අසංක දිගටම අතගාන්න ගත්තා වම් පැත්තෙ තට්ටම අතගාලා ඉවර වෙලා දකුනු පැත්තේ එකත් අතගාන්න ගත්තා. වටකුරු ‍පෘෂ්ඪිතමත් තට්ටං අතේ ගෑවෙන කොට දැනෙන සනීපෙට අසංකට බඩු යන්න තරං ආවා ඒ ගෑනිගෙ පෑන්ටියත්, යට සායත්, සායත් අතරින් සනීපෙ දැනිලා. කෙලින්ම දැනුනොත් කොහොම ඇත්ද කියලා පොරට මාර ආතල් සුරනි කිසිම දෙයක් නොදන්න විදිහට හැසිරීම නිසා, අසංක තව තවත් ෆෝම් වුණා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> පොර තමන්ගෙ අත තට්ටං දෙක මැද්දෙ තියෙන කානුව ඔස්සෙ ඉහල පහල ගෙනියන්න ගත්තා මේ වෙනකොට පොරගෙ පයිය හොඳටම නැගලා ඒකත් ගෑනිගෙ වම් තට්ටමේ පැත්තකින් හේත්තු කරගත්ත අසංක කානුව දිගේ අතගාන එක දිගටම කරගෙන ගියා කානුව දිගෙ පහලට යද්දි අත ටික ටික තද කරන්නත් පටන් ගත්තා. එතකොට කකුල් දෙක මැද්දෙ පුකට යටින් තියෙන ඉඩටත් අත තද වෙනවා ඒ වෙලාවට ගෑනි ටිකක් ගැස්සෙනවා අසංක එන්න එන්න රත් වෙනවා පොරගෙ අත තදින්ම කානුව දිගේ යනවා. ඒ නිසා දැන් සායත් කානුව ඇතුලට එබිලා ඒ කියන්නෙ පෑන්ටිය දැන් තට්ටං අස්සෙ හිර වෙලා අසංකට දරාගන්න බැරි වුණා ඒ නිසා පොර තමන්ගෙ අතක් තට්ටං දෙකට යට තියෙන ඉඩට ඔබලා පුක හෝදනකොට වගේ අත උඩට උස්ස උස්ස පුක පැත්තට තද කළා ඒ තද කිරිල්ලට ගෑනි ටිකක් ගැස්සිලා පුක ඉස්සුවා. ඒ මදිවට සාය තට්ටං දෙක මැද්දෙ හිර වුණා දැන් තට්ටං දෙකේ හැඩේ ලස්සනට පේනවා. ඒක බලාගන්න අසංක ටිකක් පසස්ට වුණා සුරනි හෙලුවෙන් ඉන්නකොට පුකේ හැඩේ මොනවගේද කියලා ඒක දැකලා පොරට හිතාගන්න පුළුවන් වුණා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> ඒත් එක්කම සුරනි ඉස්සරහ තිබුණ සීට් එකේ හිටපු වයසක ගැහැණු එක්කෙනා බහින්න නැගිට්ටා. සුරනි ගෑනිට බහින්න ඉඩ දෙන්න පස්සට වුණා ඒ පාර ආයිත් තදින් අසංකගෙ පයිය සුරනිගෙ තට්ටං දෙක මැද කානුවට තද වුණා අසංක ඕනකමින්ම තමන්ගෙ පයිය තවත් ඉස්සරහට තද කළා සුරනිටත් ඒක දරාගෙන පස්සට තද වෙනවා හැරෙන්න කරන්න දෙයක් තිබුණෙ නැහැ අසංකට බඩු යන්න පවා ලං වුණා ඒ තරම් ආතල් එකක් එදා දැනුනා. ඒත් ඊලඟ මොහොතෙ සුරනි ඒ සීට් එකේ වාඩි වුණා වාඩි වෙද්දි තමන්ගෙ තට්ටං දෙක අස්සට ගිහින් තිබුණ සාය එක අතකින් ඇදලා එලියට ගන්නත් ගෑනි අමතක කළේ නැහැ අසංකට මාර අප්සට් නැගපු පයිය එහෙම්මම කලිසම කඩාගෙන සුරනි පැත්තට එලියට පනින්න වගේ පිම්බිලා තිබුණා සුරනි ඒක ඇස් කොනකින් දැක්කා ඒත් දැක්කෙ නැහැ වගේ අසංකගෙ අතේ තිබුණ පොඩි බෑග් එක ඉල්ල ගත්තා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අසංක පසු බැස්සෙ නැහැ පොර සුරනිගෙ අතකට පයිය හේත්තු කළා ගෑනි වෙනසක් නැහැ වගේ එළිය බලාගෙන ඉන්නවා ඒ මදිවට තවත් අසංක පැත්තට බර වෙලා වගේ තමයි හිටියෙ අසංක බ්රේක ගහන හැම වෙලාවෙම ඕනෑවටත් වැඩිය වැනි වැනි පයිය සුරනිගෙ අතේ ඇතිල්ලුවා ඉස්සරහට විසි වෙන වෙලාවට සුරනිගෙ පිරිපුන් තනයක පැත්තකත් පයිය ඇතිල්ලුනා ඒත් ඒක හැම තිස්සෙම කරන්න බැහැ කැපිලා පේනවා වැඩිය ඒත් හැම සැර බ්රේක් පාරකටම අසංක කොහොම හරි තමන්ගෙ පයිය සුරනිගෙ රවුම් පිම්බුණ තනයේ පැත්තෙ ඇතිල්ලුවා. ඒකෙ බ්රා එක නැති කොටස දිගේ ඇතිල්ලිලා බ්රා එකේ දාරෙ අස් සට පයිය යන හැටි පවා අසංකට ඇනුනා බ්රේක පාරවල් 10ක් 12ක් විතර වැදෙන්න ඇති තවත් බ්රේක් පාරවල් 5ක් 6ක් වැදුනනම් පොරට බඩු යනවා. සුරනිටත් අසංකගේ දිග මහත පයියේ ප්රමාණය හොඳටම දැනගන්න පුළුවන් වුනා ඒක තමන්ගෙ සංවේදී තනය මත ඇතිල්ලෙන හැම පාරම ගෑනි හිරි වැටිලා ගියා කලින් අසංක තමන්ගෙ තට්ටං දෙක මැද්ද අතුල්ලපු හැටි මතක් වෙනකොටත් ගෑනිට කිති කැවෙනවා වගේ දැනුනා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> ඒ නිසා ගෑනි හිටියෙ හොඳටම ඇවිස්සිලා නිකන් මත් වෙලා වගේතමන්ගෙ කකුල් දෙක මැද්ද උණුසුම් ලිස්සන සුළු දියරයකින් තෙමිලා තියෙන බව ගෑනිට තේරුණා සුරනි බය වුණේ ඒවා ලීක් වෙලා සායේ පිටිපස්සෙ පැල්ලමක් පෙනෙයිද කියලා මොකද පෑන්ටියත් දැන් තට්ටං දෙක අස්සෙ හිර වෙලා හුත්තට තද වෙලා තමයි තියෙන්නෙ එදා රෑ අසංක එක පාරක් නෙවෙයි දෙපාරක්ම සුරනිගෙ පුකයි තනුයි හිතේ මවාගෙන අතේ ගැහුවා පහුවෙනිදා කිසිම අඩුවක් නැතිව හැම විස්තරයක්ම පොර කමල් එක්ක කිවුවා ඒක අහනකොටම කමල්ට ඇවිදගන්න බැරි තරමට නැග්ගා කමලු පහුවෙනිදා ගෙදර ගිහින කරපු දේ ගැන ඉතින් කියලා වැඩක් නැහැනෙ එදා රෑ සුරනි මොනවා කළාද කියලා කවුරුත් දන්නෙ නැහැ. </p>
+
+
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
