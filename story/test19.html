@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Beauty | Korean-Inspired Premium Beauty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        :root {
+            --primary: #FF5A5F; /* Korean cherry blossom pink */
+            --primary-dark: #E84A5F;
+            --secondary: #FFD3B6; /* Soft peach */
+            --accent: #D8B5FF; /* Lavender */
+            --light: #FFF6F6; /* Very light pink */
+            --dark: #A8E6CE; /* Mint green */
+            --text: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+            --light-bg: #FFF9F9;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --korean-red: #FF5A5F;
+            --korean-beige: #FFF6F6;
+            --korean-blue: #A8E6CE;
+        }
+
+        /* Fix horizontal scrolling and base styles */
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Korean-style animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header with Korean styling */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--korean-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+            background-color: var(--korean-beige);
+        }
+
+        .search-bar input:focus {
+            border-color: var(--korean-red);
+            background-color: var(--white);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--korean-red);
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            white-space: nowrap;
+            position: relative;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: var(--korean-red);
+        }
+
+        .nav-links a:not(.cart-icon)::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--korean-red);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: relative;
+            color: var(--text);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--korean-red);
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--korean-red);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Korean-style Hero Slider */
+        .hero-slider {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 var(--radius) var(--radius);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(255, 90, 95, 0.1);
+        }
+
+        .hero-slide {
+            height: 550px;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+        }
+
+        .hero-slide-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-slide h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .hero-slide p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background-color: var(--korean-red);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 90, 95, 0.4);
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 90, 95, 0.5);
+        }
+
+        /* Horizontal Scrollable Category Selection */
+        .category-section {
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .category-container {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .category-container::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .category-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .category-container::-webkit-scrollbar-thumb {
+            background: var(--korean-red);
+            border-radius: 10px;
+        }
+
+        .category-scroll {
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .category-item {
+            display: inline-block;
+            text-align: center;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            vertical-align: top;
+        }
+
+        .category-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-item.active .category-img {
+            border-color: var(--korean-red);
+            box-shadow: 0 0 0 3px rgba(255, 90, 95, 0.3);
+        }
+
+        .category-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--korean-blue);
+            display: block;
+            margin: 0 auto;
+            transition: var(--transition);
+        }
+
+        .category-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            font-family: 'Noto Sans KR', sans-serif;
+            margin-top: 8px;
+            white-space: normal;
+            max-width: 80px;
+            display: inline-block;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 40px 0;
+            background-color: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--korean-red);
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-image-container {
+            height: 220px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        /* New like button styles */
+        .like-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            transition: var(--transition);
+            border: none;
+            color: #ccc;
+            font-size: 18px;
+        }
+
+        .like-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            color: #ff5a5f;
+        }
+
+        .like-btn.liked {
+            color: #ff5a5f;
+            animation: heartBeat 0.6s;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--korean-blue);
+            color: var(--text);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            align-self: flex-start;
+            text-transform: capitalize;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .product-name-container {
+            margin-bottom: 12px;
+            min-height: 44px;
+            overflow: hidden;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.4;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--korean-red);
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .product-price::before {
+            content: 'LKR ';
+        }
+
+        .product-sold {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--korean-red);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Korean-style Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+            margin-top: 60px;
+            background-image: url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1888&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .testimonials .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonials .section-title h2 {
+            color: var(--korean-red);
+        }
+
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin: 0 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 1px solid rgba(255, 90, 95, 0.2);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 90, 95, 0.15);
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--korean-red);
+        }
+
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--text);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--text-light);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .rating {
+            color: #FFD700;
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        .slick-dots {
+            bottom: -40px;
+        }
+
+        .slick-dots li button:before {
+            font-size: 12px;
+            color: var(--korean-red);
+        }
+
+        .slick-dots li.slick-active button:before {
+            color: var(--korean-red);
+        }
+
+        /* Korean-style WhatsApp button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+            z-index: 99;
+            text-decoration: none;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Renewed Korean-style Footer */
+        footer {
+            background-color: #2C2C2C;
+            padding: 50px 0 20px;
+            color: #ddd;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--korean-red);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            font-size: 13px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--korean-red);
+            transform: translateX(5px);
+        }
+
+        .footer-column p {
+            color: #bbb;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* Renewed Social Media Icons - removed underline */
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 14px;
+            transition: var(--transition);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; /* Removed underline */
+        }
+
+        .social-links a:hover {
+            background: var(--korean-red);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #999;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--korean-red);
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .newsletter-form button {
+            padding: 10px;
+            background-color: var(--korean-red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 12px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-slide {
+                height: 450px;
+            }
+            
+            .hero-slide h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-slide p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                order: 1;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                order: 3;
+                margin-left: auto;
+            }
+
+            .search-bar {
+                order: 4;
+                width: 100%;
+                margin: 15px 0 0 0;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                order: 5;
+                padding: 15px 0;
+                border-top: 1px solid #f0f0f0;
+                margin-top: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                border-bottom: 1px solid #f0f0f0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .cart-icon {
+                order: 2;
+            }
+
+            .hero-slide {
+                height: 400px;
+            }
+            
+            .hero-slide h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .hero-slide p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+
+            .category-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            /* Maintain 2-column product grid on mobile */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .product-image-container {
+                height: 180px;
+            }
+
+            .product-info {
+                padding: 15px;
+            }
+
+            .product-name {
+                font-size: 15px;
+            }
+
+            .product-price {
+                font-size: 16px;
+            }
+
+            .buy-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .testimonial-card {
+                padding: 20px;
+            }
+            
+            .testimonial-text {
+                font-size: 16px;
+            }
+            
+            .author-avatar {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-slide {
+                height: 350px;
+            }
+            
+            .hero-slide h1 {
+                font-size: 1.8rem;
+            }
+
+            .category-img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .category-title {
+                font-size: 12px;
+            }
+
+            /* Maintain 2-column product grid on mobile */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-image-container {
+                height: 160px;
+            }
+
+            .product-name {
+                font-size: 14px;
+            }
+
+            .product-price {
+                font-size: 15px;
+                margin-bottom: 8px;
+            }
+
+            .product-sold {
+                font-size: 11px;
+            }
+
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .testimonial-author {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-spa"></i>
+                Bloom Beauty
+            </a>
+            
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Korean-style Hero Slider -->
+    <div class="hero-slider">
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>Korean Beauty Secrets</h1>
+                <p>Discover the art of Korean skincare with our premium products</p>
+                <a href="#products" class="btn">Explore Now</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>Glass Skin Collection</h1>
+                <p>Achieve the perfect Korean glass skin look with our special formulas</p>
+                <a href="#products" class="btn">Shop Collection</a>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80');">
+            <div class="hero-slide-content">
+                <h1>New Cushion Compact</h1>
+                <p>Lightweight coverage with skincare benefits - the Korean way</p>
+                <a href="#products" class="btn">View Product</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horizontal Scrollable Category Selection -->
+    <section class="category-section">
+        <div class="container">
+            <div class="category-container">
+                <div class="category-scroll">
+                    <div class="category-item active" data-category="all">
+                        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="All" class="category-img">
+                        <span class="category-title">All</span>
+                    </div>
+                    <div class="category-item" data-category="skincare">
+                        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Skincare" class="category-img">
+                        <span class="category-title">Skincare</span>
+                    </div>
+                    <div class="category-item" data-category="makeup">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Makeup" class="category-img">
+                        <span class="category-title">Makeup</span>
+                    </div>
+                    <div class="category-item" data-category="haircare">
+                        <img src="https://images.unsplash.com/photo-1608248543803-ba9b230689a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Haircare" class="category-img">
+                        <span class="category-title">Haircare</span>
+                    </div>
+                    <div class="category-item" data-category="body">
+                        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Body Care" class="category-img">
+                        <span class="category-title">Body Care</span>
+                    </div>
+                    <div class="category-item" data-category="mask">
+                        <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Face Mask" class="category-img">
+                        <span class="category-title">Face Mask</span>
+                    </div>
+                    <div class="category-item" data-category="sunscreen">
+                        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Sunscreen" class="category-img">
+                        <span class="category-title">Sunscreen</span>
+                    </div>
+                    <div class="category-item" data-category="serum">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Serum" class="category-img">
+                        <span class="category-title">Serum</span>
+                    </div>
+                    <div class="category-item" data-category="lipstick">
+                        <img src="https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Lipstick" class="category-img">
+                        <span class="category-title">Lipstick</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Best Sellers</h2>
+                <p>Products loved by our beauty community</p>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Korean-style Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Real experiences from our beauty community</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"I've been using Bloom Beauty's serum for a month now and my skin has never looked better! The glow is real and my fine lines have visibly reduced."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Sarah J." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sarah J.</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The lipstick set is amazing! The colors are so pigmented and last all day without drying my lips. I get compliments every time I wear them."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Maria L." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Maria L.</h4>
+                            <p>Makeup Artist</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">"As someone with sensitive skin, finding good products is hard. Bloom Beauty's moisturizer is gentle yet effective. My skin feels nourished all day."</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1524502397800-2eeaad7c3fe5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Emily T." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Emily T.</h4>
+                            <p>Skincare Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Renewed Korean-style Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Bloom Beauty</h3>
+                    <p>Your destination for premium Korean-inspired beauty products that make you look and feel amazing.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="#">Skincare</a></li>
+                        <li><a href="#">Makeup</a></li>
+                        <li><a href="#">Haircare</a></li>
+                        <li><a href="#">Body Care</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for exclusive offers and beauty tips.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Bloom Beauty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Initialize hero slider
+        $('.hero-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 5000,
+            arrows: false
+        });
+
+        // Initialize testimonial slider
+        $('.testimonial-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            autoplay: true,
+            autoplaySpeed: 7000
+        });
+
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Korean Hydrating Facial Serum",
+                price: 3999.99,
+                category: "skincare",
+                image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 125
+            },
+            {
+                id: 2,
+                name: "Korean Matte Lipstick Set (6 Colors)",
+                price: 3499.99,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 89
+            },
+            {
+                id: 3,
+                name: "Korean Hair Mask with Argan Oil",
+                price: 2799.99,
+                category: "haircare",
+                image: "https://images.unsplash.com/photo-1608248543803-ba9b230689a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 143
+            },
+            {
+                id: 4,
+                name: "Korean Clay Mask with Charcoal",
+                price: 3299.99,
+                category: "mask",
+                image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 76
+            },
+            {
+                id: 5,
+                name: "Korean Eyeshadow Palette (12 Shades)",
+                price: 4499.99,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 112
+            },
+            {
+                id: 6,
+                name: "Korean Volumizing Shampoo",
+                price: 2499.99,
+                category: "haircare",
+                image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 98
+            },
+            {
+                id: 7,
+                name: "Korean Vitamin C Moisturizer",
+                price: 3799.99,
+                category: "skincare",
+                image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 134
+            },
+            {
+                id: 8,
+                name: "Korean Liquid Eyeliner - Black",
+                price: 1999.99,
+                category: "makeup",
+                image: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                sold: 67
+            }
+        ];
+
+        // Format price as LKR with commas and 2 decimal places
+        function formatPrice(price) {
+            return price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
+        // Display products
+        const productsGrid = document.getElementById('products-grid');
+        
+        function displayProducts(filterCategory = 'all') {
+            productsGrid.innerHTML = '';
+            
+            const filteredProducts = filterCategory === 'all' 
+                ? products 
+                : products.filter(product => product.category === filterCategory);
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                
+                productCard.innerHTML = `
+                    <div class="product-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <button class="like-btn" data-id="${product.id}">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">${product.category}</span>
+                        <div class="product-name-container">
+                            <h3 class="product-name">${product.name}</h3>
+                        </div>
+                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <div class="product-sold">${product.sold}+ sold</div>
+                        <button class="buy-btn" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+
+            // Initialize like buttons
+            initializeLikeButtons();
+        }
+
+        // Initialize like buttons functionality
+        function initializeLikeButtons() {
+            const likeButtons = document.querySelectorAll('.like-btn');
+            
+            likeButtons.forEach(button => {
+                // Check if this product is liked in localStorage
+                const productId = button.getAttribute('data-id');
+                const isLiked = localStorage.getItem(`product_${productId}_liked`) === 'true';
+                
+                if (isLiked) {
+                    button.classList.add('liked');
+                    button.innerHTML = '<i class="fas fa-heart"></i>';
+                }
+                
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    
+                    if (this.classList.contains('liked')) {
+                        this.classList.remove('liked');
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                        localStorage.setItem(`product_${productId}_liked`, 'false');
+                    } else {
+                        this.classList.add('liked');
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                        localStorage.setItem(`product_${productId}_liked`, 'true');
+                    }
+                });
+            });
+        }
+
+        // Initial display of all products
+        displayProducts();
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Add to cart functionality
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy-btn')) {
+                const productId = e.target.getAttribute('data-id');
+                const product = products.find(p => p.id == productId);
+                
+                cartCount += 1;
+                cartCountElement.textContent = cartCount;
+                
+                // Animation for feedback
+                const originalText = e.target.innerHTML;
+                e.target.innerHTML = '<i class="fas fa-check"></i> Added!';
+                e.target.style.backgroundColor = '#4CAF50';
+                
+                setTimeout(() => {
+                    e.target.innerHTML = originalText;
+                    e.target.style.backgroundColor = 'var(--korean-red)';
+                }, 1500);
+                
+                // In a real app, you would add the product to a cart array
+                console.log(`Added ${product.name} to cart`);
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector('.search-bar input');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                const name = card.querySelector('.product-name').textContent.toLowerCase();
+                const category = card.querySelector('.product-category').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category selection
+        const categoryItems = document.querySelectorAll('.category-item');
+        categoryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                categoryItems.forEach(i => i.classList.remove('active'));
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                const category = this.getAttribute('data-category');
+                displayProducts(category);
+            });
+        });
+    </script>
+</body>
+</html>
