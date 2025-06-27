@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", serif;
+}
+header {
+  max-width: 2500px;
+  text-align: center;
+  background-color: #1d1f20;
+  margin-inline: auto;
+  padding: 5px 20px;
+  color: #ffffff;
+  font-weight: 600;
+}
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+.content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2rem 3rem;
+  text-align: left;
+  color: #505252;
+}
+#generate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.inputurl {
+  border: 2px solid #5052525d;
+  padding: 10px;
+  border-radius: 0.5rem;
+}
+.selected {
+  border: 2px solid #5052525d;
+  padding: 10px;
+  border-radius: 0.5rem;
+}
+.submit {
+  padding: 10px;
+  border-radius: 2rem;
+  font-size: 1rem;
+  border: 2px solid #5052525d;
+  background-color:#d0ffbe;
+}
+
+.submit:hover{
+  background-color: #72c551;
+  color: #fff;
+  transition: 500ms;
+  padding: 15px 40px;
+  font-size: 18px;
+}
+
+/* spinner */
+.loader {
+  margin: 10px auto;
+  border: 1rem solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 1rem solid #31afe4;
+  width: 3rem;
+  height: 3rem;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#qrcode {
+  margin: auto;
+  max-width: 1200px;
+  width: max-content;
+}
+
+/* //todo */
+.download-btn {
+  display: block;
+  width: 20%;
+  text-align: center;
+  background-color: #a9d5ff;
+  margin: 20px auto;
+  padding: 10px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  border: 2px solid #5052525d;
+}
+
+.download-btn:hover{
+  padding: 15px 40px;
+  font-size: 18px;
+  transition: 500ms;
+  background-color: #40a3ff;
+  color: #fff;
+}
+
+/* responsive design */
+@media screen and (max-width: 600px) {
+  main {
+    flex-direction: column;
+  }
+}
