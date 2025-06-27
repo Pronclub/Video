@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Lanka Vehicle Affordability Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .calculator-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #003d82;
+        }
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+        .vehicle-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .affordable {
+            border-left: 4px solid #28a745;
+        }
+        .borderline {
+            border-left: 4px solid #ffc107;
+        }
+        .unaffordable {
+            border-left: 4px solid #dc3545;
+        }
+        .vehicle-name {
+            font-weight: bold;
+            font-size: 18px;
+            color: #0056b3;
+            margin-bottom: 5px;
+        }
+        .vehicle-price {
+            font-weight: bold;
+        }
+        .installment {
+            margin-top: 5px;
+        }
+        .note {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+        .summary {
+            background-color: #e9f5ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Sri Lanka Vehicle Affordability Calculator</h1>
+        
+        <div class="form-group">
+            <label for="income">Your Monthly Income (LKR):</label>
+            <input type="number" id="income" placeholder="Enter your monthly income in LKR">
+        </div>
+        
+        <div class="form-group">
+            <label for="downpayment">Available Downpayment (LKR):</label>
+            <input type="number" id="downpayment" placeholder="Enter available downpayment">
+        </div>
+        
+        <div class="form-group">
+            <label for="loan-term">Preferred Loan Term (Years):</label>
+            <select id="loan-term">
+                <option value="3">3 Years</option>
+                <option value="4">4 Years</option>
+                <option value="5" selected>5 Years</option>
+                <option value="7">7 Years</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="debt">Existing Monthly Debt Payments (LKR):</label>
+            <input type="number" id="debt" placeholder="Enter existing monthly debt payments" value="0">
+        </div>
+        
+        <button onclick="calculateAffordability()">Calculate Affordable Vehicles</button>
+        
+        <div id="results" class="results">
+            <div class="summary" id="summary"></div>
+            <h2>Available Vehicle Options</h2>
+            <div id="vehicle-list"></div>
+            
+            <div class="note">
+                <p><strong>Note:</strong> This calculator provides estimates based on typical Sri Lankan bank lending criteria. Actual loan approvals may vary based on credit history, bank policies, and other factors. Interest rates are estimated at 12-15% for calculation purposes.</p>
+                <p>General rule: Your total monthly debt payments (including the new vehicle loan) should not exceed 40-50% of your monthly income.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vehicle data for Sri Lankan market (prices in LKR)
+        const vehicles = [
+            { 
+                category: "Motorcycles",
+                models: [
+                    { name: "Bajaj CT 100", price: 250000, type: "Motorcycle" },
+                    { name: "TVS Apache RTR 160", price: 550000, type: "Motorcycle" },
+                    { name: "Honda Dio", price: 420000, type: "Scooter" }
+                ]
+            },
+            { 
+                category: "Three Wheelers",
+                models: [
+                    { name: "Bajaj RE Compact", price: 1200000, type: "Three Wheeler" },
+                    { name: "Piaggio Ape Xtra LDX", price: 1500000, type: "Three Wheeler" }
+                ]
+            },
+            { 
+                category: "Compact Cars",
+                models: [
+                    { name: "Suzuki Alto", price: 3500000, type: "Hatchback" },
+                    { name: "Micro Panda", price: 3200000, type: "Hatchback" },
+                    { name: "Nissan Sunny", price: 6500000, type: "Sedan" }
+                ]
+            },
+            { 
+                category: "SUVs",
+                models: [
+                    { name: "Toyota Land Cruiser Prado", price: 35000000, type: "Luxury SUV" },
+                    { name: "Mitsubishi Montero Sport", price: 22000000, type: "SUV" },
+                    { name: "Kia Sportage", price: 15000000, type: "SUV" }
+                ]
+            },
+            { 
+                category: "Luxury Vehicles",
+                models: [
+                    { name: "Mercedes-Benz C-Class", price: 25000000, type: "Luxury Sedan" },
+                    { name: "BMW 5 Series", price: 30000000, type: "Luxury Sedan" }
+                ]
+            }
+        ];
+
+        function calculateAffordability() {
+            const income = parseFloat(document.getElementById('income').value);
+            const downpayment = parseFloat(document.getElementById('downpayment').value) || 0;
+            const loanTerm = parseInt(document.getElementById('loan-term').value);
+            const existingDebt = parseFloat(document.getElementById('debt').value) || 0;
+            
+            if (!income || income <= 0) {
+                alert("Please enter a valid monthly income");
+                return;
+            }
+            
+            // Calculate maximum affordable monthly payment (40% of income minus existing debt)
+            const maxPaymentPercentage = 0.4; // 40% of income
+            const maxAffordablePayment = (income * maxPaymentPercentage) - existingDebt;
+            
+            // Display summary
+            const summary = document.getElementById('summary');
+            summary.innerHTML = `
+                <h3>Your Financial Summary</h3>
+                <p><strong>Monthly Income:</strong> LKR ${income.toLocaleString()}</p>
+                <p><strong>Available Downpayment:</strong> LKR ${downpayment.toLocaleString()}</p>
+                <p><strong>Existing Monthly Debt:</strong> LKR ${existingDebt.toLocaleString()}</p>
+                <p><strong>Maximum Affordable Monthly Payment:</strong> LKR ${maxAffordablePayment.toLocaleString()} (40% of income minus existing debt)</p>
+                <p><strong>Loan Term:</strong> ${loanTerm} years</p>
+            `;
+            
+            // Calculate and display vehicles
+            const vehicleList = document.getElementById('vehicle-list');
+            vehicleList.innerHTML = '';
+            
+            vehicles.forEach(category => {
+                const categoryHeader = document.createElement('h3');
+                categoryHeader.textContent = category.category;
+                vehicleList.appendChild(categoryHeader);
+                
+                category.models.forEach(vehicle => {
+                    const loanAmount = vehicle.price - downpayment;
+                    const monthlyPayment = calculateMonthlyPayment(loanAmount, loanTerm);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'vehicle-card';
+                    
+                    // Add class based on affordability
+                    if (monthlyPayment <= maxAffordablePayment * 0.8) {
+                        card.classList.add('affordable');
+                    } else if (monthlyPayment <= maxAffordablePayment) {
+                        card.classList.add('borderline');
+                    } else {
+                        card.classList.add('unaffordable');
+                    }
+                    
+                    card.innerHTML = `
+                        <div class="vehicle-name">${vehicle.name} (${vehicle.type})</div>
+                        <div class="vehicle-price">Price: LKR ${vehicle.price.toLocaleString()}</div>
+                        <div class="installment">Estimated Monthly Payment: LKR ${monthlyPayment.toLocaleString()} (${loanTerm} years)</div>
+                    `;
+                    
+                    vehicleList.appendChild(card);
+                });
+            });
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+        }
+        
+        function calculateMonthlyPayment(loanAmount, years) {
+            // Using 14% interest rate (typical for Sri Lanka)
+            const annualInterestRate = 0.14;
+            const monthlyInterestRate = annualInterestRate / 12;
+            const numberOfPayments = years * 12;
+            
+            // Monthly payment formula: P * r * (1+r)^n / ((1+r)^n - 1)
+            const monthlyPayment = loanAmount * 
+                (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
+                (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+                
+            return Math.round(monthlyPayment);
+        }
+    </script>
+</body>
+</html>
