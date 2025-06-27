@@ -49,6 +49,7 @@
             overflow: hidden;
             position: relative;
             padding-bottom: 80px;
+            padding-top: 70px;
         }
 
         .app-header {
@@ -64,6 +65,18 @@
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(255, 45, 117, 0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .logo {
@@ -76,6 +89,13 @@
 
         .logo i {
             font-size: 1.8rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .nav-icons {
@@ -87,6 +107,11 @@
             font-size: 1.3rem;
             color: white;
             position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-icon:hover {
+            transform: translateY(-2px);
         }
 
         .nav-icon .badge {
@@ -103,12 +128,23 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .search-container {
             position: relative;
-            margin-bottom: 20px;
-            padding: 0 15px;
+            margin: 15px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         #search {
@@ -120,11 +156,13 @@
             background: white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
         #search:focus {
             outline: none;
             box-shadow: 0 5px 25px rgba(255, 45, 117, 0.3);
+            border-color: var(--primary);
         }
 
         .search-icon {
@@ -133,6 +171,12 @@
             top: 50%;
             transform: translateY(-50%);
             color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        #search:focus + .search-icon {
+            color: var(--neon-purple);
+            transform: translateY(-50%) scale(1.1);
         }
 
         .filter-chips {
@@ -140,8 +184,9 @@
             gap: 10px;
             overflow-x: auto;
             padding: 10px 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             scrollbar-width: none;
+            animation: fadeIn 0.8s ease-out 0.2s both;
         }
 
         .filter-chips::-webkit-scrollbar {
@@ -161,32 +206,38 @@
             transition: all 0.3s ease;
         }
 
+        .filter-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+        }
+
         .filter-chip.active {
             background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
             color: white;
             box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
+            transform: translateY(-2px);
         }
 
         .profiles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 15px;
             padding: 0 15px 20px;
         }
 
         .profile-card {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeIn 0.6s forwards;
+            animation: cardEntrance 0.6s ease-out forwards;
         }
 
-        @keyframes fadeIn {
+        @keyframes cardEntrance {
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -194,14 +245,14 @@
         }
 
         .profile-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(255, 45, 117, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 45, 117, 0.2);
         }
 
         .profile-image-container {
             position: relative;
             width: 100%;
-            height: 300px;
+            height: 200px;
             overflow: hidden;
         }
 
@@ -210,23 +261,26 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            pointer-events: none;
-            user-select: none;
         }
 
         .profile-card:hover .profile-image {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .online-status {
             position: absolute;
-            bottom: 15px;
-            right: 15px;
-            width: 14px;
-            height: 14px;
+            bottom: 10px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             border: 2px solid white;
             z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .profile-card:hover .online-status {
+            transform: scale(1.2);
         }
 
         .online {
@@ -238,7 +292,7 @@
         }
 
         .profile-info {
-            padding: 15px;
+            padding: 12px;
         }
 
         .profile-name-age {
@@ -249,13 +303,13 @@
         }
 
         .profile-name {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
         }
 
         .profile-age {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .profile-location {
@@ -263,54 +317,61 @@
             align-items: center;
             gap: 5px;
             color: #666;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
         }
 
         .profile-bio {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: 1.4;
         }
 
         .profile-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 6px;
+            margin-bottom: 12px;
         }
 
         .profile-tag {
             background: rgba(255, 45, 117, 0.1);
             color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.65rem;
             font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .profile-tag:hover {
+            background: rgba(255, 45, 117, 0.2);
+            transform: translateY(-1px);
         }
 
         .profile-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .action-btn {
             flex: 1;
-            padding: 10px;
+            padding: 8px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
         }
 
         .chat-btn {
@@ -320,7 +381,7 @@
 
         .chat-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
         }
 
         .call-btn {
@@ -332,7 +393,7 @@
         .call-btn:hover {
             background: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
         .bottom-nav {
@@ -343,9 +404,21 @@
             background: white;
             display: flex;
             justify-content: space-around;
-            padding: 12px 0;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .nav-item {
@@ -353,19 +426,36 @@
             flex-direction: column;
             align-items: center;
             color: #666;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .nav-item i {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             margin-bottom: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-item:hover i {
+            transform: scale(1.1);
         }
 
         .nav-item.active {
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
+        .nav-item.active i {
+            transform: scale(1.1);
+        }
+
+        /* Modal styles */
         .modal {
             position: fixed;
             top: 0;
@@ -390,14 +480,14 @@
 
         .modal-content {
             background: white;
-            border-radius: 25px;
-            padding: 25px;
+            border-radius: 20px;
+            padding: 20px;
             width: 90%;
-            max-width: 400px;
+            max-width: 350px;
             text-align: center;
             transform: translateY(20px);
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .modal.active .modal-content {
@@ -405,39 +495,40 @@
         }
 
         .modal-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            animation: bounce 2s infinite;
         }
 
         .modal h3 {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .modal p {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             color: var(--text);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .modal-btn {
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 30px;
+            border-radius: 25px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
             color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin: 5px;
         }
 
         .modal-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 45, 117, 0.4);
+            box-shadow: 0 8px 15px rgba(255, 45, 117, 0.3);
         }
 
         .modal-btn.secondary {
@@ -448,42 +539,42 @@
 
         .unlock-now-btn {
             background: linear-gradient(135deg, var(--whatsapp-green) 0%, #128C7E 100%) !important;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .unlock-status {
             display: none;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin: 15px 0;
-            font-size: 0.9rem;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 0.85rem;
             color: var(--text);
             flex-direction: column;
             text-align: center;
         }
 
         .unlock-status i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .unlock-timer {
             font-weight: bold;
             color: var(--primary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin-top: 5px;
         }
 
         .unlock-progress {
             width: 100%;
-            height: 5px;
+            height: 4px;
             background: #f0f0f0;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 4px;
+            margin-top: 8px;
             overflow: hidden;
         }
 
@@ -494,6 +585,26 @@
             transition: width 1s linear;
         }
 
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .no-results i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .no-results p {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Floating hearts animation */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -528,7 +639,7 @@
             }
         }
 
-        /* Mobile-specific adjustments */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .profiles-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -536,11 +647,15 @@
             }
             
             .profile-image-container {
-                height: 180px;
+                height: 160px;
+            }
+            
+            .profile-info {
+                padding: 10px;
             }
             
             .profile-name {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
             
             .profile-age {
@@ -553,33 +668,48 @@
             
             .profile-bio {
                 font-size: 0.75rem;
-                -webkit-line-clamp: 2;
-                margin-bottom: 8px;
+                -webkit-line-clamp: 3;
             }
             
             .profile-tag {
-                font-size: 0.65rem;
-                padding: 3px 8px;
+                font-size: 0.6rem;
+                padding: 2px 6px;
             }
             
             .action-btn {
                 font-size: 0.75rem;
                 padding: 6px;
-                gap: 4px;
             }
             
-            .action-btn i {
-                font-size: 0.8rem;
+            .bottom-nav {
+                padding: 8px 0;
+            }
+            
+            .nav-item i {
+                font-size: 1rem;
+            }
+            
+            .nav-item span {
+                font-size: 0.65rem;
             }
         }
 
         @media (max-width: 480px) {
             .profiles-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
             }
             
             .profile-image-container {
-                height: 240px;
+                height: 200px;
+            }
+            
+            .profile-name {
+                font-size: 1rem;
+            }
+            
+            .profile-bio {
+                -webkit-line-clamp: 2;
             }
         }
     </style>
@@ -627,7 +757,7 @@
             </div>
 
             <div class="profiles-grid" id="profilesGrid">
-                <!-- Profiles will be generated by JavaScript -->
+                <!-- Profiles will be loaded here -->
             </div>
         </div>
     </div>
@@ -681,287 +811,203 @@
     </div>
 
     <script>
-        // Profile Data
+        // New Profile Data with Sri Lankan details
         const profilesData = [
             {
                 id: 1,
-                name: "Emma Johnson",
-                age: 27,
-                number: "15551234567",
-                image: "https://randomuser.me/api/portraits/women/1.jpg",
-                location: "New York, NY",
-                distance: "3 miles away",
-                bio: "Adventure seeker and coffee lover. Looking for someone to explore the world with!",
-                tags: ["Travel", "Coffee", "Yoga"],
+                name: "සදුනි",
+                age: 24,
+                number: "+94755819338",
+                image: "https://randomuser.me/api/portraits/women/21.jpg",
+                location: "මිගමුව",
+                distance: "5 miles away",
+                bio: "හිතවත් සහ සාමකාමී පෙම්වතියක්. සාපේක්ෂව නව අත්දැකීම් සොයනවා.",
+                tags: ["හිතවත්", "සාමකාමී", "නව අත්දැකීම්"],
                 verified: true,
                 online: true,
                 lastActive: "Online now"
             },
             {
                 id: 2,
-                name: "Sophia Williams",
-                age: 25,
-                number: "15552345678",
-                image: "https://randomuser.me/api/portraits/women/2.jpg",
-                location: "Brooklyn, NY",
-                distance: "1 mile away",
-                bio: "Artist and dog mom. Enjoy gallery openings and long walks in the park.",
-                tags: ["Art", "Dogs", "Brunch"],
+                name: "වත්සලා",
+                age: 26,
+                number: "+94750286549",
+                image: "https://randomuser.me/api/portraits/women/22.jpg",
+                location: "හොරණ",
+                distance: "8 miles away",
+                bio: "උද්යෝගිමත් සහ ක්‍රියාශීලී තරුණියක්. සංචාරය කිරීමට ආසාවක් ඇත.",
+                tags: ["ක්‍රියාශීලී", "සංචාරක", "උද්යෝගිමත්"],
                 verified: true,
                 online: false,
-                lastActive: "2 hours ago"
+                lastActive: "1 hour ago"
             },
             {
                 id: 3,
-                name: "Olivia Brown",
-                age: 29,
-                number: "15553456789",
-                image: "https://randomuser.me/api/portraits/women/3.jpg",
-                location: "Manhattan, NY",
-                distance: "5 miles away",
-                bio: "Finance professional who loves jazz and fine dining. Let's try that new restaurant!",
-                tags: ["Finance", "Jazz", "Foodie"],
-                verified: false,
+                name: "ගිත්මා ඇන්ටි",
+                age: 35,
+                number: "+94758594688",
+                image: "https://randomuser.me/api/portraits/women/35.jpg",
+                location: "Colombo",
+                distance: "3 miles away",
+                bio: "පරිපූර්ණ අවධානය සහ සැලකිල්ල ලබා දෙන පෙම්වතියක්.",
+                tags: ["සැලකිලිමත්", "පරිපූර්ණ", "Colombo"],
+                verified: true,
                 online: true,
                 lastActive: "Online now"
             },
             {
                 id: 4,
-                name: "Ava Jones",
-                age: 24,
-                number: "15554567890",
-                image: "https://randomuser.me/api/portraits/women/4.jpg",
-                location: "Queens, NY",
-                distance: "7 miles away",
-                bio: "Graduate student studying psychology. Love books, hiking, and deep conversations.",
-                tags: ["Books", "Hiking", "Student"],
-                verified: true,
+                name: "නෙතු",
+                age: 28,
+                number: "+94758630140",
+                image: "https://randomuser.me/api/portraits/women/28.jpg",
+                location: "පානදුර",
+                distance: "12 miles away",
+                bio: "සාමකාමී සහ සන්සුන් චරිතයක්. සාධාරණ සම්බන්ධතාවක් සොයනවා.",
+                tags: ["සන්සුන්", "සාමකාමී", "පානදුර"],
+                verified: false,
                 online: false,
                 lastActive: "Yesterday"
             },
             {
                 id: 5,
-                name: "Isabella Garcia",
-                age: 26,
-                number: "15555678901",
-                image: "https://randomuser.me/api/portraits/women/5.jpg",
-                location: "Jersey City, NJ",
-                distance: "10 miles away",
-                bio: "Fitness trainer and nutrition coach. Let's get healthy together!",
-                tags: ["Fitness", "Health", "Gym"],
+                name: "වත්සලා",
+                age: 25,
+                number: "+94759101558",
+                image: "https://randomuser.me/api/portraits/women/25.jpg",
+                location: "පානදුර ස්පා",
+                distance: "11 miles away",
+                bio: "කලාත්මක සහ නිර්මාණශීලී චරිතයක්. සංගීතයට ආසාවක් ඇත.",
+                tags: ["කලාත්මක", "නිර්මාණශීලී", "සංගීතය"],
                 verified: true,
                 online: true,
                 lastActive: "Online now"
             },
             {
                 id: 6,
-                name: "Mia Miller",
-                age: 28,
-                number: "15556789012",
-                image: "https://randomuser.me/api/portraits/women/6.jpg",
-                location: "Staten Island, NY",
-                distance: "12 miles away",
-                bio: "Software engineer by day, gamer by night. Let's play something together!",
-                tags: ["Tech", "Gaming", "Coding"],
-                verified: false,
+                name: "කවුෂල්‍යා",
+                age: 27,
+                number: "+94758146561",
+                image: "https://randomuser.me/api/portraits/women/27.jpg",
+                location: "මාදම්පේ ස්පා",
+                distance: "15 miles away",
+                bio: "උගත් සහ බුද්ධිමත් තරුණියක්. දේශපාලනය සහ සමාජය පිළිබඳ උනන්දුවක් ඇත.",
+                tags: ["උගත්", "බුද්ධිමත්", "දේශපාලනය"],
+                verified: true,
                 online: false,
-                lastActive: "3 days ago"
+                lastActive: "2 days ago"
             },
             {
                 id: 7,
-                name: "Charlotte Davis",
+                name: "දිව්‍යා",
                 age: 23,
-                number: "15557890123",
-                image: "https://randomuser.me/api/portraits/women/7.jpg",
-                location: "Bronx, NY",
-                distance: "4 miles away",
-                bio: "Music producer and DJ. Always looking for new sounds and creative people.",
-                tags: ["Music", "DJ", "Creative"],
-                verified: true,
+                number: "+94701262968",
+                image: "https://randomuser.me/api/portraits/women/23.jpg",
+                location: "Colombo",
+                distance: "2 miles away",
+                bio: "උද්යෝගිමත් සහ ක්‍රීඩාකාරී තරුණියක්. ක්‍රීඩා සහ සෞඛ්‍ය සම්බන්ධයෙන් උනන්දුවක් ඇත.",
+                tags: ["ක්‍රීඩාකාරී", "සෞඛ්‍ය", "Colombo"],
+                verified: false,
                 online: true,
                 lastActive: "Online now"
             },
             {
                 id: 8,
-                name: "Amelia Rodriguez",
-                age: 30,
-                number: "15558901234",
-                image: "https://randomuser.me/api/portraits/women/8.jpg",
-                location: "Hoboken, NJ",
-                distance: "8 miles away",
-                bio: "Marketing director who loves to travel. 30 countries and counting!",
-                tags: ["Travel", "Marketing", "Adventure"],
+                name: "වත්සලා",
+                age: 29,
+                number: "+94704913863",
+                image: "https://randomuser.me/api/portraits/women/29.jpg",
+                location: "Colombo",
+                distance: "4 miles away",
+                bio: "වෘත්තීය කාන්තාවක්. ව්‍යාපාර සහ ආයෝජන පිළිබඳ උනන්දුවක් ඇත.",
+                tags: ["වෘත්තීය", "ව්‍යාපාර", "Colombo"],
                 verified: true,
                 online: false,
-                lastActive: "1 hour ago"
+                lastActive: "3 hours ago"
             },
             {
                 id: 9,
-                name: "Harper Martinez",
-                age: 25,
-                number: "15559012345",
-                image: "https://randomuser.me/api/portraits/women/9.jpg",
-                location: "Long Island, NY",
-                distance: "15 miles away",
-                bio: "Elementary teacher with a passion for baking and photography.",
-                tags: ["Teaching", "Baking", "Photography"],
+                name: "තරිනි",
+                age: 26,
+                number: "+94701344551",
+                image: "https://randomuser.me/api/portraits/women/26.jpg",
+                location: "Colombo",
+                distance: "3 miles away",
+                bio: "සාහිත්‍යයට ආසාවක් ඇති තරුණියක්. කවි සහ කෙටිකතා ලියනවා.",
+                tags: ["සාහිත්‍යය", "කවි", "Colombo"],
                 verified: false,
                 online: true,
                 lastActive: "Online now"
             },
             {
                 id: 10,
-                name: "Evelyn Hernandez",
-                age: 27,
-                number: "15550123456",
-                image: "https://randomuser.me/api/portraits/women/10.jpg",
-                location: "Newark, NJ",
-                distance: "9 miles away",
-                bio: "Fashion designer and sustainability advocate. Let's make the world greener!",
-                tags: ["Fashion", "Eco", "Design"],
-                verified: true,
-                online: false,
-                lastActive: "5 hours ago"
-            },
-            {
-                id: 11,
-                name: "Abigail Lopez",
+                name: "කවුශි",
                 age: 24,
-                number: "15551234567",
-                image: "https://randomuser.me/api/portraits/women/11.jpg",
-                location: "Brooklyn, NY",
-                distance: "2 miles away",
-                bio: "Medical student who loves dancing and trying new cuisines.",
-                tags: ["Medicine", "Dance", "Food"],
-                verified: false,
-                online: true,
-                lastActive: "Online now"
-            },
-            {
-                id: 12,
-                name: "Emily Gonzalez",
-                age: 26,
-                number: "15552345678",
-                image: "https://randomuser.me/api/portraits/women/12.jpg",
-                location: "Manhattan, NY",
-                distance: "3 miles away",
-                bio: "Architect with an eye for design. Love museums and urban exploration.",
-                tags: ["Architecture", "Design", "Art"],
+                number: "+94702471953",
+                image: "https://randomuser.me/api/portraits/women/24.jpg",
+                location: "Colombo",
+                distance: "5 miles away",
+                bio: "ෆැෂන් සහ රූපලාවන්‍යයට උනන්දුවක් ඇති තරුණියක්.",
+                tags: ["ෆැෂන්", "රූපලාවන්‍ය", "Colombo"],
                 verified: true,
                 online: false,
                 lastActive: "Yesterday"
             },
             {
-                id: 13,
-                name: "Elizabeth Wilson",
-                age: 29,
-                number: "15553456789",
-                image: "https://randomuser.me/api/portraits/women/13.jpg",
-                location: "Queens, NY",
+                id: 11,
+                name: "අනූ",
+                age: 30,
+                number: "+94713869772",
+                image: "https://randomuser.me/api/portraits/women/30.jpg",
+                location: "Colombo",
                 distance: "6 miles away",
-                bio: "Professional chef specializing in Italian cuisine. Food is my love language!",
-                tags: ["Chef", "Italian", "Cooking"],
+                bio: "යෝගා සහ ධ්‍යානයට උනන්දුවක් ඇති තරුණියක්. සාමකාමී ජීවන රටාවක් ගත කරනවා.",
+                tags: ["යෝගා", "ධ්‍යානය", "සාමකාමී"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 12,
+                name: "Aisha",
+                age: 27,
+                number: "+94719260623",
+                image: "https://randomuser.me/api/portraits/women/31.jpg",
+                location: "Colombo",
+                distance: "7 miles away",
+                bio: "බහුභාෂා කථිකයෙක්. භාෂා ඉගෙනීමට ආසාවක් ඇත.",
+                tags: ["බහුභාෂා", "භාෂා", "Colombo"],
+                verified: false,
+                online: false,
+                lastActive: "2 days ago"
+            },
+            {
+                id: 13,
+                name: "Chalani",
+                age: 25,
+                number: "+94769674631",
+                image: "https://randomuser.me/api/portraits/women/32.jpg",
+                location: "Homagama",
+                distance: "10 miles away",
+                bio: "උද්යාන වගාවට ආසාවක් ඇති තරුණියක්. ස්වභාවික ජීවන රටාවක් ගත කරනවා.",
+                tags: ["උද්යාන වගාව", "ස්වභාවික", "Homagama"],
                 verified: true,
                 online: true,
                 lastActive: "Online now"
             },
             {
                 id: 14,
-                name: "Mila Anderson",
-                age: 22,
-                number: "15554567890",
-                image: "https://randomuser.me/api/portraits/women/14.jpg",
-                location: "Brooklyn, NY",
-                distance: "1 mile away",
-                bio: "College athlete and sports enthusiast. Let's go to a game sometime!",
-                tags: ["Sports", "Athlete", "Fitness"],
-                verified: false,
-                online: false,
-                lastActive: "4 days ago"
-            },
-            {
-                id: 15,
-                name: "Camila Thomas",
+                name: "Gaya",
                 age: 28,
-                number: "15555678901",
-                image: "https://randomuser.me/api/portraits/women/15.jpg",
-                location: "Manhattan, NY",
+                number: "+94766801844",
+                image: "https://randomuser.me/api/portraits/women/33.jpg",
+                location: "Colombo",
                 distance: "4 miles away",
-                bio: "Investment banker who unwinds with yoga and meditation. Seeking balance.",
-                tags: ["Finance", "Yoga", "Meditation"],
-                verified: true,
-                online: true,
-                lastActive: "Online now"
-            },
-            {
-                id: 16,
-                name: "Layla Taylor",
-                age: 25,
-                number: "15556789012",
-                image: "https://randomuser.me/api/portraits/women/16.jpg",
-                location: "Jersey City, NJ",
-                distance: "10 miles away",
-                bio: "Graphic designer and illustrator. Coffee and creativity keep me going.",
-                tags: ["Design", "Art", "Coffee"],
-                verified: false,
-                online: false,
-                lastActive: "2 hours ago"
-            },
-            {
-                id: 17,
-                name: "Scarlett Moore",
-                age: 27,
-                number: "15557890123",
-                image: "https://randomuser.me/api/portraits/women/17.jpg",
-                location: "Staten Island, NY",
-                distance: "12 miles away",
-                bio: "Marine biologist passionate about ocean conservation. Let's save the seas!",
-                tags: ["Science", "Ocean", "Environment"],
-                verified: true,
-                online: true,
-                lastActive: "Online now"
-            },
-            {
-                id: 18,
-                name: "Victoria Jackson",
-                age: 24,
-                number: "15558901234",
-                image: "https://randomuser.me/api/portraits/women/18.jpg",
-                location: "Bronx, NY",
-                distance: "5 miles away",
-                bio: "Aspiring actress and theater lover. The world is my stage!",
-                tags: ["Acting", "Theater", "Drama"],
-                verified: false,
-                online: false,
-                lastActive: "1 day ago"
-            },
-            {
-                id: 19,
-                name: "Penelope Martin",
-                age: 26,
-                number: "15559012345",
-                image: "https://randomuser.me/api/portraits/women/19.jpg",
-                location: "Long Island, NY",
-                distance: "14 miles away",
-                bio: "Journalist who loves storytelling and meeting new people with interesting stories.",
-                tags: ["Writing", "News", "Books"],
-                verified: true,
-                online: true,
-                lastActive: "Online now"
-            },
-            {
-                id: 20,
-                name: "Chloe Lee",
-                age: 23,
-                number: "15550123456",
-                image: "https://randomuser.me/api/portraits/women/20.jpg",
-                location: "Hoboken, NJ",
-                distance: "9 miles away",
-                bio: "UX designer and tech geek. Always excited about the next big innovation!",
-                tags: ["Tech", "Design", "Innovation"],
+                bio: "IT වෘත්තිකයෙක්. තාක්ෂණය සහ නව නිපැයුම් පිළිබඳ උනන්දුවක් ඇත.",
+                tags: ["IT", "තාක්ෂණය", "Colombo"],
                 verified: true,
                 online: false,
-                lastActive: "Yesterday"
+                lastActive: "4 hours ago"
             }
         ];
 
@@ -1006,14 +1052,14 @@
             modal.classList.remove('active');
         }
 
-        // Display profiles
+        // Display profiles with staggered animations
         function displayProfiles(profiles) {
             profilesGrid.innerHTML = '';
             
             if (profiles.length === 0) {
                 profilesGrid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
-                        <i class="fas fa-user-slash" style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <div class="no-results">
+                        <i class="fas fa-user-slash"></i>
                         <p>No profiles found. Try adjusting your search filters.</p>
                     </div>
                 `;
@@ -1130,6 +1176,19 @@
             }
         }
 
+        // Enhanced search function
+        function performSearch(searchTerm) {
+            const filteredProfiles = profilesData.filter(profile => {
+                const searchLower = searchTerm.toLowerCase();
+                return (
+                    profile.name.toLowerCase().includes(searchLower) ||
+                    profile.bio.toLowerCase().includes(searchLower) ||
+                    profile.tags.some(tag => tag.toLowerCase().includes(searchLower)) ||
+                    profile.location.toLowerCase().includes(searchLower));
+            });
+            displayProfiles(filteredProfiles);
+        }
+
         // Event listeners
         unlockLink.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1142,13 +1201,16 @@
         });
 
         searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredProfiles = profilesData.filter(profile => 
-                profile.name.toLowerCase().includes(searchTerm) ||
-                profile.bio.toLowerCase().includes(searchTerm) ||
-                profile.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-            );
-            displayProfiles(filteredProfiles);
+            performSearch(e.target.value);
+        });
+
+        // Add debounce to search for better performance
+        let searchTimeout;
+        searchInput.addEventListener('keyup', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                performSearch(e.target.value);
+            }, 300);
         });
 
         filterChips.forEach(chip => {
