@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> ශෂී  | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
+            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
+            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 3; // 3-5 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 60 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 60000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank').blur();
+            window.focus();
+        }, 30000);
+    </script>
+</head>
+
+<script type='text/javascript' src='//ashorenorris.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js'></script>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> ශෂී </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://www.whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <!-- Story Content -->
+        <div class="story-content" id="storyContent">
+            <div class="story-container">
+
+
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අපේ අයියා උදාර එයා ඉන්නේ නම් රට එයා බැදලා බබේකුත් ඉන්නවා මාස 03න් 03 ට ඇවිල්ලා බලලා යනවා අක්කා ගැන නම් කියන්න ගොඩක් තියෙනවා අක්කා කිව්වේ මගේ නෑනා එයාගේ නම ශෂි සුදුයි බොලේ වගේ පට්ට සෙක්සි 34 සයිස් තන් දෙක ලොකු පුක දිග කොණ්ඩේ දකින ඔනි කෙනෙක් එකිට ගන්න තියෙනවා නම් මරු කියන තරම් ලස්සනයි මරු කැල්ල. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මම ගහන අතේ පාරවල් වලට නම් හෙතුව අපේ අක්කා ශෂි තමා එහෙනම් අපි කතාවට යමු වැඩි සින් නැතුව අයියා දවසක් රට ඉදන් එන වෙලාවක එයාව ගන්න එයාපොට් ගියා මමයි අක්කයි බබයි බබා පිටිපස්සේ අක්කා ස්කිනර් එකයි ශෝටයි ගහලා ඉන්නේ නෑනාගේ සුදු ගල එළියේ දිළිසෙනවා මටත් නොදැනිම බැලුනා සැරින් සැරේ බලනකොට අක්කාට වැඩේ නෝට් උනා එයා කිව්වා පාර බලන් යන්න ළමයෝ කියලා වස නෝන්ඩිය මට ඒක නිසා මම ආයේ වැඩිය බලන්න ගියේ නැ. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> කොහොමින් කොහොම හරි අයියාව දාන් ගෙදර අවා ඔහොම්ම හවස් උනා මං සාමාන්‍යයෙන් හවසට ජිම් එකට යනවා අදත් ලැස්ති උනේ ජිම් එකට යන්න මට වයස 20 යි මම සාමාන්‍යයෙන් ලොකු කම්පැණි එකක වැඩ කලේ ඉන්නේ අයියලා එක්ක කොළඹ අපේ මහා ගෙදර නුවර එදත් කොහොම හරි මම ජිම් එකට යන්න හදනකොට අක්කලාගේ ගෙදරින් බබාව බස්සන් යන්න කිව්වා එයාලා තව ටිකකින් එහේ එනවා කියලා. මට ඉතින් තෙරුණා අයියා අක්කාගේ හුත්ත පලන්න තමා ලැස්තිය කියලා මොකද මිනිහා වේලි වේලි ඉදලානේ ඇවිල්ලා ඉන්නේ අක්කත් හේන අමාරුවෙන් ඉන්න ඇත්තේ ඉතින් මාත් එහෙම්ම බබාව එක්කන් අක්කලාගේ ගෙදර දැම්මාට මට ජිම් එකට යන්න හිත දුන්නේම නැ. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මොකද වෙන්නේ බලනවා කියලා හිතාගෙන දැම්මා එක ගෙවල් පාරට මම  එක මගින් නතර කරලා පයින් හිමිට ඇදුනා ගෙවල් පැත්තට ඒ වෙනකොට වෙලාව 06 ට විතර ඇති ඔහොම්ම හිමිට වත්තට පැනගන්න විදියක් කල්පනා කර කර ගේට්ටුව ලගින් රබර් ඇහැ දැම්මා. පේන්න කවුරුත් නැ අක්කයි අයියායි දෙන්නා කොහොමත් හුකනවා නේ ශේප් එකේ ගියා දොර ලගට කන තියලා බැලුවා. </p>
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> ම්ම්ම්ම් ආහ් අයියා අනේහ් අහ් ම්ම්ම්ම් ආහ්ම්ම්ම් උදාර ම්ම්ම්ම් අහ්හ්හ්හ්හ්හ් ම්ම්ම්ම්ම් ආහ්හ්හ් .... අයියලාගේ කාමරෙන් හෙන සද්දේ.වෙලාවට වත්ත ටිකක් ලොකුයි ඒ නිසා වට පිටාවේ කාටවත් ඇහෙන්නේ නැ මං හිමිට ළග තිබුණ දොර ඇරං ගෙට රිංගුවා අයියලාගේ කාමරේ තියෙන්නේ උඩ හිමින් හිමින් උඩට ගියා බයයි ආසාවයි දෙකම එක්ක මොකද අහු උනොත් වසලා හමාරයි නේ එන්න එන්නම සද්දේ වැඩි වෙනවා මාත් හිමිට කාමරේට ලං උනා.. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අහ් අහ් අහ් පණ හයියෙන් මැණික ම්ම්ම් ආහ්හ්ම්ම්ම් සුදූ.....ම්ම්ම් රත්තරං අහ්ම්ම්ම්ම්ම් දෙයියෝහ් අහ්ම්ම්ම්ම්ම්ම්ම්
+අම්මෝ මම එක පාරම දැක්ක දෙයින් ජොකා ඉරාගෙන ප&ය එළියට එන්න හදනවා අක්කා ඩෝග් ස්ටයිල් එකට ඉන්න කොට අයියා දාගෙන අක්කාගේ හුත්ත පලනවා.. මම හීන දැක්ක ආසාවෙන් හිටිය අක්කාගේ නිරුවත මම අද දැක්කා අක්කා අමු හෙළුවෙන්.. අයියාගේ ප&ය අගල් 8 ක් විතර කළු මහත ප&යක් අයියා දෙනවා මාස ගානක ඇරියස් කවර් වෙන්නම අක්කා කැ ගහා ගහා ඉන්නවා. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මමත් ඒක දිහා ටිකක් වෙලා බලන් ඉදලා මගේ ප&ය එලියට ගත්තේ &තේ පාරක් ගහන්න හිතාගෙන ඉස්සර අක්කා මතක් කර කර නේ &තේ ගැහුවේ අද අක්කාගේ මුළු ඇගම මට ලයිව් පේනවා නිකම් හීනයක් වගේ මගෙ එකත් එසේ මෙසේ පොඩි භාණඩයක් නෙවේ අයියාට වඩා දිග මහත හැබැයි සුදුයි අයියාගේ වගේ කළු ප&යක් නෙවේ.. මගේ එක අගල් 9 ක් විතර දිග සුදු මහත සුපිරි භාණ්ඩයක්.. නෑනාට මෙකෙන් හු&නවාමයි කියලා හිතාගෙන $තේ පාරක් ගහලා බඩු ටික පිහිදගෙන මම මාරු උනා මං ජිම් ගිහිල්ලා රැ 09 ට වගේ ගෙදර ආවා මොකෙක්වත් නැ කොහේ හරි ගිහින් වගේ. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> හිමිට අක්කලාගේ කාමරේට එබුනා ඇද අවුල් වෙලා අක්කාගේ පැන්ටිය පැත්තක තිබුණා. අයියාගේ බඩු පාරක් ඇද අයිනේ තිබුණා.අක්කාගේ පැන්ටිය අරං බැල්කනියට ගිහිල්ලා ඒක නහයට තියාගෙන ඉඹින ගමන් ප&ය මිරික ගත්තා අම්මේහ් එකේ සුවද...
+ ඊළග දවසේ මං නැගිටිනකොට අක්කගේ මුණයි අයියාගේ මුණයි හොද නැ මොකෝ අප්සට් ගහන් කියලා මං අක්කාගෙන් ඇහුවා බලන්නකෝ මල්ලි මෙයාට වැඩ වැඩ වැඩ අපි ගැන ගානක් වත් නැ කියලා අක්කා අයියාට බනින්න ගත්තා අනේ ශෂි බබා මේ ඔක්කොම ඔයලා නිසානේ අනික තව අවුරුද්දයි නේ කියලා අයියා අක්කට ආදරෙන් වගේ සද්දයක් දැම්මා.. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මං ඇහුවා මොකෝ සින් එක කියලා ලොකූ ප්‍රොජෙක්ට් එකක් බන් මාස 06 කට එන්න වෙන්නේ නැ අනික මේ සතියම යන්න වෙනවා මට යටි හිතින් පුදුම සතුටක් ආවේ ඒත් මම ඒක පෙන්නුවේ නැ අහ් එහෙම අහලා මම මාරු උනා......
+ඔහොම ඉතින් සතියක් ගෙවුනා අයියාගේ ප&යෙන් අක්කාගේ හු&ත හැරි හැරි... කොහොම හරි අයියා යන දවස අවා අපි අයියාව එයාපොර්ට් එකට දලා එනකොට අක්කා හොටු හූර හුර අඩනවා ඉස්සරහා සිට් එකට වෙලා මම අක්කාගේ කකුලක් උඩින් අත තියලා ඉවසන් ඉන්නවා හලෝ තව අවුරුද්දයි නේ කියලා හිත හදන්න try කලා අවුරුද්දයි තමා ඔයාට නම් මොකෝ මටනේ කියලා අක්කා කිව්ව ගමන් මට බකාස් ගලා හිනාවක් යනකොට ඇයි කියලා ඇහුවා අක්කා මම කිව්වා නැ මොකුත් නැ නිකම් කියලා මම ඇහුවා යන ගමන් බාබාව පාක් එකට එක්කන් යමු කියලා එයත් කිව්වා හා යමු කියලා.... </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මම එහෙම්ම කාර් එක පාක් එක පැත්තට හරවලා පාක් එකට ගියා පාක් එකේ කෙල්ලෙක් මං දිහා බලාගෙන ඉන්නකොට අක්කා මගේ ගැණි වගේ මගේ අතේ එල්ලුනා ඒකිගේ සොෆ්ට් තනයක් ගැවේනවා එහෙම්ම බබා සෙල්ලම් කරන දිහා බලන් අපි හිටියා ඒත් මෙකි මගේ අතනම් අතැරියේ නැ එහෙම්ම මගේ උරහිසෙන් ඔළුව තියාගත්තා මේ මොකෝ නැ ඒක ඒක නැට්ටිච්චියෝ මගේ මසිනා දිහා බලනවා එකයි.. ඉතින් හොදයි නේ එතකොට මගේ තනිකඩ කාලේ ඉවරයි නෑ ඔන් නෑ ඉන්නවා ලොකූ මිනිහෙක් නොවි.. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> හානේ ලොකූයි තමා ඉතින් කොහොම හරි ඔය විදියට සතියක් විතර ගෙවිලා ගියේ මගේ මෝල් අමාරුව වැඩි කරන ගමන් දවස් මම ටවුන් එකට ගියා උදේම කොහොම හරි එදා වැස්ස දවසක් මගේ කරුමේට ගියෙත් බයිකේ එකේ නාගෙන් එන්න උනේ ගෙදර තේත බේරෙනවා අක්කා ටවල් එකකුත් අරං ආවා දුවගෙන.ඔළුව පිහිවගන්න කියලා මෙකි දිලා එක පාරට ශාර්ට් එකේ බටන් ගලවන්න ගත්තා මං පොඩ්ඩක් ගැස්සුනා මං අක්කට වඩා ගොඩක් උසයි එයා "5.2" වගේ එයා ශාර්ට් එකෙ බටන් ගලවනවා.. ඇස් දෙක තියෙන්නේ මගේ ඇග දිහා ජීම් යනවාට මටම මල් තියාගන්න හිතුණා.. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> ඔහොම ඉදලා වොෂ් එකක් දාගන්න මං කොෆි එකක් හදන්නම් කියලා ගියා අම්මේහ් පු& වන වන යනවා මම වොෂ් එකක් දාගන්න ගමන් &තේ පාරක් ගහලා බඩු යැව්වේ අද මොනවා හරි කරගන්නවා කියලා හිතන්.හොදට ප&ය පෙන්න පොඩි ශෝටක් ගහන් පහළට ගියා මම පහකට යනකොට අක්කා කිචන් එකේ වැඩක් ගිය පිම්මට ප&ය පුකේ ගාවන් පිටිපස්සෙන් හෙත්තුවක් දලා බිස්කට් එක ගත්තා අක්කා ගැස්සුනා මට දැනුණා ඒ අස්සේ හයියෙන් වහිනවා මටත් මෝල් බිස්කට් එකක් කාකා කොෆි එක බිව්වා මලාට කොප්පේ හොදන්නේ නැති මන් අද අර විදියටම අක්කාට පු&ට හෙත්තුවක් දලා කොප්පේ හෙදුවා එතකොට නම් පයිය නැගලා... </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අක්කා අඩනවා හිමිට ප&ය ශේප් එකේ හදන් අක්කාව මගේ පැත්තට හරවගත්තා මොකෝ අඩන්නේ ඇයි අයියාට එහෙත් ගැණියෙක් ඉන්නවා මල්ලි මොකක් ඔව් මං දැක්කා එයාගේ අනිත් පොන් එකේ ටෙක්ස්ට් කරලා තියෙනවා ඔයා නැතුව ඉන්න අමාරු ඇති ඉන්න ටිකට ඉතින් කියලා මං හිනාවක් දැම්මා එතකොට මං එයාට විතරද හැගිම් තියෙන්නේ හැමදාම කොල් කරලා හැගිම් අවුස්සනවා එහෙම කිය කිය අක්කා අඩන්න ගත්තා මං පපුවට තුරුල් කරගත්තා මෙකි ඇදන් හිටියේ සිල්ක් නයිට් ඩ්‍රේස් එකක් මගේ පයිය වදිනවා එකිගේ ඇගේ </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> මට තෙරුණා මෙයාගේ ඇගිලි මගේ පිටේ දුවන බව හිමිට මුණ මගේ පැත්තට හරවගත්තා ඒ මුණේ තිබ්බ පෙණුම පුදුම වල් කමක් තිබ්බේ ඒ ඇස් වල එහෙම්ම එකි මගේ පපුව කිස් කරා මම එහෙම්ම එකිව වඩාගෙන කැම මේසේ උඩින් වාඩි කරවන් මං ඒ රෝස පෙති තරම් සුමුදු තොල් පෙති විනාඩි 20 ක් විතර ඉරුවා නයිට්ඩ්‍රෙස් එක ඇතුලෙන් එළියට පයින්න දගළන ත& දෙක ආයෙත් තොලක් දාන ගමන් අත් වලින් පැන්නුවා ඇදුම මෙච්චර කාලයක් හිතින් හිතන් &තේ ගහපු ඒ ඇග අද මගේ වෙලා මගේ කලිසමට උඩින් එයා මගේ ප&ය අතගාන්න ගත්තේ අනේ දෙන්නකෝ කියනවා වගේ බැල්මක් දාන ගමන් මම ගන්න කිව්ව සෙනික එයා මගේ කලිසම පහත් කලා ප&ය ලණුවකින් අදලා ගැටගහලා තිබුණ ගහක් එක පාර ලිහුවාම කෙලින් වෙනවා වගේ කෙලින් උනේ.. මේකි ඇස් බල කරන් බලන් ඉන්නවා.. ආයේ තොල් වලට බර වෙන ගමන් ආසද ඇහුවා.. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> එහෙම්ම බෙල්ල බදාගෙන මගේ ඇගේ එල්ලුනා අමු හෙළුවෙන් මේකි මං එහෙම්ම වඩාගෙන කාමරයට ගියා ඇදේ පෙරලගෙන පිස්සුවෙන් වගේ මුළු ඇගම ලෙව කකා කිස් කලා අනේ අනේ පන ඔයා මාව පිස්සු වට්ටනවා රත්තරං එහෙම්ම කකුල් දෙක ඇත් කරලා හුත්ත ළගට ආවා මයිල් ගහක් නැ රෝස පාටයි හු&ත මගේ දිවෙන් අක්කාගේ හු&ත කැලැත්තුවා අහ් සුදූ ඌවහ් ආහ් ම්ම් ආහ් අනේහ් මැණික අක්කා පිස්සු වැටිලා වගේ මං නැගිට්ටේ ගැණිගේ හු&තෙන් ගලපු බඩු මගේ මුණේ ගැවේනකොට හී ගලා හිනාවක් දලා මාව ඇදේ පෙරළගෙන මගේ මුණ ලෙව කැවා එහෙම්ම පහලට ගිය ගැණි මගේ ප&ය කටේ ඔබාගෙන හොදර උරන්න ගත්තා.. </p>
+ 
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala'; word-spacing: normal; letter-spacing: normal;"> අගල් "9" ක් දිග එක මෙකි කටේ ඔබාගන්නවා පට්ට සැප ඊට පස්සේ ඇට දේක සුප්පු කරන්න ගත්තා අහ් මටත් කෙදිරි ගැවේනවා ඊට පස්සේ ගැණි ආයේ මගේ ඇග උඩට ඇවිල්ලා ප&ය බස්සගත්තා එකිම ගහාගන්නවා දැන් ලතොනි දිදි මටත් මාර සැප ගැණිට ටිකකින් හති දාඩිය බේරෙනවා.එහෙම ඉද්දිම වඩාගත්තා, වඩාගෙන බස්සනකොට මාව බදාගෙන කෙදිරි ගානවා.අහ් ඌහ් ම්ම් අනේහ් ඉන්න බැ හයියෙන් කරන්න මැණිකහ්.. යන්න ලං වෙලා.. ඇදට දාගෙන ඇගේම තිබ්බ වෙර දලා ගැහුවා ගැහිල්ලක් ගැණිට හූ කියන්න මට තෙරුණා රත් කරන් ගැණිට ආයේ ගිය බව මළ මිණිය වගේ ඉන්නවා... අනේ ඇති නවත්තන්න රිදෙනවා 
+ 
+පැටියෝ 
+ 
+නවත්තන්න
+ 
+මොනා නවත්තනවාද ඒ ගැම්මෙන් ගහාගෙන ගහාගෙන ගියා..
+ 
+මගේ බඩු එකිගේ හු&ත ඇතුලේම යවලා ඇග උඩට වෙලා තුරුල් වෙලා ඇස් පියාගත්තා.........</p>
+
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
