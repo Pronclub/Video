@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 SPARK CONNECT | Dating App 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff2d75;
+            --secondary: #ff6b9d;
+            --accent: #ffb3cb;
+            --dark: #1a1a2e;
+            --light: #fef6f9;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --text: #2b2d42;
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --online: #4ade80;
+            --offline: #94a3b8;
+            --neon-purple: #c724f9;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @font-face {
+            font-family: 'Neue Montreal';
+            src: url('https://fonts.cdnfonts.com/css/neue-montreal') format('woff2');
+        }
+
+        body {
+            font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .app-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 80px;
+            padding-top: 70px;
+        }
+
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 45, 117, 0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            color: white;
+            position: relative;
+        }
+
+        .nav-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: var(--primary);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .search-container {
+            position: relative;
+            margin: 15px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        #search:focus {
+            outline: none;
+            box-shadow: 0 5px 25px rgba(255, 45, 117, 0.3);
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
+        }
+
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: white;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 0 15px 20px;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover .profile-image {
+            transform: scale(1.03);
+        }
+
+        .online-status {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 2;
+        }
+
+        .online {
+            background: var(--online);
+        }
+
+        .offline {
+            background: var(--offline);
+        }
+
+        .profile-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .profile-name-age {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .profile-name {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .profile-age {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .profile-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .profile-bio {
+            font-size: 0.8rem;
+            color: var(--text);
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .profile-tag {
+            background: rgba(255, 45, 117, 0.1);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            min-width: 0;
+        }
+
+        .action-btn:active {
+            transform: scale(0.95);
+        }
+
+        .chat-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+        }
+
+        .call-btn {
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            font-size: 0.7rem;
+            text-decoration: none;
+        }
+
+        .nav-item i {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .modal h3 {
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .modal p {
+            margin-bottom: 16px;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin: 5px;
+        }
+
+        .modal-btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+        }
+
+        .unlock-now-btn {
+            background: linear-gradient(135deg, var(--whatsapp-green) 0%, #128C7E 100%) !important;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .unlock-status {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 0.85rem;
+            color: var(--text);
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .unlock-status i {
+            font-size: 1.3rem;
+        }
+
+        .unlock-timer {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .unlock-progress {
+            width: 100%;
+            height: 4px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .unlock-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--neon-purple));
+            transition: width 1s linear;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .no-results i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .no-results p {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .profiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .profile-image-container {
+                height: 180px;
+            }
+            
+            .profile-bio {
+                -webkit-line-clamp: 3;
+            }
+            
+            .action-btn i {
+                display: none;
+            }
+            
+            .action-btn .btn-text {
+                display: inline;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profiles-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .profile-image-container {
+                height: 220px;
+            }
+            
+            .app-header {
+                padding: 12px 15px;
+            }
+            
+            .logo {
+                font-size: 1.3rem;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+            }
+            
+            .nav-icons {
+                gap: 15px;
+            }
+            
+            .action-btn i {
+                display: inline-block;
+                font-size: 0.9rem;
+            }
+            
+            .action-btn .btn-text {
+                display: inline;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="logo">
+            <i class="fas fa-sparkles"></i>
+            <span>SPARK CONNECT</span>
+        </div>
+        <div class="nav-icons">
+            <a href="#" class="nav-icon">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-envelope"></i>
+                <span class="badge">3</span>
+            </a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-bell"></i>
+                <span class="badge">5</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="app-container">
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Find your perfect match...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="filter-chips">
+                <div class="filter-chip active">All</div>
+                <div class="filter-chip">Online</div>
+                <div class="filter-chip">Nearby</div>
+                <div class="filter-chip">Verified</div>
+                <div class="filter-chip">New</div>
+                <div class="filter-chip">Popular</div>
+            </div>
+
+            <div class="profiles-grid" id="profilesGrid">
+                <!-- Profiles will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-compass"></i>
+            <span>Discover</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Matches</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Unlock Modal -->
+    <div class="modal" id="unlockModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3>Unlock Chat Features</h3>
+            <p>To start chatting, please complete verification:</p>
+            
+            <a href="https://www.slvideo.club" target="_blank" class="modal-btn unlock-now-btn" id="unlockLink">
+                <i class="fas fa-external-link-alt"></i> Verify Now
+            </a>
+            
+            <div class="unlock-status" id="unlockStatus">
+                <i class="fas fa-sync-alt fa-spin"></i>
+                <span>Verifying your access...</span>
+                <div class="unlock-progress">
+                    <div class="unlock-progress-bar" id="progressBar"></div>
+                </div>
+                <div class="unlock-timer" id="timer">5 seconds remaining</div>
+            </div>
+            
+            <button class="modal-btn secondary" id="cancelUnlockBtn">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Profile Data with Sri Lankan details
+        const profilesData = [
+            {
+                id: 1,
+                name: "සදුනි",
+                age: 24,
+                number: "+94755819338",
+                image: "https://randomuser.me/api/portraits/women/21.jpg",
+                location: "මිගමුව",
+                distance: "5 miles away",
+                bio: "හිතවත් සහ සාමකාමී පෙම්වතියක්. සාපේක්ෂව නව අත්දැකීම් සොයනවා.",
+                tags: ["හිතවත්", "සාමකාමී", "නව අත්දැකීම්"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 2,
+                name: "වත්සලා",
+                age: 26,
+                number: "+94750286549",
+                image: "https://randomuser.me/api/portraits/women/22.jpg",
+                location: "හොරණ",
+                distance: "8 miles away",
+                bio: "උද්යෝගිමත් සහ ක්‍රියාශීලී තරුණියක්. සංචාරය කිරීමට ආසාවක් ඇත.",
+                tags: ["ක්‍රියාශීලී", "සංචාරක", "උද්යෝගිමත්"],
+                verified: true,
+                online: false,
+                lastActive: "1 hour ago"
+            },
+            {
+                id: 3,
+                name: "ගිත්මා ඇන්ටි",
+                age: 35,
+                number: "+94758594688",
+                image: "https://randomuser.me/api/portraits/women/35.jpg",
+                location: "Colombo",
+                distance: "3 miles away",
+                bio: "පරිපූර්ණ අවධානය සහ සැලකිල්ල ලබා දෙන පෙම්වතියක්.",
+                tags: ["සැලකිලිමත්", "පරිපූර්ණ", "Colombo"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 4,
+                name: "නෙතු",
+                age: 28,
+                number: "+94758630140",
+                image: "https://randomuser.me/api/portraits/women/28.jpg",
+                location: "පානදුර",
+                distance: "12 miles away",
+                bio: "සාමකාමී සහ සන්සුන් චරිතයක්. සාධාරණ සම්බන්ධතාවක් සොයනවා.",
+                tags: ["සන්සුන්", "සාමකාමී", "පානදුර"],
+                verified: false,
+                online: false,
+                lastActive: "Yesterday"
+            },
+            {
+                id: 5,
+                name: "වත්සලා",
+                age: 25,
+                number: "+94759101558",
+                image: "https://randomuser.me/api/portraits/women/25.jpg",
+                location: "පානදුර ස්පා",
+                distance: "11 miles away",
+                bio: "කලාත්මක සහ නිර්මාණශීලී චරිතයක්. සංගීතයට ආසාවක් ඇත.",
+                tags: ["කලාත්මක", "නිර්මාණශීලී", "සංගීතය"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 6,
+                name: "කවුෂල්‍යා",
+                age: 27,
+                number: "+94758146561",
+                image: "https://randomuser.me/api/portraits/women/27.jpg",
+                location: "මාදම්පේ ස්පා",
+                distance: "15 miles away",
+                bio: "උගත් සහ බුද්ධිමත් තරුණියක්. දේශපාලනය සහ සමාජය පිළිබඳ උනන්දුවක් ඇත.",
+                tags: ["උගත්", "බුද්ධිමත්", "දේශපාලනය"],
+                verified: true,
+                online: false,
+                lastActive: "2 days ago"
+            },
+            {
+                id: 7,
+                name: "දිව්‍යා",
+                age: 23,
+                number: "+94701262968",
+                image: "https://randomuser.me/api/portraits/women/23.jpg",
+                location: "Colombo",
+                distance: "2 miles away",
+                bio: "උද්යෝගිමත් සහ ක්‍රීඩාකාරී තරුණියක්. ක්‍රීඩා සහ සෞඛ්‍ය සම්බන්ධයෙන් උනන්දුවක් ඇත.",
+                tags: ["ක්‍රීඩාකාරී", "සෞඛ්‍ය", "Colombo"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 8,
+                name: "වත්සලා",
+                age: 29,
+                number: "+94704913863",
+                image: "https://randomuser.me/api/portraits/women/29.jpg",
+                location: "Colombo",
+                distance: "4 miles away",
+                bio: "වෘත්තීය කාන්තාවක්. ව්‍යාපාර සහ ආයෝජන පිළිබඳ උනන්දුවක් ඇත.",
+                tags: ["වෘත්තීය", "ව්‍යාපාර", "Colombo"],
+                verified: true,
+                online: false,
+                lastActive: "3 hours ago"
+            },
+            {
+                id: 9,
+                name: "තරිනි",
+                age: 26,
+                number: "+94701344551",
+                image: "https://randomuser.me/api/portraits/women/26.jpg",
+                location: "Colombo",
+                distance: "3 miles away",
+                bio: "සාහිත්‍යයට ආසාවක් ඇති තරුණියක්. කවි සහ කෙටිකතා ලියනවා.",
+                tags: ["සාහිත්‍යය", "කවි", "Colombo"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 10,
+                name: "කවුශි",
+                age: 24,
+                number: "+94702471953",
+                image: "https://randomuser.me/api/portraits/women/24.jpg",
+                location: "Colombo",
+                distance: "5 miles away",
+                bio: "ෆැෂන් සහ රූපලාවන්‍යයට උනන්දුවක් ඇති තරුණියක්.",
+                tags: ["ෆැෂන්", "රූපලාවන්‍ය", "Colombo"],
+                verified: true,
+                online: false,
+                lastActive: "Yesterday"
+            },
+            {
+                id: 11,
+                name: "අනූ",
+                age: 30,
+                number: "+94713869772",
+                image: "https://randomuser.me/api/portraits/women/30.jpg",
+                location: "Colombo",
+                distance: "6 miles away",
+                bio: "යෝගා සහ ධ්‍යානයට උනන්දුවක් ඇති තරුණියක්. සාමකාමී ජීවන රටාවක් ගත කරනවා.",
+                tags: ["යෝගා", "ධ්‍යානය", "සාමකාමී"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 12,
+                name: "Aisha",
+                age: 27,
+                number: "+94719260623",
+                image: "https://randomuser.me/api/portraits/women/31.jpg",
+                location: "Colombo",
+                distance: "7 miles away",
+                bio: "බහුභාෂා කථිකයෙක්. භාෂා ඉගෙනීමට ආසාවක් ඇත.",
+                tags: ["බහුභාෂා", "භාෂා", "Colombo"],
+                verified: false,
+                online: false,
+                lastActive: "2 days ago"
+            },
+            {
+                id: 13,
+                name: "Chalani",
+                age: 25,
+                number: "+94769674631",
+                image: "https://randomuser.me/api/portraits/women/32.jpg",
+                location: "Homagama",
+                distance: "10 miles away",
+                bio: "උද්යාන වගාවට ආසාවක් ඇති තරුණියක්. ස්වභාවික ජීවන රටාවක් ගත කරනවා.",
+                tags: ["උද්යාන වගාව", "ස්වභාවික", "Homagama"],
+                verified: true,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 14,
+                name: "Gaya",
+                age: 28,
+                number: "+94766801844",
+                image: "https://randomuser.me/api/portraits/women/33.jpg",
+                location: "Colombo",
+                distance: "4 miles away",
+                bio: "IT වෘත්තිකයෙක්. තාක්ෂණය සහ නව නිපැයුම් පිළිබඳ උනන්දුවක් ඇත.",
+                tags: ["IT", "තාක්ෂණය", "Colombo"],
+                verified: true,
+                online: false,
+                lastActive: "4 hours ago"
+            }
+        ];
+
+        // DOM Elements
+        const profilesGrid = document.getElementById('profilesGrid');
+        const searchInput = document.getElementById('search');
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const unlockModal = document.getElementById('unlockModal');
+        const unlockLink = document.getElementById('unlockLink');
+        const unlockStatus = document.getElementById('unlockStatus');
+        const timer = document.getElementById('timer');
+        const progressBar = document.getElementById('progressBar');
+        const cancelUnlockBtn = document.getElementById('cancelUnlockBtn');
+
+        // State
+        let currentProfile = null;
+        let isUnlocked = false;
+        let unlockAttempted = false;
+        let timeLeft = 5;
+        let timerInterval;
+
+        // Display profiles
+        function displayProfiles(profiles) {
+            profilesGrid.innerHTML = '';
+            
+            if (profiles.length === 0) {
+                profilesGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-user-slash"></i>
+                        <p>No profiles found. Try adjusting your search filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            profiles.forEach((profile) => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                
+                card.innerHTML = `
+                    <div class="profile-image-container">
+                        <img src="${profile.image}" alt="${profile.name}" class="profile-image">
+                        ${profile.verified ? '<div class="online-status ' + (profile.online ? 'online' : 'offline') + '" title="' + profile.lastActive + '"></div>' : ''}
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name-age">
+                            <span class="profile-name">${profile.name}</span>
+                            <span class="profile-age">${profile.age}</span>
+                        </div>
+                        <div class="profile-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${profile.location} • ${profile.distance}</span>
+                        </div>
+                        <p class="profile-bio">${profile.bio}</p>
+                        <div class="profile-tags">
+                            ${profile.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="profile-actions">
+                            <button class="action-btn chat-btn" data-id="${profile.id}">
+                                <i class="fas fa-comment-dots"></i> <span class="btn-text">Chat</span>
+                            </button>
+                            <button class="action-btn call-btn" data-id="${profile.id}">
+                                <i class="fas fa-phone"></i> <span class="btn-text">Call</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                profilesGrid.appendChild(card);
+            });
+
+            // Add event listeners to action buttons
+            document.querySelectorAll('.chat-btn, .call-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const profileId = parseInt(this.getAttribute('data-id'));
+                    currentProfile = profilesData.find(p => p.id === profileId);
+                    
+                    if (!isUnlocked) {
+                        showModal(unlockModal);
+                    } else {
+                        openWhatsApp();
+                    }
+                });
+            });
+
+            // Add click event to profile cards (for preview)
+            document.querySelectorAll('.profile-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const profileId = parseInt(this.querySelector('.action-btn').getAttribute('data-id'));
+                    const profile = profilesData.find(p => p.id === profileId);
+                    console.log(`Previewing ${profile.name}'s profile`);
+                });
+            });
+        }
+
+        // Open WhatsApp function
+        function openWhatsApp() {
+            if (!currentProfile) return;
+            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SparkConnect!`;
+            window.open(url, '_blank');
+        }
+
+        // Start unlock process
+        function startUnlockProcess() {
+            unlockAttempted = true;
+            unlockStatus.style.display = 'flex';
+            timeLeft = 5;
+            timer.textContent = `${timeLeft} seconds remaining`;
+            progressBar.style.width = '0%';
+            setTimeout(() => progressBar.style.width = '100%', 10);
+            
+            // Open unlock page in new tab
+            window.open('https://www.slvideo.club', '_blank');
+            
+            // Start timer
+            timerInterval = setInterval(updateUnlockTimer, 1000);
+        }
+
+        // Update unlock timer
+        function updateUnlockTimer() {
+            timeLeft--;
+            timer.textContent = `${timeLeft} seconds remaining`;
+            
+            if(timeLeft <= 0) {
+                clearInterval(timerInterval);
+                completeUnlock();
+            }
+        }
+
+        // Complete unlock process
+        function completeUnlock() {
+            unlockStatus.innerHTML = `
+                <i class="fas fa-check-circle" style="color:var(--success)"></i>
+                <span>Verified successfully!</span>
+            `;
+            
+            setTimeout(() => {
+                isUnlocked = true;
+                hideModal(unlockModal);
+                if(currentProfile) {
+                    openWhatsApp();
+                }
+                localStorage.setItem('lastUnlock', Date.now());
+            }, 1500);
+        }
+
+        // Check if already unlocked recently
+        function checkPreviousUnlock() {
+            const lastUnlock = localStorage.getItem('lastUnlock');
+            if(lastUnlock && (Date.now() - lastUnlock) < (24 * 60 * 60 * 1000)) {
+                isUnlocked = true;
+            }
+        }
+
+        // Modal functions
+        function showModal(modal) {
+            modal.classList.add('active');
+        }
+
+        function hideModal(modal) {
+            modal.classList.remove('active');
+        }
+
+        // Event listeners
+        unlockLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            startUnlockProcess();
+        });
+
+        cancelUnlockBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            hideModal(unlockModal);
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredProfiles = profilesData.filter(profile => 
+                profile.name.toLowerCase().includes(searchTerm) ||
+                profile.bio.toLowerCase().includes(searchTerm) ||
+                profile.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                profile.location.toLowerCase().includes(searchTerm)
+            );
+            displayProfiles(filteredProfiles);
+        });
+
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                
+                const filter = chip.textContent.toLowerCase();
+                let filteredProfiles = [];
+                
+                switch(filter) {
+                    case 'all':
+                        filteredProfiles = profilesData;
+                        break;
+                    case 'online':
+                        filteredProfiles = profilesData.filter(p => p.online);
+                        break;
+                    case 'nearby':
+                        filteredProfiles = [...profilesData].sort((a, b) => 
+                            parseInt(a.distance) - parseInt(b.distance));
+                        break;
+                    case 'verified':
+                        filteredProfiles = profilesData.filter(p => p.verified);
+                        break;
+                    case 'new':
+                        filteredProfiles = [...profilesData].reverse();
+                        break;
+                    case 'popular':
+                        filteredProfiles = [...profilesData].sort(() => Math.random() - 0.5);
+                        break;
+                    default:
+                        filteredProfiles = profilesData;
+                }
+                
+                displayProfiles(filteredProfiles);
+            });
+        });
+
+        // Initialize
+        checkPreviousUnlock();
+        displayProfiles(profilesData);
+    </script>
+</body>
+</html>
