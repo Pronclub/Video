@@ -685,6 +685,22 @@
             background: linear-gradient(90deg, var(--primary), var(--neon-purple));
         }
 
+        .mobile-open-btn {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--neon-purple));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 45, 117, 0.3);
+            margin: 15px 0;
+            display: none;
+            width: 100%;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -712,6 +728,10 @@
             
             .action-btn .btn-text {
                 display: inline;
+            }
+            
+            .mobile-open-btn {
+                display: block;
             }
         }
 
@@ -785,7 +805,7 @@
                 font-size: 0.8rem;
             }
             
-            .locker-btn {
+            .locker-btn, .mobile-open-btn {
                 padding: 10px 22px;
                 font-size: 0.9rem;
                 width: 85%;
@@ -898,6 +918,10 @@
                     <span>Return to complete verification</span>
                 </div>
             </div>
+            
+            <button class="mobile-open-btn" id="mobileOpenBtn">
+                <i class="fas fa-external-link-alt"></i> Open Verification Site
+            </button>
             
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
@@ -1131,6 +1155,7 @@
         const warningConfirmBtn = document.getElementById('warningConfirmBtn');
         const lockerPopup = document.getElementById('lockerPopup');
         const verifyBtn = document.getElementById('verifyBtn');
+        const mobileOpenBtn = document.getElementById('mobileOpenBtn');
         const remainingTime = document.getElementById('remainingTime');
         const progressBar = document.getElementById('progressBar');
         const unlockSuccess = document.getElementById('unlockSuccess');
@@ -1272,28 +1297,46 @@
             document.getElementById('step2').classList.remove('active', 'completed');
             document.getElementById('step3').classList.remove('active', 'completed');
             
-            // Open visit link in new tab after 1.5 seconds (for better UX)
-            setTimeout(() => {
-                visitTab = window.open('https://www.slvideo.club', '_blank');
-                visitStartTime = Date.now();
-                
-                // Start checking if user left the tab early
-                tabCheckInterval = setInterval(() => {
-                    if (visitTab.closed) {
-                        leftEarly = true;
-                        clearInterval(tabCheckInterval);
-                    }
-                }, 500);
-                
-                // Mark step 1 as completed and activate step 2
-                document.getElementById('step1').classList.remove('active');
-                document.getElementById('step1').classList.add('completed');
-                document.getElementById('step2').classList.add('active');
-                
-                // Start countdown timer
-                clearInterval(timerInterval);
-                timerInterval = setInterval(updateTimer, 1000);
-            }, 1500);
+            // Detect mobile devices
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Change instructions for mobile
+                document.getElementById('step1').innerHTML = `
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>Click the button below to open verification site</span>
+                `;
+                mobileOpenBtn.style.display = 'block';
+            } else {
+                // Desktop behavior
+                mobileOpenBtn.style.display = 'none';
+                setTimeout(() => {
+                    openVerificationSite();
+                }, 1500);
+            }
+        }
+
+        // Open verification site (used by both mobile and desktop)
+        function openVerificationSite() {
+            visitTab = window.open('https://www.slvideo.club', '_blank');
+            visitStartTime = Date.now();
+            
+            // Start checking if user left the tab early
+            tabCheckInterval = setInterval(() => {
+                if (visitTab.closed) {
+                    leftEarly = true;
+                    clearInterval(tabCheckInterval);
+                }
+            }, 500);
+            
+            // Mark step 1 as completed and activate step 2
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step1').classList.add('completed');
+            document.getElementById('step2').classList.add('active');
+            
+            // Start countdown timer
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
         }
 
         // Update timer
@@ -1448,6 +1491,9 @@
                 displayProfiles(filteredProfiles);
             });
         });
+
+        // Mobile open button click
+        mobileOpenBtn.addEventListener('click', openVerificationSite);
 
         // Verify button click
         verifyBtn.addEventListener('click', verifyVisit);
