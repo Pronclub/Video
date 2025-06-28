@@ -685,10 +685,93 @@
             max-width: 250%;
         }
 
+        /* Telegram Verification Styles */
+        .telegram-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .verification-frame {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .verification-countdown {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: var(--text);
+        }
+
+        .verification-complete {
+            color: var(--success);
+            font-weight: bold;
+            display: none;
+            margin: 15px 0;
+        }
+
+        .telegram-btn {
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: none;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .telegram-notice {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
+        }
+
+        /* No results styles */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .no-results i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .no-results p {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.8;
         }
 
         /* Mobile responsive adjustments */
@@ -724,143 +807,39 @@
                 padding: 10px 20px;
                 font-size: 0.9rem;
             }
+
+            /* Telegram verification mobile styles */
+            .verification-frame {
+                height: 200px;
+            }
+            
+            .verification-countdown {
+                font-size: 1rem;
+            }
+            
+            .telegram-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .no-results {
+                padding: 30px 15px;
+            }
+            
+            .no-results i {
+                font-size: 2rem;
+            }
+            
+            .no-results p {
+                font-size: 0.9rem;
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 360px) {
             .profiles-grid {
-                gap: 10px;
-                padding: 0 10px 20px;
-            }
-            
-            .profile-image-container {
-                height: 160px;
-            }
-            
-            .profile-info {
-                padding: 10px;
-            }
-            
-            .profile-name {
-                font-size: 0.95rem;
-            }
-            
-            .profile-age, .profile-location {
-                font-size: 0.8rem;
-            }
-            
-            .profile-bio {
-                font-size: 0.8rem;
-                margin-bottom: 10px;
-            }
-            
-            .profile-tag {
-                font-size: 0.65rem;
-                padding: 4px 8px;
-            }
-            
-            .action-btn {
-                font-size: 0.75rem;
-                padding: 6px;
-            }
-            
-            .app-header {
-                padding: 12px 15px;
-            }
-            
-            .logo {
-                font-size: 1.3rem;
-            }
-            
-            .logo i {
-                font-size: 1.5rem;
-            }
-            
-            .nav-icons {
-                gap: 15px;
-            }
-            
-            /* Warning popup mobile adjustments */
-            .warning-content {
-                padding: 25px 20px;
-                border-radius: 15px;
-            }
-            
-            .warning-title {
-                font-size: 1.3rem;
-            }
-            
-            .warning-message {
-                font-size: 0.88rem;
-                padding: 0;
-            }
-            
-            .warning-btn {
-                padding: 10px 22px;
-                font-size: 0.9rem;
-                width: 85%;
-            }
-            
-            /* Locker popup mobile adjustments */
-            .locker-content {
-                padding: 25px 20px;
-                border-radius: 15px;
-            }
-            
-            .locker-title {
-                font-size: 1.3rem;
-            }
-            
-            .unlock-step {
-                font-size: 0.8rem;
-            }
-            
-            .locker-btn, .mobile-open-btn {
-                padding: 10px 22px;
-                font-size: 0.9rem;
-                width: 85%;
+                grid-template-columns: 1fr;
             }
         }
-
-              /* Add this to your existing CSS */
-     .no-results {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 40px 20px;
-        color: var(--text);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .no-results i {
-        font-size: 2.5rem;
-        color: var(--primary);
-        opacity: 0.7;
-    }
-
-    .no-results p {
-        font-size: 1rem;
-        color: var(--text);
-        opacity: 0.8;
-    }
-
-    /* For mobile devices */
-    @media (max-width: 480px) {
-        .no-results {
-            padding: 30px 15px;
-        }
-        
-        .no-results i {
-            font-size: 2rem;
-        }
-        
-        .no-results p {
-            font-size: 0.9rem;
-        }
-    }
-
     </style>
 </head>
 <body>
@@ -903,7 +882,7 @@
             </div>
 
             <div class="profiles-grid" id="profilesGrid">
-                <!-- Profiles will be loaded here with individual lockers -->
+                <!-- Profiles will be loaded here -->
             </div>
         </div>
     </div>
@@ -946,7 +925,7 @@
         </div>
     </div>
 
-    <!-- Locker Popup -->
+    <!-- Locker Popup (for regular browsers) -->
     <div class="locker-popup" id="lockerPopup">
         <div class="locker-content">
             <div class="locker-icon">
@@ -981,73 +960,38 @@
                 Please complete the verification process to unlock this profile
             </div>
             
-            <div class="strict-warning">
+            <p class="strict-warning">
                 <i class="fas fa-exclamation-circle"></i> Leaving the site early will reset the process
-            </div>
+            </p>
             
             <div class="unlock-success" id="unlockSuccess">
                 <i class="fas fa-check-circle"></i> Verification successful!
             </div>
-            <p>
-           <p> <button class="locker-btn" id="verifyBtn">
+            <button class="locker-btn" id="verifyBtn">
                 Complete Verification
-            </button></p>
+            </button>
         </div>
     </div>
 
-    <script>
-        // Add content protection
-        document.addEventListener('DOMContentLoaded', function() {
-            // Disable right-click
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            
-            // Disable text selection
-            document.addEventListener('selectstart', function(e) {
-                e.preventDefault();
-                return false;
-            });
-            
-            // Disable dragging images
-            document.addEventListener('dragstart', function(e) {
-                if (e.target.tagName === 'IMG') {
-                    e.preventDefault();
-                    return false;
-                }
-            });
-            
-            // Disable keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                // Disable Ctrl+A, Ctrl+C, Ctrl+X, Ctrl+S
-                if (e.ctrlKey && (e.keyCode === 65 || e.keyCode === 67 || e.keyCode === 88 || e.keyCode === 83)) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Disable F12 (DevTools)
-                if (e.keyCode === 123) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Disable Ctrl+Shift+I (DevTools)
-                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Disable Ctrl+Shift+J (DevTools)
-                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
-                    e.preventDefault();
-                    return false;
-                }
-                // Disable Ctrl+U (View Source)
-                if (e.ctrlKey && e.keyCode === 85) {
-                    e.preventDefault();
-                    return false;
-                }
-            });
-        });
+    <!-- Telegram Verification Container -->
+    <div class="telegram-verification" id="telegramVerification">
+        <h3>🔒 Telegram Verification</h3>
+        <p class="telegram-notice">
+            Please complete verification within this tab. Do not close or switch tabs until the process completes.
+        </p>
+        <iframe class="verification-frame" id="verificationFrame" src="about:blank"></iframe>
+        <p class="verification-countdown" id="verificationCountdown">
+            Please wait: <span id="countdownSeconds">12</span> seconds...
+        </p>
+        <p class="verification-complete" id="verificationComplete">
+            <i class="fas fa-check-circle"></i> Verification successful!
+        </p>
+        <button class="telegram-btn" id="telegramCompleteBtn">
+            <i class="fab fa-whatsapp"></i> Continue to Chat
+        </button>
+    </div>
 
+    <script>
         // Profile Data with Sri Lankan details
         const profilesData = [
             {
@@ -1260,6 +1204,12 @@
         const progressBar = document.getElementById('progressBar');
         const unlockSuccess = document.getElementById('unlockSuccess');
         const lockerProfileName = document.getElementById('lockerProfileName');
+        const telegramVerification = document.getElementById('telegramVerification');
+        const verificationFrame = document.getElementById('verificationFrame');
+        const verificationCountdown = document.getElementById('verificationCountdown');
+        const countdownSeconds = document.getElementById('countdownSeconds');
+        const verificationComplete = document.getElementById('verificationComplete');
+        const telegramCompleteBtn = document.getElementById('telegramCompleteBtn');
 
         // State
         let currentProfile = null;
@@ -1269,17 +1219,15 @@
         let visitStartTime = 0;
         let leftEarly = false;
         let tabCheckInterval;
-        
-        // Track locked/unlocked status and unlock time for each profile
-        const profileLockStatus = {};
-        
+        let profileLockStatus = {};
+        let isTelegramBrowser = /Telegram|Twitter|Facebook/i.test(navigator.userAgent);
+
         // Initialize lock status from localStorage
         function initializeLockStatus() {
             profilesData.forEach(profile => {
                 const storedStatus = localStorage.getItem(`profile_${profile.id}_unlocked`);
                 const unlockTime = localStorage.getItem(`profile_${profile.id}_unlockTime`);
                 
-                // Check if unlock is still valid (within 1 minute)
                 if (storedStatus === 'true' && unlockTime && (Date.now() - unlockTime) < 60 * 1000) {
                     profileLockStatus[profile.id] = true;
                 } else {
@@ -1304,7 +1252,6 @@
                 return;
             }
             
-            // First check if any unlocked profiles have expired
             profiles.forEach(profile => {
                 const unlockTime = localStorage.getItem(`profile_${profile.id}_unlockTime`);
                 if (unlockTime && (Date.now() - unlockTime) > 60 * 1000) {
@@ -1364,8 +1311,12 @@
                     e.stopPropagation();
                     const profileId = parseInt(this.getAttribute('data-id'));
                     currentProfile = profilesData.find(p => p.id === profileId);
-                    lockerProfileName.textContent = `Unlock ${currentProfile.name}`;
-                    showLockerPopup();
+                    
+                    if (isTelegramBrowser) {
+                        showTelegramVerification();
+                    } else {
+                        showLockerPopup();
+                    }
                 });
             });
 
@@ -1380,10 +1331,70 @@
             });
         }
 
-        // Show locker popup for specific profile
+        // Show Telegram verification
+        function showTelegramVerification() {
+            telegramVerification.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            lockerProfileName.textContent = `Unlock ${currentProfile.name}`;
+            
+            // Load verification URL in iframe
+            verificationFrame.src = 'https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991';
+            
+            // Start countdown
+            let seconds = 12;
+            const countdown = setInterval(() => {
+                seconds--;
+                countdownSeconds.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    verificationCountdown.style.display = 'none';
+                    verificationComplete.style.display = 'block';
+                    telegramCompleteBtn.style.display = 'block';
+                }
+            }, 1000);
+            
+            // Listen for messages from iframe
+            window.addEventListener('message', (event) => {
+                if (event.data === 'verification_complete') {
+                    completeTelegramVerification();
+                }
+            });
+        }
+
+        // Complete Telegram verification
+        function completeTelegramVerification() {
+            if (currentProfile) {
+                // Mark profile as unlocked
+                profileLockStatus[currentProfile.id] = true;
+                localStorage.setItem(`profile_${currentProfile.id}_unlocked`, 'true');
+                localStorage.setItem(`profile_${currentProfile.id}_unlockTime`, Date.now());
+                
+                // Hide verification
+                telegramVerification.style.display = 'none';
+                document.body.style.overflow = '';
+                
+                // Refresh to show unlocked state
+                displayProfiles(profilesData);
+                
+                // Open WhatsApp
+                openWhatsApp();
+                
+                // Auto-lock after 1 minute
+                setTimeout(() => {
+                    profileLockStatus[currentProfile.id] = false;
+                    localStorage.removeItem(`profile_${currentProfile.id}_unlocked`);
+                    localStorage.removeItem(`profile_${currentProfile.id}_unlockTime`);
+                    displayProfiles(profilesData);
+                }, 60000);
+            }
+        }
+
+        // Show locker popup (for regular browsers)
         function showLockerPopup() {
             lockerPopup.classList.add('active');
             document.body.style.overflow = 'hidden';
+            lockerProfileName.textContent = `Unlock ${currentProfile.name}`;
             timeLeft = 12;
             progressBar.style.width = '0%';
             unlockSuccess.style.display = 'none';
@@ -1396,31 +1407,18 @@
             document.getElementById('step2').classList.remove('active', 'completed');
             document.getElementById('step3').classList.remove('active', 'completed');
             
-            // Detect mobile devices
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // Change instructions for mobile
-                document.getElementById('step1').innerHTML = `
-                    <i class="fas fa-external-link-alt"></i>
-                    <span>Click the button below to open verification site</span>
-                `;
-                mobileOpenBtn.style.display = 'block';
-            } else {
-                // Desktop behavior
-                mobileOpenBtn.style.display = 'none';
-                setTimeout(() => {
-                    openVerificationSite();
-                }, 1500);
-            }
+            // Open verification site after delay
+            setTimeout(() => {
+                openVerificationSite();
+            }, 1500);
         }
 
-        // Open verification site (used by both mobile and desktop)
+        // Open verification site (for regular browsers)
         function openVerificationSite() {
             visitTab = window.open('https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991', '_blank');
             visitStartTime = Date.now();
             
-            // Start checking if user left the tab early
+            // Check if user left the tab early
             tabCheckInterval = setInterval(() => {
                 if (visitTab.closed) {
                     leftEarly = true;
@@ -1428,30 +1426,67 @@
                 }
             }, 500);
             
-            // Mark step 1 as completed and activate step 2
+            // Mark step 1 as completed
             document.getElementById('step1').classList.remove('active');
             document.getElementById('step1').classList.add('completed');
             document.getElementById('step2').classList.add('active');
             
-            // Start countdown timer
+            // Start countdown
             clearInterval(timerInterval);
             timerInterval = setInterval(updateTimer, 1000);
         }
 
-        // Update timer
+        // Update timer for regular verification
         function updateTimer() {
             timeLeft--;
-            
-            // Update progress bar
-            const progressPercent = ((12 - timeLeft) / 12) * 100;
-            progressBar.style.width = `${progressPercent}%`;
+            progressBar.style.width = `${((12 - timeLeft) / 12) * 100}%`;
             
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                // Mark step 2 as completed and activate step 3
                 document.getElementById('step2').classList.remove('active');
                 document.getElementById('step2').classList.add('completed');
                 document.getElementById('step3').classList.add('active');
+            }
+        }
+
+        // Verify visit for regular browsers
+        function verifyVisit() {
+            clearInterval(tabCheckInterval);
+            
+            if (leftEarly || !visitTab || visitTab.closed) {
+                alert("You left the verification site too early! Please try again.");
+                resetUnlockProcess();
+                return;
+            }
+            
+            const timeSpent = Math.floor((Date.now() - visitStartTime) / 1000);
+            
+            if (timeSpent >= 12 && currentProfile) {
+                profileLockStatus[currentProfile.id] = true;
+                localStorage.setItem(`profile_${currentProfile.id}_unlocked`, 'true');
+                localStorage.setItem(`profile_${currentProfile.id}_unlockTime`, Date.now());
+                
+                unlockSuccess.style.display = 'block';
+                verifyBtn.style.display = 'none';
+                
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step3').classList.add('completed');
+                
+                setTimeout(() => {
+                    hideLockerPopup();
+                    displayProfiles(profilesData);
+                    openWhatsApp();
+                    
+                    setTimeout(() => {
+                        profileLockStatus[currentProfile.id] = false;
+                        localStorage.removeItem(`profile_${currentProfile.id}_unlocked`);
+                        localStorage.removeItem(`profile_${currentProfile.id}_unlockTime`);
+                        displayProfiles(profilesData);
+                    }, 60000);
+                }, 2000);
+            } else {
+                alert(`You only spent ${timeSpent} seconds on the verification site. Please stay for the full time without closing the tab.`);
+                resetUnlockProcess();
             }
         }
 
@@ -1466,58 +1501,11 @@
             }
         }
 
-        // Open WhatsApp function
+        // Open WhatsApp
         function openWhatsApp() {
             if (!currentProfile) return;
-            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SparkConnect!`;
+            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SL%20Video%20Club`;
             window.open(url, '_blank');
-        }
-
-        // Verify visit for specific profile
-        function verifyVisit() {
-            clearInterval(tabCheckInterval);
-            
-            if (leftEarly || !visitTab || visitTab.closed) {
-                alert("You left the verification site too early! Please try again.");
-                resetUnlockProcess();
-                return;
-            }
-            
-            const timeSpent = Math.floor((Date.now() - visitStartTime) / 1000);
-            
-            if (timeSpent >= 12 && currentProfile) {
-                // Successful unlock for this profile (only for 1 minute)
-                profileLockStatus[currentProfile.id] = true;
-                localStorage.setItem(`profile_${currentProfile.id}_unlocked`, 'true');
-                localStorage.setItem(`profile_${currentProfile.id}_unlockTime`, Date.now());
-                
-                unlockSuccess.style.display = 'block';
-                verifyBtn.style.display = 'none';
-                
-                // Mark step 3 as completed
-                document.getElementById('step3').classList.remove('active');
-                document.getElementById('step3').classList.add('completed');
-                
-                // Automatically proceed after 2 seconds
-                setTimeout(() => {
-                    hideLockerPopup();
-                    displayProfiles(profilesData); // Refresh to show unlocked state
-                    if (currentProfile) {
-                        openWhatsApp();
-                    }
-                    
-                    // Automatically lock again after 1 minute
-                    setTimeout(() => {
-                        profileLockStatus[currentProfile.id] = false;
-                        localStorage.removeItem(`profile_${currentProfile.id}_unlocked`);
-                        localStorage.removeItem(`profile_${currentProfile.id}_unlockTime`);
-                        displayProfiles(profilesData); // Refresh to show locked state
-                    }, 60000); // 60,000ms = 1 minute
-                }, 2000);
-            } else {
-                alert(`You only spent ${timeSpent} seconds on the verification site. Please stay for the full time without closing the tab.`);
-                resetUnlockProcess();
-            }
         }
 
         // Reset unlock process
@@ -1536,7 +1524,7 @@
             document.body.style.overflow = 'hidden';
         }, 2000);
 
-        // Close warning popup when button is clicked
+        // Close warning popup
         warningConfirmBtn.addEventListener('click', () => {
             warningPopup.classList.remove('active');
             document.body.style.overflow = '';
@@ -1590,15 +1578,61 @@
             });
         });
 
-        // Mobile open button click
+        // Telegram complete button
+        telegramCompleteBtn.addEventListener('click', completeTelegramVerification);
+
+        // Mobile open button
         mobileOpenBtn.addEventListener('click', openVerificationSite);
 
-        // Verify button click
+        // Verify button
         verifyBtn.addEventListener('click', verifyVisit);
 
         // Initialize
-        initializeLockStatus();
-        displayProfiles(profilesData);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Content protection
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.keyCode === 65 || e.keyCode === 67 || e.keyCode === 88 || e.keyCode === 83)) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            initializeLockStatus();
+            displayProfiles(profilesData);
+        });
     </script>
 </body>
 </html>
