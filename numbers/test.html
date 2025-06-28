@@ -674,15 +674,15 @@
             border-radius: 30px;
             font-weight: 700;
             font-size: 1rem;
-            display: flex;
+            display: block;
             align-items: center;
             justify-content: center;
-            
+            margin: 15px auto;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 45, 117, 0.3);
-            margin: 15px 0;
-            
-            width: 100%;
+            text-align: center;
+            width: 90%;
+            max-width: 250%;
         }
 
         @keyframes pulse {
@@ -692,7 +692,7 @@
         }
 
         /* Mobile responsive adjustments */
-        @media (max-width: 1200px) {
+        @media (max-width: 480px) {
             .profiles-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
@@ -721,7 +721,8 @@
             }
             
             .mobile-open-btn {
-                display: block;
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
         }
 
