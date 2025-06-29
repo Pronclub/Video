@@ -685,6 +685,27 @@
             max-width: 250%;
         }
 
+        .restricted-browser-instructions {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .verification-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px 0;
+            display: inline-block;
+            padding: 5px 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -821,49 +842,51 @@
             }
         }
 
-              /* Add this to your existing CSS */
-     .no-results {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 40px 20px;
-        color: var(--text);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .no-results i {
-        font-size: 2.5rem;
-        color: var(--primary);
-        opacity: 0.7;
-    }
-
-    .no-results p {
-        font-size: 1rem;
-        color: var(--text);
-        opacity: 0.8;
-    }
-
-    /* For mobile devices */
-    @media (max-width: 480px) {
+        /* No results style */
         .no-results {
-            padding: 30px 15px;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
-        
-        .no-results i {
-            font-size: 2rem;
-        }
-        
-        .no-results p {
-            font-size: 0.9rem;
-        }
-    }
 
+        .no-results i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .no-results p {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* For mobile devices */
+        @media (max-width: 480px) {
+            .no-results {
+                padding: 30px 15px;
+            }
+            
+            .no-results i {
+                font-size: 2rem;
+            }
+            
+            .no-results p {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <script type='text/javascript' src='//ashorenorris.com/08/99/33/089933736a269374fb1f30f28cb9813d.js'></script>
+    
     <!-- App Header -->
     <header class="app-header">
         <div class="logo">
@@ -957,40 +980,46 @@
             <div class="unlock-steps">
                 <div class="unlock-step active" id="step1">
                     <i class="fas fa-external-link-alt"></i>
-                    <span>External site will open automatically</span>
+                    <span>Click the link below 3 times</span>
                 </div>
                 <div class="unlock-step" id="step2">
                     <i class="fas fa-hourglass-start"></i>
-                    <span>Stay for a few seconds without closing</span>
+                    <span>Complete all visits</span>
                 </div>
                 <div class="unlock-step" id="step3">
                     <i class="fas fa-check-circle"></i>
-                    <span>Return to complete verification</span>
+                    <span>Profile will unlock automatically</span>
                 </div>
             </div>
             
-            <button class="mobile-open-btn" id="mobileOpenBtn">
-                <i class="fas fa-external-link-alt"></i> Open Verification Site
-            </button>
+            <div id="verificationLinkContainer" style="margin: 15px 0;">
+                <a href="#" 
+                   target="_blank" 
+                   class="verification-link" 
+                   id="verificationLink">
+                    <i class="fas fa-external-link-alt"></i> Visit Verification Site
+                </a>
+                <div id="visitCounter" style="font-size: 0.8rem; color: var(--accent); margin-top: 5px;">
+                    Visits remaining: 3
+                </div>
+            </div>
             
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
             
-            <div class="visit-notice">
-                Please complete the verification process to unlock this profile
+            <div class="restricted-browser-instructions">
+                <p><i class="fas fa-info-circle"></i> <strong>For Telegram/TikTok/Facebook browsers:</strong></p>
+                <p>Click the link above 3 times. <u>Do not close this page</u>.</p>
             </div>
             
             <p class="strict-warning">
-                <i class="fas fa-exclamation-circle"></i> Leaving the site early will reset the process
+                <i class="fas fa-exclamation-circle"></i> Leaving early will reset your progress
             </p>
             
             <div class="unlock-success" id="unlockSuccess">
                 <i class="fas fa-check-circle"></i> Verification successful!
             </div>
-            <button class="locker-btn" id="verifyBtn">
-                Complete Verification
-            </button>
         </div>
     </div>
 
@@ -1046,6 +1075,19 @@
                 }
             });
         });
+
+        // Verification links
+        const verificationLinks = [
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38",
+            "https://ashorenorris.com/s5v92wjc11?key=b1d1b7fc017831ec983c6d1aae5b5628",
+            "https://ashorenorris.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb"
+        ];
+
+        // Get random verification link
+        function getRandomVerificationLink() {
+            const randomIndex = Math.floor(Math.random() * verificationLinks.length);
+            return verificationLinks[randomIndex];
+        }
 
         // Profile Data with Sri Lankan details
         const profilesData = [
@@ -1254,20 +1296,17 @@
         const warningPopup = document.getElementById('warningPopup');
         const warningConfirmBtn = document.getElementById('warningConfirmBtn');
         const lockerPopup = document.getElementById('lockerPopup');
-        const verifyBtn = document.getElementById('verifyBtn');
-        const mobileOpenBtn = document.getElementById('mobileOpenBtn');
         const progressBar = document.getElementById('progressBar');
         const unlockSuccess = document.getElementById('unlockSuccess');
         const lockerProfileName = document.getElementById('lockerProfileName');
+        const verificationLink = document.getElementById('verificationLink');
+        const visitCounter = document.getElementById('visitCounter');
+        const restrictedBrowserInstructions = document.querySelector('.restricted-browser-instructions');
 
         // State
         let currentProfile = null;
-        let timeLeft = 12;
-        let timerInterval;
-        let visitTab = null;
-        let visitStartTime = 0;
-        let leftEarly = false;
-        let tabCheckInterval;
+        const visitCounts = {};
+        const isRestrictedBrowser = /Telegram|TikTok|FBAN|FBAV/i.test(navigator.userAgent);
         
         // Track locked/unlocked status and unlock time for each profile
         const profileLockStatus = {};
@@ -1357,6 +1396,8 @@
                 profilesGrid.appendChild(card);
             });
 
+
+            
             // Add event listeners to unlock buttons
             document.querySelectorAll('.unlock-profile-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
@@ -1383,150 +1424,106 @@
         function showLockerPopup() {
             lockerPopup.classList.add('active');
             document.body.style.overflow = 'hidden';
-            timeLeft = 12;
-            progressBar.style.width = '0%';
-            unlockSuccess.style.display = 'none';
-            verifyBtn.style.display = 'block';
-            leftEarly = false;
             
-            // Reset steps
-            document.getElementById('step1').classList.add('active');
-            document.getElementById('step1').classList.remove('completed');
-            document.getElementById('step2').classList.remove('active', 'completed');
-            document.getElementById('step3').classList.remove('active', 'completed');
+            // Set random verification link
+            verificationLink.href = getRandomVerificationLink();
             
-            // Detect mobile devices
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            if (isMobile) {
-                // Change instructions for mobile
-                document.getElementById('step1').innerHTML = `
-                    <i class="fas fa-external-link-alt"></i>
-                    <span>Click the button below to open verification site</span>
-                `;
-                mobileOpenBtn.style.display = 'block';
-            } else {
-                // Desktop behavior
-                mobileOpenBtn.style.display = 'none';
-                setTimeout(() => {
-                    openVerificationSite();
-                }, 1500);
+            // Initialize visit count for this profile
+            if (!visitCounts[currentProfile.id]) {
+                visitCounts[currentProfile.id] = 0;
             }
-        }
-
-        // Open verification site (used by both mobile and desktop)
-        function openVerificationSite() {
-            visitTab = window.open('https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991', '_blank');
-            visitStartTime = Date.now();
             
-            // Start checking if user left the tab early
-            tabCheckInterval = setInterval(() => {
-                if (visitTab.closed) {
-                    leftEarly = true;
-                    clearInterval(tabCheckInterval);
+            // Show special instructions for restricted browsers
+            if (isRestrictedBrowser) {
+                restrictedBrowserInstructions.style.display = 'block';
+            } else {
+                restrictedBrowserInstructions.style.display = 'none';
+            }
+            
+            // Update the visit counter display
+            updateVisitCounter();
+            
+            // Set up the verification link click handler
+            verificationLink.onclick = function(e) {
+                e.preventDefault();
+                visitCounts[currentProfile.id]++;
+                updateVisitCounter();
+                
+                // Open the URL in a new tab for standard browsers
+                if (!isRestrictedBrowser) {
+                    window.open(this.href, '_blank');
+                } else {
+                    // For restricted browsers, just count the click
+                    window.location.href = this.href;
+                    setTimeout(() => {
+                        window.history.back();
+                    }, 100);
                 }
-            }, 500);
-            
-            // Mark step 1 as completed and activate step 2
-            document.getElementById('step1').classList.remove('active');
-            document.getElementById('step1').classList.add('completed');
-            document.getElementById('step2').classList.add('active');
-            
-            // Start countdown timer
-            clearInterval(timerInterval);
-            timerInterval = setInterval(updateTimer, 1000);
+                
+                // Check if we've reached the required visits
+                if (visitCounts[currentProfile.id] >= 3) {
+                    unlockProfile(currentProfile.id);
+                }
+            };
         }
 
-        // Update timer
-        function updateTimer() {
-            timeLeft--;
+        // Update the visit counter display
+        function updateVisitCounter() {
+            const remaining = 3 - visitCounts[currentProfile.id];
+            visitCounter.textContent = `Visits remaining: ${remaining}`;
             
             // Update progress bar
-            const progressPercent = ((12 - timeLeft) / 12) * 100;
+            const progressPercent = (visitCounts[currentProfile.id] / 3) * 100;
             progressBar.style.width = `${progressPercent}%`;
             
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                // Mark step 2 as completed and activate step 3
+            // Update steps
+            if (visitCounts[currentProfile.id] > 0) {
+                document.getElementById('step1').classList.remove('active');
+                document.getElementById('step1').classList.add('completed');
+                document.getElementById('step2').classList.add('active');
+            }
+            
+            if (visitCounts[currentProfile.id] >= 3) {
                 document.getElementById('step2').classList.remove('active');
                 document.getElementById('step2').classList.add('completed');
                 document.getElementById('step3').classList.add('active');
             }
         }
 
+        // Unlock profile
+        function unlockProfile(profileId) {
+            profileLockStatus[profileId] = true;
+            localStorage.setItem(`profile_${profileId}_unlocked`, 'true');
+            localStorage.setItem(`profile_${profileId}_unlockTime`, Date.now());
+            
+            unlockSuccess.style.display = 'block';
+            
+            // Automatically close after 2 seconds
+            setTimeout(() => {
+                hideLockerPopup();
+                displayProfiles(profilesData); // Refresh to show unlocked state
+                
+                // Automatically lock again after 1 minute
+                setTimeout(() => {
+                    profileLockStatus[profileId] = false;
+                    localStorage.removeItem(`profile_${profileId}_unlocked`);
+                    localStorage.removeItem(`profile_${profileId}_unlockTime`);
+                    displayProfiles(profilesData); // Refresh to show locked state
+                }, 60000); // 60,000ms = 1 minute
+            }, 2000);
+        }
+
         // Hide locker popup
         function hideLockerPopup() {
             lockerPopup.classList.remove('active');
             document.body.style.overflow = '';
-            clearInterval(timerInterval);
-            clearInterval(tabCheckInterval);
-            if (visitTab && !visitTab.closed) {
-                visitTab.close();
-            }
         }
 
         // Open WhatsApp function
         function openWhatsApp() {
             if (!currentProfile) return;
-            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SparkConnect!`;
+            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SL%20VIDEO%20CLUB!`;
             window.open(url, '_blank');
-        }
-
-        // Verify visit for specific profile
-        function verifyVisit() {
-            clearInterval(tabCheckInterval);
-            
-            if (leftEarly || !visitTab || visitTab.closed) {
-                alert("You left the verification site too early! Please try again.");
-                resetUnlockProcess();
-                return;
-            }
-            
-            const timeSpent = Math.floor((Date.now() - visitStartTime) / 1000);
-            
-            if (timeSpent >= 12 && currentProfile) {
-                // Successful unlock for this profile (only for 1 minute)
-                profileLockStatus[currentProfile.id] = true;
-                localStorage.setItem(`profile_${currentProfile.id}_unlocked`, 'true');
-                localStorage.setItem(`profile_${currentProfile.id}_unlockTime`, Date.now());
-                
-                unlockSuccess.style.display = 'block';
-                verifyBtn.style.display = 'none';
-                
-                // Mark step 3 as completed
-                document.getElementById('step3').classList.remove('active');
-                document.getElementById('step3').classList.add('completed');
-                
-                // Automatically proceed after 2 seconds
-                setTimeout(() => {
-                    hideLockerPopup();
-                    displayProfiles(profilesData); // Refresh to show unlocked state
-                    if (currentProfile) {
-                        openWhatsApp();
-                    }
-                    
-                    // Automatically lock again after 1 minute
-                    setTimeout(() => {
-                        profileLockStatus[currentProfile.id] = false;
-                        localStorage.removeItem(`profile_${currentProfile.id}_unlocked`);
-                        localStorage.removeItem(`profile_${currentProfile.id}_unlockTime`);
-                        displayProfiles(profilesData); // Refresh to show locked state
-                    }, 60000); // 60,000ms = 1 minute
-                }, 2000);
-            } else {
-                alert(`You only spent ${timeSpent} seconds on the verification site. Please stay for the full time without closing the tab.`);
-                resetUnlockProcess();
-            }
-        }
-
-        // Reset unlock process
-        function resetUnlockProcess() {
-            clearInterval(timerInterval);
-            clearInterval(tabCheckInterval);
-            if (visitTab && !visitTab.closed) {
-                visitTab.close();
-            }
-            hideLockerPopup();
         }
 
         // Show warning popup after 2 seconds
@@ -1589,12 +1586,7 @@
             });
         });
 
-        // Mobile open button click
-        mobileOpenBtn.addEventListener('click', openVerificationSite);
-
-        // Verify button click
-        verifyBtn.addEventListener('click', verifyVisit);
-
+        
         // Initialize
         initializeLockStatus();
         displayProfiles(profilesData);
