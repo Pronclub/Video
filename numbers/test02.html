@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 SL VIDEO CLUB | Dating App 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff2d75;
+            --secondary: #ff6b9d;
+            --accent: #ffb3cb;
+            --dark: #1a1a2e;
+            --light: #fef6f9;
+            --success: #4cc9f0;
+            --warning: #f8b195;
+            --text: #2b2d42;
+            --card-bg: rgba(255, 255, 255, 0.98);
+            --online: #4ade80;
+            --offline: #94a3b8;
+            --neon-purple: #c724f9;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @font-face {
+            font-family: 'Neue Montreal';
+            src: url('https://fonts.cdnfonts.com/css/neue-montreal') format('woff2');
+        }
+
+        body {
+            font-family: 'Neue Montreal', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .app-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 80px;
+            padding-top: 70px;
+        }
+
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(255, 45, 117, 0.3);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-icon {
+            font-size: 1.3rem;
+            color: white;
+            position: relative;
+        }
+
+        .nav-icon .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: var(--primary);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .search-container {
+            position: relative;
+            margin: 15px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        #search:focus {
+            outline: none;
+            box-shadow: 0 5px 25px rgba(255, 45, 117, 0.3);
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            scrollbar-width: none;
+        }
+
+        .filter-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: white;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-chip.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 0 15px 20px;
+        }
+
+        .profile-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-card:active {
+            transform: scale(0.98);
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .profile-card:hover .profile-image {
+            transform: scale(1.03);
+        }
+
+        .online-status {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+            z-index: 2;
+        }
+
+        .online {
+            background: var(--online);
+        }
+
+        .offline {
+            background: var(--offline);
+        }
+
+        .profile-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .profile-name-age {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .profile-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .profile-age {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .profile-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .profile-bio {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .profile-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .profile-tag {
+            background: rgba(255, 45, 117, 0.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            min-width: 0;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .chat-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--neon-purple) 100%);
+            color: white;
+        }
+
+        .call-btn {
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(255, 45, 117, 0.3);
+        }
+
+        .profile-locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 3;
+            border-radius: 15px;
+        }
+        
+        .unlock-profile-btn {
+            background: linear-gradient(135deg, var(--primary), var(--neon-purple));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            font-size: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        /* Warning Popup Styles */
+        .warning-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(6px);
+        }
+
+        .warning-popup.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .warning-content {
+            background: #1a1a2e;
+            border-radius: 18px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .warning-popup.active .warning-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .warning-icon {
+            font-size: 3rem;
+            color: #f8b195;
+            margin-bottom: 18px;
+            animation: pulse 2s infinite;
+        }
+
+        .warning-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #f8b195;
+            line-height: 1.3;
+        }
+
+        .warning-message {
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .warning-btn {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(246, 114, 128, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            max-width: 250px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .warning-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(246, 114, 128, 0.4);
+            background: linear-gradient(135deg, #f8b195, #f9596a);
+        }
+
+        .warning-btn:active {
+            transform: translateY(0);
+        }
+
+        .warning-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #f8b195, #f67280);
+        }
+
+        /* Enhanced Locker Popup Styles */
+        .locker-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        .locker-popup.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .locker-content {
+            background: #1a1a2e;
+            border-radius: 18px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(30px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .locker-popup.active .locker-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .locker-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+        }
+
+        .locker-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+
+        .unlock-steps {
+            text-align: left;
+            margin: 15px 0;
+            padding: 0 10px;
+        }
+        
+        .unlock-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        
+        .unlock-step i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .unlock-step.active {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .unlock-step.completed i {
+            color: var(--online);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--neon-purple));
+            transition: width 0.3s ease;
+        }
+        
+        .visit-notice {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin: 15px 0;
+        }
+        
+        .strict-warning {
+            color: #f8b195;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        .unlock-success {
+            color: #4ade80;
+            font-weight: bold;
+            margin: 15px 0;
+            display: none;
+            font-size: 1rem;
+        }
+
+        .locker-btn {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--neon-purple));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 45, 117, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            max-width: 250px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .locker-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 45, 117, 0.4);
+            background: linear-gradient(135deg, var(--primary), #d21ff9);
+        }
+
+        .locker-btn:active {
+            transform: translateY(0);
+        }
+
+        .locker-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--neon-purple));
+        }
+
+        .mobile-open-btn {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--neon-purple));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: block;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 45, 117, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 250%;
+        }
+
+        /* Telegram Verification Styles */
+        .telegram-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .verification-container {
+            max-width: 500px;
+            width: 90%;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .verification-header {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .verification-steps {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .verification-step {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--text);
+        }
+
+        .step-icon {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .countdown-display {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .manual-open-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .manual-open-btn:hover {
+            background: var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .telegram-btn {
+            background: var(--whatsapp-green);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: none;
+            margin-top: 15px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .telegram-notice {
+            color: var(--text);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* No results styles */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .no-results i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .no-results p {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 480px) {
+            .profiles-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .profile-image-container {
+                height: 180px;
+            }
+            
+            .profile-info {
+                padding: 12px;
+            }
+            
+            .profile-name {
+                font-size: 1rem;
+            }
+            
+            .profile-bio {
+                font-size: 0.85rem;
+                -webkit-line-clamp: 2;
+            }
+            
+            .action-btn {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+            
+            .mobile-open-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Telegram verification mobile styles */
+            .verification-container {
+                padding: 15px;
+            }
+            
+            .verification-header {
+                font-size: 1.3rem;
+            }
+            
+            .verification-step {
+                font-size: 0.9rem;
+            }
+            
+            .countdown-display {
+                font-size: 1.3rem;
+            }
+            
+            .manual-open-btn, .telegram-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .no-results {
+                padding: 30px 15px;
+            }
+            
+            .no-results i {
+                font-size: 2rem;
+            }
+            
+            .no-results p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="logo">
+            <i class="fas fa-sparkles"></i>
+            <span>SL VIDEO CLUB</span>
+        </div>
+        <div class="nav-icons">
+            <a href="#" class="nav-icon">
+                <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-envelope"></i>
+                <span class="badge">3</span>
+            </a>
+            <a href="#" class="nav-icon">
+                <i class="fas fa-bell"></i>
+                <span class="badge">5</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="app-container">
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Find your perfect match...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div class="filter-chips">
+                <div class="filter-chip active">All</div>
+                <div class="filter-chip">Online</div>
+                <div class="filter-chip">Nearby</div>
+                <div class="filter-chip">Verified</div>
+                <div class="filter-chip">New</div>
+                <div class="filter-chip">Popular</div>
+            </div>
+
+            <div class="profiles-grid" id="profilesGrid">
+                <!-- Profiles will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-compass"></i>
+            <span>Discover</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Matches</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Age Warning Popup -->
+    <div class="warning-popup" id="warningPopup">
+        <div class="warning-content">
+            <div class="warning-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3 class="warning-title">Special Announcement</h3>
+            <p class="warning-message">
+                SL VIDEO CLUB අප විසින් මෙහි විස්තර පලකිරීම පමනක් සිදුකරන බැවින් ඔබ විසින් කරන ගනුදෙනු සදහා අප වග කියන්නෙ නැත 
+
+ඔබ Full Service සෙවාවක් ලබා ගැනීමට යාමේදී හමු වු පසුව පමණක් මුදල් ගෙවන්න අප මෙහි verified ලෙස ලකුනු කල ඇති පුද්ගලයන් ගෙ විශ්වාසනීය බාවය තහවුරු කර ඇත
+            </p>
+            <button class="warning-btn" id="warningConfirmBtn">
+                Enter Site
+            </button>
+        </div>
+    </div>
+
+    <!-- Locker Popup (for regular browsers) -->
+    <div class="locker-popup" id="lockerPopup">
+        <div class="locker-content">
+            <div class="locker-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3 class="locker-title" id="lockerProfileName">Unlock Profile</h3>
+            
+            <div class="unlock-steps">
+                <div class="unlock-step active" id="step1">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>External site will open automatically</span>
+                </div>
+                <div class="unlock-step" id="step2">
+                    <i class="fas fa-hourglass-start"></i>
+                    <span>Stay for a few seconds without closing</span>
+                </div>
+                <div class="unlock-step" id="step3">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Return to complete verification</span>
+                </div>
+            </div>
+            
+            <button class="mobile-open-btn" id="mobileOpenBtn">
+                <i class="fas fa-external-link-alt"></i> Open Verification Site
+            </button>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="visit-notice">
+                Please complete the verification process to unlock this profile
+            </div>
+            
+            <p class="strict-warning">
+                <i class="fas fa-exclamation-circle"></i> Leaving the site early will reset the process
+            </p>
+            
+            <div class="unlock-success" id="unlockSuccess">
+                <i class="fas fa-check-circle"></i> Verification successful!
+            </div>
+            <button class="locker-btn" id="verifyBtn">
+                Complete Verification
+            </button>
+        </div>
+    </div>
+
+    <!-- Telegram Verification Container -->
+    <div class="telegram-verification" id="telegramVerification">
+        <div class="verification-container">
+            <h3 class="verification-header">🔒 Telegram Verification</h3>
+            <p class="telegram-notice">
+                Please complete the verification process to unlock this profile
+            </p>
+            
+            <div class="verification-steps">
+                <div class="verification-step">
+                    <i class="fas fa-external-link-alt step-icon"></i>
+                    <span>Click the button below to open verification</span>
+                </div>
+                <div class="verification-step">
+                    <i class="fas fa-hourglass-half step-icon"></i>
+                    <span>Wait for the countdown to complete</span>
+                </div>
+                <div class="verification-step">
+                    <i class="fas fa-check-circle step-icon"></i>
+                    <span>Return to unlock the profile</span>
+                </div>
+            </div>
+
+            <div class="countdown-display" id="countdownDisplay">
+                12 seconds remaining
+            </div>
+
+            <button class="manual-open-btn" id="manualOpenBtn">
+                <i class="fas fa-external-link-alt"></i> Open Verification Link
+            </button>
+
+            <button class="telegram-btn" id="telegramCompleteBtn">
+                <i class="fab fa-whatsapp"></i> Continue to Chat
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Profile Data with Sri Lankan details
+        const profilesData = [
+            {
+                id: 1,
+                name: "සදුනි",
+                age: 27,
+                number: "+94755819338",
+                image: "http://www.videohub.space/numbers/images/saduni.jpg",
+                location: "මිගමුව",
+                distance: "Home",
+                bio: "කව්ද ආස මාත් එක්ක ටිකක් තනියම කොහෙහරි යන්න එන්න.",
+                tags: ["HOT", "SEXY", "CUTE"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 2,
+                name: "වත්සලා",
+                age: 29,
+                number: "+94750286549",
+                image: "http://www.videohub.space/numbers/images/wathsala2.jpg",
+                location: "හොරණ",
+                distance: "Home",
+                bio: "මට කැමති කෙනෙක්  ඉන්නවා නම් මට call එකක් ගන්න හරිම පාලුයි.",
+                tags: ["MARRIED", "FULL-TIME", "HOT"],
+                verified: false,
+                online: false,
+                lastActive: "1 hour ago"
+            },
+            {
+                id: 3,
+                name: "ගිත්මා ඇන්ටි",
+                age: 35,
+                number: "+94758594688",
+                image: "http://www.videohub.space/numbers/images/githma.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "කව්රුත් නැද්ද පාලු වෙලාවට තනියම මාත් එක්ක කතාකරන්න.",
+                tags: ["DIVORCE", "SEXY", "CHUBBY"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 4,
+                name: "නෙතු",
+                age: 28,
+                number: "+94758630140",
+                image: "http://www.videohub.space/numbers/images/nethu.jpg",
+                location: "පානදුර",
+                distance: "Home",
+                bio: "කව්රුත් ආස නැද්ද ටිකක් නිදහසෙ මාත් එක්ක තනියම ඇවිදින්න.",
+                tags: ["NEW", "SINGLE", "HOT"],
+                verified: false,
+                online: false,
+                lastActive: "Yesterday"
+            },
+            {
+                id: 5,
+                name: "වත්සලා",
+                age: 25,
+                number: "+94759101558",
+                image: "http://www.videohub.space/numbers/images/wathsala3.jpg",
+                location: "පානදුර ස්පා",
+                distance: "Home",
+                bio: "ඇගට දැනෙන්න අලුත්ම වෙනසක් ඔනි කෙනෙක් මට call එකක් ගන්න.",
+                tags: ["SEXY", "HOT", "SPA"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 6,
+                name: "කවුෂල්‍යා",
+                age: 27,
+                number: "+94758146561",
+                image: "http://www.videohub.space/numbers/images/kaushalya.jpg",
+                location: "මාදම්පේ ස්පා",
+                distance: "Home",
+                bio: "ඇගට දැනෙන්න අලුත්ම වෙනසක් ඔනි කෙනෙක් මට call එකක් ගන්න.",
+                tags: ["SEXY", "HOT", "SPA"],
+                verified: false,
+                online: false,
+                lastActive: "2 days ago"
+            },
+            {
+                id: 7,
+                name: "subani",
+                age: 27,
+                number: "+94701262968",
+                image: "http://www.videohub.space/numbers/images/subani.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "මගේ නම්බර් එක Save කරගන්න ලමයො පාලුවක් දැනුනොත් මට මැසේජ් කරන්න.",
+                tags: ["MARRIED", "SEXY", "CHUBBY"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 8,
+                name: "වත්සලා",
+                age: 29,
+                number: "+94704913863",
+                image: "http://www.videohub.space/numbers/images/wathsala.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "මගේ නම්බර් එක Save කර ගන්නකෝ නැත්තන් මට ඔයාව පේන්නේ නෑ.",
+                tags: ["SEXY", "HOT", "Colombo"],
+                verified: false,
+                online: false,
+                lastActive: "3 hours ago"
+            },
+            {
+                id: 9,
+                name: "තරිනි",
+                age: 26,
+                number: "+94701344551",
+                image: "http://www.videohub.space/numbers/images/tharini.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "මහන්සි වෙලා ඉන්න ඔයාව සතුටු කරන්න මට  පුළුවන් පැටියො.",
+                tags: ["BEAUTY", "HOT", "Colombo"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 10,
+                name: "කවුශි",
+                age: 27,
+                number: "+94702471953",
+                image: "http://www.videohub.space/numbers/images/kaushi.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "ඔයාලා කව්රුත් හරි තනියමද ඉන්නෙ එහෙනම් call එකක් ගන්න කො.",
+                tags: ["SEXUL", "FUNNY", "Colombo"],
+                verified: false,
+                online: false,
+                lastActive: "Yesterday"
+            },
+            {
+                id: 11,
+                name: "අනූ",
+                age: 30,
+                number: "+94713869772",
+                image: "http://www.videohub.space/numbers/images/anu.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "අලුත්ම විදියට Video call වලින් සතුටු වෙන්න කැමති අය මට කතාකරන්න.",
+                tags: ["DANCE", "VIDEO", "NEW"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 12,
+                name: "Aisha",
+                age: 27,
+                number: "+94719260623",
+                image: "http://www.videohub.space/numbers/images/aisha.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "ගෙදර වෙලා ඉන්න කම්මැලි අලුත්ම වෙනසක්  ගන්න කැමති අය මට කතාකරන්න.",
+                tags: ["DANCE", "VIDEO", "NEW"],
+                verified: false,
+                online: false,
+                lastActive: "2 days ago"
+            },
+            {
+                id: 13,
+                name: "Chalani",
+                age: 27,
+                number: "+94769674631",
+                image: "http://www.videohub.space/numbers/images/chalani.jpg",
+                location: "Homagama",
+                distance: "Home",
+                bio: "මහන්සි වෙලා ඉන්න ඔයාව සතුටු කරන්න මට  පුළුවන් පැටියො.",
+                tags: ["BEST", "HOT", "LIVE"],
+                verified: false,
+                online: true,
+                lastActive: "Online now"
+            },
+            {
+                id: 14,
+                name: "Gayani",
+                age: 28,
+                number: "+94766801844",
+                image: "http://www.videohub.space/numbers/images/gayani.jpg",
+                location: "Colombo",
+                distance: "Home",
+                bio: "ගෙදර වෙලා ඉන්න කම්මැලි අලුත්ම වෙනසක්  ගන්න කැමති අය මට කතාකරන්න.",
+                tags: ["MARRIED", "BEAUTY", "HOT"],
+                verified: false,
+                online: false,
+                lastActive: "4 hours ago"
+            }
+        ];
+
+        // DOM Elements
+        const profilesGrid = document.getElementById('profilesGrid');
+        const searchInput = document.getElementById('search');
+        const filterChips = document.querySelectorAll('.filter-chip');
+        const warningPopup = document.getElementById('warningPopup');
+        const warningConfirmBtn = document.getElementById('warningConfirmBtn');
+        const lockerPopup = document.getElementById('lockerPopup');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const mobileOpenBtn = document.getElementById('mobileOpenBtn');
+        const progressBar = document.getElementById('progressBar');
+        const unlockSuccess = document.getElementById('unlockSuccess');
+        const lockerProfileName = document.getElementById('lockerProfileName');
+        const telegramVerification = document.getElementById('telegramVerification');
+        const manualOpenBtn = document.getElementById('manualOpenBtn');
+        const countdownDisplay = document.getElementById('countdownDisplay');
+        const telegramCompleteBtn = document.getElementById('telegramCompleteBtn');
+
+        // State
+        let currentProfile = null;
+        let timeLeft = 12;
+        let timerInterval;
+        let visitTab = null;
+        let visitStartTime = 0;
+        let leftEarly = false;
+        let tabCheckInterval;
+        let profileLockStatus = {};
+        let isTelegramBrowser = /Telegram/i.test(navigator.userAgent);
+
+        // Initialize lock status from localStorage
+        function initializeLockStatus() {
+            profilesData.forEach(profile => {
+                const storedStatus = localStorage.getItem(`profile_${profile.id}_unlocked`);
+                const unlockTime = localStorage.getItem(`profile_${profile.id}_unlockTime`);
+                
+                if (storedStatus === 'true' && unlockTime && (Date.now() - unlockTime) < 60 * 1000) {
+                    profileLockStatus[profile.id] = true;
+                } else {
+                    profileLockStatus[profile.id] = false;
+                    localStorage.removeItem(`profile_${profile.id}_unlocked`);
+                    localStorage.removeItem(`profile_${profile.id}_unlockTime`);
+                }
+            });
+        }
+
+        // Display profiles with individual lockers
+        function displayProfiles(profiles) {
+            profilesGrid.innerHTML = '';
+            
+            if (profiles.length === 0) {
+                profilesGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-user-slash"></i>
+                        <p>No profiles found. Try adjusting your search filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            profiles.forEach(profile => {
+                const unlockTime = localStorage.getItem(`profile_${profile.id}_unlockTime`);
+                if (unlockTime && (Date.now() - unlockTime) > 60 * 1000) {
+                    profileLockStatus[profile.id] = false;
+                    localStorage.removeItem(`profile_${profile.id}_unlocked`);
+                    localStorage.removeItem(`profile_${profile.id}_unlockTime`);
+                }
+            });
+
+            profiles.forEach((profile) => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                
+                card.innerHTML = `
+                    <div class="profile-image-container">
+                        <img src="${profile.image}" alt="${profile.name}" class="profile-image">
+                        ${profile.verified ? '<div class="online-status ' + (profile.online ? 'online' : 'offline') + '" title="' + profile.lastActive + '"></div>' : ''}
+                        ${!profileLockStatus[profile.id] ? `
+                            <div class="profile-locked-overlay">
+                                <i class="fas fa-lock"></i>
+                                <span>Locked Profile</span>
+                                <button class="unlock-profile-btn" data-id="${profile.id}">
+                                    Unlock Now
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name-age">
+                            <span class="profile-name">${profile.name}</span>
+                            <span class="profile-age">${profile.age}</span>
+                        </div>
+                        <div class="profile-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${profile.location} • ${profile.distance}</span>
+                        </div>
+                        <p class="profile-bio">${profile.bio}</p>
+                        <div class="profile-tags">
+                            ${profile.tags.map(tag => `<span class="profile-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="profile-actions">
+                            <button class="action-btn chat-btn" data-id="${profile.id}" ${!profileLockStatus[profile.id] ? 'disabled style="opacity:0.5"' : ''}>
+                                <i class="fas fa-comment-dots"></i> <span class="btn-text">Chat</span>
+                            </button>
+                            <button class="action-btn call-btn" data-id="${profile.id}" ${!profileLockStatus[profile.id] ? 'disabled style="opacity:0.5"' : ''}>
+                                <i class="fas fa-phone"></i> <span class="btn-text">Call</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                profilesGrid.appendChild(card);
+            });
+
+            // Add event listeners to unlock buttons
+            document.querySelectorAll('.unlock-profile-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const profileId = parseInt(this.getAttribute('data-id'));
+                    currentProfile = profilesData.find(p => p.id === profileId);
+                    
+                    // Store current profile ID for verification return
+                    localStorage.setItem('current_verification_profile', profileId);
+                    
+                    if (isTelegramBrowser) {
+                        showTelegramVerification();
+                    } else {
+                        showLockerPopup();
+                    }
+                });
+            });
+
+            // Add event listeners to chat/call buttons
+            document.querySelectorAll('.chat-btn:not(:disabled), .call-btn:not(:disabled)').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const profileId = parseInt(this.getAttribute('data-id'));
+                    currentProfile = profilesData.find(p => p.id === profileId);
+                    openWhatsApp();
+                });
+            });
+        }
+
+        // Show Telegram verification
+        function showTelegramVerification() {
+            telegramVerification.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            lockerProfileName.textContent = `Unlock ${currentProfile.name}`;
+            telegramCompleteBtn.style.display = 'none';
+            
+            // Start countdown
+            let seconds = 12;
+            const countdown = setInterval(() => {
+                seconds--;
+                countdownDisplay.textContent = `${seconds} seconds remaining`;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    telegramCompleteBtn.style.display = 'block';
+                    countdownDisplay.textContent = "Verification complete!";
+                }
+            }, 1000);
+
+            // Manual open button
+            manualOpenBtn.addEventListener('click', function() {
+                // Store verification start time
+                localStorage.setItem('telegram_verify_start', Date.now());
+                
+                // Open URL in same tab (works better in Telegram)
+                window.location.href = 'https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991';
+            });
+            
+            // Complete button
+            telegramCompleteBtn.addEventListener('click', completeTelegramVerification);
+        }
+
+        // Complete Telegram verification
+        function completeTelegramVerification() {
+            if (currentProfile) {
+                // Mark profile as unlocked
+                profileLockStatus[currentProfile.id] = true;
+                localStorage.setItem(`profile_${currentProfile.id}_unlocked`, 'true');
+                localStorage.setItem(`profile_${currentProfile.id}_unlockTime`, Date.now());
+                
+                // Hide verification
+                telegramVerification.style.display = 'none';
+                document.body.style.overflow = '';
+                
+                // Refresh to show unlocked state
+                displayProfiles(profilesData);
+                
+                // Open WhatsApp after short delay
+                setTimeout(() => {
+                    openWhatsApp();
+                }, 500);
+                
+                // Auto relock after 1 minute
+                setTimeout(() => {
+                    profileLockStatus[currentProfile.id] = false;
+                    localStorage.removeItem(`profile_${currentProfile.id}_unlocked`);
+                    localStorage.removeItem(`profile_${currentProfile.id}_unlockTime`);
+                    displayProfiles(profilesData);
+                }, 60000);
+            }
+        }
+
+        // Check for returning from verification
+        function checkReturnFromVerification() {
+            const startTime = localStorage.getItem('telegram_verify_start');
+            const currentProfileId = localStorage.getItem('current_verification_profile');
+            
+            if (startTime && currentProfileId) {
+                const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+                
+                if (timeSpent >= 12) {
+                    // Verification successful
+                    currentProfile = profilesData.find(p => p.id == currentProfileId);
+                    if (currentProfile) {
+                        completeTelegramVerification();
+                    }
+                }
+                
+                // Clean up
+                localStorage.removeItem('telegram_verify_start');
+                localStorage.removeItem('current_verification_profile');
+            }
+        }
+
+        // Show locker popup (for regular browsers)
+        function showLockerPopup() {
+            lockerPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            lockerProfileName.textContent = `Unlock ${currentProfile.name}`;
+            timeLeft = 12;
+            progressBar.style.width = '0%';
+            unlockSuccess.style.display = 'none';
+            verifyBtn.style.display = 'block';
+            leftEarly = false;
+            
+            // Reset steps
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step1').classList.remove('completed');
+            document.getElementById('step2').classList.remove('active', 'completed');
+            document.getElementById('step3').classList.remove('active', 'completed');
+            
+            // Open verification site after delay
+            setTimeout(() => {
+                openVerificationSite();
+            }, 1500);
+        }
+
+        // Open verification site (for regular browsers)
+        function openVerificationSite() {
+            visitTab = window.open('https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991', '_blank');
+            visitStartTime = Date.now();
+            
+            // Check if user left the tab early
+            tabCheckInterval = setInterval(() => {
+                if (visitTab.closed) {
+                    leftEarly = true;
+                    clearInterval(tabCheckInterval);
+                }
+            }, 500);
+            
+            // Mark step 1 as completed
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step1').classList.add('completed');
+            document.getElementById('step2').classList.add('active');
+            
+            // Start countdown
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        // Update timer for regular verification
+        function updateTimer() {
+            timeLeft--;
+            progressBar.style.width = `${((12 - timeLeft) / 12) * 100}%`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step2').classList.add('completed');
+                document.getElementById('step3').classList.add('active');
+            }
+        }
+
+        // Verify visit for regular browsers
+        function verifyVisit() {
+            clearInterval(tabCheckInterval);
+            
+            if (leftEarly || !visitTab || visitTab.closed) {
+                alert("You left the verification site too early! Please try again.");
+                resetUnlockProcess();
+                return;
+            }
+            
+            const timeSpent = Math.floor((Date.now() - visitStartTime) / 1000);
+            
+            if (timeSpent >= 12 && currentProfile) {
+                profileLockStatus[currentProfile.id] = true;
+                localStorage.setItem(`profile_${currentProfile.id}_unlocked`, 'true');
+                localStorage.setItem(`profile_${currentProfile.id}_unlockTime`, Date.now());
+                
+                unlockSuccess.style.display = 'block';
+                verifyBtn.style.display = 'none';
+                
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step3').classList.add('completed');
+                
+                setTimeout(() => {
+                    hideLockerPopup();
+                    displayProfiles(profilesData);
+                    openWhatsApp();
+                    
+                    setTimeout(() => {
+                        profileLockStatus[currentProfile.id] = false;
+                        localStorage.removeItem(`profile_${currentProfile.id}_unlocked`);
+                        localStorage.removeItem(`profile_${currentProfile.id}_unlockTime`);
+                        displayProfiles(profilesData);
+                    }, 60000);
+                }, 2000);
+            } else {
+                alert(`You only spent ${timeSpent} seconds on the verification site. Please stay for the full time without closing the tab.`);
+                resetUnlockProcess();
+            }
+        }
+
+        // Hide locker popup
+        function hideLockerPopup() {
+            lockerPopup.classList.remove('active');
+            document.body.style.overflow = '';
+            clearInterval(timerInterval);
+            clearInterval(tabCheckInterval);
+            if (visitTab && !visitTab.closed) {
+                visitTab.close();
+            }
+        }
+
+        // Open WhatsApp
+        function openWhatsApp() {
+            if (!currentProfile) return;
+            const url = `https://wa.me/${currentProfile.number}?text=Hi%20${encodeURIComponent(currentProfile.name.split(' ')[0])},%20I%20found%20you%20on%20SL%20Video%20Club`;
+            window.open(url, '_blank');
+        }
+
+        // Reset unlock process
+        function resetUnlockProcess() {
+            clearInterval(timerInterval);
+            clearInterval(tabCheckInterval);
+            if (visitTab && !visitTab.closed) {
+                visitTab.close();
+            }
+            hideLockerPopup();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Content protection
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.addEventListener('selectstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.keyCode === 65 || e.keyCode === 67 || e.keyCode === 88 || e.keyCode === 83)) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Show warning popup after 2 seconds
+            setTimeout(() => {
+                warningPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, 2000);
+
+            // Close warning popup
+            warningConfirmBtn.addEventListener('click', () => {
+                warningPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredProfiles = profilesData.filter(profile => 
+                    profile.name.toLowerCase().includes(searchTerm) ||
+                    profile.bio.toLowerCase().includes(searchTerm) ||
+                    profile.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+                    profile.location.toLowerCase().includes(searchTerm)
+                );
+                displayProfiles(filteredProfiles);
+            });
+
+            // Filter chips
+            filterChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    filterChips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    
+                    const filter = chip.textContent.toLowerCase();
+                    let filteredProfiles = [];
+                    
+                    switch(filter) {
+                        case 'all':
+                            filteredProfiles = profilesData;
+                            break;
+                        case 'online':
+                            filteredProfiles = profilesData.filter(p => p.online);
+                            break;
+                        case 'nearby':
+                            filteredProfiles = [...profilesData].sort((a, b) => 
+                                parseInt(a.distance) - parseInt(b.distance));
+                            break;
+                        case 'verified':
+                            filteredProfiles = profilesData.filter(p => p.verified);
+                            break;
+                        case 'new':
+                            filteredProfiles = [...profilesData].reverse();
+                            break;
+                        case 'popular':
+                            filteredProfiles = [...profilesData].sort(() => Math.random() - 0.5);
+                            break;
+                        default:
+                            filteredProfiles = profilesData;
+                    }
+                    
+                    displayProfiles(filteredProfiles);
+                });
+            });
+
+            // Mobile open button
+            mobileOpenBtn.addEventListener('click', openVerificationSite);
+
+            // Verify button
+            verifyBtn.addEventListener('click', verifyVisit);
+
+            // Initialize profiles
+            initializeLockStatus();
+            displayProfiles(profilesData);
+            
+            // Check if returning from Telegram verification
+            checkReturnFromVerification();
+        });
+    </script>
+</body>
+</html>
