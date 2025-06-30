@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> නිලූ  | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
+            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
+            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 3; // 3-5 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 600 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank').blur();
+            window.focus();
+        }, 30000);
+    </script>
+</head>
+
+<script type='text/javascript' src='//ashorenorris.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js'></script>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> නිලූ </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://www.whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <!-- Story Content -->
+        <div class="story-content" id="storyContent">
+            <div class="story-container">
+
+
+
+<p class="fade-in" style="font-family: 'Noto Sans Sinhala', sans-serif; word-spacing: normal; letter-spacing: normal;">
+බොස් එක්ක හ්තේ හැටියට සැප ගත්ත මගෙ වයිෆ් එදා ඉදන් ඉතිං ඒ ගැන තවත් ඔපන් කතා කරන්න පටන්ගත්තා.<br>
+ <br>
+ අපි දෙන්නත් වෙනදටත් වඩා එකට ඉන්න බැලුවෙ බොස් එක්ක හිටපු එක නිලූට ටිකක් ලැජ්ජා සහගත උන නිසා.<br>
+ <br>
+හැබැයි මම කතා කරලා ඒක නැති කරා. දැන් එයා හිතට එන හැමදෙයක්ම මට කියනවා. <br>
+ <br>
+“කෙල්ල බොස්ට ඇති තරම් ආතල් එකක් දුන්න නේ” මම නිලූගෙ නිපල් අතගාන ගමන් කිව්වා.<br>
+ <br>
+“මමයැ අනේ. එයානෙ මාව පි ස්සු වැට්ටුවෙ. මට ඉන්‍න තැන අමතක කරානෙ.” නිලූත්‍ මගෙ සරම අස්‍සට අත යවමින්‍ කිව්වා.<br>
+ <br>
+“ඔෆිස් එකේදි ආය මුකුත් කිව්වෙ නැද්ද ඉතින්”<br>
+“නැත්‍තෙ නෑ අනෙ. එයාගෙ එක කටට ගන්‍න වෙනවා ඉතිං” නිලූ කිව්වෙ අකමැත්තෙන් නෙවෙය් කියලා මට තේරුනා. <br>
+ <br>
+“ඉතිං කෙල්ල බෑ කියනවද” මම එයාගෙ හැගීම දැනගන්න ඇහුවා.<br>
+ <br>
+“ඒ වගේ එකකට බෑ කියන්නෙ කොහොමද බබා මම” එහෙම කියලා මගෙ එක කටට ගත්‍ත නිලූ ඒක නැවැත්‍තුවෙ මගෙ බඩු ටික ගිල්‍ලට පස්‍සෙ.<br>
+ <br>
+“බොස්‍ගෙත්‍ මෙහෙමම ගන්නවද”<br>
+ <br>
+“එයාගෙ ටොප් එක ලොකුයිනෙ බබා. ඒක suck කරන්‍න ආසයි”<br>
+ <br>
+“එයා මුකුත්‍ කරන්‍නෙ නැද්‍‍ද ඔයාට”<br>
+ <br>
+“මොකෝ නැත්තෙ. මගෙ බඩ කිස් කරන්න පුදුම ආසාවක් තියන්නෙ. මමත්‍ ඉතිං ඇතුලට යන්‍නෙම සාරි පොට හදාගන. මනුස්සයා බුරියට දිව දාද්දි සැපයි. වෙලාවකට හැට්ටෙ උඩින්ම කුක්‍කුත්‍ මිරිකනවා” <br>
+ <br>
+කොහොමහරි ඔෆිස් එකේ විස්තර කියද්දි එයාට ජූස් ගියා. මම නැවිලා ඒ ටික ලෙවකෑවෙ ආසාවෙන්.<br>
+ <br>
+“ඔයා ආය මොනවටද ආසා” මම නිලූගෙන් ඇහුවා.<br>
+ <br>
+“දෙකක් එක්ක කරන්න ආසයි බබා. එදත්‍ ඔයා හිටියනං හිතුනා.” එයා මගෙ උඩට නැගලා මගෙ එක බස්‍සගන්‍න ගමන්‍ කිව්වා.<br>
+ <br>
+“ඇත්තටම ඒකත් මට තිබ්බ හීනයක් තමා. Wife දෙකකින් රස කර කර කන හැටි බලන් ඉන්න ආසාවක් මට තිබ්බා”<br>
+ <br>
+“බබා අපි මම නැතුව වෙනමම දෙන්නෙක් හොයාගත්තොත්” මම මගෙ හිතෙ තිබ්බ එක නිලූට කිව්වා.<br>
+“අනේ මැණික ඔයාට අවුලක් නැත්තං ප්‍රශ්නයක් නෑ බබා මට” නිලූ සතුටින් කිව්වා. ඇත්තටම එයාටත් ඕනි වෙලා තිබුනෙ ඒක කියලා මට තේරුනා. <br>
+ <br>
+ඒ කතාවෙන් පස්සෙ මම කල්පනා කරේ මගෙ වයිෆ් සනසන්න කතා කරන්නෙ කාටද කියලා.<br>
+ <br>
+එතකොට මගෙ ඔලුවට ආවෙ මගෙ හොදම යාලුවෙක් උන ගයාන්. මනුස්සයා බැංකුවක වැඩ කරන වැදගත් කොල්ලෙක්. හැබැයි අසහනේ අහස උසට. ඌයි මෙයි කතා නොවෙන දෙයක් නෑ. මම ඉතිං දවසක් කෝල්<br>
+කරලා ගයාන්ට විස්තරේ කිව්වා. නිලූව දැකලා ඌ එක පයින් ඒකට කැමති උනා. හැබැයි මම ගයියට කිව්වෙ ගයියයි මායි හොදම යාලුවො බව න්ලූට කියන්න එපා කියලා. මොකද ගයිය නුවර නිසා නිලූ ඌව දන්නෙ නෑ. ගයියගෙ තව හොදම යාලුවෙක් උන අවුරුදු 48ක් විතර වයසක පිරිමි කෙනෙක්ටත් එන්න කියන්න අපි කතා උනා. අපි ඉතිං සෙනසුරාදාවක් දාගත්ගෙ වැඩේ කල් යවන්නෙ නැත් වෙන්න. <br>
+ <br>
+සෙනසුරාදා උදේම නිලූ මාරම ආසාවකින් ලෑස්ති උනා. එයා ඉතිං ලස්සන crop top එකක් ඇදලා. හැබැයි අදනං එයා අර ඉන්දියාවෙ වීඩියෝ වල ඉන්න බ$වක් වගේ. රතුම රතුපාට lipstick එකක් ගාලා. Croptop එක බ්‍රා එකක් වගේ, සුදු බඩත්‍ පෙන්නගෙන එයාගෙ වීරයො දෙන්නා එනකල් හිටියා. නවය පහුවෙලා ටික වෙලාවකින් ගයානයා ඇවිත් දොරට තට්ටු කෙරුවා. මිනිහා වැඩි කතාවක් නැතුව ඇතුලට ආවෙ අපි කතා උන විදිහට ගයියයි මායි යාලුවො බව නිලූට තේරෙන්නෙ නැති වෙන්න.. ගයියගෙ යාලුවත් වයස පේන්නෙ නැති හෙන හැන්ඩි පොරක්. <br>
+ <br>
+දෙන්නම මගෙ නිලූව දැක්ක ගමන් ශොක් උනා.<br>
+ <br>
+නිලූ සෝෆ එකේ ඉදගෙන හිටියා. නිලූව දැක්ක ගමන් දෙන්නගෙම අත් ගියෙ කලිසම උඩට. ගයියා ගිහින් නිලූ ලගින්ම වාඩි උනා.<br>
+ <br>
+“ඉතින් සුදූ ඔයා ගෙ නම් මොකක්ද ?”<br>
+ <br>
+‘නිලු’<br>
+ <br>
+“වයස ?”<br>
+ <br>
+‘මට 36 හස්බන්ඩ්ට 40’<br>
+ <br>
+මූ ඒකරලා නිලු නැඟිට්ටවලා වටේට කරකවන ගමන් ඇඟේ හැඩ බලන්න ගත්තා.<br>
+ <br>
+“ඔයා ලස්සනයි නේ. මරු බඩක්‍ ඔයාට තියෙන්නේ”<br>
+ <br>
+ඌ එහෙම කිවේ නිලුගෙ බඩ පිරිමදිමින්‍ . නිලූ මගෙ දිහා බැලුවා මම කිව්ව ‘ඒක ඕකෙ’ කියලා. ඌ ගෑනි ගෙ තන්දෙකත් ඇදුම ට උඩින් අතගාන ගමන් හිමීට බලනවා<br>
+ <br>
+“ශා… ඔයාගෙ කුක්කු ලස්සනයි. බ්‍රා සයිස් කීයද ? ”<br>
+ <br>
+’36’<br>
+ <br>
+” මරු නෙහ්. බබාලා ??”<br>
+ <br>
+‘එක්කෙනයි’<br>
+ <br>
+මූ නිකං ඉන්ටවීව් එකකට ආවා වගේ නෙහ්. එහෙම හිතලා ගයියගෙ යාලුවා පියල් නිලූ ගාව වාඩි වෙලා නිලූ ගෙ කරට උඩින් අත දාගෙන් තුරුළු කරගත්තා.<br>
+ <br>
+ගයානයා නිලූගෙ ගෙ අත අරගෙන උගේ කලිසම උඩින් තියාගත්තා. කොච්චර ආස උනත් නිලූ බය වෙලා වගේ මගෙ මූන බලනවා... “අය්යෝ මොකක්ද බය වෙලා වගේ. අතගාන්න ට්කක්” කියලා ගයානයා නිලූගෙ අත තද කෙරුවා ජොකා උඩට.<br>
+පියල් නිශ්හබ්ධව අනිත් අත අරන් උගෙ කලිසම උඩින් තියාගත්තා.<br>
+ <br>
+“කමක් නැහැ දැන් කවුරුත් නැහැ අල්ලන්න ඒක” මම කිව්වා.<br>
+ <br>
+නිලූ දැන් හොඳට ජොකාට උඩින් දෙන්නගෙ දෙක මිරිකනවා. එහෙම මිරිකලා එයා හිමීට අත දැම්ම ඇතුලට. අත දාලා ගත්තා දෙන්නගෙම දෙක එළියට ගත්තා.<br>
+ <br>
+ඒක දෙක දැක්කම පුදුම හිතෙනවා. දෙකම අගල් 7ක් අටක් දිග ඇති. අනික ගොඩක් මහතයි. ඒ නිසා ඒ දෙකම ලොකුවට පෙනුනා. දෙකම එකකට එකක් නොදෙවෙනි උනා.<br>
+ <br>
+“අම්මෝ මේ දෙකේ ලොකු බලන්නකෝ” නිලුගේ කටත් ඇරිලා. නිලු තොලත් හපාලෙන දෙක දිහාම මාරුවෙන් මාරුවට බලන ගමන් අත උඩ පහල අරන් ගියා.<br>
+ <br>
+“ඇයි මචං උබේ එක ලොකු නැද්ද ??” මූ නිකන් කින්ඩියට වගේ අහනවා මගෙන්.<br>
+ <br>
+‘නෑ ලොකුයි’ කියලා මමත් මේ ආතල් එක දිහා බලන් ඉන්නවා. හිතපන්කෝ තමන්ගේ wife තමන් ඉස්සරහම වෙන එකෙක්ගේ එක අතගානවා බලන එක. ඒක වෙනම ආතල් එකක්.<br>
+ <br>
+ගයානයා දැන් නැඟිටලා මගේ මැණිකට හොඳට තොල දානවා. එයත්‍ ආසාවෙන් උගේ එක හොඳට අතගානවා.<br>
+ <br>
+පියල් පිටිපස්සෙන් ගිහින් බෙල්ල ලෙවකද්දි නිලූ එයාගෙ එකත් අතගාන්න අමතක කරේ නෑ. ගයානයා තොල් දාන එක නවත්තලා නිලූගෙ පස්‍ස පැත්ත හරවලා එක පාරටම චටාස්ස්… ගාල පාරක් ගැ හුවා.<br>
+ <br>
+‘අම්මා ඌහ්’ නිලූ ඇඹරුනා ඒ පාරේ සැරට.<br>
+ <br>
+“මේ පස්ස ට එච්චර සැප දීල නැද්ද මචං. අද පලන්නම් මම මේක” කියලා මූ නිලූගෙ සාය උස්සන්න හැදුවා. නිලූග මං දිහා බලනවා. පියල් ගයියත්<br>
+ <br>
+එක්ක එකතු වෙලා නිලූග ඇග අතගාන්න ගත්තා.<br>
+ <br>
+‘ආපු වැඩේ කරමු බබා’ කියලා මමත් ඇදුම් ගලවන්න ගත්තා.<br>
+ <br>
+ගයාන් එකින් එක නිලූගෙ ඇදුම් ගලවනවා ඒ අතරේ. සාය, top එක ගලවලා දැම්මා. දැන් බ්‍රා එක විතරයි මුලු ඇඟටම. මගේ wife පිට එකෙක් ඉස්සරහා අඩ නිරුවතින්. ගයානයා මුලු ඇගම ස්කෑන් කලා. නිලූ ඇබරි ඇබරි ඉන්නවා<br>
+ <br>
+“මීට කලින් මහත්තයා හැර කවුරුත් එක්ක ඉදලා නැද්ද ??”<br>
+ <br>
+‘නෑ…’<br>
+ <br>
+“දෙන්නෙක් එක්ක කරලා නැද්ද”<br>
+ <br>
+‘අපෝ නෑ අනේ…’ එයා ලැජ්ජාවෙන් ඇඹරෙනවා ගයාන් අහන ඒවට<br>
+ <br>
+මටත් අමුතු ආතල් එකක්. නගිනවා වෙන එකෙක් wifeව චූන් කරන එක අහලා. මම ජොකා අස්සෙන් අතදාල මගෙ එකත්‍ එලියට ගත්‍තා.<br>
+ <br>
+“එහෙනම් අද කරමු. අද උඹව වල් කෙල්ලෙක් විදිහට අපි තියාගන්නේ. අපි බාත්රූම් එකේදී ඉතුරු ටික ගලවමු. මචං අපි යනවා උඹ වරෙන්” කියලා නිලූව උස්ස ගෙන දෙන්නම බාත්රූම් එකට ගියා.<br>
+ <br>
+මමත් දඩබඩ ගාලා පැන්න බාත් රූම් එකට.<br>
+ <br>
+අප්පා මේ ටිකට මුන්‍ දෙන්‍නා නිලූගෙ ඇදුම් ගලවලා සබන් දාලා හෝදනවා<br>
+‘අපි නානවා’<br>
+ <br>
+නිලූ එහෙම කිව්වෙ ගයානයා ඒකිගේ ඇඟේ සබන් ගාන අතර. ඌ සබන් කෑල්ලක් අරගෙන හොඳට පෙන අරගෙන රමනිගෙ තං දෙකෙ බඩ දිගෙ යෝනිය පැත්තට අතුල්ලනවා. නංගියගෙ දාරෙ දිගෙ අතුල්ලන් කොට එයා ඇඹරෙනවා සැපට. පියල් පිටිපස්සෙන් ගිහින් උගෙ එක නිලූගෙ පස්සට තියලා කුක්කු මිරිලන්න ගත්තා.<br>
+හ්ම්ම්ම්… ම්ම්ම්ම්…<br>
+ <br>
+සබන් පාර ඇග දිගේ හොඳට ගන ගමන් පිම්බිලා තියෙන පස්‍ස මිරිකනවා හිමීට. ඒ අතරෙ නිලූ කකුල් දෙක ගාවනවා අරූගෙ එකේ. දැන් නම් ඒක හොඳටම නැගලා. නිලූ අරූගෙ එක නංගියා ගාවින් තියාගෙන හොඳට ගල් කපා ගන්නවා. සබන් නිසා ලිස්සනවා හොඳට. ඒ අතරෙ මල්ලියව අතගගා මිරිකනවා. මමත් ආසාවෙන් මේක දිහා බලාගෙන ඉන්නවා.<br>
+ <br>
+‘කෝ එන්න මම දෙන්නාටම කරලා දෙන්න’ කියපු නිලූ දෙන්නා ගාව දන ගහලා ලිගු දෙක අත දෙකින් හොදට අතගානවා. දකුණු අතේ ගයානයාගේ එක , වම් අතේ පියල්ගෙ එක. දැන් සබන් දාලා හෝදල නිසා දෙකම හොඳට තියනවා<br>
+ <br>
+‘කෝ බලන්න කෝකද ලොකු කියලා’ කියපු රමණි දෙකටම සැප දෙනවා.<br>
+ <br>
+ගයානයාගේ එක අඟල් 7 කට වඩා ලොකුයි නමුත් ගොඩාක් මහත නැහැ.<br>
+ <br>
+පියල්ගෙ එක අඟල් 6 ක් වගේ. ඒත් හොඳට මහතට තියනවා.<br>
+ <br>
+‘ගයියගෙ ගේ එක ලොකුයි’<br>
+ <br>
+රමනි මගෙ පැත්ත හැරිලා කිව්වා. ඒකරලා නිකං වල්‍ ගෑනියෙක් වගේ අසාවෙන්<br>
+ <br>
+එයා මාරුවෙන් මාරුවට දෙකම කටට අරන් සූප්පු කරන්න ගත්තා.<br>
+ <br>
+“වල්ලත් එක්ක” අරූ නිලූගෙ ඔලුවෙන් අල්ලලා වල්ල පැත්තට ළං කරගෙන කිව්වා.<br>
+ <br>
+නිලඅ උගෙ වල්ලත් ලෙව කනවා. ඒ අතරෙ ඇටයක් කටට දාල උරනවා.<br>
+ <br>
+ඒකරලා ආයෙත් පියල්‍ගෙ එක සූප්පුවට ආවා. අරූට ඉන්නම බැහැ නිකන්.<br>
+ <br>
+” කෝ අද මගේ එකත් ගනින් වැඩිපුර” කියලා ගයානයාත් පියල්ගෙ එක දාගෙන ඉන්න කටටම උගේ එකත් දාන්න හැදුවා.<br>
+ <br>
+‘දෙකම උරන්න එක පාර’ මමත් කිව්වා.<br>
+ <br>
+ <br>
+නිලූ දෙකම එක පාර දාගන්න හදනවා. ඒත් දෙකම ලොකු වැඩි නිසා අමාරුයි.<br>
+ <br>
+‘අමාරුයි අනේ’ නිලූ කිව්වා.... ‘කමක් නෑ. කොහොම හරි දාගෙන උරපන්. මිනිහා විතරක් මදි නිසා නෙහ් තව දෙකක් ඉල්ලුවේ. කියලා” පියල් කිව්වා. <br>
+ <br>
+නිලු අමාරුව තියාගෙනම ලිගු දෙකේම ටොපා කටේ දාගෙන සූප්පුව දෙන්න පටන් ගත්තා. පිරිමි දෙන්න එහෙම්මම නිලූ ඔලුව අල්ලලා තද කරා. දැන් දෙකම ඇතුලෙ.<br>
+ <br>
+කට ඇතුලත් කෙල දෙපත්තට බේරෙනවා. නිලූ හුප්.. සූප්.. ශෘස්… ගා ගා ඒ දෙක ආසාවෙන්‍ උරනවා.<br>
+“රසයිද මගෙ වල් කෙල්‍ල. මේ දෙක රහයිද” ගයානයා එහෙම කියලා කොන්ඩෙ උඩින් අල්ලලා තද කරනවා.<br>
+ඒ අතරේ නිලූ ඇට වලු දෙක අත් දෙකෙන් අත ගගා මිරිකනවා. ටිකක් වෙල සූප්පු කරලා ඒ දෙක දැම්මා එලියට. ඒකරලා එයා හති අරිනවා. “මොකෝ මහන්සිද.. අද ඒකට වෙලාවක් නෑ” කියපු ගයානයා ආයෙම උගේ තඩි වල්ල එබුවා මගේ නිලූගෙ කටේ. බාතෲම් එකේම දණගහගෙන එයා ආයේ ටිකක් වෙලා ඒක ඉරුවා.<br>
+“දැන් යමු ඇතුලට අපි” කියලා ගයියයි පියලුයි නිලූව වඩාගෙන ඇතුලට ගියා. දෙන්න ඇද උඩට ආව ගමන් නිලූ ගයියව බදාගත්තා.<br>
+ <br>
+‘අද අපි හොඳට කරමු. මගෙ මිනිහට පෙන්‍නන්න මගෙ වල්‍කම. මට උපරිම සැප දෙන්න පණ” කියලා නිලූ ගයියගෙ තොල් කිස් කරලා ආයෙම ගයියගෙ ඇගේ පහලට ලෙවකාගෙන ගිහින් ගයියගෙ කටේ දාගෙන සූප්පු කරන්න ගත්තා.<br>
+ <br>
+නිලූව  style එකට තියලා පියල් ඉස්සරහින් කටට දෙන්න ගත්තා. කටට ගද්දි තාලෙට වැනෙන කුක්කුයි බඩයි දැක්කම මට ඉවසිල්ලක් නෑ. මමත්‍ මගෙ එක එලිඉට අරන් අතගාන්න ගත්තා.<br>
+ <br>
+නිලූ කෙල වැක්කෙරෙන්න සූප්පු කරනවා. කවදාවත්‍ නොදැක්ක පිරිමියෙක්ගෙ එකක් කියලෙ එයාට ගානක්වත් නෑ.<br>
+ඒ අතරේ ගයියා නිලූගෙ පස්සෙ හිල ලෙව කනවා.<br>
+ <br>
+“ම්ම්ම්ම්ම්මහ්. උම්ම්මමම්ම්හහ්.. අහ්හ්හ්හ්” ගයියගෙ දිවේ සැපට නිලූගෙ කටින් පිටවුනේ එච්චරයි.<br>
+නිලඅ ඒ අතරෙ පයිල්‍ගෙ ඇට දෙක උරන්න ගත්තා. ගයියා හෙමීට ඇගිල්ලක් නිලූගෙ පස්ස හිලට දැම්මා. “‍ආයියාහ්… කියලා එයා කෑගැහුවා. ”කෝ ඔයාගෙ නංගියා” කියලා ගයියා කිව්වා විතරයි නිලූ කටට ගන්න එක නතර කරලා ඇලවෙලා පස්ස ටිකක් පලල් කරලා අල්ලා ගත්තා එයාගෙ නංගියව හොඳට පේන.<br>
+ <br>
+ඈත් කරද්දි යෝනි තොල් ඈත් උනේ ක්‍රීම් බනිසක් වගේ. ඒ පාර තමයි ගයානයා හොඳටම නංගියා ඇතුලත් එක්ක දැක්කෙ<br>
+ <br>
+“ශා.. හොඳට ශේව් කරපු එකක්‍නේ”<br>
+ <br>
+මූ පාත් වෙලා බලාගෙන් ඉඳලා කෙල ටිකක් දැම්මා. ඒකරලා වටේටම අතගාලා ඇතුලට දිව දාලා උරන්න ගත්තා . නිලූගෙ එක වෙන ගෑනු ගෙ වගෙ ඇතුල බුරුල් නැහැ , තදට තියනවා. එලියෙනුත්‍ ලස්සනට තියනවා මවිල් ශේව් කරලා. අනික කලු නෑ. එයා ඒ කාලෙ ඉදලම ක්‍රීම් ගාලා හොදට මේන්ටේන් කරා. සතියකට පාරක් හැමදාම මයිල් කපලාමේන්ටේන් කරනවා.<br>
+ <br>
+අරූ මෑ ඇටේ ගාවින් පටන් ගත්තා. සූප්පුවට නිලූත්‍ කකුල් හොඳට පලල් කරල උස්ස ගෙන ඉන්නවා<br>
+ගයානයා දිව හොඳට වටේටම යෝනි තොල් උරන ගමන් මෑ ඇටේ ටියුන් කරනවා<br>
+“ආආවු… ඌඋ… ශ්හ්හ්හ්… උෟහ්‍හහහ්” නිලූ සැප වැඩි නිසාම පියල්ගෙ එක කලින්ටත් වඩා කටට ගත්තා. .<br>
+“මොකද සැප වැඩිද කෙඳිරි ගාන්නෙ.. ආ…” පියල් එහෙම කියලා නිලූගෙ තන දෙක සූප්පු කරා රතු වෙනකම්. ඔහොම ටිකක් වෙලා කරලා ගයාන් කිව්ව මාරු වෙමු කියලා.<br>
+ <br>
+ඔන්න පියල්‍ දිව දාලා පටන් ගත්තා නංගියව අවුස්සන්න. ඒ වෙද්දිත් ජූස් ගලලා තිබුනෙ. පියල් දිවදානකොට ගයාන්ගේ මල්ලියා නිලූගෙ උගුර අස්සටම හිර වෙලා. එයා හරි ආසාවෙන් උරනවා. ටොපාගේ දාර ඉදලා නහර පිම්බිලා තියන ගයියගෙ එක මන් හිතන්නේ අගල් 8ක් වත් ඇති. අගල් 6 විතර කට ඇතුලේ තිබුනේ.<br>
+ <br>
+“ඔයා මොනවද බලන්නේ. ඔයාගෙ එකටත මෙහෙම සැප දෙනවනෙ” රමනි කිවුවා. ඒකත් ඇත්ත මගේ එකටත් එයා ඒ වගෙම සැප දෙනවා. ගයාන්ටත් මාර සැප. ඌ නිලූගෙ ඔළුවෙන් අල්ලගෙන උගේ එක උරෝනවා. අත් දෙකෙන් නිලූගෙ ගෙ කොන්ඩෙ අල්ලගෙන ඔබනවා ඇතුලටම.<br>
+ <br>
+“මචං ඔය ඇති බං.. දැන් මට දීපං බස්‍සන්‍න” ගයානයාට ඉන්නම බෑ.<br>
+ <br>
+‘ඊට කලින් මට වැඩක් කරන්න ඕන’<br>
+ <br>
+රමණි එහෙම කියලා ගයානයාගෙයි පියල්ගෙයා එක අල්ලගෙන ලඟට කරගෙන ආයෙත් උරන්න ගත්තා. එකක් උරනකොට අනෙකේ ඇට මිරිකනවා. කොහොම උනත් ගයානයාගේ එක වැඩිපුර උරනවා කියලා මට තේරුණා.<br>
+“බලපංකො දැන් උබේ එකනේ වැඩිපුර උරන්නේ මේ කෙල්‍ල” පියල්‍ එහෙම කිව්වේ ටිකක් ඉරිසියාවෙන්.<br>
+ඔහොම නිලූ විනාඩි 10 විතර මාරුවෙන් මාරුවට ඇටයි ලිගු දෙකයි ඉරුවා. ගයානයත් අනිවා අල්ලන් ඉන්න මොනවා හරි අරගෙන වගේ ඇවිත් ඉන්නේ.<br>
+ <br>
+‘ දැන් ඇති අනේ..’ නිලූ හතිදානවා.<br>
+ <br>
+“මොකද ඇති වුනාද කෙල්‍ලට ??” ගයාන් තොලක්‍ දාන ගමනතම ඇහුවා..... ‘ඔව් අප්පා.. ජීවිතේ පළවෙනි වතාවට දෙකක් සූප්පු කලා මදිද මෙච්චර වෙලාවක්. අනික ඔයාගේ එකේ ලොකු ඒකටම හරියන්න මේ අංකල්ගෙ එක. අම්මෝ.’ රමණි හති දාන ගමන් කිව්වා.<br>
+ <br>
+‘දැන් කරමු අනේ. කොයි එක හරි දාන්න ඇතුලට. මට ඉන්න බෑ’ ගෑණි කෙඳිරි ගානවා.<br>
+ <br>
+“ඇයි හදිසසි.. දැන් ඕනෑද ?? තාම සැප දෙන්න<br>
+ <br>
+පටන්ගත්ත විතරයි” කියලා පියල් ඇඟිලි දෙකක් ඇතුලට දාලා වේගෙන් කලතන්න ගත්තා. සෙවල නිසා චක චක ගානවා. මම වේගෙන්ම කෙරුවා. නිලූ ගයියගෙ එක මිරිකගන ඇඹරෙනවා. එයාට එකක් ළං වෙලා කියලා දැන්ගත්ත නිසා පියල් ඇඟිල්ල එළියට අරන් ගයාන්ට සිග්නල් එක දුන්නා අරින්න පටන් ගමු කියලා.<br>
+ <br>
+“හරි මචං” කියලා ගයාන් නිලූව ඇදේ දිගාකරා. පියල්‍ නිලූගෙ කටට සූප්පු කරන්න දෙන්න සෙට් වුනා. ගයානයා හොදට සැප දීලා පුරුදු පොරක් වගේ පේන්නේ. උගේ එක නිලූගෙ හිල හොයන්න උනා.<br>
+ <br>
+. ඌ ටිකක් වෙලා ගෑනිගේ යෝනියෙ මෑ ඇටේ උඩ අතුල්ලලා ටික ටික ඇතුලට දාන්න සෙට් වූනා. දැන් නිලූත්‍ ටික ටික කෙදිරි ගානවා. ඒ අතරේ මූ ටික ටික උස්සලා ඇතුලට දානවා.<br>
+ <br>
+“ආආආඅ…………හ්හ්හ්හ්හ්හ්හ්හ්….. තව හයියෙන්. තව හයියෙන්‍ ආආආඅ…….. ම්ම්ම්ම්ම්ම්ම්ම්ම්….. අනේ………… ඉන්න…බෑ………. හ්හ්හ්හ්හ්හ්හ්හ්හ්හ්හ්හ්හ්හ්…” පියල්‍ගෙ එක සූප්‍‍පන ගමන්‍ නිලූට කෙදිරි ගෑවයනවා. <br>
+ <br>
+එහෙම ඉඳලා මූ උගෙ එක එළියට අරන් එකපාරටම ඇතුලට දාලා නිලූගෙ කකුලක් උඩට උස්සලා නවලා කරන්න ගත්තා. ඒ පාර සැරට වදිනවා පතුලටම. මම ඉන්න ගමන් නිලූගෙ කකුල් දෙක දෙපැත්තට කරලා අල්ලා ගත්තා කරන්න ලේසි වෙන්න. නිලූ පියල්ගෙ එක උරද්දි ගයියගෙන් සැපට කනවා. ඒක දකිද්දි මට ආසාව උපරිම උනා.<br>
+නිලූට ලේසියෙන් ඇති වෙන්නෙ නැහැ. ගොඩක් වෙලා කරන්‍න ඕන. ඒකි කාම ධේනුවක්. සමහර දවස්වලට මට කලින් ගියාම එයාට යකා ආවේස වෙලා ඉන්නෙ. ඒවගෙ දවසකට පාවිචචියට ඩිල්ඩො එකකුත් ගෙනත් තියන්නෙ.<br>
+දැන් වැඩේ සැරට යනවා. ගයාන් රමනිගෙ කකුල් දෙකම උස්සලා බස්සනවා. වේගෙට පාරට ඇඳත් හෙලවෙනවා. තක්.. තක්.. ගාලා මූ කරන වාරයක් ගානේ උගේ ලොකු වල්ල නිලූගෙ ඇඟේ වදිනවා.<br>
+ <br>
+“ආව්.. අහ්…… ආයියාහ්… නවත්තන්න එපා. අහ්හ්හ්හ්. ම්ම්ම්ම්ම්ම්. තව හයියෙන්. ” නිලූගෙ සද්දෙ වැඩි වෙනවා..<br>
+දැන් නිලූට ආතල් හොඳටම. එයා සුරතාන්තයට ඔන්න මෙන්න ඉද්දී ගයානයා උගෙ එක එළියට ගත්තා. ඒකෙන් ලව් ජූස් බේරෙනවා. නිලූ ඉක්මනින් නැගිටලා අරුගේ එක උරන්න ගත්තා.<br>
+ <br>
+හොඳට උරලා අයේත් කකුල් දෙක උස්ස ගත්තා. ඔන්න දැන් පියල් පටන් ගත්තා මැසිම. හිමීට පටන් අරගෙන ටික ටික වේගේ වැඩි කරනවා. ඒ අතරේ ගෑනි ගයියගෙ ඇට දෙක උරනවා හිටු කියලා. හයියෙන් වදිනකොට ගැනි ගයියගෙ ඇට දෙක විකනවා හුප් ගාලා. දැන් නම් ගේම ස්පීඩ් ආයෙම. ආයෙම ගෑණිට එකක් ළං වෙනකොට පියල්‍ එළියට ගත්තා. ‘අනේහ්….’ කියලා නිලූගෙ මූණ ඇඹුල් වුනා.<br>
+ <br>
+එලියට අරන් ආය දාලා කරනකොට චොක චොක ගාලා වදින සද්දයක් ආවේ. පියලුත් ඇති තරම් හොඳට ඇතුලට දාල කරා. <br>
+ <br>
+දැන් නිලූගෙ මූණ උඩ ගයානයා වාඩි වෙලා. නිලූ උගේ පස්ස හිලට දිව දානවා හෝ ගාලා. ගයියා නිලූගෙ බෝල තන්‍ කරකව කරකව මිරිකනවා.<br>
+ <br>
+“දෙකම එකට දාමුද ??” ගයානයා ඇහුවා.<br>
+ <br>
+රමනි බයෙන් වගේ දෙන්නා දිහා බැලුවා. බලලා මගෙ පැත්ත බැලුවා. ඒ ඇස් වල අකමැත්තක් තිබ්බෙ නෑ” උඹ ඇදේ නිදාගනින්. නිදාගෙන මෙයාව ඇග උඩට ගනින්. මම උඩින් දාන්නම් ” ගයානයා කිව්වා.<br>
+ <br>
+මේ කෙල්ලට අද හොඳම සැපක් දෙන්න ඕනි කියලා හිතපු පියලුග් ඇදේ එහෙමම නිදාගෙන උගෙ එක සෙට් කලා යෝනි හිලට. නිලූ පියල්ගෙ පැත්ත හැරිලා ගෑනි පොල් ලෙලි ghna විදියට ඇතුලට දාන්න සෙට් වෙනවා. ගයානයා පස්සහින් ඇවිත් පස්සට ඇඟිල්ල දාලා හිල පෑදුවා. පියල්‍ගෙ කටේ නිලූගෙ තනේ ඔබලා නිලූ පියල්‍ගෙ එක බස්‍සගන්‍නවා.. නිලූගෙ පිටපැත්තෙන් ඇවිත් ලයියා හෙමීට පස්සෙ හිලට තියලා ටික ටික තද කරා.. දැන් නිලූ පියල්ගෙ එක උඩ වාඩි වෙලා. ගයානයා පිටිපස්සෙන් පැත්තෙන් හිමීට පස්සට ටික ටික තදකරනවා.<br>
+ <br>
+“ඌය්යා අනේ රිදෙනවා අහ්” කියනකොටම ගයානයාගෙ එක පස්ස දෙබෑ කරගෙන හිරටම<br>
+නිලූ ඉස්සරහ පැත්තෙන් පියල් බදාගෙන කෑ ගහනවා “උහ්හ්… අම්මාහ්හ්… අමාරුයි….”<br>
+ <br>
+ගයියා කොහෙද ගානක්. පිස්ටන් දැම්මා වගේ පස්ස පද්දනවා ඇතුලට. ගයියා පස්ස ඇතුලටම දාගෙන අරින්න ගත්තා. නිලූගෙ හිල් දෙකම පිරිලා. ඔහොම ටික වෙලාවක් හිල් දෙක පතුරු ගහලා දෙන්නා මාරු වුනා. එතකොට දැන් ගයානයාගෙ ඇග උඩ නිලූ හිටියෙ.... කලින් වගේම ගෑනි උඩ පොල්ලෙලි ghnw වගේ උගේ එක බස්සාගෙන උගේ පැත්තට හැරිල. පියල් ඩෝගි ස්ටයිල් එකට නිලූට පස්සට අරින යන්නේ. ඔන්න දැන් තමයි ගයියගෙ ඔක්කොම ඇතුලට බැස්සෙ.<br>
+ <br>
+පියල් චකස් ගාලා පස්සට කෙල පාරක් දාලා කරන්න ගත්තා. <br>
+ <br>
+“අම්මාහ්.. අමාරුයි ඌඌඋ.. ආයියාහ්…” නිලූ කෙදිරිය දානවා. දෙන්නම දිග දාල ඔහොම තියගෙන විනාඩි 10ක් වගේ කරා.. ඒත්‍ පිරිමි දෙන්නා නවත්තන පාටක් නෑ. <br>
+ <br>
+“දැන් ඉතිං කසාද මනුස්සයටත් රහ බලන්න දෙමු”<br>
+ <br>
+“මචන් වරෙන් ඇදට” ගයානයා කිව්වෙ රමනිට අරින එක පොඩ්ඩක් නවත්තලා ඒකිව ඔඩක්කුවෙ තියාගෙන ඉන්න ගමන්.<br>
+මම කලිසම ගලවලා එතනට ගියා<br>
+ <br>
+“මෙන්න බාන්ඩේ දැක්කාද ??” <br>
+ <br>
+“ඒක මොකද අනේ මම නොදන්නෙ” මගෙ එක දැක්‍කම නිලූට තව ආසාව වැඩි උනා. <br>
+ <br>
+“එල මචං ! ඕකත්‍ දාපන් ඕක මේ හිලට” ගයාන් එහෙම කිව්ව. <br>
+ <br>
+“ඇයි අනේ දෙකකිනුත් සලකලා මදිද මගෙ කොල්ලො දෙන්නට” නිලූ අහද්දි ගයියා තොලක් දැම්මා විතරයි.<br>
+” එහෙනම් ධනූ ඉස්සරහට දාපන්. පියල්‍ උඹ මේ පස්‍සට සලකපන්‍” ගයානයා උපදෙස් දෙනවා.<br>
+ <br>
+හරි එල ! කියලා අපිත් බැස්සා ගේමට.<br>
+ <br>
+ගයානයා නිලූගෙ කටට උගෙ එක බස්සලා තියෙද්දිම කකුල් උස්සගෙන ඇදේ හාන්සි උනා.<br>
+ <br>
+දැන් ඉස්සරහට හොඳට නංගියා පේනවා. මම ටිකක් මගෙ එක කෙලින් කරගෙන හිමීට නංගියට තියලා තද කලා.<br>
+‘අනේ රිදෙනවා.. ආහ්හ්හ්හ්….’<br>
+ <br>
+“බොරුවට කෑ ගහනවා නේද.. මෙච්චර අපෙන් කද්දි සැපට ඉදලා දැන් කෑගහනවා” ගයානයා තනේ මිරිකලා කිව්වා. එහෙම කියලා ගයානයා උගේ එක නිලූගෙ කටට දුන්න විතරයි එයාගෙ වේදනාව කොහෙන් ගියාද නැහැ. ඒක උරන්න ගත්තම අරුත් එයාගෙ ඔලුවෙන් අල්ලගෙන තද කරනවා. මම ටිකක් තදින් කරලා නැවත්තුවා.<br>
+දැන් ගයානයා නිලූව මගේ පැත්තට නැමුවා.<br>
+ <br>
+හිටපන් නැවිලා තව එකක්‍ දාන්න ඇතුලට කියලා පස්ස හිල අත ගාලා ඇඟිල්ලක් දාලා හෙල්ලුවා. ඒකරලා ”අද අපි මේ හිල ලොකු කරලා දෙන්නම්කෝ… පියල් දාපන් ඇතුලට” කිව්වා<br>
+ <br>
+පියල් යෝනි තොල් අතගාලා ජූස් ටිකක් අරගෙන පස්ස හිල වටේ දාලා එයාගෙ එක තියලා තද කලා<br>
+‘අම්මෝ ඌය්යා.. අනේහ්හ්…’<br>
+ <br>
+“ඇති වෙන්න කෑගහන්න. අද කවුරුත් එන්නෑ ඔයාව බේරගන්න” කියලා ගයානයා හොඳටම මගේ කෙල්ලට සලකනවා.<br>
+ <br>
+මම හිමින් හිමින් ඇතුලට ආයෙම දැම්මා.<br>
+ <br>
+හොඳට අත් දෙකෙන් තට්ටම් දෙක අල්ලගෙන ප්යල් පස්සට අරිනවා. නිලූත් දැන් නම් ඉන්නවා මාව බදාගෙන මැරිලා වගේ.<br>
+ <br>
+ඔහොම තුන් පූට්ටුව ගැහුවා පැය කාලක් වගේ. මගෙ වයිෆ්ගෙ පස්සටයි , කටයි, නංගියටයි සේරටම අපි තුන්දෙනා ඇරියා. ඒ අතර මමයි ගයානයි මාරු වෙලා කරා. රමණිගේ යෝනිය රතු වෙලා. මමත් නිලූට වමනෙට එනකම් කටට දුන්නා. හැබැයි පිවල් පස්සෙන් නම් උගෙ එක ගත්තෙ නැහැ.<br>
+ <br>
+ඔහොම තුන්දෙනාම කරලා අයෙත් නිලූගෙ කටට දුන්නා. එයා දාර බ ඩුවක් වගේ තුනම හොඳට ලෙව කකා බඩු ටික අන්තිම බින්දුව වෙනකම් සූප්පු කලා. <br>
+ <br>
+“අද තරම් සැපක් කවදාවත් ගත්තෙ නැහැ අනේ” නිලූ කිව්වෙ බැහැපු ගයාන්ගෙ එක ඉබින ගමන්
+</p>
+
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
