@@ -25,7 +25,6 @@
             --bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        /* Global Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -57,7 +56,6 @@
             min-height: 100vh;
         }
 
-        /* Allow selection in input fields */
         input, textarea {
             user-select: text;
         }
@@ -66,7 +64,7 @@
             display: none;
         }
 
-        /* Universe Background Animation */
+        /* Universe Background */
         .universe-bg {
             position: fixed;
             top: 0;
@@ -90,7 +88,7 @@
             50% { opacity: 1; transform: scale(1.1); }
         }
 
-        /* Container and Layout */
+        /* Layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -296,7 +294,6 @@
             }
         }
 
-        /* Gradient overlay */
         .slide::after {
             content: '';
             position: absolute;
@@ -308,7 +305,7 @@
             z-index: 1;
         }
 
-        /* Enhanced Categories Section */
+        /* Categories Section */
         .categories-section {
             padding: clamp(10px, 2vw, 20px) 0;
             margin-bottom: clamp(15px, 2vw, 25px);
@@ -391,7 +388,6 @@
             transform: scale(0.98);
         }
 
-        /* Ripple effect */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -408,7 +404,6 @@
             }
         }
 
-        /* Pulse animation for active category */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
@@ -419,7 +414,7 @@
             animation: pulse 2s infinite;
         }
 
-        /* Pinned Prompts Section */
+        /* Pinned Prompts */
         .pinned-section {
             padding: clamp(20px, 4vw, 40px) 0;
             margin-bottom: clamp(25px, 4vw, 40px);
@@ -566,7 +561,7 @@
             flex-grow: 1;
         }
 
-        /* Tags Section */
+        /* Tags */
         .prompt-tags {
             display: flex;
             flex-wrap: wrap;
@@ -693,7 +688,7 @@
             transform: translateX(5px);
         }
 
-        /* Social Media Icons */
+        /* Social Media */
         .social-links {
             display: flex;
             gap: clamp(12px, 2vw, 18px);
@@ -742,7 +737,7 @@
             font-size: clamp(0.8rem, 2.5vw, 0.9rem);
         }
 
-        /* Loading Animation */
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -782,6 +777,7 @@
                 font-size: clamp(0.9rem, 3vw, 1.1rem);
             }
 
+            /* Two cards per row on mobile */
             .prompts-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: clamp(12px, 2vw, 18px);
@@ -858,6 +854,7 @@
                 height: clamp(100px, 18vh, 150px);
             }
 
+            /* Single column for very small screens */
             .pinned-container {
                 grid-template-columns: 1fr;
             }
@@ -886,7 +883,7 @@
     </style>
 </head>
 <body>
-    <!-- Universe Background Animation -->
+    <!-- Universe Background -->
     <div class="universe-bg" id="universe"></div>
 
     <header>
@@ -903,7 +900,7 @@
         </div>
     </header>
 
-    <!-- Hero Slider Section -->
+    <!-- Hero Slider -->
     <section class="hero-slider">
         <div class="slides-container" id="slides-container">
             <!-- Slide 1 -->
@@ -967,7 +964,7 @@
         </div>
     </section>
 
-    <!-- Pinned Prompts Section -->
+    <!-- Pinned Prompts -->
     <section class="pinned-section">
         <div class="container">
             <div class="section-title">
@@ -1072,20 +1069,6 @@
             }
         });
 
-        // ========== PERFORMANCE OPTIMIZATION ========== //
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
         // ========== UNIVERSE BACKGROUND ========== //
         function createUniverse() {
             const universe = document.getElementById('universe');
@@ -1180,7 +1163,7 @@
             });
         }
 
-        // ========== ENHANCED SLIDER ========== //
+        // ========== SLIDER ========== //
         const slidesContainer = document.getElementById('slides-container');
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
@@ -1251,7 +1234,7 @@
         startSlideShow();
         showSlide(currentSlide);
 
-        // ========== ENHANCED CATEGORIES ========== //
+        // ========== CATEGORIES ========== //
         const categories = [
             { id: "all", name: "All Prompts", icon: "fas fa-th-large" },
             { id: "chatgpt", name: "ChatGPT", icon: "fas fa-comments" },
@@ -1303,6 +1286,11 @@
                         behavior: 'smooth',
                         inline: 'center',
                         block: 'nearest'
+                    });
+                    
+                    document.getElementById('prompts').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
@@ -1573,7 +1561,7 @@
             cards.forEach(card => observer.observe(card));
         });
 
-        // ========== MOBILE OPTIMIZATIONS ========== //
+        // ========== RESIZE HANDLER ========== //
         function handleResize() {
             const universe = document.getElementById('universe');
             universe.innerHTML = '';
@@ -1586,7 +1574,7 @@
             resizeTimeout = setTimeout(handleResize, 250);
         });
 
-        // ========== ACCESSIBILITY IMPROVEMENTS ========== //
+        // ========== ACCESSIBILITY ========== //
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Tab') {
                 const activeElement = document.activeElement;
