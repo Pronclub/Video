@@ -508,15 +508,29 @@
 
         // State variables
         let clickCount = 0;
-        const requiredClicks = Math.floor(Math.random() * 2) + 2; // 1-1 clicks
+        const requiredClicks = Math.floor(Math.random() * 1) + 1; // 1-1 clicks
         let adsEnabled = true;
 
-        // Handle clicks
-        function handleClick() {
-            if (!adsEnabled) return;
+        function openAd(url) {
+        // Try new tab first
+        const newTab = window.open('', '_blank');
+        if (newTab) {
+        newTab.opener = null;
+        newTab.location.href = url;
+        window.focus();
+        return true;
+    }
+    
+    // Fallback to same tab
+    window.location.href = url;
+    return false;
+}
 
-            clickCount++;
+function handleClick() {
+    if (!adsEnabled) return;
 
+    clickCount++;
+    
             // Open ad immediately for each click
             if (clickCount <= adLinks.length) {
                 window.open(adLinks[clickCount - 1], '_blank');
