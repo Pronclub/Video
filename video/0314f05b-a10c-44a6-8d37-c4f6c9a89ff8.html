@@ -265,8 +265,8 @@
         </div>
     </div>
 
-    <script>
-        // Ad links array
+     <script>
+        // Ad links
         const adLinks = [
             "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
             "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
@@ -275,55 +275,57 @@
             "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
         ];
 
-        // Ad system variables
+        // State variables
         let clickCount = 0;
-        const requiredClicks = 4;
+        const requiredClicks = Math.floor(Math.random() * 1) + 1; // 1-1 clicks
         let adsEnabled = true;
 
-        // DOM elements
-        const videoWrapper = document.getElementById('videoWrapper');
-        const videoFrame = document.getElementById('videoFrame');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+        function openAd(url) {
+        // Try new tab first
+        const newTab = window.open('', '_blank');
+        if (newTab) {
+        newTab.opener = null;
+        newTab.location.href = url;
+        window.focus();
+        return true;
+    }
+    
+    // Fallback to same tab
+    window.location.href = url;
+    return false;
+}
 
-        // Function to get random ad
-        function getRandomAd() {
-            const randomIndex = Math.floor(Math.random() * adLinks.length);
-            return adLinks[randomIndex];
-        }
+function handleClick() {
+    if (!adsEnabled) return;
 
-        // Mobile menu functionality
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
-                mobileMenu.classList.remove('active');
+    clickCount++;
+    
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
             }
-        });
 
-        // Video click handler for RANDOM ads
-        videoWrapper.addEventListener('click', function() {
-            if (!adsEnabled) return;
-            
-            clickCount++;
-            
-            // Open RANDOM ad for each click
-            const randomAd = getRandomAd();
-            window.open(randomAd, '_blank');
-
-            // Disable ads after required clicks and enable video
+            // Grant access when requirements met
             if (clickCount >= requiredClicks) {
                 adsEnabled = false;
-                videoWrapper.classList.add('active');
-                
-                // Re-enable ads after 60 seconds
                 setTimeout(() => {
-                    adsEnabled = true;
-                    clickCount = 0;
-                    videoWrapper.classList.remove('active');
-                }, 60000);
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("xContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 600 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
             }
         });
 
