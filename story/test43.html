@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> IMAGE GENERATE  | VIP Exclusive</title>
+    
+    <!-- Sinhala Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6C63FF; /* Modern purple */
+            --primary-dark: #564FD9;
+            --secondary: #8B85FF;
+            --accent: #FF6584; /* Vibrant pink */
+            --light: #1A1A2E; /* Dark background */
+            --dark: #121212; /* Dark elements */
+            --text: #E0E0E0;
+            --text-light: #B0B0B0;
+            --white: #ffffff;
+            --card-bg: #252525;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 30px rgba(108, 99, 255, 0.25);
+            --transition: all 0.3s ease;
+            --success: #00CC66;
+            --error: #FF3333;
+        }
+
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        /* Button styles matching PromptMarket */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn i {
+            margin-right: 10px;
+        }
+
+        /* Locked Content Area */
+        .locked-content {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid #333;
+        }
+
+        .locked-content h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .locked-content p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .unlock-btn {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .unlock-btn:hover {
+            background-color: #e64c7a;
+        }
+
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .loading-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 4px solid rgba(108, 99, 255, 0.1);
+            border-top: 4px solid var(--primary);
+            margin-bottom: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-light);
+        }
+
+        /* Story Content */
+        .story-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .story-container {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid #333;
+        }
+
+        .story-container p {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.5s ease;
+        }
+
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-image {
+            width: 100%;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            background-color: var(--success);
+            color: white;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .copy-btn:hover {
+            background-color: #00b359;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .disclaimer {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .telegram-btn {
+            background-color: #0088CC;
+            color: white;
+        }
+
+        .telegram-btn:hover {
+            background-color: #0077b3;
+        }
+
+        /* Watermark */
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(108, 99, 255, 0.5);
+            z-index: 100;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .locked-content, .story-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .watermark {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
+            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
+            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 2) + 2; // 2-3 clicks
+        let adsEnabled = true;
+
+        function openAd(url) {
+            const newTab = window.open('', '_blank');
+            if (newTab) {
+                newTab.opener = null;
+                newTab.location.href = url;
+                window.focus();
+                return true;
+            }
+            window.location.href = url;
+            return false;
+        }
+
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("xContent").style.display = 'block';
+
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
+            }
+        }
+
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("xContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <script>
+        setTimeout(function () {
+            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank').blur();
+            window.focus();
+        }, 30000);
+    </script>
+    <script>
+        if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+            document.addEventListener('DOMContentLoaded', function() {
+                var meta = document.createElement('meta');
+                meta.name = 'apple-mobile-web-app-capable';
+                meta.content = 'yes';
+                document.head.appendChild(meta);
+                document.body.style.userSelect = 'none';
+            });
+        }
+    </script>
+
+
+    <div class="container">
+        <header>
+            <h1> The Genuine Look </h1>
+            <div class="subtitle">VIP Prompt Mart • 2025</div>
+            <a href="https://whatsapp.com/channel/0029VbB9TYADuMRouvCXfj3B" class="btn" target="_blank">
+                <i class="fas fa-user-shield"></i> ACCESS VIP CHANNEL
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3><i class="fas fa-lock"></i> CONTENT LOCKED</h3>
+            <p>Complete verification to unlock this premium digital content. The story will automatically unlock after successful verification.</p>
+            <button class="btn unlock-btn" id="unlockBtn">
+                <i class="fas fa-unlock-alt"></i> VERIFY & UNLOCK
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">VERIFYING DIGITAL ACCESS...</div>
+        </div>
+        
+        <!-- Story Content -->
+        <div class="story-content" id="storyContent">
+            <div class="story-container">
+                <img src="https://www.shortenlnk.xyz/promptmart/images/prompimage/image01.jpg" alt="Story Image" class="story-image">
+                <p class="fade-in">The Genuine Look <br> <br>
+
+1- Upload your Pic: <br> <br>
+
+2- Prompt: <br> <br>
+
+A highly stylized portrait of same person in image with sharp features, flawless fair skin, wearing a black coat black sunglasses and standing against a bold Gray gradient background, confidently, The lighting is dramatic and cinematic, emphasizing his facial structure and giving a luxury fashion magazine vibe.
+Ultra-realistic, high-detail, editorial photography style.4K resolution, symetrical composition, minimal background elements. 9:16 ratio. </div>
+            
+            <button class="btn copy-btn" id="copyBtn">
+                <i class="fas fa-copy"></i> COPY DIGITAL CONTENT
+            </button>
+        </div>
+        
+        <footer>
+            <p class="copyright">© 2025 <strong>Prompt Mart</strong> All Rights Reserved</p>
+            <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited. Violators will be prosecuted.</p>
+            <a href="https://whatsapp.com/channel/0029VbB9TYADuMRouvCXfj3B" class="btn telegram-btn" target="_blank">
+                <i class="fab fa-telegram"></i> JOIN DIGITAL COMMUNITY
+            </a>
+        </footer>
+    </div>
+
+    <!-- Watermark -->
+    <div class="watermark" id="watermark">
+        [DCN-2025-ICT-SL] | PROPRIETARY DIGITAL CONTENT | UNAUTHORIZED ACCESS PROHIBITED
+    </div>
+
+    <script>
+        // ===== UNLOCK SYSTEM =====
+        const unlockBtn = document.getElementById('unlockBtn');
+        const lockedContent = document.getElementById('lockedContent');
+        const unlockProcess = document.getElementById('unlockProcess');
+        const storyContent = document.getElementById('storyContent');
+        
+        unlockBtn.addEventListener('click', function() {
+            // Show loading animation
+            lockedContent.style.display = 'none';
+            unlockProcess.style.display = 'flex';
+            
+            // Open verification in new tab
+            window.open('https://ashorenorris.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb', '_blank');
+            
+            // Simulate verification process
+            setTimeout(() => {
+                unlockProcess.style.display = 'none';
+                storyContent.style.display = 'block';
+                
+                // Animate paragraphs
+                const paragraphs = document.querySelectorAll('.fade-in');
+                paragraphs.forEach((p, index) => {
+                    setTimeout(() => {
+                        p.classList.add('visible');
+                    }, 100 * index);
+                });
+            }, 2000); // 2 seconds delay
+        });
+        
+        // ===== COPY FUNCTIONALITY =====
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            // Get all story paragraphs
+            const paragraphs = document.querySelectorAll('.story-container p');
+            let fullText = 'The genuine look\n\n';
+            
+            // Combine all paragraph texts
+            paragraphs.forEach(p => {
+                fullText += p.textContent + '\n\n';
+            });
+            
+            // Create temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = fullText.trim();
+            document.body.appendChild(textarea);
+            
+            // Select and copy text
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove temporary element
+            document.body.removeChild(textarea);
+            
+            // Show feedback
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check-circle"></i> CONTENT COPIED';
+            
+            // Reset button text after 2 seconds
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 2000);
+        });
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            const watermark = document.getElementById('watermark');
+            watermark.style.color = 'var(--error)';
+            setTimeout(() => {
+                watermark.style.color = 'rgba(108, 99, 255, 0.5)';
+            }, 1000);
+        }, false);
+        
+        // Screenshot protection
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const watermark = document.getElementById('watermark');
+                watermark.style.color = 'var(--error)';
+                setTimeout(() => {
+                    watermark.style.color = 'rgba(108, 99, 255, 0.5)';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
