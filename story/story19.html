@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> රශිනි   | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://www.profitableratecpm.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44",
+            "https://www.profitableratecpm.com/vpqfum0ak3?key=e14fd04562c28b2068ce2e60ea8c217f",
+            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 2; // 2-3 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 600 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank').blur();
+            window.focus();
+        }, 30000);
+    </script>
+    <script>
+    // Safari Reader Mode Blocker
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Safari Reader Mode වලට අදාළ meta tag එකක් dynamically එකතු කරයි
+            var meta = document.createElement('meta');
+            meta.name = 'apple-mobile-web-app-capable';
+            meta.content = 'yes';
+            document.head.appendChild(meta);
+
+            // Safari Reader Mode වලට content selection අවහිර කිරීම
+            document.body.style.userSelect = 'none';
+        });
+    }
+</script>
+
+</head>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> රශිනි  </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://whatsapp.com/channel/0029Vb6VDUC1dAwAiOoudB3t" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <div class="story-content" id="storyContent">
+    <div class="story-container">
+        <p class="fade-in" style="font-family: 'Noto Sans Sinhala', sans-serif; word-spacing: normal; letter-spacing: normal; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+            මම රශිනි ශිරෝමිගෙ ෆිට්ම යාලුව. හැබැයි මට එයා තරංනම් පොඩි කාලෙ සෙක්ස් අත්දැකීමක් නෑ. මට බෝයි ෆ්‍රෙන්ඩ් කෙනෙක් අදුනගන්න ලැබුනෙ මම වැඩට යන්න අරගෙන ටික කාලෙකදි. එයා මගෙ ඔෆිස් එකේ යාලුවෙක්ගෙත් යාලුවෙක්. අපි ලව් එෆෙයා එකක් පටන්ගන්න කලින් ගොඩක් කල් යාලුවො විදිහට ආස්‍රය කරා. එයා මගෙන් එහෙම දෙයක් ගැන අහන්න කලින් මගෙ යාලුවට කියල තිබුන මං ගැන එයාගෙ අදහස. මට එයාට අකමති වෙන්න හේතුවක් තිබුනෙ නෑ. <br><br>
+
+කොහොම උනත් අපි ආස්‍රය කලේ අපේ අම්මලටත් කියල. අපි සම්බන්දයක් පටන් අරගෙන ටික කලකින් අපේ ගෙදරට කියන්න හේතු කීපයක් තිබුනා. අපි තනියම මුලින්ම එලියට ගියේ ෆිල්ම් එකක් බලන්න. මම ගොඩක් දේවල් කරන්න කලින් ශිරෝමිගෙන් අහල බලන පුරුද්දක් තිබුනා. ඒ ඉතින් එයාට මට වඩා ගොඩක් අත්දැකීම් තියෙන නිසා.මට කොල්ලෙක් නිසා දැනෙන අමුතුම හැඟීම මුලින්ම දැනුනෙ මාලක එහෙම නැත්නම් දැන් මගෙ හස්බන් එක්ක මුලින්ම ෆිල්ම් එකක් බලන්න එලියට ගිය දවසෙ එයා සොෆ්ට්වෙයා ඉන්ජිනිය කෙනෙක්. <br><br>
+
+ගම කොලඹ්න් ගොඩක් ඈත. එයා හිටියෙ පොඩි එපාර්ට්මන්ට් එකක තනියම. කොහොම උනත් අපි ෆිල්ම් එක බලන්න ගිය මුල් දවසෙ මට හරි ආසයි එයත් එක්ක ටිකක් තුරුල්වෙලා ඉන්න. ඒත් එතන එහෙම ඉන්න බෑ. අපිට බොක්ස් එකකට යන්නත් නිකන් මොකක්දෝ වගේ. මට එදායින් පස්සෙ මාලක එක්ක ඉන්නමයි හිතුනෙ. දවසක්වත් එයා දකින්නෙ නැතුව ඉන්න බෑ. මාලක මට අපි එලියට ගිය දෙවෙනි දවසෙ තමා කිව්වෙ අපි එයාගෙ එපාර්ට්මන්ට් එකට යමු කියල. ඒක තියෙන්නෙ කිරුලපන. මම ඒකට කැමතියි ඒත් ඒතරම් හදිස්සි වෙන්න මට බය හිතුනා. <br><br>
+
+අපි ගොඩක් කල් ඉඳල දන්න නිසා මම අපේ එෆෙයා එක පටන්ගත්ත මුල්ම මාසෙම අම්මට කිව්ව. අපිට මුල්ම දවස් වල බදාගන්න කිස් කරන්න අවස්ථාවක් ලැබුනෙම නෑ. මගේ ඔෆිස් එකේ යාලුවා හර් ෂි අපිට අවස්ථාවක් අරන් දුන්නා. ඒ තමයි එයාලගෙ ගෙදර කව්රුත් නැති සෙනසුරාදාවක එයා අපිට ඒගොල්ලන්ගෙ ගෙදර එන්න කිව්ව. දැන් කාටවත් කිසිම සැකයක් නෑනෙ. 
+මම මාලකත් එක්ක හර් ෂි ලගෙ ගෙදර ගියා. එයාට අම්ම නෑ. අයියයි තාත්තයි දෙන්නම ගෙදර නැතිව්වෙන දවසක තමා අපිදෙන්නට එන්න කිව්වෙ. හර් ෂි  කිව්ව බයවෙන්න එපා තාත්තල එද්දි අනිවාර්යෙන්ම රෑවෙනව, ඒගොල්ලො ගියේ අලුත්ගම තාත්තගෙ මහගෙදර කියලා. කොහොමත් අපි තුන්දෙනා පැයක් විතර හිටියා යම්කිසි වෙනසක් උනොත් කියල. <br><br>
+
+ඊට පස්සෙ එයා ෂොපින් කරන්න යනව අපි දෙන්නගෙ ගෙදර කියල හිතාගන්න කියල එයා එලියට ගියා. මොනවහරි ගැටලුවක් ඇතිවුනොත් මොබයිල් එකට කෝල්කරන්න මම එන්න පුලුවන් දුරකට යන්නෙ බයවෙන්න එපා කියලත් කිව්වා. අපිට හර් ෂි ගෙ කාමරය තමයි ලැබුනෙ. <br><br>
+
+අපිව තනියම දාල හර් ෂි  ගියා. ඇද තමයි සින්ගල්. අපි දෙන්නා ටිකක් වෙලා තුරුල්වෙලා හිටියා. අපි ඇදට වෙලා ගොඩක් දේවල් කතා කර කර හිටියා. අපි දෙන්නගෙම හැඟීම් හොදටම ඇවිස්සිලා තිබුනෙ. ඊට පස්සෙ තමයි මගෙ ජීවිතේ සුන්දරම දවස මොහොත උදාවුනේ. අපි ඇදේ නිදාගෙන ඉන්න ගමන්ම මාලක මගේ බ්ලව්ස් එකයි ස්කර්ට් එකයි හිමින් ගැලෙව්ව. මමත් එයාට උදව් කරා. <br><br>
+
+ඊට පස්සෙ එයාගෙ ටීශර්ට් එකයි ඩෙනිමයි ගැලෙව්වා. මම දැක්කා එයාගෙ ට්‍රන්ක් එක හොඳටම ඉස්සිලා. අපි අයෙත් බදාගත්තා. ඇත්තටම දැන්නම් ඉන්නම බෑ. ඒ වගෙ අත්දැකීමක් නතුව ඒක විස්තතර කරන්න මට කවදාවත් බෑ. <br><br>
+
+මාලක මගෙන් ඇහුව අනිත් ඒවත් ගලවන්නද කියලා. මම ඇස් දෙක වහගෙනම හා කියල කිව්වා එයා මගේ බ්‍රාඑකයි පෑන්ට් එකයි ගලවල මගෙ මුලු ඇඟම කිස් කලා. මම හිතන්නෙ විනාඩි දහයක් විතර එයා මගෙ ඇඟේ ඉඹපු නැති තැනක් නතුව ඇති. ඊට පස්සෙ තමා එයාගෙ ට්‍රන්ක් එක ගැලෙව්වෙ. අපි ඇද උඩම නැගිටල බදාගත්තා. කෙල්ලෙක් කොල්ලෙක් එක්ක හැම ඇදුමක්ම ගලවල කාමරේක තනිවෙන එක තමයි ජීවිතේ තියෙන සුන්දරම මොහොත. <br><br>
+
+අයෙත් ඒ වගේ දෙවෙනි දවසක්නම් එන්නෙ නෑ කියල තමා මම හිතන්නෙ. මම තවමත් ඒ මොහොත මතක් කරනවා. ඒක මතක්වෙනකොට තාමත් මගේ ඇඟට කරන්ට් එක යනව වගේතමයි දැනෙන්නෙ. අපි ගොඩක් වෙලා බදාගෙන කිස් කරගත්තා. ඊට පස්සෙ මාලක මාව ඇදේ හාන්සි කරලා මගේ චූඑක අතගෑවා. ටිකකින් මට මගෙ මුලු ඇඟම හිරිවටුන වගේ තමයි දැනුනෙ. <br><br>
+
+ ඒක මම අතින් අතගාගන්නවට වඩා ගොඩක් වෙනස් සුන්දර හිරිවැටීමක්. මම මාලක හයියෙන් බදාගෙන තදකරගත්තා. එයත් මගේ කකුල් දෙක අස්සෙ එයාගෙ ශිෂ්නය තියල එහාට මෙහාට දඟලල මාව හයියෙන් තද කරගත්තා. මට දැනුන එයාගෙ එකෙන් රස්නෙ යමක් මගේ කකුල් දෙකට ආවත් එක්කම ඒකෙ තද ගතිය අඩුවුනා. අපි එහෙම පැය කාලක්වත් ඉන්න ඇති. එයාගෙ ට්‍රන්ක් එකෙන් තමා මගේ කකුල් පිහදැම්මෙ. අපි බාත් රූම් එකට ගිහින් ගොඳට හෝදගත්තා. <br><br>
+
+අයෙත් අපි කාමරේට ඇවිත් ඇදට වැටුනා. මම එයාගෙ එක හොඳට බලාගත්තා. ඇතිවෙනකල් අතගාල බලුවා. එයත් මගේ කකුල් දෙක ඈත් කරල හොඳට බලුව. අපි දෙන්නගෙම ඉස්සෙල්ලාම ෆන් එක නිසා ඒ දවස, හැම මොහොතක්ම හරිම සුන්දරයි. එයා බිම දන ගහගෙන මගේ එකට දිව දැම්මා. <br><br>
+
+ඔක්කොම ඉවසන්න පුලුවන් ඒක තමා දරුනුම එක. මම ටිකකින් මාලකගෙ ඔලුව අල්ලල තදකරගත්තා, මට ආසාව වැඩි කමට. අයෙත් එයා ඇදට ඇවිත් මාව අනිත් පැත්තට හරවල එයාගෙ එක මගේ තට්ටම් දෙක අතරෙ තියාගත්තා. ඊට පස්සෙ මගේ යෝනිය අතගාන ගමන් එයාගෙ එක උඩ යට කරා. <br><br>
+
+මගෙ යෝනිය අවට හිරිවට්ටවාගෙන මට ගියා. මම හිමින් ඇති කියල කිව්වම එයා අත අරගෙන මාව තද කරල බදාගෙන එයාගෙ වේගෙ වැඩි කරා. දෙවෙනි පාරනම් මම හිතන්නෙ එයා විනාඩි දහයකටත් වඩා කරා. <br><br>
+
+ එයාට යනකොට මාව තව හයියෙන් බදාගත්තා. මම කිව්වා. ඔයාගෙ ඒව මගෙ චූ පැත්තෙ ගෑවෙයි මට බයයි කියල. එයාම මාව බාත් රූම් එකට උස්සගෙන ගිහින් හේදුවා. අපි පැය දෙකක් විතර කාමරේ අපි දෙන්නගෙ පලමු ලිංගික සුවය වින්දා. තුන්වෙනි පාර මම එයාගෙ එක කටින් ඉරුවා. මම කැමැත්තෙන්මයි එහෙම කලේ. <br><br>
+
+එදා දවසෙ පැය හතරක් විතර හිටියෙ හර් ෂි ලගෙ ගෙදර එයා කියපු වෙලාවටත් පැය කාලක් විතර පරක්කුවෙලා අවෙ. අපි එයාට ගොඩක් තෑන්ක් කරල තමා එහෙන් යන්න ගියෙ. මාලක එදා හැසිරුන විදිහෙන් එයා මගේ විශ්වාසය දිනාගත කිව්වොත් හරි. මට එයා ගැන කිසිම බයක් නැති උනා. එයාගෙ එපාට්මන්ට් එකට යන එක මට අනතුරක් නෑ කියල දැනුනෙ. <br><br>
+
+අපි දවසක නිවාඩු දාල ගියා මාලකගෙ එපාර්ට්මන්ට් එකට. ඒක එයා රෙන්ට් එකට අරගෙන තියෙන පොඩි ගෙයක්. එයා විතරයි ඉන්නෙ. ඒක අතුලට ගියාම මට දනුනෙ පුදුම නිදහසක්. ගිය ගමන් අපි කාමරේට ගිහින් ඇදුම් ගලවගත්තා. බාත් රූම් එකට ගිහින් වොෂ් එකක් ගන්න ගමන් මම එයාගෙ එක කටින් ඉරුවා. එයත් මගෙ එකට ටිකක් දිව දැම්මා. ඒක ඒතරම් සාර්තක නෑ. <br><br>
+
+කෙල්ලෙක්ගෙ එකට දිව දාන්න හිටගෙන බෑ. එයා මගෙ තට්ටම් වලට තියල යැව්වා. මගේ එකත් අතගාල කරා. අපි කාමරේට ගිහින් පහදාගෙන ඇදට වටුනා. ඒක ඩබල් ඇදක් අපිට ඕනෙ විදිහට දඟලන්න ඉඩ තිබුනා. එයා කම්පුටර් එකෙන් සෙක්ස් ෆිල්ම් මට පෙන්නුව. එයා හිතල තියෙන්නෙ මම කලින් දැකල නෑ කියල. මාව උකුල උඩ වාඩිකරගෙන තමයි එයා හිටියෙ. <br><br>
+
+ෆිල්ම් බලන ගමන් මගෙ එක හිමින් අත ගෑව.ටිකකින් ආසව වැඩි කමට මම ඇදේ හාන්සි වුනා. මගේ එක හොදටම තෙත් වෙලා තිබුනෙ. එයත් මගේ ලඟින් හාන්සි වුනා. එයාගෙ එක හොදටම කෙලින් වෙලා. මම ආසව වැඩි කමටත් ඇත්තටම ඒ වෙලාවෙ මට ඇතිවෙලා තිබුන විශ්වාසයටත් ආදරයටත් මම එයාට අතුලට දාන්න කිව්ව. හැබැයි ඇතුලෙ යවන්නනම් එපා කිව්වා. මගෙ කකල් ඈත් කරල එයාගෙ ඇඟවටෙන් දාගත්තම එයා හිමීට අතුලට දාන්න පටන් ගත්තා. <br><br>
+
+මමත් අතින් අල්ලල එයාට ගයිඩ් කරා. හරියටම යෝනියෙ සිදුරට තියල තද කරා. මට ටිකක් හයියෙන් රිදුන. මම බය වුනා. එයා ටිකක් උඩ යට කරද්දි මට හරියට රිදුනා. එයා එලියට ගත්තා. ලේත් යනවා. බෙඩ්ෂීට් එකටත් ලේ වැටිල. අපි බාත් රූම් එකට ගිහින් හෝදගත්තා. <br><br>
+
+ඊටපස්සෙ මට බයක් හිතුනෙ නෑ. ඒත් ලේ ගිය නිසා ඇතුලට දාන්න බය හිතුන. අපි අතින්නම් කරගත්තා. එදා දවසම අපි දෙන්න හිටියෙ ඇගේ අදුම් නැතිව.වැඩ ඉවරවෙන වෙලාවට මම ගානක් නැතිව ගෙදර ගියා මොනවත් නොවුන ගානට. මට ටිකක් බයත් තිබුනෙ නැතුව නෙවෙයි. <br><br>
+
+මොකද මම කඩාගත්ත නිසා. අපිට බැඳල හනිමූන් කරන්නනම් දෙයක් තිබුනෙ නෑ. එතකොට අපි ගොඩක් දේවල් ඉගෙනගෙනයි තිබුනෙ. මට වෙන කෙනෙක් එක්ක සෙක්ස් කරන්න අවස්ථාවක්නම් ලැබිල නෑ. ඒත් ආසයි. හැමදාම එකම එක වුනාම ලයිෆ් එක එපාවෙනවා. හැබැයි අපි එක එක පැටන් දහයක් දොලහක් විතරනම් දන්නව සෙක්ස් කරන්න.<br><br>
+
+නිමි ........
+
+
+        </p>
+    </div>
+</div>
+
+<style>
+    .story-content {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+</style>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+    });
+</script>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
