@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> හොදම යාලුවගෙ අම්මා | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+            "https://www.profitableratecpm.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44",
+            "https://www.profitableratecpm.com/vpqfum0ak3?key=e14fd04562c28b2068ce2e60ea8c217f",
+            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
+            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 2; // 2-3 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 600 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank').blur();
+            window.focus();
+        }, 30000);
+    </script>
+    <script>
+    // Safari Reader Mode Blocker
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Safari Reader Mode වලට අදාළ meta tag එකක් dynamically එකතු කරයි
+            var meta = document.createElement('meta');
+            meta.name = 'apple-mobile-web-app-capable';
+            meta.content = 'yes';
+            document.head.appendChild(meta);
+
+            // Safari Reader Mode වලට content selection අවහිර කිරීම
+            document.body.style.userSelect = 'none';
+        });
+    }
+</script>
+
+</head>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> හොදම යාලුවගෙ අම්මා </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://whatsapp.com/channel/0029Vb6VDUC1dAwAiOoudB3t" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <div class="story-content" id="storyContent">
+    <div class="story-container">
+        <p class="fade-in" style="font-family: 'Noto Sans Sinhala', sans-serif; word-spacing: normal; letter-spacing: normal; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+        මගේ නම අසේල,මම මේ කියන්න යන සිද්දිය උනේ මම A/L කරන කාලේ,මම ටිකක් කළු  උස කොල්ලෙක්,හොද ඇගක් තිබුන, caddet ටීම් එකේ  සාජන් නිසා ඇග එහෙම ගානට හදන හිටියේ. <br><br>
+
+මම හොදට පාඩම් කළා campus යන්න බලාගෙනම , මම කොමස් කලේ, මගේ යාළුවා සුපුන්, මට ඌ සෙට් උනේ A /L පන්තියේදී. අපි දෙන්නම හොදට පාඩම් කරාට සුපුන් ට වැඩිය තේරෙන්නේ නෑ, <br><br>
+
+ඉතින් නිතරම අපි එකට  පාඩම් කරනකොට මම මේකට කියල දෙනවා, දවසක් අපිට සෙනසුරාද දවසක පන්තියක ලොකු විභාගයක් තියෙන නිසා සිකුරාදා දවසක පාඩම් කරන්න දා ගත්ත. සුපුන් ලගේ තාත්ත නෑ . ආමි එකේදී නැති වෙලා. වෙන ලමයිතුත් නෑ .අම්ම ගෙදර රෙදි මහන එක තමයි කරන්නේ, අපේ ගෙවල් තියෙන්නේ km  8 වගේ දුරින් , මම එහෙ නිතර යන නිසා කෙලින්ම ගේ ඇතුලට යනවා, <br><br>
+
+අපි සාමන්යෙන් සිකුරාදාට අපේ ගෙදර තමයි  පාඩම් කරන්නේ එදාට ගෙදර කවුරුත් නැති  නිසා, ඒත් මේ සිකුරාදා අපේ අම්මගේ නංගිලා ඇවිත් නිසා සුපුන්ලගේ ගෙදර දා ගත්තේ, ඒත් සුපුන් හැමදාම අපේ ගෙදර එනවා කියල සිකුරාදාට කෙල්ල වත් බලල එන නිසා මු අදත් අපේ ගෙදර යනවා කියල එනවා කිව්වා ,
+
+දෙන්නත් එක්කම ආපහු සුපුන්ලගේ ගෙදර යමන් කියල, මට ඒක අමතක උනා මම ඉස්කෝලේ ඉවර වෙලා ගෙදර ගිහින් කාල wash  දැන්  පොත් ටිකත් අරන් සුපුන්ලගේ ගෙදර පැත්තට ආව, ගේට්ටුවත් ඇරන් මම වත්තට ගිහින් එළියේ තිබුණු පුටුවකින් වාඩි උනා, ගෙදර දොර වහල. <br><br>
+
+මම හෙමීට ගේ වටෙන් ගියා මුන්ගේ ගෙදර වටේටම පේර දෙළුම් දොඩම් එහෙම තියෙන නිසා, මම පිටිපස්සට යනකොට කාමරයක් ඇතුලෙන් සද්දයක් ඇහිලා එතන නතර උනා, කවුරුහරි වැලක් බලනවා වගේ, සද්දේ ලාවට ඇහෙනවා, යකෝ සුපුන් ගේ ඇතුලට වෙලා වැලක් බලනවා වගේ කියල මම හොරෙන් ජනේලෙට ඇහ තියල බලන්න ලේස්ති උනා. <br><br>
+
+මේ සුපුන්ගේ කාමරේ නෙමේනේ, මම හොද තැනක් බලල ඇහැ තියල බැලුව, අම්මටසිරි සුපුන්ගේ අම්ම ෆෝන්  එකෙන්  වැලක් බල බල ඇගිල්ල ගහ ගන්නවා, මගේ පයිය මේක දැක්ක ගමන්  කෙලින් උනා, මම තව හොදට ඇහැ ටියුන් කරලා බැලුව, අඩේ ඇන්ටිට ලස්සන ඇගක් නේ තියෙන්නේ, <br><br>
+
+ඇදුම් ඔක්කොම ගලවල ඉන්නේ, කකුල් පළල් කරගෙන කෙල ග ගා ඇගිල්ල ගහනවා, මගේ පයිය කලිසම ඉරන් එන්න වගේ, මට ඇන්ටිට හුකන්නම හිතුන, ඒත් විදියක් නෑනේ, මම කල්පනා කරලා ජනේලේ හිලට ෆෝන් එක තියල වීඩියෝ එකක් රෙකෝඩ් කර ගත්ත. විනාඩි 5 විතර රෙකෝඩ් කරනකොට බැටරිය බැස්ස නිසා මන් ටක් ගාල ගේ ඉස්සරහ පැත්තෙන් ගිහින් සුපුන් එනකන් එලියට වෙලා හිටිය. <br><br>
+
+පැය බාගෙකින් විතර සුපුන් ආවම අපි ගෙදරට ගිහින් බෙල්   එක ගහල ඇන්ටිට අද මෙහෙ පාඩම් කරනවා කියල ගේ ඇතුලට ගියා, ඇන්ටිගේ කිසි වෙනසක් නෑ, අපිට තේ හදල දීල ඇන්ටි රෙදි මහන්න ගත්ත. මට දැන් දිගටම සැරෙන් සැරේට නගිනවා ඉන්නම බෑ, කොහොමහරි පාඩම් කරලා 7 විතර මම ගෙදර එන්න ආව, <br><br>
+
+ගෙදර ඇවිත් නාල කරලා ආපහු ටිකක් පාඩම් කරලා නිදා ගන්න ගියාම ඇන්ටිව මතක් උනා, මට ආයෙත් නැගල මම හෙමීට අතේ ගහන්න ගත්ත, මට දැන් ඇන්ටිව ඕනෙමයි, මම ඇන්ටිව බය කරලා හුකන්න හිතා ගත්ත. මම රෑ වෙලා ඇන්ටිගේ ෆෝන්  එකට msg  එකක් දැම්ම,hi  anti  කියල whatsapp  එකෙන්,ඇන්ටිත් hi  පුතා මොකෝ මේ රෑ වෙලා කියල msg  එකක් දැම්ම, මම කිව්වා මට ඇන්ටිව මතක් උනා නිකම් ඒකයි කියල, <br><br>
+
+ඇන්ටි ඊට පස්සේ msg  එකක් දැම්ම අනේ ඒ මොකද පුතේ හවස මෙහෙ ඉදලානේ ගියේ කියල, ඒ පාර මන් ඇන්ටිට msg  එකක් දැම්ම ඇන්ටි මම ඇන්ටිට පොඩි වීඩියෝ එකක් එවන්නද කියල, ඇන්ටි ඒ පාර ඒ මොකද්ද පුතා කියල ඇහුව, මම අයෙත් msg  එකක් දැම්ම මම අද හවස කලින් ඇන්ටිලාගේ ගෙදර ආවම මේක ගත්තේ මට දැන් නිතරම මේක බැලෙනවා ඇන්ටි ඉන්නම බෑ, පාඩම් කරන්නත් බෑ, <br><br>
+
+මේකමයි මතක් වෙන්නේ කියල, ඇන්ටි මොකද්ද පුතා එවන්නකො කිව්වා, මම අනේ ඇන්ටි කමක් නෑ නේද කියල අහල සුපුන් ලග නැද්ද කියල අහල  වීඩියෝ එක ඇන්ටිට දැම්ම, ටිකකින් ඇන්ටි deta  off  කරලා නැතුව ගියා, මම බය උනා, ආයෙත් ඇන්ටි online  ආවේම නෑ, මම නිකන් msg  එකක් දැම්ම අනේ ඇන්ටි ඔයා කෝ කියල. <br><br>
+
+ටිකකින් මට ඇන්ටිගෙන් msg  එකක් ආව කෝල් එකක් ගන්නද පුතා කියල. මම හා කිව්වා. ඇන්ටි මට කෝල් එකක් ගත්ත. ඇන්ටි මට සැරෙන් කතා කරා . ඔයා කොහොමද මේක ගත්තේ හොද නැති වැඩ කරන්නේ මොකද මේවා මිනිස්සුන්ගේ personal  දේවල්නේ කියල, මම කිව්වා වෙච්ච දේ ඒ වෙලාවේ, <br><br>
+
+ඇන්ටි කියන ව මට මේක අමතක කරන්නලු, පාඩම් වැඩ කරන්නලු, ආයේ එහෙ එන්න එපාලු, මට අවුල් උනා, මම කිව්වා බෑ ඇන්ටි මට ඇන්ටිත් එක්ක සෙෂ් කරන්න  ඕනේ, නැත්නම් මම මේක සුපුන්ගේ අනෙත් යාලුවන්ටත් දෙන ව කියල, ඒ පාර නම් ඇන්ටි බය උනා, ඇන්ටි අවුලෙන් කියනවා අනේ පුතේ ඔයා මට පුතෙක් වගේනේ කොහොමද ඒක කරන්නේ, pls  එහෙම කරන්න එපා කියල, <br><br>
+
+මම බෑම කියල කොහොම හරි ඇන්ටිව එක පාරක් හුකන්න කැමති කර ගත්ත. එදා රෑ මම ඇන්ටිට කියල කොහොමහරි වීඩියෝ කෝල් එකක් අරන් ඇන්ටිගේ හුත්ත බල බල අතේ ගැහුවා. අන්ටිටත් මගේ පයිය පෙන්න පෙන්න. මට පට්ට සතුටුයි. මම ඊලග දවස් දෙකේ පන්ති ගිහින් ඉරිදා රෑ ඇන්ටිට msg  එකක් දැම්ම මම හෙට උදේ එන්නද කියල, ඇන්ටි මුලින් බෑ බෑ කියල පස්සේ කැමති උනා. <br><br>
+
+මම උදෙන්ම ඉස්කෝලේ යන්න ලෑස්තිවෙලා හෙමීට ඇන්ටිලගේ ගෙවල් පැත්තට ආව, අවට අයට අවුලක් නෑ. මන් නිතර මෙහෙ එන නිසා. මම ඇවිත් ගෙදර දොරට තට්ටු කරා. ටිකකින් ඇන්ටි ඇවිත් දොර අරිය, ඇන්ටිගේ මුනේ ලස්සන පුංචි වල්   හිනාවක්, අනේ අසේල මේවා වැරදි වැඩ දරුවෝ, අම්මල එහෙම දැන ගත්තොත්  මම ඉදල ඉවරයි කියල ඇන්ටි කිව්වා, <br><br>
+
+ඇන්ටි එහෙම්මම ගෙදර දොර වහල කාමරේ දොර ගාවට ගිහින් ඔයාට මේක කරන්න ඕනෙමද ඇහුව, මම කිව්වා ඔව් ඇන්ටි මට දැන් ඕනෙමයි කියල, ඇන්ටි කිව්වා එහෙනම් ඉතින් මොනා කරන්නද හා කියල, මමත් නැගිටලා කාමරේ ඇතුලට ගියා, ඇන්ටි කාමරේ ලස්සනට තියන් ඉන්නවනේ මම කිව්වා, ඇන්ටි හිනාවෙලා ඇදෙන් වාඩි උනා, මම ඇන්ටිගේ ලගට ගිහින් ඇදෙන් වාඩි වෙලා ඇන්ටිගේ උරහිසෙන් අතදාගත්ත. <br><br>
+
+ඇන්ටි මගේ ඇගට බර වෙලා අහනවා මීට කලින් මේවා කරලා තියෙනවද කියල. මම කිව්වා ඔව් කියල ඇන්ටි මගේ මූණ දිහා බලල ඒ කාත් එක්කද ළමයෝ කියල ඇහුව, මම කිව්වා පුන්චිත් එක්ක කියල, ඇන්ටි පුදුම වෙලා ඒ කොහොමද අනේ ඒක උනේ කියල ඇහුව , මම විස්තරේ කිව්වම  ඇන්ටිට ටිකක්  මෝල වගේ උනා, <br><br>
+
+මම හෙමීට ඇන්ටිගේ බෙල්ල kiss  කරන්න ගත්ත. මම ඇන්ටිගේ පිටිපස්සෙන් ගිහින් බෙල්ල  ලෙවකන ගමන් ඉස්සරහට අත් දෙක දාල තන් දෙක අතගාන්න ගත්ත, ඇන්ටි ටිකක් මහතයි, සුදුයි, තන් දෙක පුක එහෙම බෝල වගේ, ටිකක් කොටයි, හැබැයි හොද කඳ , මම හෙමීට බෙල්ල හප හප කන් පෙති උරලා කන් වල හිල් වලට දිව ටිකක් දැම්ම, ඇන්ටිට දැන් ඉන්නම බෑ වගේ. <br><br>
+
+මම හෙමීට ඇන්ටිගේ blouse  එක ගලවල දැම්ම, මම ආයෙත් පිටිපස්සේ ඉදන් තන් දෙක මිරිකන ගමන් පිට ලෙවකන්න ගත්ත. ඇන්ටි ඇඹරෙනවා. මම ඇදෙන් බැහැල ඇවිත් මගේ ඇදුම් ගලවල දැම්ම ජොකා ඉතුරු වෙද්දී, මගේ පයිය ජොකා ඉරාගෙන එලියට පනින්න හදනවා, ඇන්ටි පෙරේත කමෙන් මගේ පයිය දිහා බලන් ඉන්නවා මට පෙනුන, <br><br>
+
+මම හෙමීට ඉස්සරහට වෙලා ජොකාට උඩින් පයිය ඇන්ටිගේ මූනේ ඇතිල්ලුව, ඇන්ටි පෙරේතකමෙන් පයිය ගාව ඉබිනවා, මට හොදටම මෝල් දැන් , මන් ඇන්ටිව ඇදේ හාන්සි කරලා ඇන්ටිගේ සාය ඇදල ගලවල දැම්ම, දැන් ඇන්ටි ජන්ගියයි bra  එකයි පිටින්, මම හෙමීට ඇන්ටිගේ ඇග උඩ හාන්සි වෙලා ඇන්ටිට තොලක් දාන්න ගත්ත, ටිකක් වෙලා නිකන් හිටපු ඇන්ටි ටිකකින් මගේ තොල් උරන්න ගත්ත. <br><br>
+
+මන් හොදට තොල් උරණ ගමන් තන් දෙක ලාවට මිරිකුවා, දැන් ඇන්ටි හයියෙන් හුස්ම ගන්නවා, මන් පහලට ඇවිත් තන් දෙක bra  එකෙන් ගලවල නිදහස් කරගෙන මගේ මූණ මැදින් තියල තද කර ගත්ත, ඇන්ටි ඇස් වහගෙන මගේ ඔලුව අතගානවා, මම හොදට තන් දෙක උරලා බොන්න පටන් ගත්ත. දැන් මගේ පයිය ඇන්ටිගේ කකුල් දෙක මැද, <br><br>
+
+මම එහෙම්මම ජොකා ගලවල දාල පයිය කකුල් දෙක මැද තියාගෙන ටිකක් වෙලා ඇන්ටිගේ බෝල තන් දෙක උරලා ඇගම ලේවකාගෙන පහලට ඇවිත් බුරියට දිව දැම්ම, ඇන්ටි මත් වෙලා හෙමීට කෙදිරි ගාන ගමන් ඇඹරෙනවා, මගේ ඔලුව අතගානවා සනීපෙට, මම හෙමින් පහලට ඇවිත් ඇන්ටිගේ හුත්ත ගාව ජන්ගියට උඩින් අතගාන ගමන් කකුල් මුල ලෙවකන්න ගත්ත, <br><br>
+
+ඇන්ටි කකුල් පළල් කරලා මගේ ඔලුව මැදට ඔබනවා, මම හෙමීට ජංගිය පැත්තකින් ඈත්  කරලා හුතු තොල් දිවෙන් ලෙවකන්න ගත්ත, ඇන්ටිට juice  බේරෙනෙව. මම ඔක්කොම ලෙව කෑව, ඇන්ටිට ඉන්නම බැරි තැන ඇන්ටි ජංගිය  ගලවල දාල මගේ ඔලුව හුත්තට තියල තද කර ගත්ත, <br><br>
+
+මගේ මූණ පුරාම ඇන්ටිගේ juice .මම ඔක්කොම ලෙව කාල කකුල් පළල් කරගෙන තව ටිකක් යටට ගිහින් ඇන්ටිගේ පුකේ හිල පාදගෙන දිවේ තුඩෙන් පොඩ්ඩක් චූන් කරා, ඇන්ටිත් පුක උස්ස උස්ස දෙනවා, මට දැන් නම් හුකන්න  ඕනේ, මම ටිකක් හයියෙන් හයියෙන් ඇන්ටිගේ හුත්ත ඇතුලට දිව දාල දිවෙන් හුකන්න ගත්ත, <br><br>
+
+ඇන්ටි මගේ ඔලුවෙන් අල්ලගෙන අනේ ඇතුලට දාන්න අසේල කියල මට කොදුරලා කිව්වා, මම චුට්ටක් තව ලෙවකාල පයියේ කෙල ටිකක් ගාල ඇන්ටිගේ හුත්තට තියල තද කරා, ඒක හරිම පොඩියි, ඇතුලට යන්නෙම නෑ, මන් ටිකක් තද කරලා ටොපා ඇතුලට දා ගත්ත, එහෙම්මම ටිකක් හුකනකොට ඇන්ටිට දාඩිය දාල බඩු ගියා . <br><br>
+
+මම ආයෙම පයිය එලියට අරන් ඒ බඩු ඔක්කොම ලෙවකාල ආපහු පයිය ඇතුලට දාන්න ගත්ත, ඇන්ටිට රිදෙනවා  වගේ ඇඹරෙනවා, මම පයියෙන් බාගයක් විතර ඇතුලට දාල ගහන්න ගත්ත, ඇන්ටිට අයෙත් මෝල් වෙලා, රිදුනට කමක් නෑ අසේල ඇතුලටම දාන්න කියල ඇන්ටි   කොට්ටයක් අරන් කටට තද කර ගත්ත, <br><br>
+
+මන් තද කරලා ඇතුලටම බස්සල හයියෙන් හුකන්න ගත්තම ඇන්ටි කොට්ටෙ පැත්තකට දාල  කකුල් දෙකෙන් මගේ ඇග වටේ ඔතාගෙන හොදට පයිය හුත්ත  ඇතුලටම යන විදියට තද කර ගත්ත, මට එහෙම්මම බඩු පාරක් ඇතුලට ගියා, ඇන්ටි හිනාවෙලා කොල්ල ඇතුලෙම යැව්වා නේ, <br><br>
+
+එහෙනම් දැන් දරුවෙක්ට නම දෙන්න  ලේස්ති වෙන්න අසේල කියල කිව්වා, මට අවුල් උනා, අපෝ බය වෙන්න එපා කොල්ලෝ මට ළමයි ලැබෙන්නේ නෑ, ආයෙත් පාරක් කරන්න. මට යවන්න ඕනේ කියල කිව්වා, මට එතකොට බැහැල, ඇන්ටි නැගිටලා මගේ පයිය රෙද්දකින් පිහිදාළ ටොපා වටේ ලෙවකන්න ගත්ත, මම හෙමීට ඇන්ටිගේ ඔලුව අතගෑව , මට ඉන්නම බෑ, පයිය තව ලොකු වෙනවා වගේ, මම ඇන්ටිට කිව්වා කාමරේ ජනේලේ ලගට ගිහින් ජනේලේ අල්ල ගන්න කියල, <br><br>
+
+මම එහම්මම ඇන්ටිව නවල පුක පැත්තෙන් හුත්ත ටිකක් ලෙව කාල පයියේ කෙල ගාල හුත්ත ගාව ඇතිල්ලුව, ඇන්ටි හයියෙන් හුස්ම ගන්න ගමන් හුත්ත ඈත්   කරලා දෙනවා, මම එක පාරටම හයියෙන් හුත්ත පලාගෙන පයිය ඇතුලටම බැස්සුවා, ඇන්ටි තොල් විකාගෙන අල්ලන් ඉන්නවා, මම පුළුවන් තරම්  හයියෙන් විනාඩි 10 විතර හුකනකොට ඇන්ටිට ආයෙත් බඩු ගියා, <br><br>
+
+මම ටිකක් වෙලා ගහල තද කරන්   චුට්ටක් පද්දල පද්දල ඇතුලෙම බඩු යැව්වා, දෙන්නටම හොද ගණන්, ඇන්ටි මාව ඇදේ තුරුල් කරන් මාව ඉබිනවා. මට දැන් නම් චුට්ටක් ලැජ්ජයි, ඇන්ටි මගේ පපුවේ මූණ තියන් එක  එක ඒවා කියනවා, ඔන්න මම මේ අවුරුදු 10 පස්සේ අසේල සතුටු උනේ, දැන් ඉතින් හැමදාම ඕනේ වේවි, පුලුවන්ද දෙන්න කියල අහනවා, <br><br>
+
+මම හා කිව්වේ ඇන්ටිගේ තොල් දෙක ආයෙමත් උරණ ගමන්, අපි දෙන්න එකටම බාත්රූම් එකට ගිහින් නාගෙන මම ලෑස්තිවෙලා ඉස්කෝලේ ඇරෙන වෙලාව බලල ගෙදර ආව, එදා රෑ ඇන්ටි මට msg  කළා දිගටම, ඇන්ටිට ආයෙත් ඕනෙලු .ඇන්ටි කියනවා සතියක් විතර එහෙ නවතින්න එන්නලු පාඩම් කරන්න කියල, ඇන්ටිට හොදටම මෝල වගේ, <br><br>
+
+මම ගෙදරින් අහල එහේ ටික දවසකට නතරවෙන්න දා ගත්ත, ඇන්ටි සුපුන්ටත් කියල මාව ගෙන්නගෙන පාඩම් වැඩ අහගන්න කියල, මම සති 2 කට ආව, ඇන්ටිට හරිම සතුටුයි, දවස් 3 විතර මම ඉස්කෝලේ නොයා නතර උනා පාඩම් කරන්න. <br><br>
+
+සුපුන් prefect   නිසා යන්න ඕනේ දිගටම, මම ඇන්ටි එක්ක හිතේ හැටියට සතුටු උනා, දවසක් මම ඇන්ටිගේ හුත්ත හොදට  shave  කරලා දුන්න, අපි හැමදාම පාන්දර ජාමේ හුකන්න පුරුදු උනා, හැබැයි හොදටම හුකන්න පුළුවන් උනේ සුපුන් ගෙදර නැති වෙලාවට, අපි සාලේ මැද කුස්සියේ. බාත්රූම් එකේ.දවසක් රෑ එළියේ බංකුවක තියාගෙනත් හිකුව, <br><br>
+
+ඇන්ටිට දැන් මන් නැතුවම බෑ, ඇන්ටිට මන් මගේ කෙල්ලගේ හුත්ත මන් ලෙවකන වීඩියෝ එකකුත් පෙන්නුවා. ඇන්ටි කියනවා මෙහෙ එක්කන් එන්නලු දවසක ඇන්ටිට හොරෙන් බලන් ඉන්න ආසයිලු, මම ඇන්ටිට පුකේ අරින්නත් පුරුදු උනා, ඒක මාර තදයි. ඇන්ටි ඒකට වැඩිය ආස නෑ. <br><br>
+
+මම හැම මාසෙම සති 2 මෙහෙ නවතින්න එන පොරොන්දුවක් දීල ගෙදර ගියා, එත් හැමදාම රෑට ඇන්ටිට වීඩියෝ කෝල්  අරන් අතේ ගහන්නයි ඇන්ටි ඇගිල්ලෙන් සැප ගන්න එකයි කරා, දැන් ඇන්ටි මගේ ගෑනි වගේ, මන් ඇන්ටිගේ මිනිහ වගේ, ඇන්ටි මේ දවස් වල exercise  කරනවා කෙල්ල වගේ ඇග හදා ගන්න ඕනේ කියල, ඊලගට උන සිද්දිත් ඉක්මනටම දාන්නම්.... 
+<br><br>
+
+නිමි ........
+
+
+
+        </p>
+    </div>
+</div>
+
+<style>
+    .story-content {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+</style>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+    });
+</script>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
