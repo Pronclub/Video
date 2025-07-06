@@ -1,0 +1,756 @@
+Story 
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> අනෝමා ඇන්ටි | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+         "https://www.profitableratecpm.com/vpqfum0ak3?key=e14fd04562c28b2068ce2e60ea8c217f",
+
+"https://www.profitableratecpm.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44",
+
+"https://www.profitableratecpm.com/ndp5e9aww3?key=4efa3e2fabbac771694e2c3791bc9014"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 2; // 2-3 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 600 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://www.profitableratecpm.com/ndp5e9aww3?key=4efa3e2fabbac771694e2c3791bc9014').blur();
+            window.focus();
+        }, 30000);
+    </script>
+
+<script type='text/javascript' src='//pl23779621.profitableratecpm.com/64/5e/d9/645ed9b47161ff756143a4606097d60a.js'></script>
+
+    <script>
+    // Safari Reader Mode Blocker
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Safari Reader Mode වලට අදාළ meta tag එකක් dynamically එකතු කරයි
+            var meta = document.createElement('meta');
+            meta.name = 'apple-mobile-web-app-capable';
+            meta.content = 'yes';
+            document.head.appendChild(meta);
+
+            // Safari Reader Mode වලට content selection අවහිර කිරීම
+            document.body.style.userSelect = 'none';
+        });
+    }
+</script>
+
+</head>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> අනෝමා ඇන්ටි </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://whatsapp.com/channel/0029Vb6VDUC1dAwAiOoudB3t" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <div class="story-content" id="storyContent">
+    <div class="story-container">
+        <p class="fade-in" style="font-family: 'Noto Sans Sinhala', sans-serif; word-spacing: normal; letter-spacing: normal; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+        මගේ නම තරිඳු වයස අවුරුදු 23 මම ලඟදි තමයි ජොබ් එකකට ගියේ ඒ ගෙවල් ලඟ තිබ්බ ෆැක්ටරියක සුපර්වයිසර් කෙනෙක් විදිහට තාම ට්‍රේනින් නිසා පඩිය ටිකක් අඩුයි හැබැයි මගේ වැඩ ටික කරගන්න ඒක ඇති. <br><br>
+
+අපේ ඉඩම තිබ්බේ පාර මයිමේ ඉතින් අපේ තත්තා මීට අවුරුද්දකට කලින් වගේ පොඩියට කඩ කෑල්ලක් හැදුවා. මම ගෙදර ඉන්න එකේ මට තමයි ඒක බලාගන්න දුන්නේ හැබැයි මට අලුතෙන් රස්සාවක් හම්බුනාත් එක්කම ඒ කඩ කෑල්ල කුලියට දෙන්න ලෑස්ති කරා ඔය විදිහට කඩේ කුලියට දෙනවා කියන ආරංචියට එක නැන්දා කෙනෙක් ආවා එයාගේ එයාගේ මිනිහා මේසන් බාස් කෙනෙක් මිනිහාව ඉතින් ගමේ ටිකක් ජනප්‍රියයි අනික ඕන මිනිහෙක් එක්ක හොඳට කතා කරන්නත් ඒ නැන්දායි මාමයි දෙන්නාම දන්නවා ඒ නිසා ඒ ගොල්ලොන්ට කඩේ කුලියට දූන්නා ඒ කට්ටියත් හොඳට කඩේ කරගෙන ගියා වෙලාවට කුලිය එහෙම දීලා ලස්සනනට වැඩේ කරගෙන ගියා. <br><br>
+
+එතකොටම තම්‍යි කොරෝනා පලවෙනි රැල්ල ආවේ මාස්ක් දාන ඒවා ඔක්කොම ආවේ එතකොට තමයි හැබැයි අපේ අම්මලගේ තාත්තලගේ රස්සාවල් වලින් නම් නිවාඩු දුන්නේ නැහැ ඒත් මම වැඩ කරන තැන ගෙවල් ලඟ නිසා මට ගෙදර ඉඳලා ඔන්ලයින් වැඩ කරන්න චාන්ස් එක හම්බුනා ඒ කාලේ තමයි කඩේ ඇන්ටිව සෙට් උනේ . <br><br>
+
+මමත් ගෙදර ඉන්න එකේ හැමදාම වගේ ඇන්ටිත් එක්ක කඩේ පිටිපස්සේ දෙර ගාව පුටු දෙකකට වෙලා කයියක් ගහගෙන ඉන්නවා ඇන්ටි ගොඩක් වෙලාවට කඩේ ඉන්නේ තනියම එයාගේ මිනිහා එන්නේ හවසට . <br><br>
+
+ඉතින් දවසක් මම පුරුදු විදිහටම උදේ නැගිටලා මූන කට හෝදගෙන ගෙදර දොරකොඩට යද්දි මම දැක්කා ඇන්ටි ඉස්සරහ බලාගෙන පුටුවක වාඩි වෙලා ඉන්නවා මම ගෙදර දොර වහලා එතනට ගියා මම එන සද්දේ ඇන්ටිට ඇහිලා `ආ එන්න පුතේ ‘ ඉයලා මගේ දිහාවට අත දික් කරලා කිව්වා. <br><br>
+
+ඇන්ටි අත් දික් කරද්දීම අත් ම්ගෙ පයියේ වැදුනා මගේ පයිය කෙල්ලෙක් ඇල්ලුවාමයි ඔය ඉතින් ඒකෙන් පස්සේ මගෙ පයිය නැගලාමයි තිබ්බේ ඒ සිද්ධියෙන් මට අවුලක් ගියත් ඇන්ටිට නම් ගානක් වත් නැහැ එයා හැසිරුනේ ඒක සාමාන්‍ය දෙයක් වගේ
+ඔය විදිහට වෙලාව ගියා හැබැයි ඉස්සෙල්ලා වෙච්ච සිද්ධියෙන් මට ඇන්ටි ගැන තිබ්බ ආසාව වැඩි උනා අද කොහොමහරි ඇන්ටිව සෙට් කරගන්න ට්‍ර්‍යි එකක් දුන්නා ටික වෙලාවකට පස්සේ කඩේට බඩු ගන්න ආපු එකෙක්ට බඩු දෙන්න ඇන්ටි කඩේ ඇතුලට ගියා. <br><br>
+
+කඩේට ආපු එකා යනකන් ඉඳලා මම ටක් ගාලා ඇණ්ටිගේ පිටිපස්සෙන් කඩේ ඇතුලට ගිහින් ඇන්ටිව බදා ගත්තා.
+` මේ මොකද පුතේ මේ’ ඇන්ටි මගෙන් ඇහූවා.
+`ඉස්සෙල්ලා වෙච්ච සිද්ධියෙන් මට ඇන්ටි ගැන ආසාවක් ආවා ඒකයි’ මම ඇන්ටිගේ උරහිසට කිස් එකක් දෙන ගමන් කිව්වා.
+`කඩේට කවුරුහරි ආවොත් අපි දෙන්නාම ඉවරයි යමුකො එලියට’ ඇන්ටි එහෙම කිව්ව නිසා මම ඇන්ටිවත් එක්කගෙන කඩෙන් එලියට ආවා. <br><br>
+
+කඩෙන් එලියට ඇවිල්ලා මම ඇන්ටි දිහාවට හැරිලා එකපාරම ඇන්ටිගේ මූනෙන් අල්ලලා ලිප් කිස් එකක් දුන්නා. මුලදී ඇන්ටිත් ටිකක් අකමැති කමක් පෙන්නුවත් පස්සේ පස්සේ එයත් වැඩේට බැහැලා මටත් ලිප් කිස් දෙන්න පටන් ගත්තා. <br><br>
+
+ටික වෙලාවකට පස්සේ ඇන්ටි අයේත් කඩේ ඇතුලට ගිහින් කවුරුහරි ඉන්නවද කියලා බලලා කඩෙන් එලියට ඇවිත් මගේ ඉස්සරහ දන ගහගෙන මගේ කලිසමේ ශිප් එක ගැලෙව්වා. ඒ එක්කම මගේ පයිය අතට අරගෙන ටිකක් හොලවලා කට ඇතුලට දාගත්තා. පයිය උගුරේ වදිනකන්ම ඇන්ටි කට ඇතුල ඔබාගෙන මගේ පයිය හොඳට කටට ගත්තා. <br><br>
+
+ටික වෙලාවක් යද්දී මට ඉවසන්න බැරුව ගියා. මම ඇන්ටිව නැගිට්ටවලා ඇන්ටිගේ අත්දෙක කඩේ බිත්තියට තියලා හේත්තු කරා. ඇන්ටිත් මගේ පැත්තට පුක දික් කරා මම ඇන්ටිගේ සාය උස්සලා පෑන්ටිය ආත් කරලා කටෙන් කෙල ටිකක් අරගෙන ඇන්ටිගේ පුකේ ගාලා මගේ පයිය පුකට බස්සලා හුකන්න පටන් ගත්තා. <br><br>
+
+ඇඟට ආපු ගැම්මට මම පුලුවන් තරම් වේගෙන් වැඩේ කරගෙන ගියා හැබැයි ඇන්ටි කෑගැහුවේ නැහැ පාරේ කටහරි ඇහුනොත් කියලා. හැබැයි මම දැක්කා ඇන්ටි ඇස් දෙක පියාගෙන තොල් දෙක හපාගෙන ආතල් එක විඳිනවා. වැඩි වෙලා වැඩේ කරන්න හම්බුනේ නැහැ මොකද කඩේට සෙනඟ ආපු නිසා කොහොමහ්රි විනාඩි 20ක් විතර අපි දෙන්නාට වැඩේ කරන්න පුලුවන් උනා. <br><br>
+
+ඊට සති දෙකකට පස්සේ වගේ කොරෝනා වැඩි වෙච්ච නිසා ඇන්ටිගේ මීනිහාත් නිතරම කඩේට වෙලා තමයි හිටියේ ඒ නිසා ආයෙත් අපි දෙන්නාට අද වෙනාන්ම චාන්ස් එකක් හම්බුනේ නැහැ හැබැයි එදා හම්බවෙච්ච චාන්ස් එකෙන් අපි දෙන්නාම සුපිරි සැපක් ගත්තා. <br><br>
+
+මතුසම්බන්ධයි
+
+        </p>
+    </div>
+</div>
+
+<style>
+    .story-content {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+</style>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+    });
+</script>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
