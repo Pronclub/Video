@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Modern Article Page</title>
+    <title>Crimson Grace - Modern Fashion</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -270,11 +270,13 @@
 
         .see-more-section {
             text-align: center;
-            margin: 1px 0 5px;
+            margin: 30px 0;
         }
 
         .see-more-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             padding: 12px 30px;
             background-color: var(--primary-color);
             color: white;
@@ -286,6 +288,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
         .see-more-btn:hover {
@@ -294,19 +298,47 @@
             box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
         }
 
+        .see-more-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .see-more-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        .see-more-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .see-more-btn:hover i {
+            transform: translateY(2px);
+        }
+
         .hidden-content {
             display: none;
             animation: fadeIn 0.6s ease-out;
         }
 
         .share-section {
-            margin: 0px;
-            padding: 0px;
+            margin: 30px 20px;
+            padding: 20px;
             background-color: var(--white);
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(0, 0, 0, 0.05);
             animation: fadeIn 0.8s ease-out 1.6s both;
+            text-align: center;
         }
 
         .share-title {
@@ -314,35 +346,75 @@
             margin-bottom: 15px;
             color: var(--dark-color);
             font-weight: 500;
-            text-align: center;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .share-button {
-            display: block;
-            width: 100%;
-            padding: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
             background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 30px;
             font-family: var(--font-main);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: center;
             text-decoration: none;
+            min-width: 120px;
+        }
+
+        .copy-button {
+            background-color: var(--accent-color);
+        }
+
+        .share-button.facebook {
+            background-color: #3b5998;
+        }
+
+        .share-button.twitter {
+            background-color: #1da1f2;
+        }
+
+        .share-button.whatsapp {
+            background-color: #25d366;
         }
 
         .share-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Updated Footer Styles */
+        .share-button i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            display: none;
+        }
+
         footer {
             background-color: #121212;
             color: #f8f9fa;
@@ -372,19 +444,6 @@
             color: #ffffff;
             margin-bottom: 20px;
             font-size: 1.1rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3:after,
-        .footer-column h4:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: #6C63FF;
         }
 
         .footer-column p {
@@ -407,11 +466,11 @@
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            position: relative;
         }
 
         .footer-column ul li a:hover {
             color: #ffffff;
-            padding-left: 5px;
         }
 
         .social-links {
@@ -430,10 +489,12 @@
             color: white;
             font-size: 16px;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .social-links a:hover {
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .social-links a.tiktok {
@@ -466,7 +527,20 @@
             color: #6C63FF;
         }
 
-        /* Animations */
+        .protection-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            display: none;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -483,22 +557,21 @@
             }
         }
 
-        /* Protection message */
-        .protection-message {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            z-index: 1001;
-            display: none;
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
         }
 
-        /* Mobile responsiveness */
         @media (min-width: 768px) {
             .hero-image {
                 height: 300px;
@@ -558,6 +631,11 @@
             .footer-column {
                 margin-bottom: 30px;
             }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -594,33 +672,32 @@
             <h2>1. Introduction - A Reverent Modern Muse</h2>
             <p>There's a quiet boldness in garments that draw power from heritage yet speak fluently in the language of today. This design — a modern reinterpretation of traditional Chinese attire — is a breathtaking display of couture elegance, capturing the duality of strength and softness, heritage and innovation. With a mood anchored in cultural reverence and lifted by contemporary clarity, the ensemble is crafted for the modern muse with a timeless soul.</p>
 
-            <img src="https://www.shortenlnk.xyz/wearverse/images/Image01design.jpg" alt="Fashion Design" class="article-image">
+            <img src="https://www.shortenlnk.xyz/wearverse/images/Image01design.jpg" alt="The Crimson Grace ensemble in motion" class="article-image">
             <p class="image-caption">The Crimson Grace ensemble in motion</p>
 
             <div id="hidden-content" class="hidden-content">
                 <h2>2. Design Features – Where Precision Meets Symbolism</h2>
                 <p>The silhouette flows like poetry in motion, refined into a minimalist vision that honors every structural element. Shiny red silk, unmistakably luxurious and fluid, becomes the canvas for the design's architectural clarity. The short-sleeved bolero jacket introduces the look with sculptural grace, while a sleeveless high-neck crop top lies sleek beneath — a masterstroke in layering. High-waisted shorts, structured yet soft, are veiled by skirt panels that fall delicately on each side, giving the illusion of movement even in stillness. Gold accents — subtle, not overstated — nod to prosperity, while the deep red speaks of power and passion. Every line is intentional; every piece in harmony.</p>
 
-                
-                <img src="https://www.shortenlnk.xyz/wearverse/images/Image02design.jpg" alt="Design Details" class="article-image">
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image02design.jpg" alt="Close-up of the intricate fabric and stitching details" class="article-image">
                 <p class="image-caption">Close-up of the intricate fabric and stitching details</p>
 
                 <h2>3. Technical Insights – The Art Beneath the Elegance</h2>
                 <p>The beauty of the piece lies not just in what's seen, but how it's constructed. Tailoring is precise, guided by clean paneling and impeccable edge finishes. The bolero jacket, cropped at just the right length, complements the top's neckline, which rises neatly along the collarbone. From the back, the ensemble reveals its clever craftsmanship — symmetrical dart placements ensure a contoured fit, while the overlapping skirt panels align seamlessly over the shorts, flowing outward without bulk. Invisible closures and flat seams preserve the purity of the silhouette, allowing the structure to stand on its own without distraction. It's where romance meets architecture in fabric form.</p>
 
-                <img src="https://www.shortenlnk.xyz/wearverse/images/Image03design.jpg" alt="Design Back View" class="article-image">
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image03design.jpg" alt="The elegant back view showing the tailored structure" class="article-image">
                 <p class="image-caption">The elegant back view showing the tailored structure</p>
 
                 <h2>4. Occasion & Wearability – Commanding Presence, Effortlessly</h2>
                 <p>Perfect for the woman who owns the moment, this look moves gracefully from gallery openings to rooftop soirées, from fashion week lounges to cultural celebrations. It's not a costume — it's a statement. Designed for the confident, the curious, the elegantly fearless. She's the kind of woman who redefines tradition, not by rejecting it, but by reimagining it on her own terms. This piece isn't about dressing up — it's about showing up, unmistakably herself.</p>
 
-                <img src="https://www.shortenlnk.xyz/wearverse/images/Image04design.jpg" alt="Wearable Fashion" class="article-image">
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image04design.jpg" alt="The ensemble styled for a modern fashion event" class="article-image">
                 <p class="image-caption">The ensemble styled for a modern fashion event</p>
                 
                 <h2>5. Closing Statement – Power in Every Seam</h2>
                 <p>In a world of fleeting fashion, this design endures. It whispers with silk, sculpts with structure, and dazzles without a single unnecessary detail. This is elegance distilled, designed not just to be worn — but to be remembered.</p>
 
-                 <img src="https://www.shortenlnk.xyz/wearverse/images/Image05design.jpg" alt="Complete Look" class="article-image">
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image05design.jpg" alt="The complete Crimson Grace look from all angles" class="article-image">
                 <p class="image-caption">The complete Crimson Grace look from all angles</p>
             </div>
         </div>
@@ -633,9 +710,24 @@
 
         <div class="share-section">
             <h3 class="share-title">Share this article</h3>
-            <a href="#" class="share-button" id="share-button">
-                <i class="fas fa-share-alt" style="margin-right: 8px;"></i> Share Now
-            </a>
+            <div class="share-buttons">
+                <button class="share-button copy-button" id="copy-button">
+                    <i class="far fa-copy"></i> Copy Link
+                </button>
+                <a href="#" class="share-button facebook" id="facebook-share">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="#" class="share-button twitter" id="twitter-share">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="#" class="share-button whatsapp" id="whatsapp-share">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="copy-notification" id="copy-notification">
+            Link copied to clipboard!
         </div>
 
         <footer>
@@ -690,7 +782,6 @@
                 </div>
             </div>
         </footer>
-
     </div>
 
     <script>
@@ -726,6 +817,20 @@
                     e.preventDefault();
                     showProtectionMessage();
                 }
+                
+                // Disable Print Screen
+                if (e.keyCode === 44) {
+                    e.preventDefault();
+                    showProtectionMessage();
+                }
+            });
+
+            // Disable dragging images
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    showProtectionMessage();
+                }
             });
 
             function showProtectionMessage() {
@@ -735,6 +840,21 @@
                     message.style.display = 'none';
                 }, 2000);
             }
+
+            // Calculate reading time automatically
+            function calculateReadingTime() {
+                const articleContent = document.querySelector('.article-content');
+                const text = articleContent.textContent || articleContent.innerText;
+                const wordCount = text.trim().split(/\s+/).length;
+                const readingSpeed = 200; // words per minute
+                const readingTime = Math.ceil(wordCount / readingSpeed);
+                
+                const readTimeElement = document.querySelector('.read-time');
+                readTimeElement.innerHTML = `<i class="far fa-clock"></i> ${readingTime} min read`;
+            }
+
+            // Call the function when page loads
+            calculateReadingTime();
 
             // See More functionality
             const seeMoreBtn = document.getElementById('see-more-btn');
@@ -746,43 +866,81 @@
                     seeMoreBtn.style.display = 'none';
                     // Scroll to the hidden content smoothly
                     hiddenContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Recalculate reading time after showing hidden content
+                    calculateReadingTime();
                 }
             });
 
             // Initially hide the hidden content
             hiddenContent.style.display = 'none';
 
-            // Share functionality
-            const shareButton = document.getElementById('share-button');
+            // URL Copy functionality
+            const copyButton = document.getElementById('copy-button');
+            const copyNotification = document.getElementById('copy-notification');
             
-            shareButton.addEventListener('click', function(e) {
-                e.preventDefault();
+            copyButton.addEventListener('click', function() {
+                const currentUrl = window.location.href;
                 
-                if (navigator.share) {
-                    navigator.share({
-                        title: document.querySelector('.article-title').textContent,
-                        text: document.querySelector('.article-subtitle').textContent,
-                        url: window.location.href
-                    }).catch(err => {
-                        console.log('Error sharing:', err);
+                // Modern clipboard API
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(currentUrl).then(function() {
+                        showCopyNotification();
+                    }).catch(function() {
+                        fallbackCopy(currentUrl);
                     });
                 } else {
-                    // Fallback for browsers that don't support Web Share API
-                    const url = window.location.href;
-                    const tempInput = document.createElement('input');
-                    document.body.appendChild(tempInput);
-                    tempInput.value = url;
-                    tempInput.select();
+                    fallbackCopy(currentUrl);
+                }
+            });
+
+            function fallbackCopy(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                document.body.appendChild(textarea);
+                textarea.select();
+                
+                try {
                     document.execCommand('copy');
-                    document.body.removeChild(tempInput);
-                    
-                    // Change button text temporarily
-                    const originalHTML = shareButton.innerHTML;
-                    shareButton.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i> Link Copied!';
-                    
-                    setTimeout(function() {
-                        shareButton.innerHTML = originalHTML;
-                    }, 2000);
+                    showCopyNotification();
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+                
+                document.body.removeChild(textarea);
+            }
+
+            function showCopyNotification() {
+                copyNotification.style.display = 'block';
+                setTimeout(function() {
+                    copyNotification.style.display = 'none';
+                }, 2000);
+            }
+
+            // Social sharing with current URL
+            const currentUrl = window.location.href;
+            
+            // Facebook Share
+            document.getElementById('facebook-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, 'facebook-share-dialog', 'width=800,height=600');
+            });
+            
+            // Twitter Share
+            document.getElementById('twitter-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                const title = encodeURIComponent(document.querySelector('.article-title').textContent);
+                window.open(`https://twitter.com/intent/tweet?text=${title}&url=${encodeURIComponent(currentUrl)}`, 'twitter-share-dialog', 'width=800,height=600');
+            });
+            
+            // WhatsApp Share
+            document.getElementById('whatsapp-share').addEventListener('click', function(e) {
+                e.preventDefault();
+                const title = encodeURIComponent(document.querySelector('.article-title').textContent);
+                if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    window.open(`whatsapp://send?text=${title}%20${encodeURIComponent(currentUrl)}`, '_blank');
+                } else {
+                    window.open(`https://web.whatsapp.com/send?text=${title}%20${encodeURIComponent(currentUrl)}`, '_blank');
                 }
             });
         });
