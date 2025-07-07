@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Modern Article Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #4D44DB;
+            --accent-color: #FF6584;
+            --dark-color: #2A2D3A;
+            --light-color: #F8F9FA;
+            --text-color: #4A4A4A;
+            --text-light: #A0A0A0;
+            --white: #FFFFFF;
+            --max-width: 800px;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            padding: 0;
+            margin: 0;
+            position: relative;
+            touch-action: pan-y;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0;
+            background-color: var(--white);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .protection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.7) 0%, rgba(77, 68, 219, 0.7) 100%), 
+                        url('https://www.shortenlnk.xyz/wearverse/images/hearoImage01.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 0 20px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .article-header {
+            padding: 0 20px;
+            margin: 25px 0;
+            animation: slideUp 0.6s ease-out 0.2s both;
+        }
+
+        .article-title {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+            line-height: 1.3;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .article-subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-weight: 400;
+            line-height: 1.5;
+            word-break: break-word;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+        }
+
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+            border: 2px solid var(--light-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .author-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .meta-text {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .publish-date {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        .read-time {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .read-time:hover {
+            background-color: rgba(108, 99, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .read-time i {
+            margin-right: 5px;
+            font-size: 0.7rem;
+        }
+
+        .article-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            padding: 0 20px;
+            color: var(--text-color);
+            flex: 1;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .article-content p {
+            margin-bottom: 18px;
+            font-weight: 400;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .article-content p:nth-child(1) { animation-delay: 0.8s; }
+        .article-content p:nth-child(2) { animation-delay: 0.9s; }
+        .article-content p:nth-child(3) { animation-delay: 1.0s; }
+
+        .article-content h2 {
+            font-size: 1.3rem;
+            margin: 30px 0 18px;
+            color: var(--dark-color);
+            font-weight: 600;
+            position: relative;
+            padding-left: 10px;
+            animation: fadeIn 0.6s ease-out both;
+        }
+
+        .article-content h2:nth-of-type(1) { animation-delay: 1.1s; }
+        .article-content h2:nth-of-type(2) { animation-delay: 1.4s; }
+
+        .article-content h2:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 3px;
+            height: 80%;
+            width: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .article-content h3 {
+            font-size: 1.15rem;
+            margin: 25px 0 15px;
+            color: var(--dark-color);
+            font-weight: 600;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 25px 0;
+            border-radius: 8px;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .article-image:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-light);
+            margin-top: -20px;
+            margin-bottom: 25px;
+            font-size: 0.8rem;
+            padding: 0 10px;
+            animation: fadeIn 0.8s ease-out both;
+        }
+
+        .see-more-section {
+            text-align: center;
+            margin: 1px 0 5px;
+        }
+
+        .see-more-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .see-more-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+        }
+
+        .hidden-content {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .share-section {
+            margin: 0px;
+            padding: 0px;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.8s ease-out 1.6s both;
+        }
+
+        .share-title {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+            font-weight: 500;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .share-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .share-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        /* Updated Footer Styles */
+        footer {
+            background-color: #121212;
+            color: #f8f9fa;
+            padding: 40px 20px;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            margin-bottom: 20px;
+        }
+
+        .footer-column h3, 
+        .footer-column h4 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after,
+        .footer-column h4:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #6C63FF;
+        }
+
+        .footer-column p {
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .social-links a.tiktok {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .social-links a.discord {
+            background: #5865F2;
+        }
+
+        .social-links a.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .social-links a.linkedin {
+            background: #0077B5;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #a0a0a0;
+            font-size: 0.85rem;
+        }
+
+        .protection-notice {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #6C63FF;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Protection message */
+        .protection-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            display: none;
+        }
+
+        /* Mobile responsiveness */
+        @media (min-width: 768px) {
+            .hero-image {
+                height: 300px;
+                font-size: 2.2rem;
+            }
+
+            .article-header, .article-content {
+                padding: 0 30px;
+            }
+
+            .article-title {
+                font-size: 1.8rem;
+            }
+
+            .article-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .share-section {
+                margin: 40px 30px;
+                padding: 25px;
+            }
+
+            .see-more-btn {
+                padding: 14px 35px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero-image {
+                height: 350px;
+            }
+
+            .article-header, .article-content {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-column {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="protection-overlay"></div>
+        <div class="protection-message">Content protection is enabled</div>
+
+        <div class="hero-image">
+            Crimson Grace
+        </div>
+
+        <div class="article-header">
+            <h1 class="article-title">A Modern Ode to Tradition</h1>
+            <p class="article-subtitle">A modern fusion of tradition and minimalism, Crimson Grace is a striking ensemble in lustrous red silk featuring a cropped bolero jacket, high-neck sleeveless top, and tailored high-waisted shorts with flowing skirt panels. Clean, architectural lines meet cultural elegance — designed for the woman who moves with purpose and presence.</p>
+            
+            <div class="article-meta">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Author" class="author-avatar">
+                <div class="meta-text">
+                    <span class="author-name">Dr. Sarah Johnson</span>
+                    <span class="publish-date">June 15, 2023</span>
+                </div>
+                <span class="read-time"><i class="far fa-clock"></i> 8 min read</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <h2>1. Introduction - A Reverent Modern Muse</h2>
+            <p>There's a quiet boldness in garments that draw power from heritage yet speak fluently in the language of today. This design — a modern reinterpretation of traditional Chinese attire — is a breathtaking display of couture elegance, capturing the duality of strength and softness, heritage and innovation. With a mood anchored in cultural reverence and lifted by contemporary clarity, the ensemble is crafted for the modern muse with a timeless soul.</p>
+
+            <img src="https://www.shortenlnk.xyz/wearverse/images/Image01design.jpg" alt="Fashion Design" class="article-image">
+            <p class="image-caption">The Crimson Grace ensemble in motion</p>
+
+            <div id="hidden-content" class="hidden-content">
+                <h2>2. Design Features – Where Precision Meets Symbolism</h2>
+                <p>The silhouette flows like poetry in motion, refined into a minimalist vision that honors every structural element. Shiny red silk, unmistakably luxurious and fluid, becomes the canvas for the design's architectural clarity. The short-sleeved bolero jacket introduces the look with sculptural grace, while a sleeveless high-neck crop top lies sleek beneath — a masterstroke in layering. High-waisted shorts, structured yet soft, are veiled by skirt panels that fall delicately on each side, giving the illusion of movement even in stillness. Gold accents — subtle, not overstated — nod to prosperity, while the deep red speaks of power and passion. Every line is intentional; every piece in harmony.</p>
+
+                
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image02design.jpg" alt="Design Details" class="article-image">
+                <p class="image-caption">Close-up of the intricate fabric and stitching details</p>
+
+                <h2>3. Technical Insights – The Art Beneath the Elegance</h2>
+                <p>The beauty of the piece lies not just in what's seen, but how it's constructed. Tailoring is precise, guided by clean paneling and impeccable edge finishes. The bolero jacket, cropped at just the right length, complements the top's neckline, which rises neatly along the collarbone. From the back, the ensemble reveals its clever craftsmanship — symmetrical dart placements ensure a contoured fit, while the overlapping skirt panels align seamlessly over the shorts, flowing outward without bulk. Invisible closures and flat seams preserve the purity of the silhouette, allowing the structure to stand on its own without distraction. It's where romance meets architecture in fabric form.</p>
+
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image03design.jpg" alt="Design Back View" class="article-image">
+                <p class="image-caption">The elegant back view showing the tailored structure</p>
+
+                <h2>4. Occasion & Wearability – Commanding Presence, Effortlessly</h2>
+                <p>Perfect for the woman who owns the moment, this look moves gracefully from gallery openings to rooftop soirées, from fashion week lounges to cultural celebrations. It's not a costume — it's a statement. Designed for the confident, the curious, the elegantly fearless. She's the kind of woman who redefines tradition, not by rejecting it, but by reimagining it on her own terms. This piece isn't about dressing up — it's about showing up, unmistakably herself.</p>
+
+                <img src="https://www.shortenlnk.xyz/wearverse/images/Image04design.jpg" alt="Wearable Fashion" class="article-image">
+                <p class="image-caption">The ensemble styled for a modern fashion event</p>
+                
+                <h2>5. Closing Statement – Power in Every Seam</h2>
+                <p>In a world of fleeting fashion, this design endures. It whispers with silk, sculpts with structure, and dazzles without a single unnecessary detail. This is elegance distilled, designed not just to be worn — but to be remembered.</p>
+
+                 <img src="https://www.shortenlnk.xyz/wearverse/images/Image05design.jpg" alt="Complete Look" class="article-image">
+                <p class="image-caption">The complete Crimson Grace look from all angles</p>
+            </div>
+        </div>
+
+        <div class="see-more-section">
+            <button class="see-more-btn" id="see-more-btn">
+                <i class="fas fa-chevron-down"></i> See More
+            </button>
+        </div>
+
+        <div class="share-section">
+            <h3 class="share-title">Share this article</h3>
+            <a href="#" class="share-button" id="share-button">
+                <i class="fas fa-share-alt" style="margin-right: 8px;"></i> Share Now
+            </a>
+        </div>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h4>Fashion Prompt</h4>
+                        <p>The premier marketplace for fashion design prompts and creative tools.</p>
+                        <div class="social-links">
+                            <a href="#" class="tiktok" aria-label="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                            <a href="#" class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Categories</h3>
+                        <ul>
+                            <li><a href="#">Haute Couture</a></li>
+                            <li><a href="#">Streetwear</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Footwear</a></li>
+                            <li><a href="#">Bridal Wear</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Content Policy</a></li>
+                            <li><a href="#">Copyright</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>&copy; 2023 Fashion Prompt. All rights reserved.</p>
+                    <p class="protection-notice">All designs and content are protected. Unauthorized copying is prohibited.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Disable zooming
+            document.addEventListener('wheel', function(e) {
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            document.addEventListener('touchmove', function(e) {
+                if (e.scale !== 1) { 
+                    e.preventDefault(); 
+                }
+            }, { passive: false });
+
+            // Content protection
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showProtectionMessage();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                // Disable Ctrl+S, Ctrl+C, Ctrl+P, etc.
+                if (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 67 || e.keyCode === 80 || e.keyCode === 85)) {
+                    e.preventDefault();
+                    showProtectionMessage();
+                }
+                
+                // Disable F12 key
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    showProtectionMessage();
+                }
+            });
+
+            function showProtectionMessage() {
+                const message = document.querySelector('.protection-message');
+                message.style.display = 'block';
+                setTimeout(function() {
+                    message.style.display = 'none';
+                }, 2000);
+            }
+
+            // See More functionality
+            const seeMoreBtn = document.getElementById('see-more-btn');
+            const hiddenContent = document.getElementById('hidden-content');
+            
+            seeMoreBtn.addEventListener('click', function() {
+                if (hiddenContent.style.display === 'none' || !hiddenContent.style.display) {
+                    hiddenContent.style.display = 'block';
+                    seeMoreBtn.style.display = 'none';
+                    // Scroll to the hidden content smoothly
+                    hiddenContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+
+            // Initially hide the hidden content
+            hiddenContent.style.display = 'none';
+
+            // Share functionality
+            const shareButton = document.getElementById('share-button');
+            
+            shareButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.querySelector('.article-title').textContent,
+                        text: document.querySelector('.article-subtitle').textContent,
+                        url: window.location.href
+                    }).catch(err => {
+                        console.log('Error sharing:', err);
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    const url = window.location.href;
+                    const tempInput = document.createElement('input');
+                    document.body.appendChild(tempInput);
+                    tempInput.value = url;
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    
+                    // Change button text temporarily
+                    const originalHTML = shareButton.innerHTML;
+                    shareButton.innerHTML = '<i class="fas fa-check" style="margin-right: 8px;"></i> Link Copied!';
+                    
+                    setTimeout(function() {
+                        shareButton.innerHTML = originalHTML;
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
