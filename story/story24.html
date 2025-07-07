@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> නිශාදී | VIP Exclusive</title>
+    
+    <!-- නව සිංහල අකුරු රටා -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --black: #0A0A0F;
+            --dark: #16161D;
+            --glass: rgba(30, 30, 40, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #FF2D55;
+            --neon-pink: #FF2D55;
+            --neon-purple: #B13DFF;
+            --text: #F0F0F0;
+            --gold: #FFD700;
+            --soft-glow: rgba(255, 45, 85, 0.3);
+            --telegram-blue: #0088cc;
+        }
+        
+        body {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            background-color: var(--black);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            word-spacing: normal;
+            letter-spacing: 0.5px;
+            -webkit-text-size-adjust: 100%;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* === Optimized Background Animation === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            opacity: 0;
+            animation: float-up 15s infinite;
+            filter: blur(12px);
+            will-change: transform;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-20vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glassmorphism Container */
+        .modern-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        
+        /* Performance Optimized Neon Glow */
+        .modern-container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, var(--neon-pink), transparent 25%),
+                radial-gradient(circle at 70% 70%, var(--neon-purple), transparent 25%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 5%) rotate(1deg); }
+            100% { transform: translate(5%, -5%) rotate(-1deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--neon-pink), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 45, 85, 0.3);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            color: var(--text);
+            opacity: 0.85;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        
+        /* WhatsApp Button - Enhanced */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            color: white !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 45, 85, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.25);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 45, 85, 0.6);
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Locked Content Area - Redesigned */
+        .locked-content {
+            text-align: center;
+            padding: 35px 25px;
+            background: rgba(15, 15, 25, 0.6);
+            border-radius: 14px;
+            margin: 0 auto 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: inset 0 4px 25px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            max-width: 580px;
+        }
+        
+        .locked-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .locked-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Premium Unlock Button */
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #111 !important;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.4);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.4);
+            min-width: 240px;
+            cursor: pointer;
+        }
+        
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(255, 215, 0, 0.6);
+        }
+        
+        .unlock-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .unlock-process {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 25px;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        
+        .loading-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid var(--gold);
+            margin: 15px auto;
+            animation: spin 1.3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Story Content - Improved Readability */
+        .story-content {
+            padding: 0 10px;
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+            margin-bottom: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-container p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            position: relative;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            word-spacing: normal;
+            letter-spacing: 0.3px;
+            text-align: justify;
+        }
+        
+        .story-container p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer - Redesigned with reduced space */
+        footer {
+            text-align: center;
+            padding: 15px 0 5px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .disclaimer {
+            color: var(--text);
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        /* Telegram Button - Compact */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--telegram-blue), #00aced);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            width: auto;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        .telegram-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Copyright Protection */
+        .copyright-notice {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            z-index: 1000;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .modern-container {
+                margin: 15px;
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+            }
+            
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 14px 28px;
+                min-width: 220px;
+                font-size: 0.95rem;
+                margin: 3px 0;
+            }
+            
+            .locked-content, .unlock-process {
+                padding: 25px 20px;
+                border-radius: 12px;
+            }
+            
+            .locked-content h3 {
+                font-size: 1.3rem;
+            }
+            
+            .story-container p {
+                font-size: 1rem;
+                line-height: 1.7;
+                text-align: left;
+            }
+            
+            .loading-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            footer {
+                padding: 10px 0 5px;
+                margin-top: 15px;
+            }
+            
+            .footer-content {
+                gap: 8px;
+            }
+        }
+        
+        /* Mobitel Specific Fixes */
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+            
+            .modern-container {
+                padding: 25px 15px;
+                margin: 10px;
+                border-radius: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .whatsapp-btn, .unlock-btn, .telegram-btn {
+                padding: 12px 24px;
+                min-width: 200px;
+                font-size: 0.9rem;
+            }
+            
+            .story-container p {
+                font-size: 0.95rem;
+                margin-bottom: 20px;
+            }
+            
+            /* Disable heavy animations on low-end devices */
+            .modern-container::before,
+            .bg-animation {
+                display: none;
+            }
+            
+            .copyright-notice {
+                font-size: 0.65rem;
+                bottom: 5px;
+            }
+        }
+    </style>
+
+    <!-- Ad Scripts with Performance Optimization -->
+    <script>
+        // Ad links
+        const adLinks = [
+         "https://www.profitableratecpm.com/vpqfum0ak3?key=e14fd04562c28b2068ce2e60ea8c217f",
+
+"https://www.profitableratecpm.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44",
+
+"https://www.profitableratecpm.com/ndp5e9aww3?key=4efa3e2fabbac771694e2c3791bc9014"
+        ];
+
+        // State variables
+        let clickCount = 0;
+        const requiredClicks = Math.floor(Math.random() * 3) + 2; // 2-3 clicks
+        let adsEnabled = true;
+
+        // Handle clicks
+        function handleClick() {
+            if (!adsEnabled) return;
+
+            clickCount++;
+
+            // Open ad immediately for each click
+            if (clickCount <= adLinks.length) {
+                window.open(adLinks[clickCount - 1], '_blank');
+            }
+
+            // Grant access when requirements met
+            if (clickCount >= requiredClicks) {
+                adsEnabled = false;
+                setTimeout(() => {
+                    document.getElementById("lockedContent").style.display = 'none';
+                    document.getElementById("unlockProcess").style.display = 'none';
+                    document.getElementById("storyContent").style.display = 'block';
+                    
+                    // Animate paragraphs
+                    const paragraphs = document.querySelectorAll('.fade-in');
+                    paragraphs.forEach((p, index) => {
+                        setTimeout(() => {
+                            p.classList.add('visible');
+                        }, 100 * index);
+                    });
+                }, 1000);
+
+                // Reset after 600 seconds
+                setTimeout(() => {
+                    resetAccess();
+                }, 600000);
+            }
+        }
+
+        // Reset access
+        function resetAccess() {
+            adsEnabled = true;
+            clickCount = 0;
+            document.getElementById("lockedContent").style.display = 'block';
+            document.getElementById("storyContent").style.display = 'none';
+        }
+    </script>
+    <script type='text/javascript' src="socialAds.js"></script>
+    <script type='text/javascript' src="popAds.js"></script>
+    <!-- Popunder Ads Script -->
+    <script>
+        // Automatically open a popunder ad after 30 seconds
+        setTimeout(function () {
+            window.open('https://www.profitableratecpm.com/ndp5e9aww3?key=4efa3e2fabbac771694e2c3791bc9014').blur();
+            window.focus();
+        }, 30000);
+    </script>
+
+<script type='text/javascript' src='//pl23779621.profitableratecpm.com/64/5e/d9/645ed9b47161ff756143a4606097d60a.js'></script>
+
+    <script>
+    // Safari Reader Mode Blocker
+    if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Safari Reader Mode වලට අදාළ meta tag එකක් dynamically එකතු කරයි
+            var meta = document.createElement('meta');
+            meta.name = 'apple-mobile-web-app-capable';
+            meta.content = 'yes';
+            document.head.appendChild(meta);
+
+            // Safari Reader Mode වලට content selection අවහිර කිරීම
+            document.body.style.userSelect = 'none';
+        });
+    }
+</script>
+
+</head>
+
+<body>
+    <!-- Optimized Background Animation -->
+    <div class="bg-animation" id="bgAnimation"></div>
+    
+    <div class="modern-container">
+        <header>
+            <h1> නිශාදී </h1>
+            <div class="subtitle">VIP Exclusive Content • 2025</div>
+            <a href="https://whatsapp.com/channel/0029Vb6VDUC1dAwAiOoudB3t" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join VIP Channel
+            </a>
+        </header>
+        
+        <!-- Locked Content Area -->
+        <div class="locked-content" id="lockedContent">
+            <h3> Story Locked</h3>
+            <p>Visit a advertisement to unlock this sensual story. The content will automatically unlock after verification.</p>
+            <button class="unlock-btn" id="unlockBtn">
+                <i class="fas fa-gem"></i> Unlock Story
+            </button>
+        </div>
+        
+        <!-- Unlock Process -->
+        <div class="unlock-process" id="unlockProcess">
+            <div class="loading-circle"></div>
+            <div class="loading-text">Verifying access...</div>
+        </div>
+        
+        <div class="story-content" id="storyContent">
+    <div class="story-container">
+        <p class="fade-in" style="font-family: 'Noto Sans Sinhala', sans-serif; word-spacing: normal; letter-spacing: normal; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;">
+        මම මේ කියන්න යන්නේ මගේ ජීවිතේ ඇත්ත කථාවයි. මම මේ 2013 අවුරුද්දේ උසස් පෙල විභාගයට කලා අංශයෙන් පෙනී ඉන්න සූදානම් වෙනවා. මන් මුලින්ම උසස් පෙල කරන්න පටන් ගත්තේ විදයා අංශයෙන් එත් ඒ සේරම වෙනස් වුනේ මෙන්න මේ සිදුවීම් පෙල නිසයි.<br><br>
+
+මන් ඔයාලට මගේ ගැන ටිකක් කිව්වොත් මන් ඉගෙන ගන්නේ ධීවර කර්මාන්තයට ප්ර්සිද්ද නගරයක් මැද පිහිටි බාලිකා පාසැලක. මට තියෙන්නේ කෙනෙකුට දැක්කම ආදරයක් හිතෙන පෙනුමකට වඩා හැගීම් ඇවිස්සෙන පෙනුමක්. <br><br>
+
+මන් ටිකක් සුදුයි චුට්ටක් වැඩිපුර ඇග හැදිලා තියෙනවා. මගේ උස අඩි 5යි තව අගල් 3ක් විතර ඇති. මන් ටිකක් වැඩිපුර කෑම කන හන්දාද මන්දා මන් චුට්ටක් විතර මහතයි. මගේ මුහුනයි අත් දෙකයි ඉස්කොලේ යන නිසා ටිකක් අව්වට පිච්චුන පෙනුමක් තියෙනවා. <br><br>
+
+එත් මගේ කකුල් එහෙම ටිකක් මහතට සුදුවට තියෙන නිසා මට ගොඩක් කොල්ලන්ගෙන් ආදර යොජනා ආවා. එත් ඉතින් මගේ ගෙදරින් හැමතිස්සෙම පස්සෙන් එන නිසා මට එවට කැමති වෙන්න ඉඩක් ලැබුනේ නෑ. මේ හේතුවන් මාව සෑහෙන්න ඇවිස්සිලා තිබුනේ කරගන්න දෙයක් නැති කමට. <br><br>
+
+මෙහෙම ඉන්න කොට මන් මගේ සාමානය පෙල විභාගය අවසන් කරලා උසස් පෙල විභාගයට පංති යන්න පටන් ගත්තා. එතකොට මන් ජීව විදයාව කරන්න හිතාගෙන පටන් ගත්තේ. <br><br>
+
+මෙහෙම ඉන්නකොට මට යාලුවෙක් කිව්වා ගම්පහ රසායන විදයා පංතියක් ගැන. ඉතින් මන් එකට යන්න සූදානම් කරගත්තා. මගේ ගෙදර ඉදන් ගම්පහට ගොඩක් ලග උනත් යනකොට ලෑස්ති වෙන්නා ප්රමමාද වෙන නිසා ගෙදරින් බයික් එකෙන් මාව ගම්පහ ටවුන් එකට ගෙනියනවා. එත් එනකොට මන් බස් එකේ තමයි ආපහු එන්නේ. මන් ඉන්නේ ජා ඇල නිසා ඒක ප්රයශ්නයක් වුනේ නෑ <br><br>
+
+මගේ පංතිය ඉවර උනාම බස් එකට යන්න ටිකක් දුර පයින් යන්න වෙනවා. මේ මග ත්රී්වීල් පාර්ක් එකක් තියෙනවා. හැමදාම පංතිය ඉවර වෙලා මෙතනින් යනකොට පාර්ක් එකේ ඉන්න මිනිස්සු වනචර බැල්ම දාගෙන “එන්න නංගී නගින්න” කිය කියා වද කරනවා. <br><br>
+
+මෙහෙම සති දෙකකට විතර පස්සේ දවසක් එක මැදිවියේ අයියා කෙනෙක් මන් යන මග මැද්දට පැනල මාව නවත්තන්න හැදුවා. මට එතකොට හොදටම තරහ ගියා. <br><br>
+
+එතකොට මන් නතර වෙලා තරහින් ඇයි කියලා ඇහුවම තව දෙන්නක් මගේ ලගට ඇවිත් “නංගි නගින්න අපි යමු” කියලා කිව්වා. එහෙම කිව්වම මන් හිතුවේ බස් නැවතුම්පලට යමු කිව්වා කියලා. <br><br>
+
+ඉතින් මන් හා කිව්වා. එතකොටම තව අයියා කෙනෙක් එයාට වයස 45ක් විතර ඇති ඇව්ත් මගේ එක තනයක් තදින් මිරිකලා මගේ අතින් අරන් එයාගේ ත්රී වීල් එකට නග්ග ගන්න හැදුවා. එතකොට මන් සෑහෙන්න බය උනා. මන් අත ගසලා දාලා බස් එකට ඇවිද්ද නෙමේ දිව්වා. මාව ගෙදර යනකන්ම ගැහුන බය උන තරමට. <br><br>
+
+මන් ගොඩක් බය උනාට මන් ඇඩුවේ නැහැ. මට හිතාගන්නවත් බැරි උනා මේ මන් මද කියලත්. මට ඒ සිදුවුනු දේ ගොඩාක් කැළඹුන හැගීම් ගෙනවා. මන් කාටවත් කිව්වේ නෑ මේ රහස මොකද මන් එකෙනේ අමුතු අසම්මත සතුටක් ලැබුව නිසා. <br><br>
+
+මන් කවදාවත් මෙහෙම සතුටක් ලබල තිබුනේ නෑ මීට කලින්. දින දෙකකට විතර පස්සේ මට ආයෙත් පංති යනකම් ඉවසීමක් නැති උනා. මට දැනගන්න ඕනා උනේ මන් ආයෙත් එතනින් යනකොට එයාල මොනවා කරයිද කියලා. <br><br>
+
+ඔහොම ඉදලා ඊලග සතියෙත් පංති ගිහින් අවසානයේ මන් බස් එකට යන්න වුනා. ඊට කලින් මන් වැසිකිළියට ගිහින් පොඩ්ඩක් සූදානම් වෙලා පිටත් උනා. මන් ගොඩක් කැමැත්තෙන් ගියේ මොකද කිව්වොත් ආයෙත් එහෙම සපර්ශයක් ලැබෙයි කියලා හිතන ගමන්. මගේ කකුල් පැටලෙන්නත් වගේ එතකොට. <br><br>
+
+එදා ආයෙත් එතනින් යනකොට මන් බය වුන පෙනුමකින් හිමින් යන්න ගත්තා. එතකොට කලින් දවසේ වගේම එයාල මාව වටකර ගත්තා. “ආ නංගී නැගල තියෙන්නේ නගින්න අපි යමු” කියලා එක්කෙනෙක් කිව්වාම අනිත් ඔක්කොම හිනා උනා. එතකොට මටත් හීන් හිනාවක් ආවා. ආසයි ඒත් බයයි ඉතින් මන් බිම බලාගත්තා.
+ ඊට පස්සෙන් මගේ පිටිපස්සෙන් ආපු කෙනෙක් මාව පිටිපස්සෙන් බදාගත්තා එහෙම කරන් මගේ බඩයි, නාභියයි, තන් දෙකයි හුරතල් කරන්න ගත්තා. මේ ඔක්කොම වෙන්නේ මහ පාරේ උනත් පාර්ක් එකේ කට්ටිය නිසා එහෙම පෙන්නේ නෑ. මට එකවර හැගීම දහසක් ඇවිත් මුළු ඇගම පන නැතිවෙලා ගියා. ඒක තෙරුම් ගත් එයා මාව වාරු කරන් ත්රී වීල් එකක් ඇතුලට එක්කගෙන ගියා. <br><br>
+
+
+එයත් මාත් එක්ක වීල් එකට නැග්ගා එතකොට එදා මාව මිරිකපු අංකලුත් අනිත් පැත්තෙන් නැග්ගා. තව කවුද ඉස්සෙරහට නැගලා ස්ටාර්ට් කරන් යන්න ගත්තා. <br><br>
+
+පිටිපස්සේ නැගපු දෙන්නා වියරු වැටිලා වගේ මාව අල්ලන්න ඉබින්න ගත්තා. මට ඉන්න බැරි වෙන තරමටම මන් ආසාවෙන් මත් වෙලා හිටියේ. මුළු ඇගම පන නැතිවෙලා ලෝකයේ මීට වඩා සැපක් නැති තරමටම මන් ආසාවෙන් සතුටින් හිටියේ. <br><br>
+
+එයාලා දෙන්නා මගේ බ්‍රා එක ගලවලා දැම්මා මගේ බ්ලෞස් එකට යටින්. එතකොට මන් ඇස් දෙක පියාගත්තා. එක්කෙනෙක් මාව කිස් කරන්න ගත්තා, එතකොට ඉබේම වගේ මගේ තොල් විවර උනා. හීනයක් වගේ එයා මාව එයාගේ දිවෙන් කිස් කරන්න ගත්තා. මන් කැමති දෙයක් කරන්න ඉඩ දීලා ඇස් දෙක පියාගෙන මිරිකෙන අත් වලට තුරුලු උනා. <br><br>
+
+එහෙම ඉන්නකොට එක්කෙනෙක් මගේ සායට යටින් මගේ කකුල් අතගාන්න පටන් ගත්තා. එතකොට මන් ඉබේටම වගේ මගේ අහිංසක කම රැකගන්න වගේ කකුල් ලං කරන් තද කරගත්තා. <br><br>
+
+එතකොට මාව බදාගෙන හිටපු කෙනා මට කුනුහර්ප කියලා බැනලා කිව්වා කකුල් ඈත් කරන්න කියලා. ඒත් මන් එහෙම කරපු නැති නිසා ඒ දෙන්නා බලෙන් මගේ කකුල් පලල් කලා. එහෙම කරලා එකපාරටම ඇගිල්ලක් ඇතුළු කලා මගේ යෝනියට. එතකොටම මට මොකක්ද වෙලා මට කෑගහුනා. ඒක ඇද්දුම්කන රිදිල්ලක් එක්ක මට එක පාරටම චූ බරක් වගේ ආවා. <br><br>
+
+මුළු ඇගම හිරිවැටිලා ගියා. මට මොනවා උනාද මන් දන්නේ නෑ මන් මගෙ තොල් හපාගෙන ඇස්දෙක පියාගත්තා. එහෙම ගිහින් එකපාරටම ත්රීආවිල් එක නැවතුනා. මන් ඒත් ඇස් දෙක පියාගෙන සෙලවෙන්නේ නැතුව හිටියා. එතකොට තව ත්රී්වීල් එකක් නවත්තන සද්දයක් අවා. එතකොටම මන් ලග හිටිය අංකල් “මේ වරෙල්ලා මේක අලුත් බඩුවක්” කියලා කෑගහුවා. එතකොටම මට තේරුනා මන් කන්යාවියක් නිසා කියලා එහෙම කියන්නේ. <br><br>
+
+මට එවෙලේ ආපු හැගීම් මෙහෙම් විස්තර කරන්න බැහැ. ඒක තේරෙන්නේ තමන් මුලින්ම පිරිමි කෙනෙක් එක්ක ලිංගිකව එක් වුන තවත් කෙල්ලෙක්ටම විතරයි. ඒවා මොනවා උනත් මට ඉවෙන් වගේ මොකක්දෝ කිව්වේ එහෙමම ඉන්න කියලයි. මන් ආයෙත් ඇස් දෙක පියාගත්තේ එතකොටයි. <br><br>
+
+මගේ සාය වගේම මගේ බ්ලෞස් එකත් උඩටම ඉස්සෙනවා මට දැනුනා. එතකොටම මගේ තන් දෙක ජීවිතේ ප්රිථම වතාවට තොල් දෙකකින් හා කෙලවලින් තෙත් වෙනවා මට දැනුනා. <br><br>
+
+ඒක කියලා නිම කරන්න බැරි සතුටක්වුනා. එතකොට කවුද මගේ පස්සෙන් අල්ලලා මාව උස්සලා තව ටිකක් සීට් එක උඩට අරන් මගේ කකුල් දෙක ඈත් කරලා මගේ දනහිස් පපුවට වැදෙන තරම් උස්සලා දෙපැත්තට කලා. <br><br>
+
+එතකොටම “මේ හුත්තිගේ පැන්ටිය කො යකෝ”, “මේකි එහෙම එකක් ඇදලා හිටියේ නෑ බන්” කියලා කතා වෙනවා ඇහුනම මට ඇස් දෙක පියාගෙනම ලාවට හිනාවක් ගියා. <br><br>
+
+එතකොට “මේකී රෙඩි වෙලා මයි ඇවිත් තියෙන්නේ, ඉදපන් උබට දෙන්ඩ” කියලා ගොඩාක්ම ගොඩාක් උනුම උනූ, යකඩයක් වගේ තදම තද, <br><br>
+
+ගොඩාක්ම ගොඩාක් සිනිදුම සිනිදු එයාගේ චූව අරන් මගේ යෝනියේ අතුල්ලන්න ගත්තම මට එකපාර විදුලියක් වැදුනාවගේ ඇවිස්සිලා ගියා. මගේ හුස්ම ගැනීමත් ඉක්මන් උනා. එතකොටම මට කෙල ගහන සද්දයක් ඇහුනා, ඒත් එක්කම මගේ යෝනිය උතුරන්න වගේ තෙත් වෙලා ගියා. ඊටපස්සේ එයා ටික ටික තද කරන්න ගත්තා. <br><br>
+
+මට මගේ යෝනියේ කවදාවත් අත් විදලා නැති පීඩනයක් දැනෙන්න පටන් ගත්තා. එතකොටම මාව තුරුල් කරන් හිටිය කෙනා මගේ දකුණු තනේ තදින් හැපුවා. එතකොට මාව ගැස්සිලා තදවුනු චූව මගේ යෝනිය ඇතුලටම ගියා. <br><br>
+
+එතකොට මගේ ඇස් ඇරුනා. එතකොට තමයි මන් දැක්කේ මුල්ම දවසේ මාව නවත්තපු අයියා මාව එයාගේ කරගෙන ඉන්නවා කියලා. <br><br>
+
+එයා මාව ලබාගත්තේ ආදරෙන් වගෙයි. වැඩිවෙලාවක් යන්න කලින් මාව ගැහෙන්න අරන් මගේ ඇතුලෙන්ම හිරවෙල තිබුන ආසාව සන්තෘප්ත වෙලා පිට වෙලා ගියා. එතකොටම අර අයියත් නැගිටලා මගේ කකුලට තට්ටුවක් දාල හිනාවෙලා ගියා. <br><br>
+
+මට අමුතුම සැනසීමක් දැනෙන්න ගත්තා. හරියට නිකම් මට උන හැදිලා මුලු ලෝකෙම උණුසුම් වෙලා සැප සාගරයක ගිලුනා වගෙයි. ඊට පස්සේ අර අංකල් එතනට ආවා. මට දැන් ඇතී වගේ හිතුනත් මෙච්චර සැපක් ආයෙත් ලබන්න සිතමින් මන් එයත් එක්කත් හිනාවෙලා ආයෙත් ඇස් දෙක පියා ගත්තා. <br><br>
+
+එයා ගොඩක් රළු උන නිසා මට වේදනාවක් මිසක් සතුටේ උපරිමයට යන්න බැරි උනා. මට හිතාගන්නවත් බැරි තරම් ඉක්මනින් එයා සතුටු වෙලා මගෙන් ඈත් උනා. <br><br>
+
+ඊට පස්සේ මාව තුරුළු කරන් හිටියා කෙනා මගේ අත අරගෙන එයාගේ සිනිදුම සිනිදු, උණුසුම් යකඩයක් වගේ තද උන චූව උඩින් තියලා “ගහපන් කෙල්ලේ” කියලා කනට කොදුරලා වගේ කිව්වා. මන් හරිම ආසාවෙන් ඒ දේ කරනකොට මුවගින් තෙත් උනු දියරයක් එන්න ගත්තා. මේ අතරදී අන්තිම කෙනත් මගේ කකුල් දෙක මැද්දට ඇවිල්ල අවසන්. <br><br>
+
+එයත් ටිකක් රලු උනාට අර නැති උන පීඩනය ආපහු මට දැනෙන්න ගත්තා. <br><br>
+
+එයාගේ එක මන් මගේ ඇගෙ  තියෙනවද කියලවත් නොදැන හිටපු තැන් වලට යන්න ගත්තා. එයා ගොඩාක් විශාලයි කියලා මට තේරුනා. එත් ආදර දියර වලින් උතුරන මගේ යෝනියට වේදනාවක් නම් පොඩ්ඩක් වත් දැනුනේ නෑ. <br><br>
+
+එයා කලින් දෙන්නටත් වඩා ගොඩාක් වෙලා ගොඩාක් වේගයෙන් මාත් එක්ක තරහට වගේ කරගෙන කරගෙන ගියා. මට පන නැති වෙල ගියා. මාව පුපුරන්න වගේ ඇවිත් නිදහස් උනා. කීපවාරයක්ම මගේ සතුට උපරිම වෙලා බැහැලා ගියා. මට චූ යන්නවගේම ආවා. <br><br>
+
+එතකොටම මාවත් හිරිවට්ටගෙන එයා ආදර දියර විදගෙන විදගෙන යන්න පටන් ගත්තා. එතකොටම ඇවිස්සුන මාවත් සතුටේ උපරිමයට ඇවිත් හිරිවැටිලා ගියා. <br><br>
+
+මට නින්ද ගියාද මන්දා එත් මන් ඇස් ඇරලා බලනකොට මගේ අත පුරාම ආදර ජූස් වලින් තෙමිලා තිබුනෙ. මේ ඔක්කොම වෙනකන් මගේ තන් දෙක ඉරුව නිසා ඒවා පුදුමාකාර විදිහට සංවේදී වෙලා උල් වෙලා තිබුනා. මට දැනුන සැනසීම කියන්න බැරි තරම්. <br><br>
+
+මාව තුරුලු කරන් මෙතෙක් වෙලා හිටපු අනිත් අංකල් මට මගේ අත පිසදා ගන්න රෙදි කැබැල්ලක් දීලා බැහැලා ගියා. මන් නැගිටලා අතපිසදා ගෙන ඇදුම හදාගත්තා. ඒත් තාමත් මගේ අත ඇලෙන ගතියෙන් තිබුනේ. මන් කකුල් දෙක ලං කරන් ඉදගත්ත ගමන් මගේ යෝනිය ඇතුලේ තිබුන ආදර සටහන් පිටකරන්න ගත්තා. <br><br>
+
+ලේ මිශ්රම දියරයක් නොකඩවා මගේ යෝනියෙන් එන්න ගත්තා. චූ කරනවා වගේ සීට් එකෙයි බිමයි හැමතැනම වදින්න ගත්තා. ඉතින් මන් සාය බේර ගන්න ඉක්මනට හිටගෙන සාය උස්සගත්තා. එතකොට තවත් ජූස් යන්න ගත්තා. මට ලැජ්ජයි තරහයි දෙකම. <br><br>
+
+මේක් දැකපු අංකල් ට්රීනවීල් එක ලගට ඇවිත් “හුත්ති බැහැපන් එලියට මගේ වාහනේ හුජ්ජ කරන්නේ නැතුව” කියලා බැන්න මට. මට පොඩි තරහකුත් ආවා. ඇයි අනේ මෙච්චර දෙයක් එකට කරලත් කථා කරන හැටි. මන් ඉකමනට ත්රීේවීල් එකෙන් බැහැලා බිම ඉදගෙන ඇත්තටම චූ කලා. එතකොට තමයි මන් කොහෙද ඉන්නේ කියලා දැක්කේ. <br><br>
+
+එතන කඩයක් පිටිපස්සේ වටෙටම තාප්පෙකින් වට උන තැනක්. එතකොට අංකල් ඇවිත් ත්රීලවීල් එක පිහිදලා පිරිසිදු කලා. මන් එතකොට තමයි දැක්කේ පාර්ක් එකේ හිටියෙ නැති තව අවුරුදු 50ක් විතර කෙනෙක් එතන ඉන්නවා කියලා හැමොමත් එක්ක සිගරට් බි බී. එතකොටම මට මතක් උනේ මන් ගෙදර යන්න පරක්කු වෙනවා නේද කියලා. <br><br>
+
+“අයියේ මට දැන් යන්න ඔනා මාව ගිහිල්ලා බස්සනවද?”<br><br>
+
+“ඇයි අපි බැස්සුවා මදිද?” එහෙම කියලා අර අලුත් කෙනාට කිව්වා “සනා අන්න අරකිට අල්ලලා හුකපන්” කියලා. <br><br>
+
+මගේ ඇග හිරිවැටිලා ගියා “ආයෙත්?” මන් මටම කියාගත්තා. <br><br>
+
+එයා ඇවිත් මගේ තන් ඇදුම් උඩින් මිරිකන්න ගත්තා. එහෙම කරලා මට නැමිලා සීට එක උඩින් අත් දෙක තියාගන්න කියලා සාය උස්සලා මට කරන්න ගත්තා. වෙනස් ඉරියව්වක් හන්දා මාව ආයෙත් ඇවිස්සෙන්න ගත්තා. එයා මගෙ පස්සෙන් අල්ලලා තදින් මිරිකන ගමන් දිගටම ඉක්මනට ඉක්මනට කරා. <br><br>
+
+“නංගී නම්බර් එක දෙන්නකෝ”<br><br>
+
+“නංගී කොහෙද ඉන්නේ අපි ගිහින් ඇරලවන්නම්”<br><br>
+
+“නංගී ලබන සතියෙත් වරෙන් හොදේ?”<br><br>
+
+“නංගී තව යාලුවෝ ඉන්නවනම් එක්කගෙන වරෙන්”<br><br>
+
+“ගිහින් එන්නම් අයියේ, බායි!”<br><br>
+
+මන් එදා බස් එකෙ හිටගෙන හිටියේ පුදුම ආයාසයකින්. ඇද්දුම් කන වේදනාවයි, ජූස් ලීක් වෙන්න හදනකොටයි ඉන්න බැරුව හිටියේ. <br><br>
+
+නිමි...
+
+
+        </p>
+    </div>
+</div>
+
+<style>
+    .story-content {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+    }
+</style>
+
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+    });
+</script>
+        
+        <footer>
+            <div class="footer-content">
+                <p class="copyright">© 2025 <strong>X-වසන්තය</strong> All Rights Reserved</p>
+                <p class="disclaimer">Unauthorized copying or distribution is strictly prohibited.</p>
+                <a href="https://t.me/+QAuoDQBBpfc1ZTJl" class="telegram-btn" target="_blank">
+                    <i class="fab fa-telegram"></i> Join for More Content
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Copyright Watermark -->
+    <div class="copyright-notice" id="copyrightNotice">
+        © 2025 SL VIDEO CLUB | Property of VIP Content Network | Unauthorized access prohibited.
+    </div>
+
+    <script>
+        // ===== OPTIMIZED BACKGROUND ANIMATION =====
+        function createParticles() {
+            const container = document.getElementById('bgAnimation');
+            const particleCount = window.innerWidth < 768 ? 8 : 12;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties with mobile optimization
+                const size = Math.random() * (window.innerWidth < 480 ? 60 : 80) + 40;
+                const posX = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = 12 + Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // ===== INITIALIZE UNLOCK BUTTON =====
+        document.getElementById('unlockBtn').addEventListener('click', handleClick);
+        
+        // ===== CONTENT PROTECTION =====
+        // Disable right-click on desktop only
+        document.addEventListener('contextmenu', function(e) {
+            if (window.innerWidth > 768) {
+                e.preventDefault();
+            }
+        }, false);
+        
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create background animation
+            if (window.innerWidth > 480) {
+                createParticles();
+            }
+            
+            // Smooth page load
+            document.body.style.opacity = 1;
+        });
+        
+        // ===== SCREENSHOT PROTECTION =====
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'PrintScreen') {
+                const notice = document.getElementById('copyrightNotice');
+                notice.style.opacity = '1';
+                setTimeout(() => {
+                    notice.style.opacity = '0.35';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
