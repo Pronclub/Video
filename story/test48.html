@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylon Hires - Community-Driven Vehicle Hire Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', 'Noto Sans Sinhala', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        /* Sinhala Text Styles */
+        .sinhala-text {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            line-height: 1.8;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #ffa502, #2ed573, #1e90ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: absolute;
+            top: 0;
+            right: 1rem;
+        }
+
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-btn i {
+            font-size: 0.9rem;
+        }
+
+        /* Content Sections */
+        .tagline {
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            color: #bbbbbb;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #dddddd;
+            display: none;
+            font-size: clamp(0.85rem, 3.5vw, 1rem);
+        }
+
+        .description.active {
+            display: block;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .supported-by {
+            font-style: italic;
+            color: #aaaaaa;
+            font-size: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: 90px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-box .number {
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            background: linear-gradient(45deg, #ffa502, #2ed573);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-box .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #bbbbbb;
+        }
+
+        /* CTA */
+        .enroll {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .enroll h3 {
+            margin-bottom: 0.8rem;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+        }
+
+        .enroll-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            font-size: clamp(0.85rem, 3.5vw, 1rem);
+        }
+
+        .enroll-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .coming-soon h2 {
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffa502, #1e90ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .coming-soon p {
+            margin-bottom: 1rem;
+            color: #dddddd;
+            font-size: clamp(0.85rem, 3.5vw, 1rem);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem 0.8rem;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #bbbbbb;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #000;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(45deg, #ff6b6b, #1e90ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-heading {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.3rem;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, #2ed573, #1e90ff);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #777;
+            font-size: 0.75rem;
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                margin-bottom: 1rem;
+            }
+            
+            .logo {
+                margin-top: 1.5rem;
+            }
+            
+            .language-toggle {
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+            
+            .stat-box, .countdown-box {
+                min-width: calc(50% - 0.5rem);
+                padding: 0.8rem 0.5rem;
+            }
+            
+            .footer-column {
+                min-width: 120px;
+            }
+            
+            .footer-links a {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="particles-js" class="particles"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="language-toggle">
+                <button class="toggle-btn" id="languageBtn">
+                    <i class="fas fa-language"></i>
+                    <span>English</span>
+                </button>
+            </div>
+            <div class="logo">Ceylon Hires</div>
+        </div>
+
+        <div class="tagline">Share the hires, share the opportunities</div>
+
+        <div class="description active" id="englishDesc">
+            <p>Ceylon Hires is a community-driven network made up of vehicle owners, experienced tour guides, and local travel service providers working together to share hire opportunities across Sri Lanka.</p>
+            <p>We connect those who need hire services with trusted providers, ensuring fair, reliable, and quality travel experiences for everyone.</p>
+            <p>Our platform is built on transparency and mutual support, where every service comes recommended by our community.</p>
+            <p class="supported-by">Supported by TouristTalk, promoting Sri Lanka as a trustworthy travel destination.</p>
+        </div>
+
+        <div class="description sinhala-text" id="sinhalaDesc">
+            <p>සීලෝන් හයර්ස් යනු ශ්‍රී ලංකාව පුරා රථවාහන හිමිකරුවන්, පළපුරුදු සංචාර මාර්ගෝපදේශකයන් සහ ප්‍රාදේශීය සංචාරක සේවා සපයන්නන්ගෙන් සමන්විත ප්‍රජා-මූලික ජාලයකි.</p>
+            <p>අපි සංචාරකයින් විශ්වාසදායක සේවා සපයන්නන් සමඟ සම්බන්ධ කරමු, සෑම කෙනෙකුටම සාධාරණ, විශ්වසනීය හා ගුණාත්මක ගමන් අත්දැකීම් සහතික කරමු.</p>
+            <p>අපගේ වේදිකාව පාරදෘෂ්‍යතාවය හා අන්යෝන්ය සහයෝගීතාවය මත ගොඩනගා ඇති අතර සෑම සේවාවක්ම අපගේ ප්‍රජාව විසින් නිර්දේශ කරනු ලැබේ.</p>
+            <p class="supported-by">ටුවිස්ට් ටෝක් සහයෙන්, ශ්‍රී ලංකාව විශ්වාසදායක සංචාරක ගමනාන්තයක් ලෙස ප්‍රවර්ධනය කිරීම.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number">850+</div>
+                <div class="label">Community Members</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">120+</div>
+                <div class="label">Verified Services</div>
+            </div>
+            <div class="stat-box">
+                <div class="number">2.5K+</div>
+                <div class="label">Successful Bookings</div>
+            </div>
+        </div>
+
+        <div class="enroll">
+            <h3>Join Our Growing Community</h3>
+            <a href="https://wa.me/+94701234567" class="enroll-button">Free Enroll</a>
+        </div>
+
+        <!-- Coming Soon Section -->
+        <div class="coming-soon">
+            <div id="englishComingSoon">
+                <h2>New Platform Coming Soon</h2>
+                <p>We are currently developing a complete online booking system that will allow international travelers to connect directly with trusted Ceylon Hires members.</p>
+                <p>This platform will ensure that all hire requests are shared exclusively with our verified community, creating new opportunities while maintaining the values of fairness, quality, and local support.</p>
+                <p>Stay connected. Something remarkable is coming soon.</p>
+                
+                <div class="countdown">
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sinhalaComingSoon" style="display: none;">
+                <h2 class="sinhala-text">නව වේදිකාව ඉක්මනින් පැමිණෙමින් පවතී</h2>
+                <p class="sinhala-text">අපි දැනට සම්පූර්ණ අන්තර්ජාල රෙජර්වේෂන් පද්ධතියක් සංවර්ධනය කරමින් සිටින අතර, එමගින් ජාත්‍යන්තර සංචාරකයින්ට Ceylon Hires හි විශ්වාසදායක සාමාජිකයින් සමඟ සෘජුවම සම්බන්ධ විය හැකිය.</p>
+                <p class="sinhala-text">මෙම වේදිකාව සියලුම රථවාහන ඉල්ලීම් අපගේ සත්‍යාපනය කළ ප්‍රජාව සමඟ පමණක් බෙදාගැනීම සහතික කරන අතර, සාධාරණත්වය, ගුණාත්මකභාවය සහ ප්‍රාදේශීය සහයෝගීතාවයේ අගයන් පවත්වා ගනිමින් නව අවස්ථා සෑදීම සිදු කරයි.</p>
+                <p class="sinhala-text">සම්බන්ධව සිටින්න. විශේෂ දෙයක් ඉතා ඉක්මනින් පැමිණෙමින් පවතී.</p>
+                
+                <div class="countdown">
+                    <div class="countdown-box">
+                        <div class="countdown-number sinhala-text" id="sinhalaDays">00</div>
+                        <div class="countdown-label sinhala-text">දින</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number sinhala-text" id="sinhalaHours">00</div>
+                        <div class="countdown-label sinhala-text">පැය</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number sinhala-text" id="sinhalaMinutes">00</div>
+                        <div class="countdown-label sinhala-text">මිනිත්තු</div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number sinhala-text" id="sinhalaSeconds">00</div>
+                        <div class="countdown-label sinhala-text">තත්පර</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo">Ceylon Hires</div>
+                <p style="color: #aaa; margin-bottom: 0.8rem; font-size: 0.85rem;">Connecting travelers with trusted local service providers.</p>
+                <div style="display: flex; gap: 0.8rem;">
+                    <a href="#" style="color: #fff;"><i class="fab fa-telegram"></i></a>
+                    <a href="#" style="color: #fff;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" style="color: #fff;"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Vehicle Hire</a></li>
+                    <li><a href="#">Tour Guides</a></li>
+                    <li><a href="#">Transportation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Safety Guidelines</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Ceylon Hires. All rights reserved. | Powered by TouristTalk</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Language Toggle
+        const languageBtn = document.getElementById('languageBtn');
+        const englishDesc = document.getElementById('englishDesc');
+        const sinhalaDesc = document.getElementById('sinhalaDesc');
+        const englishComingSoon = document.getElementById('englishComingSoon');
+        const sinhalaComingSoon = document.getElementById('sinhalaComingSoon');
+        
+        let currentLanguage = 'english';
+        
+        languageBtn.addEventListener('click', () => {
+            if (currentLanguage === 'english') {
+                englishDesc.classList.remove('active');
+                sinhalaDesc.classList.add('active');
+                englishComingSoon.style.display = 'none';
+                sinhalaComingSoon.style.display = 'block';
+                languageBtn.innerHTML = '<i class="fas fa-language"></i><span>සිංහල</span>';
+                currentLanguage = 'sinhala';
+            } else {
+                sinhalaDesc.classList.remove('active');
+                englishDesc.classList.add('active');
+                sinhalaComingSoon.style.display = 'none';
+                englishComingSoon.style.display = 'block';
+                languageBtn.innerHTML = '<i class="fas fa-language"></i><span>English</span>';
+                currentLanguage = 'english';
+            }
+        });
+
+        // Countdown Timer (from 2025-07-17 for 150 days)
+        function updateCountdown() {
+            const targetDate = new Date('2025-07-17T00:00:00');
+            const endDate = new Date(targetDate);
+            endDate.setDate(targetDate.getDate() + 150);
+            
+            const now = new Date();
+            let distance = endDate - now;
+            
+            // If countdown is over
+            if (distance < 0) {
+                distance = 0;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update English countdown
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            
+            // Update Sinhala countdown
+            document.getElementById("sinhalaDays").textContent = days.toString().padStart(2, '0');
+            document.getElementById("sinhalaHours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("sinhalaMinutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("sinhalaSeconds").textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Initialize and update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 30, density: { enable: true, value_area: 800 } },
+                color: { value: ["#ff6b6b", "#ffa502", "#2ed573", "#1e90ff"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 0.6, direction: "none", random: true }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
