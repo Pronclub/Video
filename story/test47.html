@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylon Hires - Sri Lanka's Premier Travel Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --accent: #fbbc05;
+            --dark: #0a2640;
+            --light: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        .sinhala-text {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Header with travel-inspired gradient */
+        .header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            padding: 1.5rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #fbbc05);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Content sections with travel card styling */
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #555;
+            display: none;
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+        }
+
+        .description.active {
+            display: block;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .supported-by {
+            font-style: italic;
+            color: #777;
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        /* Stats with travel icons */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .stat-box .number {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .stat-box .label {
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .stat-box .label i {
+            color: var(--accent);
+        }
+
+        /* CTA with travel theme */
+        .enroll {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .enroll h3 {
+            margin-bottom: 1rem;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            color: var(--dark);
+        }
+
+        .enroll-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.3);
+        }
+
+        .enroll-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(26, 115, 232, 0.4);
+        }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .coming-soon h2 {
+            font-size: clamp(1.3rem, 5vw, 1.7rem);
+            margin-bottom: 1.2rem;
+            color: var(--dark);
+        }
+
+        .coming-soon p {
+            margin-bottom: 1.2rem;
+            color: #555;
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: var(--dark);
+            border-radius: 10px;
+            padding: 1.2rem 0.8rem;
+            min-width: 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .countdown-number {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Footer with travel theme */
+        .footer {
+            background: var(--dark);
+            padding: 3rem 1.5rem 1.5rem;
+            color: white;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #fbbc05);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-heading {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: white;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-links a i {
+            width: 20px;
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-box {
+                min-width: calc(50% - 1rem);
+                padding: 1.2rem 0.5rem;
+            }
+            
+            .footer-column {
+                min-width: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .language-toggle {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+            
+            .countdown-box {
+                min-width: calc(50% - 0.5rem);
+                padding: 1rem 0.5rem;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="language-toggle">
+                <button class="toggle-btn" id="languageBtn">
+                    <i class="fas fa-language"></i>
+                    <span>English</span>
+                </button>
+            </div>
+            <h1 class="logo">Ceylon Hires</h1>
+            <p class="tagline">Your Trusted Travel Partner in Sri Lanka</p>
+        </header>
+
+        <main>
+            <section class="content-card">
+                <div class="description active" id="englishDesc">
+                    <p>Ceylon Hires is Sri Lanka's premier community-driven travel network, connecting travelers with trusted vehicle owners, experienced guides, and local service providers across the island.</p>
+                    <p>We specialize in creating authentic Sri Lankan travel experiences while ensuring fair opportunities for our local partners and reliable service for our guests.</p>
+                    <p class="supported-by">In partnership with TouristTalk - Promoting responsible tourism in Sri Lanka</p>
+                </div>
+
+                <div class="description sinhala-text" id="sinhalaDesc">
+                    <p>සීලෝන් හයර්ස් යනු ශ්‍රී ලංකාවේ ප්‍රමුඛ ප්‍රජා-මූලික සංචාරක ජාලය වන අතර, සංචාරකයින් දිවයින පුරා විශ්වාසදායක වාහන හිමිකරුවන්, පළපුරුදු මාර්ගෝපදේශකයන් සහ ප්‍රාදේශීය සේවා සපයන්නන් සමඟ සම්බන්ධ කරයි.</p>
+                    <p>අපි ශ්‍රී ලංකාවේ සැබෑ සංචාරක අත්දැකීම් නිර්මාණය කිරීමට විශේෂඥයින් වන අතර අපගේ ප්‍රාදේශීය හවුල්කරුවන්ට සාධාරණ අවස්ථා සහ අමුත්තන්ට විශ්වසනීය සේවාවක් සහතික කරමු.</p>
+                    <p class="supported-by">ටුවිස්ට් ටෝක් සමඟ සහයෝගීතාවයෙන් - ශ්‍රී ලංකාවේ වගකීම් සහගත සංචාරක කර්මාන්තය ප්‍රවර්ධනය කිරීම</p>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="number">850+</div>
+                        <div class="label"><i class="fas fa-users"></i> Members</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">120+</div>
+                        <div class="label"><i class="fas fa-shield-alt"></i> Verified</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">2.5K+</div>
+                        <div class="label"><i class="fas fa-calendar-check"></i> Bookings</div>
+                    </div>
+                </div>
+
+                <div class="enroll">
+                    <h3>Ready for an Authentic Sri Lankan Experience?</h3>
+                    <a href="https://wa.me/+94701234567" class="enroll-button">
+                        <i class="fab fa-whatsapp"></i> Connect on WhatsApp
+                    </a>
+                </div>
+            </section>
+
+            <section class="coming-soon">
+                <div id="englishComingSoon">
+                    <h2><i class="fas fa-rocket"></i> New Booking Platform Launching Soon</h2>
+                    <p>We're building an innovative platform to seamlessly connect international travelers with our verified local partners.</p>
+                    <p>Experience the real Sri Lanka with trusted drivers, guides, and service providers - all carefully vetted by our community.</p>
+                    
+                    <div class="countdown">
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="days">00</div>
+                            <div class="countdown-label">Days</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="hours">00</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="minutes">00</div>
+                            <div class="countdown-label">Minutes</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="seconds">00</div>
+                            <div class="countdown-label">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sinhalaComingSoon" style="display: none;">
+                    <h2 class="sinhala-text"><i class="fas fa-rocket"></i> නව රෙජර්වේෂන් වේදිකාව ඉක්මනින්</h2>
+                    <p class="sinhala-text">අපි ජාත්‍යන්තර සංචාරකයින් අපගේ සත්‍යාපනය කළ ප්‍රාදේශීය හවුල්කරුවන් සමඟ සුමටව සම්බන්ධ කරන නවෝත්පාදන වේදිකාවක් ගොඩනඟමින් සිටිමු.</p>
+                    <p class="sinhala-text">විශ්වාසදායක රියදුරුවරුන්, මාර්ගෝපදේශකයන් සහ සේවා සපයන්නන් සමඟ සැබෑ ශ්‍රී ලාංකික අත්දැකීම් ලබාගන්න - අපගේ ප්‍රජාව විසින් පරික්ෂාකාරීව තෝරාගත්.</p>
+                    
+                    <div class="countdown">
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaDays">00</div>
+                            <div class="countdown-label sinhala-text">දින</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaHours">00</div>
+                            <div class="countdown-label sinhala-text">පැය</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaMinutes">00</div>
+                            <div class="countdown-label sinhala-text">මිනිත්තු</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaSeconds">00</div>
+                            <div class="countdown-label sinhala-text">තත්පර</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo">Ceylon Hires</div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.2rem; font-size: 0.9rem;">
+                    Connecting you with trusted local travel experts across Sri Lanka
+                </p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-telegram"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-car"></i> Vehicle Rentals</a></li>
+                    <li><a href="#"><i class="fas fa-map-marked-alt"></i> Tour Guides</a></li>
+                    <li><a href="#"><i class="fas fa-route"></i> Custom Itineraries</a></li>
+                    <li><a href="#"><i class="fas fa-home"></i> Local Stays</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-handshake"></i> How It Works</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Safety</a></li>
+                    <li><a href="#"><i class="fas fa-comments"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Terms</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Ceylon Hires. All rights reserved. | Partnered with TouristTalk</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle
+        const languageBtn = document.getElementById('languageBtn');
+        const englishDesc = document.getElementById('englishDesc');
+        const sinhalaDesc = document.getElementById('sinhalaDesc');
+        const englishComingSoon = document.getElementById('englishComingSoon');
+        const sinhalaComingSoon = document.getElementById('sinhalaComingSoon');
+        
+        let currentLanguage = 'english';
+        
+        languageBtn.addEventListener('click', () => {
+            if (currentLanguage === 'english') {
+                englishDesc.classList.remove('active');
+                sinhalaDesc.classList.add('active');
+                englishComingSoon.style.display = 'none';
+                sinhalaComingSoon.style.display = 'block';
+                languageBtn.innerHTML = '<i class="fas fa-language"></i><span>සිංහල</span>';
+                currentLanguage = 'sinhala';
+            } else {
+                sinhalaDesc.classList.remove('active');
+                englishDesc.classList.add('active');
+                sinhalaComingSoon.style.display = 'none';
+                englishComingSoon.style.display = 'block';
+                languageBtn.innerHTML = '<i class="fas fa-language"></i><span>English</span>';
+                currentLanguage = 'english';
+            }
+        });
+
+        // Countdown Timer (from 2025-07-17 for 150 days)
+        function updateCountdown() {
+            const targetDate = new Date('2025-07-17T00:00:00');
+            const endDate = new Date(targetDate);
+            endDate.setDate(targetDate.getDate() + 150);
+            
+            const now = new Date();
+            let distance = endDate - now;
+            
+            // If countdown is over
+            if (distance < 0) {
+                distance = 0;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update English countdown
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            
+            // Update Sinhala countdown
+            document.getElementById("sinhalaDays").textContent = days.toString().padStart(2, '0');
+            document.getElementById("sinhalaHours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("sinhalaMinutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("sinhalaSeconds").textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Initialize and update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
