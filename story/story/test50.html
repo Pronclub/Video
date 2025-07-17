@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra-Realistic 3D Earth</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    #globe-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="globe-container"></div>
+
+  <!-- Three.js and related libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three-globe@2.24.7/dist/three-globe.min.js"></script>
+
+  <script>
+    const container = document.getElementById('globe-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000010);
+
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      2000
+    );
+    camera.position.z = 400;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    container.appendChild(renderer.domElement);
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0x404040, 0.8));
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.5);
+    dirLight1.position.set(1, 1, 1);
+    scene.add(dirLight1);
+
+    const dirLight2 = new THREE.DirectionalLight(0xffeedd, 0.5);
+    dirLight2.position.set(-1, -0.5, -1);
+    scene.add(dirLight2);
+
+    const hemiLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5);
+    scene.add(hemiLight);
+
+    // Controls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.35;
+    controls.minDistance = 250;
+    controls.maxDistance = 800;
+    controls.enablePan = false;
+
+    // Globe
+    const globe = new ThreeGlobe({ waitForGlobeReady: true, animateIn: true })
+      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+      .showAtmosphere(true)
+      .atmosphereColor('rgba(100, 150, 200, 0.15)')
+      .atmosphereAltitude(0.25)
+      .bumpScale(0.8);
+
+    // Scale globe to match atmosphere/clouds size
+    globe.scale.set(5, 5, 5);
+
+    // City lights
+    const cityLights = [
+      { lat: 40.7128, lng: -74.006, size: 8 },
+      { lat: 34.0522, lng: -118.2437, size: 7 },
+      { lat: 51.5074, lng: -0.1278, size: 7 },
+      { lat: 48.8566, lng: 2.3522, size: 6 },
+      { lat: 35.6762, lng: 139.6503, size: 8 },
+      { lat: 19.076, lng: 72.8777, size: 7 },
+      { lat: 6.9271, lng: 79.8612, size: 5 },
+      { lat: -33.8688, lng: 151.2093, size: 6 }
+    ].map(city => ({
+      ...city,
+      color: `rgba(100, 150, 255, ${Math.random() * 0.5 + 0.5})`
+    }));
+
+    globe
+      .ringsData(cityLights)
+      .ringColor(d => d.color)
+      .ringMaxRadius('size')
+      .ringPropagationSpeed(0.25)
+      .ringRepeatPeriod(2500);
+
+    // Add atmosphere glow (shader-based)
+    const atmosphereGeo = new THREE.SphereGeometry(5, 64, 64);
+    const atmosphereMat = new THREE.ShaderMaterial({
+      uniforms: {
+        glowColor: { type: 'c', value: new THREE.Color(0x88ccff) },
+        viewVector: { type: 'v3', value: camera.position }
+      },
+      vertexShader: `
+        uniform vec3 viewVector;
+        varying float intensity;
+        void main() {
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          vec3 actual_normal = normalize(normalMatrix * normal);
+          intensity = pow(0.7 - dot(actual_normal, normalize(viewVector)), 2.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 glowColor;
+        varying float intensity;
+        void main() {
+          vec3 glow = glowColor * intensity;
+          gl_FragColor = vec4(glow, 0.3);
+        }
+      `,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true
+    });
+    const atmosphere = new THREE.Mesh(atmosphereGeo, atmosphereMat);
+    atmosphere.scale.set(1.15, 1.15, 1.15);
+    globe.add(atmosphere);
+
+    // Cloud layer
+    const cloudGeo = new THREE.SphereGeometry(5.05, 64, 64);
+    const cloudTexture = new THREE.TextureLoader().load('https://unpkg.com/three-globe/example/img/earth-clouds.png');
+    const cloudMat = new THREE.MeshPhongMaterial({
+      map: cloudTexture,
+      transparent: true,
+      opacity: 0.15,
+      depthWrite: false
+    });
+    const clouds = new THREE.Mesh(cloudGeo, cloudMat);
+    globe.add(clouds);
+
+    // Starfield background
+    const starGeometry = new THREE.BufferGeometry();
+    const starCount = 10000;
+    const starPositions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const i3 = i * 3;
+      starPositions[i3] = (Math.random() - 0.5) * 2000;
+      starPositions[i3 + 1] = (Math.random() - 0.5) * 2000;
+      starPositions[i3 + 2] = (Math.random() - 0.5) * 2000;
+    }
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    const starMaterial = new THREE.PointsMaterial({
+      color: 0xffffff,
+      size: 0.5,
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: 0.9
+    });
+    const stars = new THREE.Points(starGeometry, starMaterial);
+    scene.add(stars);
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Add globe to scene and animate
+    scene.add(globe);
+    function animate() {
+      requestAnimationFrame(animate);
+      clouds.rotation.y += 0.0001;
+      controls.update();
+      renderer.render(scene, camera);
+      atmosphereMat.uniforms.viewVector.value = new THREE.Vector3().subVectors(
+        camera.position,
+        atmosphere.position
+      );
+    }
+    animate();
+  </script>
+</body>
+</html>
