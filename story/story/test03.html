@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>සම්පූර්ණ 3D පෘථිවි ගෝලය</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+        #error {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff5555;
+            text-align: center;
+            display: none;
+            max-width: 80%;
+        }
+        #info {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="loading">
+            <h2>පෘථිවි ගෝලය පූරණය වෙමින්...</h2>
+            <div id="progress">0%</div>
+        </div>
+        <div id="error"></div>
+        <div id="info">මූසිකයෙන් ඇදගෙන යන්න | රෝදයෙන් විශාලනය කරන්න</div>
+    </div>
+
+    <!-- Three.js from CDN with local fallback -->
+    <script>
+    // Three.js local fallback
+    if(typeof THREE === 'undefined') {
+        document.getElementById('loading').innerHTML = '<h2>Three.js පුස්තකාලය බාගත කරමින්...</h2>';
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js';
+        script.onload = initEarth;
+        script.onerror = function() {
+            document.getElementById('error').innerHTML = 'Three.js බාගත කිරීම අසාර්ථක විය. අන්තර්ජාල සම්බන්ධතාවය පරීක්ෂා කරන්න.';
+            document.getElementById('error').style.display = 'block';
+        };
+        document.head.appendChild(script);
+    } else {
+        initEarth();
+    }
+
+    function initEarth() {
+        // Check for required components
+        if(typeof THREE === 'undefined' || !THREE.OrbitControls) {
+            document.getElementById('error').innerHTML = 'අවශ්‍ය Three.js සංරචක නැත. අලුතින් පිටුවක් ලොඩ් කරන්න.';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+            return;
+        }
+
+        // Main Earth initialization
+        try {
+            const container = document.getElementById('container');
+            const loadingElement = document.getElementById('loading');
+            const errorElement = document.getElementById('error');
+            const progressElement = document.getElementById('progress');
+
+            // 1. Create scene
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000033);
+            
+            // 2. Create camera
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 400;
+            
+            // 3. Create renderer with WebGL check
+            let renderer;
+            try {
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+            } catch (e) {
+                errorElement.innerHTML = 'WebGL සහාය නැත. Chrome, Firefox හෝ Edge භාවිතා කරන්න.';
+                errorElement.style.display = 'block';
+                loadingElement.style.display = 'none';
+                return;
+            }
+            
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+            
+            // 4. Add lighting
+            const ambientLight = new THREE.AmbientLight(0x404040);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(1, 1, 1);
+            scene.add(directionalLight);
+            
+            // 5. Create Earth with multiple fallbacks
+            const earthGeometry = new THREE.SphereGeometry(5, 64, 64);
+            const earthMaterial = new THREE.MeshPhongMaterial({
+                color: 0x1a3b8b, // Base blue color
+                specular: 0x222222,
+                shininess: 5
+            });
+            
+            const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+            scene.add(earth);
+            
+            // 6. Try loading textures with progress
+            const textureLoader = new THREE.TextureLoader();
+            const textureUrls = [
+                'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg',
+                'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg',
+                'https://assets.codepen.io/127738/earthmap1k.jpg'
+            ];
+            
+            let texturesLoaded = 0;
+            
+            function tryLoadTexture(index) {
+                if(index >= textureUrls.length) {
+                    progressElement.textContent = '100%';
+                    setTimeout(() => {
+                        loadingElement.style.display = 'none';
+                    }, 500);
+                    return;
+                }
+                
+                progressElement.textContent = `${Math.round((index / textureUrls.length) * 100)}%`;
+                
+                textureLoader.load(
+                    textureUrls[index],
+                    (texture) => {
+                        earthMaterial.map = texture;
+                        earthMaterial.needsUpdate = true;
+                        progressElement.textContent = '100%';
+                        loadingElement.style.display = 'none';
+                    },
+                    undefined,
+                    () => {
+                        // Failed to load this texture, try next one
+                        tryLoadTexture(index + 1);
+                    }
+                );
+            }
+            
+            // Start loading textures
+            tryLoadTexture(0);
+            
+            // 7. Add clouds with fallback
+            const cloudGeometry = new THREE.SphereGeometry(5.1, 64, 64);
+            const cloudMaterial = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.4
+            });
+            
+            const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+            scene.add(clouds);
+            
+            textureLoader.load(
+                'https://threejs.org/examples/textures/planets/earth_clouds_1024.png',
+                (texture) => {
+                    cloudMaterial.map = texture;
+                    cloudMaterial.needsUpdate = true;
+                },
+                undefined,
+                () => {
+                    console.log('Cloud texture failed, using plain clouds');
+                }
+            );
+            
+            // 8. Add stars
+            const starsGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+            
+            for(let i = 0; i < 10000; i++) {
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = (Math.random() - 0.5) * 2000;
+                starVertices.push(x, y, z);
+            }
+            
+            starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            
+            const starsMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 0.5,
+                sizeAttenuation: true
+            });
+            
+            const starField = new THREE.Points(starsGeometry, starsMaterial);
+            scene.add(starField);
+            
+            // 9. Add controls
+            const controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.5;
+            controls.minDistance = 200;
+            controls.maxDistance = 800;
+            
+            // 10. Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+            
+            // 11. Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                earth.rotation.y += 0.0005;
+                clouds.rotation.y += 0.0003;
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('error').innerHTML = `
+                <h3>දෝෂයක් ඇතිවිය: ${error.message}</h3>
+                <p>කරුණාකර ඔබගේ බ්‍රව්සරය යාවත්කාලීන කරන්න හෝ Chrome/Firefox භාවිතා කරන්න</p>
+            `;
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+    </script>
+</body>
+</html>
