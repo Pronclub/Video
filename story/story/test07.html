@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sri Lanka Digital Map</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #021028;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    // === Setup Scene ===
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    
+    // === Create Dot Material ===
+    const dotMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+    
+    // === Dummy Coordinates for Sri Lanka shape (you can adjust) ===
+    const positions = [
+      [0, 3], [-1, 2.5], [1, 2.4], [-0.8, 1.5], [0.8, 1.6],
+      [-1, 0.5], [1, 0.5], [-1.5, -0.5], [1.4, -0.6],
+      [0, -2], [-0.5, -1.3], [0.5, -1.2], [-1, -2], [1, -2.2],
+      [0, -3.2]
+    ];
+    
+    const dots = [];
+    const geometry = new THREE.SphereGeometry(0.05, 8, 8);
+    
+    positions.forEach(pos => {
+      const dot = new THREE.Mesh(geometry, dotMaterial.clone());
+      dot.position.set(pos[0], pos[1], 0);
+      scene.add(dot);
+      dots.push(dot);
+    });
+
+    // === Connect Lines ===
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00ffff });
+    const connectLines = [
+      [0,1], [0,2], [1,3], [2,4], [3,5], [4,6], [5,7], [6,8],
+      [7,9], [8,9], [9,10], [9,11], [10,12], [11,13], [12,14], [13,14]
+    ];
+    
+    connectLines.forEach(([a, b]) => {
+      const points = [];
+      points.push(new THREE.Vector3(...positions[a], 0));
+      points.push(new THREE.Vector3(...positions[b], 0));
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const line = new THREE.Line(geometry, lineMaterial);
+      scene.add(line);
+    });
+
+    // === Animation Logic ===
+    camera.position.z = 8;
+    
+    function animate() {
+      requestAnimationFrame(animate);
+      dots.forEach((dot, index) => {
+        const scale = Math.sin(Date.now() * 0.002 + index) * 0.2 + 1;
+        dot.scale.set(scale, scale, scale);
+      });
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // === Resize Handling ===
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
