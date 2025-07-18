@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceylon Hires - Sri Lanka's Premier Travel Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --header-bg: linear-gradient(135deg, #1e40af, #3b82f6);
+        }
+        
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --text: #f8fafc;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --header-bg: linear-gradient(135deg, #0f172a, #1e293b);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Noto Sans Sinhala', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        .sinhala-text {
+            font-family: 'Noto Sans Sinhala', sans-serif;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Header with glass morphism effect */
+        .header {
+            background: var(--header-bg);
+            padding: 1.5rem;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+            position: relative;
+            color: white;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .logo {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Earth Container - Perfectly responsive */
+        .earth-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 0 auto 2rem;
+            aspect-ratio: 2/1;
+            max-height: 60vh;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+        }
+
+        #earth-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Content sections with glass card styling */
+        .content-card {
+            background: rgba(var(--card-bg), 0.7);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text);
+            display: none;
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+        }
+
+        .description.active {
+            display: block;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .supported-by {
+            font-style: italic;
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        /* Stats with hover animations */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: rgba(var(--card-bg), 0.8);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transform: scale(0.9);
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        .stat-box:nth-child(1) { animation-delay: 0.4s; }
+        .stat-box:nth-child(2) { animation-delay: 0.5s; }
+        .stat-box:nth-child(3) { animation-delay: 0.6s; }
+
+        .stat-box:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            border-color: var(--primary);
+        }
+
+        .stat-box .number {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .stat-box .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .stat-box .label i {
+            color: var(--accent);
+        }
+
+        /* CTA with pulse animation */
+        .enroll {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .enroll h3 {
+            margin-bottom: 1rem;
+            font-size: clamp(1.1rem, 4vw, 1.3rem);
+            color: var(--text);
+        }
+
+        .enroll-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .enroll-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            animation: none;
+        }
+
+        .enroll-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0)
+            );
+            transform: rotate(30deg);
+            transition: all 0.3s ease;
+        }
+
+        .enroll-button:hover::after {
+            left: 100%;
+        }
+
+        /* Coming Soon Section with glow effect */
+        .coming-soon {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(var(--card-bg), 0.7);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+            animation-delay: 0.7s;
+        }
+
+        .coming-soon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .coming-soon::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: glow 6s ease-in-out infinite alternate;
+        }
+
+        .coming-soon h2 {
+            font-size: clamp(1.3rem, 5vw, 1.7rem);
+            margin-bottom: 1.2rem;
+            color: var(--text);
+        }
+
+        .coming-soon p {
+            margin-bottom: 1.2rem;
+            color: var(--gray);
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 12px;
+            padding: 1.2rem 0.8rem;
+            min-width: 80px;
+            text-align: center;
+            color: white;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .countdown-number {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Footer with gradient border */
+        .footer {
+            background: var(--darker);
+            padding: 3rem 1.5rem 1.5rem;
+            color: white;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 180px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .footer-column:nth-child(1) { animation-delay: 0.8s; }
+        .footer-column:nth-child(2) { animation-delay: 0.9s; }
+        .footer-column:nth-child(3) { animation-delay: 1.0s; }
+        .footer-column:nth-child(4) { animation-delay: 1.1s; }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-heading {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: white;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            width: 20px;
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-box {
+                min-width: calc(50% - 1rem);
+                padding: 1.2rem 0.5rem;
+            }
+            
+            .footer-column {
+                min-width: 140px;
+            }
+            
+            .earth-wrapper {
+                max-height: 50vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .theme-toggle {
+                top: 0.5rem;
+                left: 0.5rem;
+                width: 35px;
+                height: 35px;
+            }
+            
+            .language-toggle {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 1rem;
+                display: inline-block;
+            }
+            
+            .countdown-box {
+                min-width: calc(50% - 0.5rem);
+                padding: 1rem 0.5rem;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .earth-wrapper {
+                max-height: 40vh;
+                aspect-ratio: 1/1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body data-theme="dark">
+    <div class="container">
+        <header class="header">
+            <button class="theme-toggle" id="themeBtn">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="language-toggle">
+                <button class="toggle-btn" id="languageBtn">
+                    <i class="fas fa-language"></i>
+                    <span>English</span>
+                </button>
+            </div>
+            <h1 class="logo">Ceylon Hires</h1>
+            <p class="tagline">Your Trusted Travel Partner in Sri Lanka</p>
+        </header>
+
+        <!-- Perfect 3D Earth - No extra containers -->
+        <div class="earth-wrapper">
+            <canvas id="earth-canvas"></canvas>
+        </div>
+
+        <main>
+            <section class="content-card">
+                <div class="description active" id="englishDesc">
+                    <p>Ceylon Hires is Sri Lanka's premier community-driven travel network, connecting travelers with trusted vehicle owners, experienced guides, and local service providers across the island.</p>
+                    <p>We specialize in creating authentic Sri Lankan travel experiences while ensuring fair opportunities for our local partners and reliable service for our guests.</p>
+                    <p class="supported-by">In partnership with TouristTalk - Promoting responsible tourism in Sri Lanka</p>
+                </div>
+
+                <div class="description sinhala-text" id="sinhalaDesc">
+                    <p>සීලෝන් හයර්ස් යනු ශ්‍රී ලංකාවේ ප්‍රමුඛ ප්‍රජා-මූලික සංචාරක ජාලය වන අතර, සංචාරකයින් දිවයින පුරා විශ්වාසදායක වාහන හිමිකරුවන්, පළපුරුදු මාර්ගෝපදේශකයන් සහ ප්‍රාදේශීය සේවා සපයන්නන් සමඟ සම්බන්ධ කරයි.</p>
+                    <p>අපි ශ්‍රී ලංකාවේ සැබෑ සංචාරක අත්දැකීම් නිර්මාණය කිරීමට විශේෂඥයින් වන අතර අපගේ ප්‍රාදේශීය හවුල්කරුවන්ට සාධාරණ අවස්ථා සහ අමුත්තන්ට විශ්වසනීය සේවාවක් සහතික කරමු.</p>
+                    <p class="supported-by">ටුවිස්ට් ටෝක් සමඟ සහයෝගීතාවයෙන් - ශ්‍රී ලංකාවේ වගකීම් සහගත සංචාරක කර්මාන්තය ප්‍රවර්ධනය කිරීම</p>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="number">850+</div>
+                        <div class="label"><i class="fas fa-users"></i> Members</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">120+</div>
+                        <div class="label"><i class="fas fa-shield-alt"></i> Verified</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="number">2.5K+</div>
+                        <div class="label"><i class="fas fa-calendar-check"></i> Bookings</div>
+                    </div>
+                </div>
+
+                <div class="enroll">
+                    <h3>Ready for an Authentic Sri Lankan Experience?</h3>
+                    <a href="https://wa.me/+94701234567" class="enroll-button">
+                        <i class="fab fa-whatsapp"></i> Connect on WhatsApp
+                    </a>
+                </div>
+            </section>
+
+            <section class="coming-soon">
+                <div id="englishComingSoon">
+                    <h2><i class="fas fa-rocket"></i> New Booking Platform Launching Soon</h2>
+                    <p>We're building an innovative platform to seamlessly connect international travelers with our verified local partners.</p>
+                    <p>Experience the real Sri Lanka with trusted drivers, guides, and service providers - all carefully vetted by our community.</p>
+                    
+                    <div class="countdown">
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="days">00</div>
+                            <div class="countdown-label">Days</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="hours">00</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="minutes">00</div>
+                            <div class="countdown-label">Minutes</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number" id="seconds">00</div>
+                            <div class="countdown-label">Seconds</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sinhalaComingSoon" style="display: none;">
+                    <h2 class="sinhala-text"><i class="fas fa-rocket"></i> නව රෙජර්වේෂන් වේදිකාව ඉක්මනින්</h2>
+                    <p class="sinhala-text">අපි ජාත්‍යන්තර සංචාරකයින් අපගේ සත්‍යාපනය කළ ප්‍රාදේශීය හවුල්කරුවන් සමඟ සුමටව සම්බන්ධ කරන නවෝත්පාදන වේදිකාවක් ගොඩනඟමින් සිටිමු.</p>
+                    <p class="sinhala-text">විශ්වාසදායක රියදුරුවරුන්, මාර්ගෝපදේශකයන් සහ සේවා සපයන්නන් සමඟ සැබෑ ශ්‍රී ලාංකික අත්දැකීම් ලබාගන්න - අපගේ ප්‍රජාව විසින් පරික්ෂාකාරීව තෝරාගත්.</p>
+                    
+                    <div class="countdown">
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaDays">00</div>
+                            <div class="countdown-label sinhala-text">දින</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaHours">00</div>
+                            <div class="countdown-label sinhala-text">පැය</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaMinutes">00</div>
+                            <div class="countdown-label sinhala-text">මිනිත්තු</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-number sinhala-text" id="sinhalaSeconds">00</div>
+                            <div class="countdown-label sinhala-text">තත්පර</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo">Ceylon Hires</div>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.2rem; font-size: 0.9rem;">
+                    Connecting you with trusted local travel experts across Sri Lanka
+                </p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-telegram"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-car"></i> Vehicle Rentals</a></li>
+                    <li><a href="#"><i class="fas fa-map-marked-alt"></i> Tour Guides</a></li>
+                    <li><a href="#"><i class="fas fa-route"></i> Custom Itineraries</a></li>
+                    <li><a href="#"><i class="fas fa-home"></i> Local Stays</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-handshake"></i> How It Works</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="#"><i class="fas fa-briefcase"></i> Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Safety</a></li>
+                    <li><a href="#"><i class="fas fa-comments"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Terms</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Ceylon Hires. All rights reserved. | Partnered with TouristTalk</p>
+        </div>
+    </footer>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+                "jsm/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module">
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeBtn');
+        const body = document.body;
+        let currentTheme = 'dark';
+        
+        themeBtn.addEventListener('click', () => {
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                currentTheme = 'light';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                currentTheme = 'dark';
+            }
+        });
+
+        // Language Toggle
+        const languageBtn = document.getElementById('languageBtn');
+        const englishDesc = document.getElementById('englishDesc');
+        const sinhalaDesc = document.getElementById('sinhalaDesc');
+        const englishComingSoon = document.getElementById('englishComingSoon');
+        const sinhalaComingSoon = document.getElementById('sinhalaComingSoon');
+        
+        let currentLanguage = 'english';
+        
+        languageBtn.addEventListener('click', () => {
+            if (currentLanguage === 'english') {
+                englishDesc.classList.remove('active');
+                sinhalaDesc.classList.add('active');
+                englishComingSoon.style.display = 'none';
+                sinhalaComingSoon.style.display = 'block';
+                languageBtn.innerHTML = '<i class="fas fa-language"></i><span>සිංහල</span>';
+                currentLanguage = 'sinhala';
+            } else {
+                sinhalaDesc.classList.remove('active');
+                englishDesc.classList.add('active');
+                sinhalaComingSoon.style.display = 'none';
+                englishComingSoon.style.display = 'block';
+                languageBtn.innerHTML = '<i class="fas fa-language"></i><span>English</span>';
+                currentLanguage = 'english';
+            }
+        });
+
+        // Countdown Timer (from 2025-07-17 for 150 days)
+        function updateCountdown() {
+            const targetDate = new Date('2025-07-17T00:00:00');
+            const endDate = new Date(targetDate);
+            endDate.setDate(targetDate.getDate() + 150);
+            
+            const now = new Date();
+            let distance = endDate - now;
+            
+            // If countdown is over
+            if (distance < 0) {
+                distance = 0;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Update English countdown
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            
+            // Update Sinhala countdown
+            document.getElementById("sinhalaDays").textContent = days.toString().padStart(2, '0');
+            document.getElementById("sinhalaHours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("sinhalaMinutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("sinhalaSeconds").textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Initialize and update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Perfect 3D Earth Implementation
+        import * as THREE from 'three';
+        import { OrbitControls } from 'jsm/controls/OrbitControls.js';
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 5;
+
+        const renderer = new THREE.WebGLRenderer({ 
+            antialias: true,
+            canvas: document.getElementById('earth-canvas'),
+            alpha: true
+        });
+        renderer.setSize(document.querySelector('.earth-wrapper').clientWidth, document.querySelector('.earth-wrapper').clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Color management
+        THREE.ColorManagement.enabled = true;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+
+        // Earth group with axial tilt
+        const earthGroup = new THREE.Group();
+        earthGroup.rotation.z = (-23.4 * Math.PI) / 180;
+        scene.add(earthGroup);
+
+        // Orbit controls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.5;
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+
+        // Textures (using online versions from SaraRasoulian's GitHub)
+        const loader = new THREE.TextureLoader();
+        const earthMap = loader.load('https://www.videohub.space/earth/images/earthmap.jpg');
+        const earthBump = loader.load('https://www.videohub.space/earth/images/earthbump.jpg');
+        const earthSpec = loader.load('https://www.videohub.space/earth/images/earthspec.jpg');
+        const earthLights = loader.load('https://www.videohub.space/earth/images/earth_lights.png');
+        const clouds = loader.load('https://www.videohub.space/earth/images/cloud_combined.jpg');
+
+        // Earth mesh with realistic materials
+        const geometry = new THREE.SphereGeometry(1, 64, 64);
+        const earthMesh = new THREE.Mesh(
+            geometry,
+            new THREE.MeshPhongMaterial({ 
+                map: earthMap,
+                bumpMap: earthBump,
+                bumpScale: 0.05,
+                specularMap: earthSpec,
+                specular: new THREE.Color('grey'),
+                shininess: 5
+            })
+        );
+        earthGroup.add(earthMesh);
+
+        // City lights mesh
+        const lightsMesh = new THREE.Mesh(
+            geometry,
+            new THREE.MeshBasicMaterial({
+                map: earthLights,
+                blending: THREE.AdditiveBlending,
+                transparent: true
+            })
+        );
+        earthGroup.add(lightsMesh);
+
+        // Clouds mesh
+        const cloudsMesh = new THREE.Mesh(
+            geometry,
+            new THREE.MeshPhongMaterial({
+                map: clouds,
+                transparent: true,
+                opacity: 0.8,
+                specular: new THREE.Color(0x111111),
+                depthWrite: false
+            })
+        );
+        cloudsMesh.scale.setScalar(1.005);
+        earthGroup.add(cloudsMesh);
+
+        // Atmospheric glow effect
+        const glowGeometry = new THREE.SphereGeometry(1.02, 64, 64);
+        const glowMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                glowColor: { type: "c", value: new THREE.Color(0x3ABEF9) },
+                viewVector: { type: "v3", value: camera.position }
+            },
+            vertexShader: `
+                uniform vec3 viewVector;
+                varying float intensity;
+                void main() {
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    vec3 actual_normal = normalize(normalMatrix * normal);
+                    intensity = pow(0.7 - dot(actual_normal, normalize(viewVector)), 2.0);
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 glowColor;
+                varying float intensity;
+                void main() {
+                    vec3 glow = glowColor * intensity;
+                    gl_FragColor = vec4(glow, 0.3);
+                }
+            `,
+            side: THREE.BackSide,
+            blending: THREE.AdditiveBlending,
+            transparent: true
+        });
+        const glowMesh = new THREE.Mesh(glowGeometry, glowMaterial);
+        earthGroup.add(glowMesh);
+
+        // Lighting
+        const sunLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        sunLight.position.set(-2.2, 0.7, 1.6);
+        scene.add(sunLight);
+
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+
+        // Animation
+        function animate() {
+            requestAnimationFrame(animate);
+            earthMesh.rotation.y += 0.001;
+            lightsMesh.rotation.y += 0.001;
+            cloudsMesh.rotation.y += 0.0013;
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Perfect responsive handling
+        function handleResize() {
+            const wrapper = document.querySelector('.earth-wrapper');
+            const width = wrapper.clientWidth;
+            const height = wrapper.clientHeight;
+            
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial sizing
+    </script>
+</body>
+</html>
