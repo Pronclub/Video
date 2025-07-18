@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<title>3D ශ්‍රී ලංකා සිතියම</title>
+<style>
+  body {
+    background: radial-gradient(circle at 15% 10%, #209cff 0, #1b2d60 100%);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    padding-top: 40px;
+  }
+  .map-container {
+    perspective: 800px;
+    display: inline-block;
+    margin: 0 auto;
+  }
+  #srilanka-map {
+    width: 350px;
+    height: 440px;
+    filter: drop-shadow(8px 14px 16px rgba(40,70,150,0.12));
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.4,0.2,0.2,1);
+  }
+  .map-container:hover #srilanka-map {
+    transform: rotateY(-22deg) rotateX(8deg) scale(1.04);
+    filter: drop-shadow(16px 24px 36px rgba(30,70,200,0.40));
+  }
+  #srilanka-map path {
+    cursor: pointer;
+    fill: #bce4fa;
+    stroke: #2556b8;
+    stroke-width: 2;
+    transition: fill 0.21s, filter 0.33s, stroke 0.3s;
+    filter: drop-shadow(0 2px 3px rgba(35,70,170,0.24));
+  }
+  #srilanka-map path:hover {
+    fill: #f9c846;
+    stroke: #ff6e00;
+    filter: brightness(1.13) drop-shadow(0 3px 8px rgba(255,150,46,0.37));
+  }
+  #info-box {
+    margin-top: 22px;
+    padding: 12px 22px;
+    border-radius: 7px;
+    min-width: 130px;
+    font-size: 1.1em;
+    background: rgba(30,44,80,0.85);
+    border: 1px solid #33376b;
+    box-shadow: 0 2px 8px rgba(60,100,255,0.13);
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+  <h2>3D ශ්‍රී ලංකා සිතියම 🚩</h2>
+  <div class="map-container">
+    <svg id="srilanka-map" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+      <!-- Example paths, replace with complete SVG paths for all districts -->
+      <path id="colombo" d="M150,200 L170,220 L160,250 L140,230 Z" title="Colombo"></path>
+      <path id="gampaha" d="M170,220 L190,210 L185,245 L160,250 Z" title="Gampaha"></path>
+      <!-- ඔබට ඉහල SVG maps එකකින් සියලු දිස්ත්‍රික්ක paths මෙහි贴 කරන්න. -->
+    </svg>
+  </div>
+  <div id="info-box">කම්පනයක් ඇත ● දිස්ත්‍රික්කය තෝරන්න</div>
+  <script>
+    // Animate map entrance (on-load)
+    window.onload = function() {
+      document.getElementById('srilanka-map').style.transform = "rotateY(-10deg) rotateX(7deg) scale(1)";
+    }
+    // Show info on hover/click
+    document.querySelectorAll("#srilanka-map path").forEach(function(region) {
+      region.addEventListener("mouseenter", function() {
+        document.getElementById("info-box").textContent =
+          "Hover කළ දිස්ත්‍රික්කය: " + (this.getAttribute("title") || this.id);
+      });
+      region.addEventListener("mouseleave", function() {
+        document.getElementById("info-box").textContent =
+          "කම්පනයක් ඇත ● දිස්ත්‍රික්කය තෝරන්න";
+      });
+      region.addEventListener("click", function() {
+        document.getElementById("info-box").textContent =
+          "Click කළා: " + (this.getAttribute("title") || this.id) + " 🎉";
+      });
+    });
+  </script>
+</body>
+</html>
