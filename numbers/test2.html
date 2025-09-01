@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Video Club - Premium Content</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+:root {
+  --primary: #0a192f;
+  --secondary: #172a45;
+  --accent: #ff8a00;
+  --text: #ccd6f6;
+  --text-light: #e6f1ff;
+}
+body {
+  margin:0;
+  background-color: var(--primary);
+  color: var(--text);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height:1.6;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+iframe,img,video {
+  pointer-events:none;
+  -webkit-user-drag:none;
+  -moz-user-drag:none;
+  -ms-user-drag:none;
+  user-drag:none;
+}
+.header {
+  padding:1rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background-color:rgba(10,25,47,0.9);
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(10px);
+  box-shadow:0 2px 10px rgba(0,0,0,0.3);
+}
+.logo {
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  font-size:1.7rem;
+  font-weight:bold;
+  color:var(--text-light);
+  text-decoration:none;
+}
+.logo span {color:var(--accent);}
+.nav-links {
+  display:flex;
+  gap:1.5rem;
+}
+.nav-links a {
+  color:var(--text);
+  text-decoration:none;
+  font-weight:500;
+  transition:color 0.3s;
+  white-space:nowrap;
+}
+.nav-links a:hover {color:var(--accent);}
+.mobile-menu-btn {
+  display:none;
+  background:none;
+  border:none;
+  color:var(--text);
+  font-size:1.5rem;
+  cursor:pointer;
+}
+.mobile-menu {
+  display:none;
+  flex-direction:column;
+  background-color:var(--secondary);
+  position:absolute;
+  top:100%;
+  right:0;
+  width:100%;
+  padding:1rem;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  z-index:100;
+}
+.mobile-menu.active {display:flex;}
+.mobile-menu a {padding:0.8rem; border-bottom:1px solid rgba(255,255,255,0.1);}
+.video-container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:80vh;
+  padding:1rem;
+}
+.video-wrapper {
+  position:relative;
+  width:100%;
+  max-width:1000px;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition:transform 0.3s;
+  cursor:pointer;
+}
+.video-wrapper:hover {transform:scale(1.01);}
+.video-wrapper iframe {
+  border:0;
+  width:100%;
+  height:500px;
+  aspect-ratio:16/9;
+  pointer-events:none;
+}
+.video-wrapper.active iframe {pointer-events:auto;}
+.video-overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:2;
+  background:transparent;
+  cursor:pointer;
+}
+.video-wrapper.active .video-overlay {display:none;}
+.content-info {
+  max-width:1000px;
+  margin:2rem auto;
+  padding:0 1rem;
+}
+.content-title {
+  font-size:2rem;
+  margin-bottom:1rem;
+  color:var(--text-light);
+}
+.content-description {
+  background-color:var(--secondary);
+  padding:1.5rem;
+  border-radius:8px;
+  margin-bottom:2rem;
+}
+.footer {
+  background-color:var(--secondary);
+  padding:2rem;
+  text-align:center;
+  margin-top:3rem;
+}
+.social-links {
+  display:flex;
+  justify-content:center;
+  gap:1rem;
+  margin-top:1rem;
+}
+.social-links a {
+  color:var(--text);
+  font-size:1.5rem;
+  transition:color 0.3s;
+}
+.social-links a:hover {color:var(--accent);}
+
+/* Social Ads Container */
+#socialAdsContainer {
+  position:fixed; top:20px; right:20px; display:flex; flex-direction:column; gap:10px; z-index:9999;
+}
+.socialAd {position:relative; width:150px;}
+.socialAd img {width:100%; border-radius:8px; cursor:pointer;}
+.socialAd button {
+  position:absolute; top:-10px; right:-10px; background:#ff8a00; border:none; border-radius:50%; width:24px; height:24px; cursor:pointer; color:#fff; font-weight:bold;
+}
+
+/* Adblock Soft Lock Overlay */
+#adblockOverlay {
+  position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(10,25,47,0.97); color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; font-size:20px; z-index:10000; text-align:center; padding:20px; display:none;
+}
+#adblockOverlay h2 {margin-bottom:15px; color:#ff8a00;}
+#adblockOverlay p {max-width:500px; line-height:1.5;}
+
+@media (max-width:768px){
+  .header {padding:1rem;}
+  .nav-links {display:none;}
+  .mobile-menu-btn {display:block;}
+  .video-wrapper iframe {height:300px;}
+}
+@media (max-width:480px){
+  .video-wrapper iframe {height:200px;}
+  .content-title {font-size:1.5rem;}
+  .logo {font-size:1.3rem;}
+}
+</style>
+</head>
+<body oncontextmenu="return false">
+
+<div id="adblockOverlay">
+  <h2>⚠️ Adblock Detected</h2>
+  <p>Please disable Adblock to watch this premium content.<br>
+  Refresh the page after disabling your Adblocker.</p>
+</div>
+
+<header class="header">
+  <a href="#" class="logo">SL VIDEO <span>CLUB</span></a>
+  <div class="nav-links">
+    <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+    <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+    <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+    <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+    <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+    <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+    <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+    <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+    <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+  </div>
+</header>
+
+<div class="video-container">
+  <div class="video-wrapper" id="videoWrapper">
+    <div class="video-overlay" id="videoOverlay"></div>
+    <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/8b90bd6e-835e-4230-8ce2-291fc1416ee7?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+  </div>
+</div>
+
+<div class="content-info">
+  <h1 class="content-title">Premium Content</h1>
+  <div class="content-description">
+    <p>Enjoy our exclusive premium content in high definition. This video is part of our special collection available only to active members.</p>
+    <p>Support us by engaging with our ad partners — it helps bring you more amazing content.</p>
+  </div>
+</div>
+
+<div id="socialAdsContainer">
+  <div class="socialAd">
+    <a href="https://otieu.com/4/8724671" target="_blank"><img src="https://example.com/ad1.jpg" alt="Ad 1"></a>
+    <button class="closeAd">&times;</button>
+  </div>
+  <div class="socialAd">
+    <a href="https://otieu.com/4/8724671" target="_blank"><img src="https://example.com/ad2.jpg" alt="Ad 2"></a>
+    <button class="closeAd">&times;</button>
+  </div>
+  <div class="socialAd">
+    <a href="https://otieu.com/4/8724671" target="_blank"><img src="https://example.com/ad3.jpg" alt="Ad 3"></a>
+    <button class="closeAd">&times;</button>
+  </div>
+</div>
+
+<div class="footer">
+  <p>&copy; 2023 SL Video Club. All rights reserved.</p>
+  <div class="social-links">
+    <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+  </div>
+</div>
+
+<script>
+const directAdLink = "https://otieu.com/4/8724671";
+const videoWrapper = document.getElementById("videoWrapper");
+const videoOverlay = document.getElementById("videoOverlay");
+let clicksInCycle = 0;
+
+videoOverlay.addEventListener("click", ()=>{
+  clicksInCycle++;
+  window.open(directAdLink,"_blank");
+  if(clicksInCycle>=2){
+    setTimeout(()=>{
+      const popScript=document.createElement("script");
+      popScript.src='//curiositycow.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js';
+      document.body.appendChild(popScript);
+    },500);
+    clicksInCycle=0;
+  }
+  videoWrapper.classList.add("active");
+  videoOverlay.style.display="none";
+});
+
+document.querySelectorAll(".socialAd").forEach(ad=>{
+  const img = ad.querySelector("a");
+  const closeBtn = ad.querySelector(".closeAd");
+  closeBtn.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    ad.style.display="none";
+    window.open(directAdLink,"_blank");
+  });
+  img.addEventListener("click",()=>{
+    ad.style.display="none";
+  });
+});
+
+// Timed Direct Link Popup
+setTimeout(()=>{ window.open(directAdLink,"_blank"); },30000);
+
+// Adblock Detect
+function detectAdblock(callback){
+  let adElement=document.createElement("div");
+  adElement.innerHTML="&nbsp;";
+  adElement.className="adsbox";
+  adElement.style.position="absolute";
+  adElement.style.left="-9999px";
+  document.body.appendChild(adElement);
+  setTimeout(()=>{
+    if(adElement.offsetHeight===0) callback(true); else callback(false);
+    adElement.remove();
+  },100);
+}
+detectAdblock(isAdblock=>{
+  if(isAdblock) document.getElementById("adblockOverlay").style.display="flex";
+});
+
+// Mobile menu toggle
+const mobileMenuBtn=document.getElementById("mobileMenuBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+mobileMenuBtn.addEventListener("click",()=>{mobileMenu.classList.toggle("active");});
+document.addEventListener("click",(e)=>{
+  if(!mobileMenu.contains(e.target)&&e.target!==mobileMenuBtn){mobileMenu.classList.remove("active");}
+});
+
+// Anti-devtools
+setInterval(()=>{const devtoolsOpen=window.outerWidth-window.innerWidth>100;if(devtoolsOpen){document.body.innerHTML='<h1>Access Denied</h1>'; }},1000);
+document.addEventListener('keydown',(e)=>{if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='C'))||(e.ctrlKey&&e.key==='U')){e.preventDefault();}});
+</script>
+
+</body>
+</html>
