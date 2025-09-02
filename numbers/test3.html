@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Video Club - Premium Content</title>
+<style>
+body {
+  margin:0; background:#0a192f; color:#ccd6f6; font-family:sans-serif; line-height:1.6;
+  user-select:none;
+}
+iframe {border:0; width:100%; height:500px; aspect-ratio:16/9; pointer-events:none;}
+.video-container {display:flex; justify-content:center; align-items:center; min-height:80vh; padding:1rem;}
+.video-wrapper {position:relative; width:100%; max-width:1000px; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.4);}
+.video-overlay {position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; background:rgba(0,0,0,0.3); cursor:pointer;}
+.video-wrapper.active iframe {pointer-events:auto;}
+#adblockOverlay {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(10,25,47,0.97); color:#fff; display:none; flex-direction:column; justify-content:center; align-items:center; font-size:20px; z-index:10000; text-align:center; padding:20px;}
+#adblockOverlay h2 {margin-bottom:15px; color:#ff8a00;}
+</style>
+</head>
+<body oncontextmenu="return false">
+
+<div id="adblockOverlay">
+  <h2>⚠️ Adblock Detected</h2>
+  <p>Please disable Adblock to watch this premium content.<br>Refresh the page after disabling your Adblocker.</p>
+</div>
+
+<div class="video-container">
+  <div class="video-wrapper" id="videoWrapper">
+    <div class="video-overlay" id="videoOverlay"></div>
+    <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/8b90bd6e-835e-4230-8ce2-291fc1416ee7?autoplay=false" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+  </div>
+</div>
+
+<script>
+// Random Direct Ad Links
+const adLinks = [
+ "https://curiositycow.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+ "https://curiositycow.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
+ "https://curiositycow.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
+ "https://curiositycow.com/s5v92wjc11?key=b1d1b7fc017831ec983c6d1aae5b5628",
+ "https://curiositycow.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+];
+
+// Popup Ad Links
+const popupLinks = [
+ "https://example.com/popup1",
+ "https://example.com/popup2",
+ "https://example.com/popup3"
+];
+
+// Random pick function
+function randomPick(list){ return list[Math.floor(Math.random()*list.length)]; }
+
+const videoWrapper=document.getElementById("videoWrapper");
+const videoOverlay=document.getElementById("videoOverlay");
+let step=0;
+
+videoOverlay.addEventListener("click", ()=>{
+  step++;
+  if(step===1){
+    window.open(randomPick(adLinks),"_blank");
+  } 
+  else if(step===2){
+    window.open(randomPick(adLinks),"_blank");
+  }
+  else if(step===3){
+    // Popunder script
+    const popScript=document.createElement("script");
+    popScript.src='//curiositycow.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js';
+    document.body.appendChild(popScript);
+  }
+  else if(step===4){
+    window.open(randomPick(adLinks),"_blank");
+  }
+  else if(step===5){
+    window.open(randomPick(adLinks),"_blank");
+    videoWrapper.classList.add("active");
+    videoOverlay.style.display="none";
+    step=0;
+
+    // After unlock → wait 30s → popup
+    setTimeout(()=>{
+      window.open(randomPick(popupLinks), "_blank");
+    },30000);
+  }
+});
+
+// Adblock detect
+function detectAdblock(callback){
+  let adElement=document.createElement("div");
+  adElement.className="adsbox";
+  adElement.style.position="absolute";
+  adElement.style.left="-9999px";
+  document.body.appendChild(adElement);
+  setTimeout(()=>{
+    if(adElement.offsetHeight===0) callback(true); else callback(false);
+    adElement.remove();
+  },100);
+}
+detectAdblock(isAdblock=>{
+  if(isAdblock) document.getElementById("adblockOverlay").style.display="flex";
+});
+
+// Anti Inspect / Copy
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='C'))||(e.ctrlKey&&e.key==='U')){
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
