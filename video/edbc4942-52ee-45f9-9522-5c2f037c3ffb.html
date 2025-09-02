@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Video Club - Premium Content</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #0a192f;
+  --secondary: #172a45;
+  --accent: #ff8a00;
+  --accent-dark: #e67a00;
+  --text: #ccd6f6;
+  --text-light: #e6f1ff;
+  --card-bg: rgba(23, 42, 69, 0.8);
+  --transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--primary);
+  background-image: linear-gradient(to bottom right, #0a192f, #0d2040);
+  color: var(--text);
+  line-height: 1.6;
+  user-select: none;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.header {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(10, 25, 47, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--text-light);
+  text-decoration: none;
+  align-items: center;
+}
+
+.logo span {
+  color: var(--accent);
+  position: relative;
+}
+
+.logo span::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+  background: rgba(255, 138, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: var(--secondary);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-menu.active {
+  display: flex;
+}
+
+.mobile-menu a {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: var(--transition);
+}
+
+.mobile-menu a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--accent);
+  padding-left: 1.5rem;
+}
+
+.mobile-menu a i {
+  width: 20px;
+  text-align: center;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* VIDEO */
+.video-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.video-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.video-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 600px;
+  border: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.video-wrapper.active iframe {
+  pointer-events: auto;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: transparent;
+  cursor: pointer;
+}
+
+.video-wrapper.active .video-overlay {
+  display: none;
+}
+
+/* CONTENT */
+.content-info {
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2rem;
+}
+
+.content-title {
+  font-size: 2.2rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.content-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.content-description {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+.content-description p {
+  margin: 0 0 1rem 0;
+}
+
+.content-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* FOOTER */
+.footer {
+  width: 100%;
+  background-color: var(--secondary);
+  padding: 2.5rem 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0 0 1.5rem 0;
+  opacity: 0.8;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-size: 1.2rem;
+  transition: var(--transition);
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  background: var(--accent);
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .video-wrapper iframe {
+    height: 500px;
+  }
+  
+  .content-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .video-wrapper iframe {
+    height: 400px;
+  }
+  
+  .content-title {
+    font-size: 1.8rem;
+  }
+  
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
+  
+  .content-info {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .video-wrapper iframe {
+    height: 300px;
+  }
+  
+  .content-title {
+    font-size: 1.6rem;
+  }
+  
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-wrapper iframe {
+    height: 250px;
+  }
+  
+  .content-title {
+    font-size: 1.4rem;
+  }
+  
+  .content-info {
+    padding: 1.2rem;
+  }
+  
+  .content-description {
+    padding: 1.2rem;
+  }
+  
+  .footer {
+    padding: 2rem 1rem;
+  }
+}
+</style>
+</head>
+<body oncontextmenu="return false">
+
+<!-- HEADER -->
+<header class="header">
+  <a href="#" class="logo">
+    <i class="fas fa-play-circle"></i>
+    SL VIDEO <span>CLUB</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+    <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-book-open"></i> Story</a>
+    <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-globe"></i> Foreign</a>
+    <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+    <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+    <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-book-open"></i> Story</a>
+    <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-globe"></i> Foreign</a>
+    <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+    <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+  <!-- VIDEO -->
+  <div class="video-container">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="video-overlay" id="videoOverlay"></div>
+      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/bb98fb1a-e2ad-40dc-9ee0-d75c71ba5189?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/edbc4942-52ee-45f9-9522-5c2f037c3ffb?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-info">
+    <h1 class="content-title">Premium Content</h1>
+    <div class="content-description">
+      <p>Enjoy our exclusive premium content in high definition. This video is part of our special collection available only to active members.</p>
+      <p>Support us by engaging with our ad partners — it helps bring you more amazing content.</p>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>&copy; 2025 SL Video Club. All rights reserved.</p>
+  <div class="social-links">
+    <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+  </div>
+</div>
+
+<script>
+// MOBILE MENU
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  mobileMenu.classList.toggle('active');
+});
+
+document.addEventListener('click', (e) => {
+  if (!mobileMenu.contains(e.target) && e.target !== mobileMenuBtn) {
+    mobileMenu.classList.remove('active');
+  }
+});
+
+// ADS SYSTEM
+const adLinks = [
+  "https://curiositycow.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
+  "https://curiositycow.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
+  "https://curiositycow.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
+  "https://curiositycow.com/s5v92wjc11?key=b1d1b7fc017831ec983c6d1aae5b5628",
+  "https://curiositycow.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
+];
+
+const popupLinks = [
+  "https://otieu.com/4/8724671",
+  "https://otieu.com/4/9718987",
+  "https://otieu.com/4/8724669"
+];
+
+function randomPick(list) { 
+  return list[Math.floor(Math.random() * list.length)]; 
+}
+
+const videoWrapper = document.getElementById("videoWrapper");
+const videoOverlay = document.getElementById("videoOverlay");
+let step = 0;
+
+videoOverlay.addEventListener("click", () => {
+  step++;
+  
+  if (step === 1 || step === 2 || step === 4) { 
+    window.open(randomPick(adLinks), "_blank"); 
+  } 
+  else if (step === 3) { 
+    const popScript = document.createElement("script"); 
+    popScript.src = '//curiositycow.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js'; 
+    document.body.appendChild(popScript); 
+  } 
+  else if (step === 5) {
+    window.open(randomPick(adLinks), "_blank");
+    videoWrapper.classList.add("active");
+    setTimeout(() => { 
+      window.open(randomPick(popupLinks), "_blank"); 
+    }, 30000);
+    step = 0;
+  }
+});
+
+// Anti Inspect / Copy
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'F12' || 
+      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || 
+      (e.ctrlKey && e.key === 'U')) {
+    e.preventDefault();
+    return false;
+  }
+});
+</script>
+
+</body>
+</html>
