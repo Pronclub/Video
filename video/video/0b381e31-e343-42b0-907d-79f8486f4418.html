@@ -1,430 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SL Video Club - Premium Content</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-  --primary: #0a192f;
-  --secondary: #172a45;
-  --accent: #ff8a00;
-  --accent-dark: #e67a00;
-  --text: #ccd6f6;
-  --text-light: #e6f1ff;
-  --card-bg: rgba(23, 42, 69, 0.8);
-  --transition: all 0.3s ease;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SL Video Club - Premium Content</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #0a192f;
+      --secondary: #172a45;
+      --accent: #ff8a00;
+      --text: #ccd6f6;
+      --text-light: #e6f1ff;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      background-color: var(--primary);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--primary);
-  background-image: linear-gradient(to bottom right, #0a192f, #0d2040);
-  color: var(--text);
-  line-height: 1.6;
-  user-select: none;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    iframe, img, video {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+      user-drag: none;
+    }
 
-/* HEADER */
-.header {
-  width: 100%;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(10, 25, 47, 0.95);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
-  flex-wrap: wrap;
-}
+    .header {
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(10, 25, 47, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-.logo {
-  display: flex;
-  gap: 0.5rem;
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: var(--text-light);
-  text-decoration: none;
-  align-items: center;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--text-light);
+      text-decoration: none;
+    }
 
-.logo span {
-  color: var(--accent);
-  position: relative;
-}
+    .logo span {
+      color: var(--accent);
+    }
 
-.logo span::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-}
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
 
-.nav-links a {
-  color: var(--text);
-  font-weight: 500;
-  text-decoration: none;
-  transition: var(--transition);
-  padding: 0.5rem 0.8rem;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
-.nav-links a:hover {
-  color: var(--accent);
-  background: rgba(255, 138, 0, 0.1);
-  transform: translateY(-2px);
-}
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: var(--transition);
-}
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: var(--secondary);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
 
-.mobile-menu-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--accent);
-}
+    .mobile-menu.active {
+      display: flex;
+    }
 
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  background-color: var(--secondary);
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 100%;
-  padding: 1rem;
-  z-index: 100;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
+    .mobile-menu a {
+      padding: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-.mobile-menu.active {
-  display: flex;
-}
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 1rem;
+    }
 
-.mobile-menu a {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  text-decoration: none;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  transition: var(--transition);
-}
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
 
-.mobile-menu a:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--accent);
-  padding-left: 1.5rem;
-}
+    .video-wrapper:hover {
+      transform: scale(1.01);
+    }
 
-.mobile-menu a i {
-  width: 20px;
-  text-align: center;
-}
+    .video-wrapper iframe {
+      border: 0;
+      width: 100%;
+      height: 500px;
+      aspect-ratio: 16/9;
+      pointer-events: none;
+    }
 
-/* MAIN CONTENT */
-.main-content {
-  flex: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
+    .video-wrapper.active iframe {
+      pointer-events: auto;
+    }
 
-/* VIDEO */
-.video-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
-}
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background: transparent;
+      cursor: pointer;
+    }
 
-.video-wrapper {
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: var(--transition);
-}
+    .video-wrapper.active .video-overlay {
+      display: none;
+    }
 
-.video-wrapper:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-}
+    .content-info {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-.video-wrapper iframe {
-  width: 100%;
-  height: 600px;
-  border: 0;
-  pointer-events: none;
-  transition: var(--transition);
-}
+    .content-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
 
-.video-wrapper.active iframe {
-  pointer-events: auto;
-}
+    .content-description {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
 
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 5;
-  background: transparent;
-  cursor: pointer;
-}
+    .footer {
+      background-color: var(--secondary);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
 
-.video-wrapper.active .video-overlay {
-  display: none;
-}
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-/* CONTENT */
-.content-info {
-  width: 100%;
-  padding: 2rem;
-  box-sizing: border-box;
-  background-color: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  margin-bottom: 2rem;
-}
+    .social-links a {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
 
-.content-title {
-  font-size: 2.2rem;
-  color: var(--text-light);
-  margin-bottom: 1.5rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
+    .social-links a:hover {
+      color: var(--accent);
+    }
 
-.content-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 3px;
-}
+    /* Hidden ad counter */
+    .ad-counter {
+      display: none;
+    }
 
-.content-description {
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
-  border-radius: 8px;
-  line-height: 1.8;
-}
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
 
-.content-description p {
-  margin: 0 0 1rem 0;
-}
+      .nav-links {
+        display: none;
+      }
 
-.content-description p:last-child {
-  margin-bottom: 0;
-}
+      .mobile-menu-btn {
+        display: block;
+      }
 
-/* FOOTER */
-.footer {
-  width: 100%;
-  background-color: var(--secondary);
-  padding: 2.5rem 1rem;
-  text-align: center;
-  margin-top: auto;
-}
+      .video-wrapper iframe {
+        height: 300px;
+      }
+    }
 
-.footer p {
-  margin: 0 0 1.5rem 0;
-  opacity: 0.8;
-}
+    @media (max-width: 480px) {
+      .video-wrapper iframe {
+        height: 200px;
+      }
 
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
+      .content-title {
+        font-size: 1.5rem;
+      }
 
-.social-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 45px;
-  height: 45px;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text);
-  font-size: 1.2rem;
-  transition: var(--transition);
-  border-radius: 50%;
-  text-decoration: none;
-}
-
-.social-links a:hover {
-  background: var(--accent);
-  color: var(--primary);
-  transform: translateY(-3px);
-}
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .video-wrapper iframe {
-    height: 500px;
-  }
-  
-  .content-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  
-  .mobile-menu-btn {
-    display: block;
-  }
-  
-  .video-wrapper iframe {
-    height: 400px;
-  }
-  
-  .content-title {
-    font-size: 1.8rem;
-  }
-  
-  .main-content {
-    padding: 1.5rem 1rem;
-  }
-  
-  .content-info {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .header {
-    padding: 1rem;
-  }
-  
-  .logo {
-    font-size: 1.4rem;
-  }
-  
-  .video-wrapper iframe {
-    height: 300px;
-  }
-  
-  .content-title {
-    font-size: 1.6rem;
-  }
-  
-  .social-links a {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .video-wrapper iframe {
-    height: 250px;
-  }
-  
-  .content-title {
-    font-size: 1.4rem;
-  }
-  
-  .content-info {
-    padding: 1.2rem;
-  }
-  
-  .content-description {
-    padding: 1.2rem;
-  }
-  
-  .footer {
-    padding: 2rem 1rem;
-  }
-}
-</style>
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
+
+<script type='text/javascript' src='//curiositycow.com/c5/b9/4e/c5b94ed0484706927249b01fe8ea57f0.js'></script>
+
 <body oncontextmenu="return false">
 
-<!-- HEADER -->
-<header class="header">
-  <a href="#" class="logo">
-    <i class="fas fa-play-circle"></i>
-    SL VIDEO <span>CLUB</span>
-  </a>
-  <div class="nav-links">
-    <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
-    <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-book-open"></i> Story</a>
-    <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-globe"></i> Foreign</a>
-    <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
-    <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
-  </div>
-  <button class="mobile-menu-btn" id="mobileMenuBtn">
-    <i class="fas fa-bars"></i>
-  </button>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
-    <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-book-open"></i> Story</a>
-    <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-globe"></i> Foreign</a>
-    <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
-    <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
-  </div>
-</header>
+  <header class="header">
+    <a href="#" class="logo">SL VIDEO <span>CLUB</span></a>
+    <div class="nav-links">
+      <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+    </div>
+  </header>
 
-<!-- MAIN CONTENT -->
-<main class="main-content">
-  <!-- VIDEO -->
   <div class="video-container">
     <div class="video-wrapper" id="videoWrapper">
       <div class="video-overlay" id="videoOverlay"></div>
-      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382076/0b381e31-e343-42b0-907d-79f8486f4418?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382076/0b381e31-e343-42b0-907d-79f8486f4418?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+
+
     </div>
   </div>
 
-  <!-- CONTENT -->
+  <!-- Hidden counter element (required for functionality but not visible) -->
+  <div class="ad-counter" id="adCounter">
+    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
+  </div>
+
   <div class="content-info">
     <h1 class="content-title">Premium Content</h1>
     <div class="content-description">
@@ -432,86 +285,149 @@ body {
       <p>Support us by engaging with our ad partners — it helps bring you more amazing content.</p>
     </div>
   </div>
-</main>
 
-<!-- FOOTER -->
-<div class="footer">
-  <p>&copy; 2025 SL Video Club. All rights reserved.</p>
-  <div class="social-links">
-    <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
-    <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+  <div class="footer">
+    <p>&copy; 2023 SL Video Club. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+    </div>
   </div>
-</div>
 
 <script>
-// MOBILE MENU
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-mobileMenuBtn.addEventListener('click', (e) => {
-  e.stopPropagation();
-  mobileMenu.classList.toggle('active');
-});
+    // Enhanced ad system
+    const adLinks = [
+      "https://nervousbelievable.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38",
+      "https://nervousbelievable.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9", 
+      "https://nervousbelievable.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
+      "https://nervousbelievable.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
+      "https://www.revenuecpmgate.com/v37cfafhr?key=cc12415044cd7578b9a4c3abf7e8a7f7"
+    ];
+    
+    const popunderLinks = [
+      "https://nervousbelievable.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
+      "https://www.revenuecpmgate.com/ndp5e9aww3?key=4efa3e2fabbac771694e2c3791bc9014",
+      "https://otieu.com/4/8724675"
+    ];
 
-document.addEventListener('click', (e) => {
-  if (!mobileMenu.contains(e.target) && e.target !== mobileMenuBtn) {
-    mobileMenu.classList.remove('active');
-  }
-});
+    let clickCount = 0;
+    let requiredClicks = Math.floor(Math.random() * 2) + 4; // 4 or 5
+    let adsEnabled = true;
+    let hasTriggeredPopunder = false;
 
-// ADS SYSTEM
-const adLinks = [
-  "https://curiositycow.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
-  "https://curiositycow.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
-  "https://curiositycow.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
-  "https://curiositycow.com/s5v92wjc11?key=b1d1b7fc017831ec983c6d1aae5b5628",
-  "https://curiositycow.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
-];
+    const videoWrapper = document.getElementById('videoWrapper');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const counterText = document.getElementById('counterText');
 
-const popupLinks = [
-  "https://otieu.com/4/8724671",
-  "https://otieu.com/4/9718987",
-  "https://otieu.com/4/8724669"
-];
+    function getRandomAd() {
+      const randomIndex = Math.floor(Math.random() * adLinks.length);
+      return adLinks[randomIndex];
+    }
+    
+    function getRandomPopunder() {
+      const randomIndex = Math.floor(Math.random() * popunderLinks.length);
+      return popunderLinks[randomIndex];
+    }
+    
+    function triggerPopunder() {
+      if (hasTriggeredPopunder) return;
+      
+      const popunderUrl = getRandomPopunder();
+      const popunder = window.open(popunderUrl, '_blank', 'width=1,height=1,left=10000,top=10000');
+      
+      if (popunder) {
+        try {
+          popunder.blur();
+          window.focus();
+          setTimeout(() => {
+            try { popunder.close(); } catch(e) {}
+          }, 100);
+        } catch(e) {}
+      }
+      
+      hasTriggeredPopunder = true;
+    }
 
-function randomPick(list) { 
-  return list[Math.floor(Math.random() * list.length)]; 
-}
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
 
-const videoWrapper = document.getElementById("videoWrapper");
-const videoOverlay = document.getElementById("videoOverlay");
-let step = 0;
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.remove('active');
+      }
+    });
 
-videoOverlay.addEventListener("click", () => {
-  step++;
-  
-  if (step === 1 || step === 2 || step === 4) { 
-    window.open(randomPick(adLinks), "_blank"); 
-  } 
-  else if (step === 3) { 
-    const popScript = document.createElement("script"); 
-    popScript.src = '//curiositycow.com/25/5f/78/255f78660b79b1d026a206fc42ca7578.js'; 
-    document.body.appendChild(popScript); 
-  } 
-  else if (step === 5) {
-    window.open(randomPick(adLinks), "_blank");
-    videoWrapper.classList.add("active");
-    setTimeout(() => { 
-      window.open(randomPick(popupLinks), "_blank"); 
+    videoWrapper.addEventListener('click', () => {
+      if (!adsEnabled) return;
+      
+      clickCount++;
+      const randomAd = getRandomAd();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
+
+      if (clickCount >= requiredClicks) {
+        adsEnabled = false;
+        videoWrapper.classList.add('active');
+        
+        // Trigger popunder when ads are completed
+        triggerPopunder();
+        
+        // Reset after 60 seconds
+        setTimeout(() => {
+          adsEnabled = true;
+          clickCount = 0;
+          requiredClicks = Math.floor(Math.random() * 2) + 4; // reset to 4 or 5
+          videoWrapper.classList.remove('active');
+          hasTriggeredPopunder = false;
+        }, 60000);
+      }
+    });
+
+    // Initial popup after 30 seconds
+    setTimeout(() => {
+      const randomAd = getRandomAd();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
     }, 30000);
-    step = 0;
-  }
-});
 
-// Anti Inspect / Copy
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'F12' || 
-      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || 
-      (e.ctrlKey && e.key === 'U')) {
-    e.preventDefault();
-    return false;
-  }
-});
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable key shortcuts for right-click menu
+    document.addEventListener('keydown', (e) => {
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
+        e.preventDefault();
+      }
+    });
 </script>
 
 </body>
