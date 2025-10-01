@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SL Movie Hub - Premium Streaming</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #121212;
+      --secondary: #1e1e1e;
+      --accent: #e50914;
+      --text: #e0e0e0;
+      --text-light: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--primary);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    iframe, img, video {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+      user-drag: none;
+    }
+
+    .header {
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(18, 18, 18, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: var(--secondary);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      border-top: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 1rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s;
+      cursor: pointer;
+      border: 2px solid rgba(229, 9, 20, 0.2);
+    }
+
+    .video-wrapper:hover {
+      transform: scale(1.01);
+      border-color: rgba(229, 9, 20, 0.5);
+    }
+
+    .video-wrapper iframe {
+      border: 0;
+      width: 100%;
+      height: 500px;
+      aspect-ratio: 16/9;
+      pointer-events: none;
+    }
+
+    .video-wrapper.active iframe {
+      pointer-events: auto;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .video-wrapper.active .video-overlay {
+      display: none;
+    }
+
+    .content-info {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .content-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .content-description {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .movie-info {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .info-item {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      background-color: rgba(229, 9, 20, 0.1);
+      border-radius: 6px;
+    }
+
+    .info-label {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-value {
+      font-weight: bold;
+      color: var(--text-light);
+    }
+
+    .footer {
+      background-color: var(--secondary);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hidden ad counter */
+    .ad-counter {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .video-wrapper iframe {
+        height: 300px;
+      }
+
+      .movie-info {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .video-wrapper iframe {
+        height: 200px;
+      }
+
+      .content-title {
+        font-size: 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false">
+
+  <header class="header">
+    <a href="#" class="logo">SL MOVIE <span>HUB</span></a>
+    <div class="nav-links">
+      <a href="https://slvideo.club/"><i class="fas fa-home"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Latest Movies</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-globe"></i> International</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> Premium</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Contact</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://slvideo.club/"><i class="fas fa-home"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Latest Movies</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-globe"></i> International</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> Premium</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Contact</a>
+    </div>
+  </header>
+
+  <div class="video-container">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="video-overlay" id="videoOverlay"></div>
+      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/2b2c33bc-d48d-409a-8c38-a98c1da64a94?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+    </div>
+  </div>
+
+  <!-- Hidden counter element (required for functionality but not visible) -->
+  <div class="ad-counter" id="adCounter">
+    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
+  </div>
+
+  <div class="content-info">
+    <h1 class="content-title">The Dark Knight (2008)</h1>
+    
+    <div class="movie-info">
+      <div class="info-item">
+        <div class="info-label">Duration</div>
+        <div class="info-value">152 min</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Quality</div>
+        <div class="info-value">HD 1080p</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Genre</div>
+        <div class="info-value">Action, Crime</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Rating</div>
+        <div class="info-value">9.0/10</div>
+      </div>
+    </div>
+
+    <div class="content-description">
+      <p>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.</p>
+      <p>Support us by engaging with our ad partners — it helps bring you more amazing movies and shows.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 SL Movie Hub. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+    </div>
+  </div>
+
+<script>
+    // Enhanced ad system
+    const adLinks = [
+      "https://www.test.com"
+    ];
+    
+    const popunderLinks = [
+     
+      "https://www.test.com/"
+    ];
+
+    let clickCount = 0;
+    let requiredClicks = Math.floor(Math.random() * 2) + 4; // 4 or 5
+    let adsEnabled = true;
+    let hasTriggeredPopunder = false;
+
+    const videoWrapper = document.getElementById('videoWrapper');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const counterText = document.getElementById('counterText');
+
+    function getRandomAd() {
+      const randomIndex = Math.floor(Math.random() * adLinks.length);
+      return adLinks[randomIndex];
+    }
+    
+    function getRandomPopunder() {
+      const randomIndex = Math.floor(Math.random() * popunderLinks.length);
+      return popunderLinks[randomIndex];
+    }
+    
+    function triggerPopunder() {
+      if (hasTriggeredPopunder) return;
+      
+      const popunderUrl = getRandomPopunder();
+      const popunder = window.open(popunderUrl, '_blank', 'width=1,height=1,left=10000,top=10000');
+      
+      if (popunder) {
+        try {
+          popunder.blur();
+          window.focus();
+          setTimeout(() => {
+            try { popunder.close(); } catch(e) {}
+          }, 100);
+        } catch(e) {}
+      }
+      
+      hasTriggeredPopunder = true;
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.remove('active');
+      }
+    });
+
+    videoWrapper.addEventListener('click', () => {
+      if (!adsEnabled) return;
+      
+      clickCount++;
+      const randomAd = getRandomAd();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
+
+      if (clickCount >= requiredClicks) {
+        adsEnabled = false;
+        videoWrapper.classList.add('active');
+        
+        // Trigger popunder when ads are completed
+        triggerPopunder();
+        
+        // Reset after 60 seconds
+        setTimeout(() => {
+          adsEnabled = true;
+          clickCount = 0;
+          requiredClicks = Math.floor(Math.random() * 2) + 4; // reset to 4 or 5
+          videoWrapper.classList.remove('active');
+          hasTriggeredPopunder = false;
+        }, 60000);
+      }
+    });
+
+    // Initial popup after 30 seconds
+    setTimeout(() => {
+      const randomAd = getRandomAd();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
+    }, 30000);
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable key shortcuts for right-click menu
+    document.addEventListener('keydown', (e) => {
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
+        e.preventDefault();
+      }
+    });
+</script>
+
+</body>
+</html>
