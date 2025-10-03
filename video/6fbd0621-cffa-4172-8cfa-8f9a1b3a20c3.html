@@ -202,6 +202,11 @@
       color: var(--accent);
     }
 
+    /* Hidden ad counter */
+    .ad-counter {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .header {
         padding: 1rem;
@@ -235,6 +240,9 @@
     }
   </style>
 </head>
+
+<script type='text/javascript' src='//eminencehillsidenutrition.com/1a/0d/a4/1a0da4edd63f1b537186d46163ed2769.js'></script>
+
 <body oncontextmenu="return false">
 
   <header class="header">
@@ -259,10 +267,15 @@
   <div class="video-container">
     <div class="video-wrapper" id="videoWrapper">
       <div class="video-overlay" id="videoOverlay"></div>
-      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382076/6fbd0621-cffa-4172-8cfa-8f9a1b3a20c3?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
-  
+
+  <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382076/6fbd0621-cffa-4172-8cfa-8f9a1b3a20c3?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
 
     </div>
+  </div>
+
+  <!-- Hidden counter element (required for functionality but not visible) -->
+  <div class="ad-counter" id="adCounter">
+    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
   </div>
 
   <div class="content-info">
@@ -282,26 +295,59 @@
     </div>
   </div>
 
-  <script>
+<script>
+    // Enhanced ad system
     const adLinks = [
-     "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
-            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
-            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
-            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
-            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
-        ];
+      "https://eminencehillsidenutrition.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38",
+      "https://eminencehillsidenutrition.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802", 
+      "https://eminencehillsidenutrition.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
+      "https://eminencehillsidenutrition.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
+      "https://www.revenuecpmgate.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44"
+    ];
+    
+    const popunderLinks = [
+      "https://eminencehillsidenutrition.com/i3n96tga?key=f93645dad9fc187d70a8de04c113d742",
+      "https://www.revenuecpmgate.com/s4xxhk66f?key=67dae9b7dd0680cc6d72a8bfa1aad8a5",
+      "https://otieu.com/4/8724675"
+    ];
 
     let clickCount = 0;
-    const requiredClicks = 3;
+    let requiredClicks = Math.floor(Math.random() * 2) + 4; // 4 or 5
     let adsEnabled = true;
+    let hasTriggeredPopunder = false;
 
     const videoWrapper = document.getElementById('videoWrapper');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const counterText = document.getElementById('counterText');
 
     function getRandomAd() {
       const randomIndex = Math.floor(Math.random() * adLinks.length);
       return adLinks[randomIndex];
+    }
+    
+    function getRandomPopunder() {
+      const randomIndex = Math.floor(Math.random() * popunderLinks.length);
+      return popunderLinks[randomIndex];
+    }
+    
+    function triggerPopunder() {
+      if (hasTriggeredPopunder) return;
+      
+      const popunderUrl = getRandomPopunder();
+      const popunder = window.open(popunderUrl, '_blank', 'width=1,height=1,left=10000,top=10000');
+      
+      if (popunder) {
+        try {
+          popunder.blur();
+          window.focus();
+          setTimeout(() => {
+            try { popunder.close(); } catch(e) {}
+          }, 100);
+        } catch(e) {}
+      }
+      
+      hasTriggeredPopunder = true;
     }
 
     mobileMenuBtn.addEventListener('click', () => {
@@ -316,37 +362,64 @@
 
     videoWrapper.addEventListener('click', () => {
       if (!adsEnabled) return;
+      
       clickCount++;
       const randomAd = getRandomAd();
-      window.open(randomAd, '_blank');
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
 
       if (clickCount >= requiredClicks) {
         adsEnabled = false;
         videoWrapper.classList.add('active');
+        
+        // Trigger popunder when ads are completed
+        triggerPopunder();
+        
+        // Reset after 60 seconds
         setTimeout(() => {
           adsEnabled = true;
           clickCount = 0;
+          requiredClicks = Math.floor(Math.random() * 2) + 4; // reset to 4 or 5
           videoWrapper.classList.remove('active');
+          hasTriggeredPopunder = false;
         }, 60000);
       }
     });
 
+    // Initial popup after 30 seconds
     setTimeout(() => {
       const randomAd = getRandomAd();
-      window.open(randomAd, '_blank').blur();
-      window.focus();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
     }, 30000);
 
-    // Anti-devtools (basic)
-    setInterval(() => {
-      const devtoolsOpen = window.outerWidth - window.innerWidth > 100;
-      if (devtoolsOpen) {
-        document.body.innerHTML = '<h1>Access Denied</h1>';
-      }
-    }, 1000);
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
 
-    // Disable key shortcuts
+    // Disable key shortcuts for right-click menu
     document.addEventListener('keydown', (e) => {
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
       if (
         e.key === 'F12' ||
         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
@@ -355,13 +428,7 @@
         e.preventDefault();
       }
     });
-  </script>
-
-  <!-- Optional external ad scripts -->
-  <script type='text/javascript' src="socialAds.js"></script>
-  <script type='text/javascript' src="popAds.js"></script>
-
-<script type='text/javascript' src='//ashorenorris.com/12/2e/88/122e88334ccb4f2e09e74baa5b144114.js'></script>
+</script>
 
 </body>
 </html>
