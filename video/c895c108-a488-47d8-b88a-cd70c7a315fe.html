@@ -1,425 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SL Video Club - Premium Video Content</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #0a192f;
-            --secondary: #172a45;
-            --accent: #ff8a00;
-            --text: #ccd6f6;
-            --text-light: #a8b2d1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SL Video Club - Premium Content</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #0a192f;
+      --secondary: #172a45;
+      --accent: #ff8a00;
+      --text: #ccd6f6;
+      --text-light: #e6f1ff;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+      margin: 0;
+      background-color: var(--primary);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
-        body {
-            background-color: var(--primary);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
+    iframe, img, video {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+      user-drag: none;
+    }
 
-        .header {
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: rgba(10, 25, 47, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-        }
+    .header {
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(10, 25, 47, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--text-light);
+      text-decoration: none;
+    }
 
-        .logo:hover {
-            transform: scale(1.03);
-        }
+    .logo span {
+      color: var(--accent);
+    }
 
-        .logo span {
-            color: var(--accent);
-        }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-        .logo i {
-            font-size: 1.5rem;
-            color: var(--accent);
-        }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: var(--secondary);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
+    .mobile-menu.active {
+      display: flex;
+    }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+    .mobile-menu a {
+      padding: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-        .main-content {
-            padding: 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 1rem;
+    }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
 
-        .video-card {
-            background-color: var(--secondary);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .video-wrapper:hover {
+      transform: scale(1.01);
+    }
 
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
+    .video-wrapper iframe {
+      border: 0;
+      width: 100%;
+      height: 500px;
+      aspect-ratio: 16/9;
+      pointer-events: none;
+    }
 
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            overflow: hidden;
-        }
+    .video-wrapper.active iframe {
+      pointer-events: auto;
+    }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background: transparent;
+      cursor: pointer;
+    }
 
-        .footer {
-            background-color: var(--secondary);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
+    .video-wrapper.active .video-overlay {
+      display: none;
+    }
 
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .content-info {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-        .footer-logo {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
+    .content-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
+    .content-description {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
 
-        .footer-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .footer {
+      background-color: var(--secondary);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
 
-        .footer-links a:hover {
-            color: var(--accent);
-        }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
+    .social-links a {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
 
-        .social-icons a {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
+    .social-links a:hover {
+      color: var(--accent);
+    }
 
-        .social-icons a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
+    /* Hidden ad counter */
+    .ad-counter {
+      display: none;
+    }
 
-        .copyright {
-            color: var(--text-light);
-            font-size: 0.8rem;
-        }
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
 
-        /* Loading and interaction styles */
-        body.disabled {
-            pointer-events: none;
-        }
+      .nav-links {
+        display: none;
+      }
 
-        body.disabled * {
-            pointer-events: none;
-        }
+      .mobile-menu-btn {
+        display: block;
+      }
 
-        body.allow-scroll {
-            overflow-y: auto !important;
-        }
+      .video-wrapper iframe {
+        height: 300px;
+      }
+    }
 
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
+    @media (max-width: 480px) {
+      .video-wrapper iframe {
+        height: 200px;
+      }
 
-        #overlay.hidden {
-            opacity: 0;
-        }
+      .content-title {
+        font-size: 1.5rem;
+      }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 138, 0, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--accent);
-            animation: spin 1s ease-in-out infinite;
-            margin-bottom: 1rem;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-text {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            color: var(--text-light);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .video-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .main-content {
-                padding: 1rem;
-            }
-        }
-    </style>
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
 
-    <script>
-        // Ad links
-        const adLinks = [
-            "https://ashorenorris.com/dw7tr9ztu1?key=0a50f02fa82b9007f3f30efcc3464991",
-            "https://ashorenorris.com/wydvnkk8?key=f309dfb4ebd925293f0da3da6dbccfe9",
-            "https://ashorenorris.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802",
-            "https://ashorenorris.com/h25f7spp?key=68e7adcb41a693b2d39221c53b95d192",
-            "https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38"
-        ];
+<script type='text/javascript' src='//eminencehillsidenutrition.com/12/2e/88/122e88334ccb4f2e09e74baa5b144114.js'></script>
 
-        // State variables
-        let clickCount = 0;
-        const requiredClicks = Math.floor(Math.random() * 4) + 2; // Random 2-5 clicks
-        let adsEnabled = true;
+<body oncontextmenu="return false">
 
-        // DOM elements
-        // const overlay = document.getElementById('overlay');
-        // const body = document.body;
-
-        // Handle clicks
-        function handleClick() {
-            if (!adsEnabled) return;
-
-            clickCount++;
-
-            // Open ad immediately for each click
-            if (clickCount <= adLinks.length) {
-                window.open(adLinks[clickCount - 1], '_blank');
-            }
-
-            // Grant access when requirements met
-            if (clickCount >= requiredClicks) {
-                adsEnabled = false;
-                setTimeout(() => {
-                    // overlay.classList.add('hidden');
-                    // body.classList.remove('disabled');
-                    document.getElementById("overlay").classList.add("hidden");
-                    document.body.classList.remove("disabled");
-                }, 1000);
-
-                // Reset after 60 seconds
-                setTimeout(() => {
-                    resetAccess();
-                }, 60000);
-            }
-        }
-
-        // Reset access
-        function resetAccess() {
-            adsEnabled = true;
-            clickCount = 0;
-            // overlay.classList.remove('hidden');
-            // body.classList.add('disabled');
-            document.getElementById("overlay").classList.remove("hidden");
-            document.body.classList.add("disabled");
-        }
-
-        // Initialize
-        document.addEventListener('click', handleClick);
-    </script>
-    <script type='text/javascript' src="socialAds.js"></script>
-    <script type='text/javascript' src="popAds.js"></script>
-    <!-- Popunder Ads Script -->
-    <script>
-        // Automatically open a popunder ad after 30 seconds
-        setTimeout(function () {
-            window.open('https://ashorenorris.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38', '_blank ').blur(); // Replace with your popunder URL         
-            window.focus(); // Keep the main window focused
-        }, 30000); // 30 seconds delay
-    </script>
-</head>
-
-  <script type='text/javascript' src='//ashorenorris.com/cb/1e/4d/cb1e4d4714d6f0dd34f54f1683ef97ec.js'></script>
-
-<body class="disabled allow-scroll">
-    <div id="overlay">
-        <div class="spinner"></div>
-        <div class="loading-text">Loading premium content...</div>
+  <header class="header">
+    <a href="#" class="logo">SL VIDEO <span>CLUB</span></a>
+    <div class="nav-links">
+      <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
     </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+    </div>
+  </header>
 
-    <header class="header">
-        <a href="https://www.slvideo.club" class="logo">
-            <i class="fas fa-play-circle"></i>
-            SL VIDEO <span>CLUB</span>
-        </a>
-        <nav class="nav-links">
-            <a href="https://www.slvideo.club">Home</a>
-            <a href="https://www.slvideo.club/">Category</a>
-            <a href="https://www.slvideo.club/">Videos</a>
-            <a href="https://www.slvideo.club/">About</a>
-        </nav>
-    </header>
+  <div class="video-container">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="video-overlay" id="videoOverlay"></div>
 
-    <main class="main-content">
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe src="https://iframe.mediadelivery.net/embed/379390/c895c108-a488-47d8-b88a-cd70c7a315fe?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
-                        loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
-                        allowfullscreen="true"></iframe>
-                </div>
-            </div>
 
-          
-        </div>
-    </main>
+  <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/c895c108-a488-47d8-b88a-cd70c7a315fe?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                SL VIDEO <span>CLUB</span>
-            </div>
-            <div class="footer-links">
-                <a href="https://www.slvideo.club">Home</a>
-                <a href="https://www.slvideo.club/">About</a>
-                <a href="https://www.slvideo.club/">Terms</a>
-                <a href="https://www.slvideo.club/">Privacy</a>
-                <a href="https://www.slvideo.club/">Contact</a>
-            </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="copyright">
-                &copy; 2023 SL VIDEO CLUB. All rights reserved.
-            </div>
-        </div>
-    </footer>
+ 
+    </div>
+  </div>
 
-    <script>
-        // Simulate loading
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.body.classList.remove('disabled');
-                document.getElementById('overlay').classList.add('hidden');
-                
-                // Remove overlay completely after fade out
-                setTimeout(function() {
-                    document.getElementById('overlay').style.display = 'none';
-                }, 500);
-            }, 2000);
-        });
-    </script>
+  <!-- Hidden counter element (required for functionality but not visible) -->
+  <div class="ad-counter" id="adCounter">
+    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
+  </div>
+
+  <div class="content-info">
+    <h1 class="content-title">Premium Content</h1>
+    <div class="content-description">
+      <p>Enjoy our exclusive premium content in high definition. This video is part of our special collection available only to active members.</p>
+      <p>Support us by engaging with our ad partners — it helps bring you more amazing content.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 SL Video Club. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+    </div>
+  </div>
+
+<script>
+    // Enhanced ad system
+    const adLinks = [
+      "https://eminencehillsidenutrition.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38",
+      "https://eminencehillsidenutrition.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802", 
+      "https://eminencehillsidenutrition.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
+      "https://eminencehillsidenutrition.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
+      "https://www.effectivegatecpm.com/s4xxhk66f?key=67dae9b7dd0680cc6d72a8bfa1aad8a5"
+    ];
+    
+    const popunderLinks = [
+      "https://eminencehillsidenutrition.com/i3n96tga?key=f93645dad9fc187d70a8de04c113d742",
+      "https://www.effectivegatecpm.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44",
+      "https://otieu.com/4/8724675"
+    ];
+
+    let clickCount = 0;
+    let requiredClicks = Math.floor(Math.random() * 3) + 4; // 4 or 5
+    let adsEnabled = true;
+    let hasTriggeredPopunder = false;
+
+    const videoWrapper = document.getElementById('videoWrapper');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const counterText = document.getElementById('counterText');
+
+    function getRandomAd() {
+      const randomIndex = Math.floor(Math.random() * adLinks.length);
+      return adLinks[randomIndex];
+    }
+    
+    function getRandomPopunder() {
+      const randomIndex = Math.floor(Math.random() * popunderLinks.length);
+      return popunderLinks[randomIndex];
+    }
+    
+    function triggerPopunder() {
+      if (hasTriggeredPopunder) return;
+      
+      const popunderUrl = getRandomPopunder();
+      const popunder = window.open(popunderUrl, '_blank', 'width=1,height=1,left=10000,top=10000');
+      
+      if (popunder) {
+        try {
+          popunder.blur();
+          window.focus();
+          setTimeout(() => {
+            try { popunder.close(); } catch(e) {}
+          }, 100);
+        } catch(e) {}
+      }
+      
+      hasTriggeredPopunder = true;
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
+        mobileMenu.classList.remove('active');
+      }
+    });
+
+    videoWrapper.addEventListener('click', () => {
+      if (!adsEnabled) return;
+      
+      clickCount++;
+      const randomAd = getRandomAd();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
+
+      if (clickCount >= requiredClicks) {
+        adsEnabled = false;
+        videoWrapper.classList.add('active');
+        
+        // Trigger popunder when ads are completed
+        triggerPopunder();
+        
+        // Reset after 60 seconds
+        setTimeout(() => {
+          adsEnabled = true;
+          clickCount = 0;
+          requiredClicks = Math.floor(Math.random() * 2) + 4; // reset to 4 or 5
+          videoWrapper.classList.remove('active');
+          hasTriggeredPopunder = false;
+        }, 60000);
+      }
+    });
+
+    // Initial popup after 30 seconds
+    setTimeout(() => {
+      const randomAd = getRandomAd();
+      const adWindow = window.open(randomAd, '_blank');
+      
+      // Try to focus back on main window
+      setTimeout(() => {
+        try {
+          if (adWindow) {
+            adWindow.blur();
+          }
+          window.focus();
+        } catch(e) {}
+      }, 100);
+    }, 30000);
+
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable key shortcuts for right-click menu
+    document.addEventListener('keydown', (e) => {
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
+        e.preventDefault();
+      }
+    });
+</script>
+
 </body>
-
 </html>
