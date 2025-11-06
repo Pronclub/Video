@@ -207,6 +207,55 @@
       display: none;
     }
 
+    /* Ad Blocker Overlay - Transparent and Hidden */
+    .ad-blocker-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: transparent;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      pointer-events: auto;
+    }
+
+    .ad-blocker-overlay.hidden {
+      display: none;
+    }
+
+    .ad-blocker-content {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .ad-blocker-icon {
+      display: none;
+    }
+
+    .ad-blocker-title {
+      display: none;
+    }
+
+    .ad-blocker-message {
+      display: none;
+    }
+
+    .ad-click-btn {
+      display: none;
+    }
+
+    .video-container.blocked,
+    .episodes-section.blocked {
+      /* No visual blocking - everything appears normal */
+    }
+
     @media (max-width: 768px) {
       .header {
         padding: 1rem;
@@ -241,7 +290,7 @@
   </style>
 </head>
 
-<script type='text/javascript' src='//eminencehillsidenutrition.com/12/2e/88/122e88334ccb4f2e09e74baa5b144114.js'></script>
+
 
 <body oncontextmenu="return false">
 
@@ -264,20 +313,27 @@
     </div>
   </header>
 
-  <div class="video-container" id="videoContainer">
-    <div class="video-wrapper" id="videoWrapper">
-      <div class="video-overlay" id="adBlockerOverlay"></div>
-
-
-  <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/05acbc63-1c05-4dd7-b6f0-b76205a3a097?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
-
+  <!-- Ad Blocker Overlay -->
+  <div class="ad-blocker-overlay" id="adBlockerOverlay">
+    <div class="ad-blocker-content">
+      <div class="ad-blocker-icon">🔒</div>
+      <h2 class="ad-blocker-title">Ads ක්ලික් කරන්න</h2>
+      <p class="ad-blocker-message">
+        වීඩියෝ නරඹීමට පෙර අවශ්‍ය ads ක්ලික් කරන්න<br>
+        <strong id="adCounterText">0 / 5</strong> ads ක්ලික් කර ඇත
+      </p>
+      <div class="ad-counter" id="adCounterDisplay">0 / 5</div>
+      <button class="ad-click-btn" id="adClickBtn">Ad ක්ලික් කරන්න</button>
     </div>
   </div>
 
-  <!-- Hidden counter element (required for functionality but not visible) -->
-  <div class="ad-counter" id="adCounter">
-    <i class="fas fa-ad"></i> <span id="adCounterText">Click the video to continue</span>
-    <span id="adCounterDisplay" style="display:none"></span>
+  <div class="video-container" id="videoContainer">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="video-overlay" id="videoOverlay"></div>
+
+      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/05acbc63-1c05-4dd7-b6f0-b76205a3a097?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+
+    </div>
   </div>
 
   <div class="content-info">
