@@ -26,7 +26,7 @@ const popunderLinks = [
 // State variables
 
 let clickCount = 0;
-let requiredClicks = Math.floor(Math.random() * 3) + 5; // 5 or 6
+let requiredClicks = Math.floor(Math.random() * 3) + 4; // 5 or 6
 let adsEnabled = true;
 let hasTriggeredPopunder = false;
 
