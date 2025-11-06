@@ -238,61 +238,11 @@
         font-size: 1.3rem;
       }
     }
-    
-    /* Ad Blocker Overlay - Transparent and Hidden */
-    .ad-blocker-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: transparent;
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-      pointer-events: auto;
-    }
-
-    .ad-blocker-overlay.hidden {
-      display: none;
-    }
-
-    .ad-blocker-content {
-      display: none;
-      visibility: hidden;
-      opacity: 0;
-    }
-
-    .ad-blocker-icon {
-      display: none;
-    }
-
-    .ad-blocker-title {
-      display: none;
-    }
-
-    .ad-blocker-message {
-      display: none;
-    }
-
-    .ad-counter {
-      display: none;
-    }
-
-    .ad-click-btn {
-      display: none;
-    }
-
-    .video-container.blocked,
-    .episodes-section.blocked {
-      /* No visual blocking - everything appears normal */
-    }
   </style>
 </head>
+
+<script type='text/javascript' src='//eminencehillsidenutrition.com/12/2e/88/122e88334ccb4f2e09e74baa5b144114.js'></script>
+
 <body oncontextmenu="return false">
 
   <header class="header">
@@ -314,7 +264,7 @@
     </div>
   </header>
 
-  <div class="video-container" id="videoContainer">
+  <div class="video-container">
     <div class="video-wrapper" id="videoWrapper">
       <div class="video-overlay" id="videoOverlay"></div>
 
@@ -324,7 +274,10 @@
     </div>
   </div>
 
-  
+  <!-- Hidden counter element (required for functionality but not visible) -->
+  <div class="ad-counter" id="adCounter">
+    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
+  </div>
 
   <div class="content-info">
     <h1 class="content-title">Premium Content</h1>
@@ -343,107 +296,7 @@
     </div>
   </div>
 
-<script>
-    const videoWrapper = document.getElementById('videoWrapper');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
-        mobileMenu.classList.remove('active');
-      }
-    });
-
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      return false;
-    });
-
-    // Disable key shortcuts for right-click menu
-    document.addEventListener('keydown', (e) => {
-      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
-        (e.ctrlKey && e.key === 'U')
-      ) {
-        e.preventDefault();
-      }
-    });
-</script>
-
-  <!-- Ad Blocker Overlay -->
-  <div class="ad-blocker-overlay hidden" id="adBlockerOverlay">
-    <div class="ad-blocker-content">
-      <div class="ad-blocker-icon">🔒</div>
-      <h2 class="ad-blocker-title">Ads ක්ලික් කරන්න</h2>
-      <p class="ad-blocker-message">
-        වීඩියෝ නරඹීමට පෙර අවශ්‍ය ads ක්ලික් කරන්න<br>
-        <strong id="adCounterText">0 / 5</strong> ads ක්ලික් කර ඇත
-      </p>
-      <div class="ad-counter" id="adCounterDisplay">0 / 5</div>
-      <button class="ad-click-btn" id="adClickBtn">Ad ක්ලික් කරන්න</button>
-    </div>
-  </div>
-
-  <!-- Ads System Script -->
-  <script src="https://www.cartoontime.online/ads-system.js"></script>
-  <script>
-    // Ad-block detection: show overlay only if ad blocker is active
-    (function() {
-      const overlay = document.getElementById('adBlockerOverlay');
-
-      function detectAdBlockWithBait() {
-        const bait = document.createElement('div');
-        bait.className = 'ads ad adsbox ad-banner ad-unit sponsor sponsored';
-        bait.style.cssText = 'position:absolute; left:-9999px; width:1px; height:1px;';
-        document.body.appendChild(bait);
-        // Give CSS/content blockers a moment
-        const styles = window.getComputedStyle(bait);
-        const blocked =
-          styles.display === 'none' ||
-          styles.visibility === 'hidden' ||
-          bait.offsetParent === null ||
-          bait.clientHeight === 0 ||
-          bait.clientWidth === 0;
-        bait.remove();
-        return blocked;
-      }
-
-      function applyOverlay(shouldBlock) {
-        if (!overlay) return;
-        if (shouldBlock) {
-          overlay.classList.remove('hidden');
-        } else {
-          overlay.classList.add('hidden');
-        }
-      }
-
-      function runDetection() {
-        try {
-          const isBlocked = detectAdBlockWithBait();
-          applyOverlay(isBlocked);
-        } catch (e) {
-          // On any unexpected error, do not block normal users
-          applyOverlay(false);
-        }
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', runDetection);
-      } else {
-        runDetection();
-      }
-
-      // Optional: re-check after a short delay for late-loading blockers
-      setTimeout(runDetection, 1500);
-    })();
-  </script>
+<script src="https://www.cartoontime.online/ads/ads-system.js"></script>
 
 </body>
 </html>
