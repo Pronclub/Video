@@ -314,7 +314,7 @@
     </div>
   </header>
 
-  <div class="video-container">
+  <div class="video-container" id="videoContainer">
     <div class="video-wrapper" id="videoWrapper">
       <div class="video-overlay" id="videoOverlay"></div>
 
@@ -356,11 +356,6 @@
       if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
         mobileMenu.classList.remove('active');
       }
-    });
-
-    // Enable video interaction without ads
-    videoWrapper.addEventListener('click', () => {
-      videoWrapper.classList.add('active');
     });
 
     // Disable right-click context menu
