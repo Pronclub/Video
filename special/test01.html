@@ -264,9 +264,9 @@
     </div>
   </header>
 
-  <div class="video-container">
+  <div class="video-container" id="videoContainer">
     <div class="video-wrapper" id="videoWrapper">
-      <div class="video-overlay" id="videoOverlay"></div>
+      <div class="video-overlay" id="adBlockerOverlay"></div>
 
 
   <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/05acbc63-1c05-4dd7-b6f0-b76205a3a097?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
@@ -276,7 +276,8 @@
 
   <!-- Hidden counter element (required for functionality but not visible) -->
   <div class="ad-counter" id="adCounter">
-    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
+    <i class="fas fa-ad"></i> <span id="adCounterText">Click the video to continue</span>
+    <span id="adCounterDisplay" style="display:none"></span>
   </div>
 
   <div class="content-info">
@@ -296,7 +297,7 @@
     </div>
   </div>
 
-<script src="https://www.cartoontime.online/ads/ads-system.js"></script>
+<script src="https://www.cartoontime.online/ads-system.js"></script>
 
 </body>
 </html>
