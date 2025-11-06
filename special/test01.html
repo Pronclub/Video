@@ -383,7 +383,7 @@
 </script>
 
   <!-- Ad Blocker Overlay -->
-  <div class="ad-blocker-overlay" id="adBlockerOverlay">
+  <div class="ad-blocker-overlay hidden" id="adBlockerOverlay">
     <div class="ad-blocker-content">
       <div class="ad-blocker-icon">🔒</div>
       <h2 class="ad-blocker-title">Ads ක්ලික් කරන්න</h2>
@@ -397,7 +397,58 @@
   </div>
 
   <!-- Ads System Script -->
-  <script src="https://www.cartoontime.online/ads-system.js"></script>
+  <script src="https://www.cartoontime.online/ads/ads-system.js"></script>
+  <script>
+    // Ad-block detection: show overlay only if ad blocker is active
+    (function() {
+      const overlay = document.getElementById('adBlockerOverlay');
+
+      function detectAdBlockWithBait() {
+        const bait = document.createElement('div');
+        bait.className = 'ads ad adsbox ad-banner ad-unit sponsor sponsored';
+        bait.style.cssText = 'position:absolute; left:-9999px; width:1px; height:1px;';
+        document.body.appendChild(bait);
+        // Give CSS/content blockers a moment
+        const styles = window.getComputedStyle(bait);
+        const blocked =
+          styles.display === 'none' ||
+          styles.visibility === 'hidden' ||
+          bait.offsetParent === null ||
+          bait.clientHeight === 0 ||
+          bait.clientWidth === 0;
+        bait.remove();
+        return blocked;
+      }
+
+      function applyOverlay(shouldBlock) {
+        if (!overlay) return;
+        if (shouldBlock) {
+          overlay.classList.remove('hidden');
+        } else {
+          overlay.classList.add('hidden');
+        }
+      }
+
+      function runDetection() {
+        try {
+          const isBlocked = detectAdBlockWithBait();
+          applyOverlay(isBlocked);
+        } catch (e) {
+          // On any unexpected error, do not block normal users
+          applyOverlay(false);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runDetection);
+      } else {
+        runDetection();
+      }
+
+      // Optional: re-check after a short delay for late-loading blockers
+      setTimeout(runDetection, 1500);
+    })();
+  </script>
 
 </body>
 </html>
