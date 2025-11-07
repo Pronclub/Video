@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SL Video Club - Premium Content</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <script src="https://www.slvideo.club/ads-system.js"></script>
   <style>
     :root {
       --primary: #0a192f;
@@ -203,11 +202,6 @@
       color: var(--accent);
     }
 
-    /* Hidden ad counter */
-    .ad-counter {
-      display: none;
-    }
-
     /* Ad Blocker Overlay */
     .ad-blocker-overlay {
       position: fixed;
@@ -223,16 +217,18 @@
       justify-content: center;
       padding: 2rem;
       text-align: center;
-      pointer-events: auto;
+      pointer-events: none;
       backdrop-filter: blur(10px);
     }
 
     .ad-blocker-overlay.active {
       display: flex;
+      pointer-events: auto;
     }
 
     .ad-blocker-overlay.hidden {
       display: none;
+      pointer-events: none;
     }
 
     .ad-blocker-content {
@@ -267,22 +263,20 @@
       font-size: 1.2rem;
     }
 
-    .ad-click-btn {
-      display: none;
+    .refresh-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
     }
 
-    /* Hidden test ad element for detection */
-    #adTestElement {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      left: -9999px;
-      top: -9999px;
-    }
-
-    .video-container.blocked,
-    .episodes-section.blocked {
-      /* No visual blocking - everything appears normal */
+    .refresh-btn:hover {
+      background: #e67a00;
     }
 
     @media (max-width: 768px) {
@@ -309,7 +303,7 @@
       }
 
       .content-title {
-        font-size: 1.5rem;
+        fontSize: 1.5rem;
       }
 
       .logo {
@@ -318,8 +312,6 @@
     }
   </style>
 </head>
-
-
 
 <body oncontextmenu="return false">
 
@@ -342,11 +334,8 @@
     </div>
   </header>
 
-  <!-- Hidden test ad element for ad blocker detection -->
-  <div id="adTestElement" class="adsbox" style="width: 1px; height: 1px;"></div>
-
   <!-- Ad Blocker Overlay -->
-  <div class="ad-blocker-overlay" id="adBlockerOverlay">
+  <div class="ad-blocker-overlay hidden" id="adBlockerOverlay">
     <div class="ad-blocker-content">
       <div class="ad-blocker-icon">🔒</div>
       <h2 class="ad-blocker-title">Ad Blocker අනාවරණය විය</h2>
@@ -354,11 +343,7 @@
         වීඩියෝ නරඹීමට Ad Blocker එක disable කරන්න<br><br>
         කරුණාකර ඔබේ browser extension settings වලින් Ad Blocker disable කර නැවත පිටුව refresh කරන්න.
       </p>
-      <div class="ad-counter" id="adCounterDisplay" style="display:none">0 / 5</div>
-      <p class="ad-blocker-message" id="adCounterText" style="display:none">
-        <strong>0 / 5</strong> ads ක්ලික් කර ඇත
-      </p>
-      <button class="ad-click-btn" id="adClickBtn" style="display:none">Ad ක්ලික් කරන්න</button>
+      <button class="refresh-btn" onclick="window.location.reload()">Refresh Page</button>
     </div>
   </div>
 
@@ -366,7 +351,7 @@
     <div class="video-wrapper" id="videoWrapper">
       <div class="video-overlay" id="videoOverlay"></div>
 
-      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/05acbc63-1c05-4dd7-b6f0-b76205a3a097?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+      <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382039/217f4ea4-ea8a-4c9e-b3dc-763f9cf60226?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
 
     </div>
   </div>
@@ -388,91 +373,89 @@
     </div>
   </div>
 
-
+  <script src="https://www.cartoontime.online/ads/ads-system.js"></script>
 
 <script>
-  // Ad Blocker Detection
+  // Mobile menu functionality
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  });
+
+  // Video interaction
+  document.getElementById('videoOverlay').addEventListener('click', function() {
+    const videoWrapper = document.getElementById('videoWrapper');
+    const videoFrame = document.getElementById('videoFrame');
+    
+    videoWrapper.classList.add('active');
+    videoFrame.style.pointerEvents = 'auto';
+  });
+</script>
+
+<script>
+  // SIMPLE AND RELIABLE Ad Blocker Detection
   (function() {
     let adBlockerDetected = false;
     
-    // Method 1: Check if test ad element is hidden/removed
-    function checkAdBlockerMethod1() {
-      const testAd = document.getElementById('adTestElement');
-      if (testAd) {
-        const styles = window.getComputedStyle(testAd);
-        const display = styles.getPropertyValue('display');
-        const visibility = styles.getPropertyValue('visibility');
-        const height = styles.getPropertyValue('height');
+    function checkAdBlocker() {
+      return new Promise((resolve) => {
+        // Method 1: Try to create a fake ad element
+        const fakeAd = document.createElement('div');
+        fakeAd.className = 'ad-unit ad-space text-ad banner-ad';
+        fakeAd.style.height = '1px';
+        fakeAd.style.width = '1px';
+        fakeAd.style.position = 'absolute';
+        fakeAd.style.left = '-9999px';
+        fakeAd.style.top = '-9999px';
         
-        if (display === 'none' || visibility === 'hidden' || height === '0px') {
-          return true;
-        }
-      }
-      return false;
-    }
-    
-    // Method 2: Try to create a fake ad element
-    function checkAdBlockerMethod2() {
-      const fakeAd = document.createElement('div');
-      fakeAd.innerHTML = '&nbsp;';
-      fakeAd.className = 'adsbox';
-      fakeAd.style.position = 'absolute';
-      fakeAd.style.left = '-9999px';
-      fakeAd.style.width = '1px';
-      fakeAd.style.height = '1px';
-      document.body.appendChild(fakeAd);
-      
-      setTimeout(() => {
-        const styles = window.getComputedStyle(fakeAd);
-        const display = styles.getPropertyValue('display');
-        const height = fakeAd.offsetHeight;
+        document.body.appendChild(fakeAd);
         
-        if (display === 'none' || height === 0) {
-          adBlockerDetected = true;
-        }
-        
-        document.body.removeChild(fakeAd);
-        if (adBlockerDetected) {
-          showAdBlockerWarning();
-        }
-      }, 100);
-    }
-    
-    // Method 3: Check for common ad blocker properties
-    function checkAdBlockerMethod3() {
-      // Check if common ad blocker variables exist
-      if (window.blockAdBlock || window.fuckAdBlock || window.BAB_Config) {
-        return true;
-      }
-      
-      // Check if ad-related functions are blocked
-      try {
-        const testScript = document.createElement('script');
-        testScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-        testScript.onerror = function() {
-          adBlockerDetected = true;
-          showAdBlockerWarning();
-        };
-        document.head.appendChild(testScript);
-      } catch(e) {
-        // Ignore errors
-      }
-      
-      return false;
+        setTimeout(() => {
+          const rect = fakeAd.getBoundingClientRect();
+          const styles = window.getComputedStyle(fakeAd);
+          
+          // Check if ad is hidden/removed by ad blocker
+          const isHidden = rect.height === 0 || 
+                          rect.width === 0 || 
+                          styles.display === 'none' || 
+                          styles.visibility === 'hidden' ||
+                          fakeAd.offsetHeight === 0;
+          
+          document.body.removeChild(fakeAd);
+          
+          // Method 2: Try to load Google Ads script
+          const script = document.createElement('script');
+          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+          script.onerror = () => {
+            // Script failed to load - likely due to ad blocker
+            resolve(true);
+          };
+          script.onload = () => {
+            // Script loaded successfully - no ad blocker
+            resolve(false);
+          };
+          
+          document.head.appendChild(script);
+          
+          // Fallback - if both methods indicate blocking
+          setTimeout(() => {
+            resolve(isHidden);
+          }, 500);
+          
+        }, 100);
+      });
     }
     
     function showAdBlockerWarning() {
       const overlay = document.getElementById('adBlockerOverlay');
       const videoFrame = document.getElementById('videoFrame');
       const videoWrapper = document.getElementById('videoWrapper');
-      const videoContainer = document.getElementById('videoContainer');
       
       if (overlay) {
         overlay.classList.add('active');
         overlay.classList.remove('hidden');
       }
       
-      // Block video completely
+      // Block video
       if (videoFrame) {
         videoFrame.style.pointerEvents = 'none';
         videoFrame.style.opacity = '0.3';
@@ -482,128 +465,64 @@
         videoWrapper.style.pointerEvents = 'none';
         videoWrapper.style.opacity = '0.5';
       }
-      if (videoContainer) {
-        videoContainer.style.pointerEvents = 'none';
-      }
-      
-      // Prevent ads system from working - override unlockContent
-      window.adsCompleted = false;
-      
-      // Override unlockContent function if it exists
-      if (window.unlockContent) {
-        const originalUnlockContent = window.unlockContent;
-        window.unlockContent = function() {
-          // Don't unlock if ad blocker is detected
-          if (adBlockerDetected) {
-            showAdBlockerWarning();
-            return;
-          }
-          originalUnlockContent.apply(this, arguments);
-        };
-      }
-      
-      // Monitor for unlock attempts
-      const checkInterval = setInterval(() => {
-        if (adBlockerDetected) {
-          if (videoFrame && videoFrame.style.pointerEvents === 'auto') {
-            videoFrame.style.pointerEvents = 'none';
-            videoFrame.style.opacity = '0.3';
-            videoFrame.style.filter = 'blur(5px)';
-          }
-          if (videoWrapper && videoWrapper.style.pointerEvents === 'auto') {
-            videoWrapper.style.pointerEvents = 'none';
-            videoWrapper.style.opacity = '0.5';
-          }
-        } else {
-          clearInterval(checkInterval);
-        }
-      }, 500);
     }
     
-    // Run detection after DOM is ready
-    function detectAdBlocker() {
-      // Method 1: Check existing test element
-      if (checkAdBlockerMethod1()) {
-        adBlockerDetected = true;
-        showAdBlockerWarning();
-        return;
+    function hideAdBlockerWarning() {
+      const overlay = document.getElementById('adBlockerOverlay');
+      const videoFrame = document.getElementById('videoFrame');
+      const videoWrapper = document.getElementById('videoWrapper');
+      
+      if (overlay) {
+        overlay.classList.remove('active');
+        overlay.classList.add('hidden');
       }
       
-      // Method 2: Create and check fake ad
-      checkAdBlockerMethod2();
-      
-      // Method 3: Check for ad blocker properties
-      checkAdBlockerMethod3();
-      
-      // Continuous monitoring
-      setTimeout(() => {
-        if (checkAdBlockerMethod1()) {
+      // Restore video
+      if (videoFrame) {
+        videoFrame.style.pointerEvents = 'auto';
+        videoFrame.style.opacity = '1';
+        videoFrame.style.filter = 'none';
+      }
+      if (videoWrapper) {
+        videoWrapper.style.pointerEvents = 'auto';
+        videoWrapper.style.opacity = '1';
+      }
+    }
+    
+    // Main detection function
+    async function detectAdBlocker() {
+      try {
+        const detected = await checkAdBlocker();
+        
+        if (detected) {
+          console.log('Ad blocker detected');
           adBlockerDetected = true;
           showAdBlockerWarning();
+        } else {
+          console.log('No ad blocker detected');
+          adBlockerDetected = false;
+          hideAdBlockerWarning();
         }
-      }, 1000);
-    }
-    
-    // Run detection when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', detectAdBlocker);
-    } else {
-      detectAdBlocker();
-    }
-    
-    // Re-check periodically
-    setInterval(() => {
-      if (!adBlockerDetected && checkAdBlockerMethod1()) {
-        adBlockerDetected = true;
-        showAdBlockerWarning();
+      } catch (error) {
+        console.log('Error detecting ad blocker:', error);
+        // On error, assume no ad blocker to avoid false positives
+        adBlockerDetected = false;
+        hideAdBlockerWarning();
       }
-    }, 2000);
-    
-    // Expose detection status
-    window.adBlockerDetected = function() {
-      return adBlockerDetected;
-    };
-    
-    // Override ads system functions after they load
-    function overrideAdsSystem() {
-      // Wait for ads system to load
-      setTimeout(() => {
-        if (window.unlockContent) {
-          const originalUnlock = window.unlockContent;
-          window.unlockContent = function() {
-            if (adBlockerDetected) {
-              showAdBlockerWarning();
-              return;
-            }
-            return originalUnlock.apply(this, arguments);
-          };
-        }
-        
-        if (window.updateVideoAccess) {
-          const originalUpdate = window.updateVideoAccess;
-          window.updateVideoAccess = function() {
-            if (adBlockerDetected) {
-              showAdBlockerWarning();
-              return;
-            }
-            return originalUpdate.apply(this, arguments);
-          };
-        }
-      }, 2000);
     }
     
-    // Run override after page load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', overrideAdsSystem);
-    } else {
-      overrideAdsSystem();
-    }
+    // Run detection after page load
+    window.addEventListener('load', function() {
+      setTimeout(detectAdBlocker, 1000);
+    });
     
-    // Also override when ads system script loads
-    const adsScript = document.querySelector('script[src*="ads-system.js"]');
-    if (adsScript) {
-      adsScript.addEventListener('load', overrideAdsSystem);
-    }
+    // Optional: Re-check if user might have disabled ad blocker
+    window.addEventListener('focus', function() {
+      if (adBlockerDetected) {
+        setTimeout(detectAdBlocker, 500);
+      }
+    });
+    
   })();
 </script>
 
