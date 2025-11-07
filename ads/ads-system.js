@@ -339,4 +339,3 @@ if (document.readyState === 'loading') {
 
 // Expose resetAdsSystem globally so it can be called from other scripts
 window.resetAdsSystem = resetAdsSystem;
-
