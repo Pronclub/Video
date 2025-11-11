@@ -154,9 +154,9 @@
 
         .option:hover:not(.disabled) {
             border-color: #d1d5db;
-            transform: translateY(-2px);
         }
 
+        /* Pakistan team colors - green and white */
         .option.pakistan.selected {
             border-color: #059669;
             background-color: #ecfdf5;
@@ -166,6 +166,7 @@
             border-color: #10b981;
         }
 
+        /* Sri Lanka team colors - blue and gold */
         .option.srilanka.selected {
             border-color: #1e40af;
             background-color: #eff6ff;
@@ -205,10 +206,12 @@
             font-size: 1.125rem;
         }
 
+        /* Pakistan badge - green */
         .option.pakistan.selected .option-badge {
             background-color: #10b981;
         }
 
+        /* Sri Lanka badge - blue */
         .option.srilanka.selected .option-badge {
             background-color: #2563eb;
         }
@@ -229,11 +232,13 @@
             display: none;
         }
 
+        /* Pakistan checkmark - green */
         .option.pakistan.selected .checkmark {
             color: #10b981;
             display: block;
         }
 
+        /* Sri Lanka checkmark - blue */
         .option.srilanka.selected .checkmark {
             color: #2563eb;
             display: block;
@@ -253,10 +258,12 @@
             transition: width 0.5s ease;
         }
 
+        /* Pakistan progress bar - green */
         .option.pakistan .progress-fill {
             background-color: #10b981;
         }
 
+        /* Sri Lanka progress bar - blue */
         .option.srilanka .progress-fill {
             background-color: #2563eb;
         }
@@ -281,10 +288,12 @@
             font-weight: 700;
         }
 
+        /* Pakistan percentage - green */
         .option.pakistan .percentage {
             color: #10b981;
         }
 
+        /* Sri Lanka percentage - blue */
         .option.srilanka .percentage {
             color: #2563eb;
         }
@@ -300,18 +309,38 @@
             background-color: #fffbeb;
             border-radius: 0.5rem;
             text-align: center;
+            display: none;
+        }
+
+        .user-status.active {
             display: block;
         }
 
         .user-status p {
             color: #78350f;
-            font-size: 1rem;
-            font-weight: 600;
         }
 
         .user-vote-value {
             font-weight: 700;
             color: #f59e0b;
+        }
+
+        .inactive-message {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            text-align: center;
+            display: none;
+        }
+
+        .inactive-message.active {
+            display: block;
+        }
+
+        .inactive-message p {
+            color: #4b5563;
         }
 
         .footer {
@@ -330,7 +359,12 @@
             color: #fbbf24;
         }
 
+        /* Results View Styles */
         .results-view {
+            display: none;
+        }
+
+        .results-view.active {
             display: block;
         }
 
@@ -352,6 +386,30 @@
             font-size: 2rem;
             font-weight: 700;
             color: #ffffff;
+        }
+
+        .results-menu {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .menu-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: #374151;
+            border: none;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            background-color: #4b5563;
         }
 
         .results-comparison {
@@ -385,10 +443,12 @@
             margin-bottom: 1rem;
         }
 
+        /* Pakistan results color - green */
         .result-item.pakistan .result-percentage {
             color: #10b981;
         }
 
+        /* Sri Lanka results color - blue */
         .result-item.srilanka .result-percentage {
             color: #60a5fa;
         }
@@ -406,46 +466,22 @@
             transition: width 0.5s ease;
         }
 
+        /* Pakistan results progress - green */
         .result-item.pakistan .result-progress-fill {
             background-color: #10b981;
         }
 
+        /* Sri Lanka results progress - blue */
         .result-item.srilanka .result-progress-fill {
             background-color: #60a5fa;
         }
 
-        .vote-history {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: #f0f0f0;
-            border-radius: 0.5rem;
-            max-height: 200px;
-            overflow-y: auto;
+        .poll-view {
+            display: block;
         }
 
-        .vote-history h4 {
-            color: #111827;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .vote-item {
-            background: white;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            border-left: 3px solid #fbbf24;
-            font-size: 0.8rem;
-            color: #4b5563;
-            border-radius: 0.25rem;
-        }
-
-        .vote-item.pakistan {
-            border-left-color: #10b981;
-        }
-
-        .vote-item.srilanka {
-            border-left-color: #2563eb;
+        .poll-view.hidden {
+            display: none;
         }
     </style>
 </head>
@@ -455,193 +491,314 @@
         <div class="header">
             <h1>🏏 It's Poll Time!</h1>
             <p>Sri Lanka Vs Pakistan</p>
+            <!-- Cricket banner image below header -->
             <div class="header-image">
                 <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pandv-Py3xDGEDo4nfyTs4v3q6JSmyyz7p3c.jpg" alt="Sri Lanka vs Pakistan Cricket Teams" />
             </div>
         </div>
 
-        <!-- Poll Card -->
-        <div class="poll-card">
-            <div class="poll-title">
-                <h2>Who will win the match?</h2>
+        <!-- Poll Status -->
+        <div class="poll-status" id="pollStatus">
+            <p>⏰ Poll starts in:</p>
+            <div class="timer" id="timer"></div>
+            <div class="start-info">Starting: November 11, 2025 at 12:00 PM</div>
+        </div>
+
+        <!-- Poll View -->
+        <div class="poll-view" id="pollView">
+            <!-- Main Poll Card -->
+            <div class="poll-card">
                 <div class="poll-title">
-                    Total Votes: <span class="vote-count-number" id="totalVotes">0</span>
-                </div>
-            </div>
-
-            <!-- Pakistan Option -->
-            <div class="option pakistan" id="pakistanOption">
-                <div class="option-header">
-                    <div class="option-label">
-                        <div class="option-badge">A</div>
-                        <h3>Pakistan Wins</h3>
+                    <h2>Who will win the match?</h2>
+                    <div class="poll-title">
+                        Total Votes: <span class="vote-count-number" id="totalVotes">0</span>
                     </div>
-                    <div class="checkmark">✓</div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="pakistanProgressFill" style="width: 0%"></div>
-                </div>
-                <div class="vote-stats">
-                    <span class="vote-count-text" id="pakistanVoteCount">0 votes</span>
-                    <span class="percentage" id="pakistanPercentage">0%</span>
-                </div>
-            </div>
 
-            <!-- Sri Lanka Option -->
-            <div class="option srilanka" id="srilankaOption">
-                <div class="option-header">
-                    <div class="option-label">
-                        <div class="option-badge">B</div>
-                        <h3>Sri Lanka Wins</h3>
+                <!-- Pakistan Option -->
+                <div class="option pakistan" id="pakistanOption">
+                    <div class="option-header">
+                        <div class="option-label">
+                            <div class="option-badge">A</div>
+                            <h3>Pakistan Wins</h3>
+                        </div>
+                        <div class="checkmark">✓</div>
                     </div>
-                    <div class="checkmark">✓</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="pakistanProgressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="vote-stats">
+                        <span class="vote-count-text" id="pakistanVoteCount">0 votes</span>
+                        <span class="percentage" id="pakistanPercentage">0%</span>
+                    </div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="srilankaProgressFill" style="width: 0%"></div>
+
+                <!-- Sri Lanka Option -->
+                <div class="option srilanka" id="srilankaOption">
+                    <div class="option-header">
+                        <div class="option-label">
+                            <div class="option-badge">B</div>
+                            <h3>Sri Lanka Wins</h3>
+                        </div>
+                        <div class="checkmark">✓</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="srilankaProgressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="vote-stats">
+                        <span class="vote-count-text" id="srilankaVoteCount">0 votes</span>
+                        <span class="percentage" id="srilankaPercentage">0%</span>
+                    </div>
                 </div>
-                <div class="vote-stats">
-                    <span class="vote-count-text" id="srilankaVoteCount">0 votes</span>
-                    <span class="percentage" id="srilankaPercentage">0%</span>
+
+                <!-- User Status -->
+                <div class="user-status" id="userStatus">
+                    <p>✓ <span>Your vote is recorded:</span> You voted for <span class="user-vote-value" id="userVoteText"></span></p>
+                </div>
+
+                <!-- Inactive Message -->
+                <div class="inactive-message" id="inactiveMessage">
+                    <p>🔒 Poll is not yet active. Come back on <span class="start-time">November 11, 2025 at 12:00 PM</span> to vote.</p>
                 </div>
             </div>
+        </div>
 
-            <!-- User Status -->
-            <div class="user-status" id="userStatus">
-                <p>📊 ඔබ දින <span class="user-vote-value" id="voteCount">0</span> වරට vote දී ඇත</p>
-            </div>
+        <!-- Results View -->
+        <div class="results-view" id="resultsView">
+            <div class="results-card">
+                <div class="results-header">
+                    <h2 class="results-title">Win probability</h2>
+                    <div class="results-menu">
+                        <button class="menu-btn">⋮</button>
+                        <button class="menu-btn">▲</button>
+                    </div>
+                </div>
 
-            <!-- Vote History -->
-            <div class="vote-history">
-                <h4>📋 ඔබේ Vote History:</h4>
-                <div id="voteHistoryList"></div>
+                <div class="results-comparison">
+                    <div class="result-item pakistan">
+                        <div class="result-team-name">Pakistan</div>
+                        <div class="result-percentage" id="resultPakistanPercentage">0%</div>
+                        <div class="result-progress-container">
+                            <div class="result-progress-fill" id="resultPakistanFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-item srilanka">
+                        <div class="result-team-name">Sri Lanka</div>
+                        <div class="result-percentage" id="resultSrilankaPercentage">0%</div>
+                        <div class="result-progress-container">
+                            <div class="result-progress-fill" id="resultSrilankaFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Footer Info -->
         <div class="footer">
-            <p>✅ සියලුම votes localStorage තුළ save වේ - ඔබ website refresh කරලා නැවතත් vote දීමට පුළුවන්</p>
-            <p>🔄 එකම user කෙනෙක්ට ඔතරට vote දීමට අවසර ඇත</p>
+            <p>Your votes are saved locally and will be remembered when you return.</p>
+            <p>Start Time: <span class="start-time">2025/11/11 - 12:00 PM</span></p>
         </div>
     </div>
 
     <script>
-        // <CHANGE> localStorage පිළිබඳ සිංහල UI එකතු කර, users අසීමිත වෙතින් vote දීමට පුළුවන් කිරීම
+        // Poll configuration
+        const POLL_START_TIME = new Date("2025-11-11T12:00:00").getTime();
+        const POLL_END_TIME = new Date("2025-11-12T12:01:00").getTime(); // 1 minute duration
         
         // DOM elements
+        const pollStatus = document.getElementById("pollStatus");
+        const timer = document.getElementById("timer");
         const pakistanOption = document.getElementById("pakistanOption");
         const srilankaOption = document.getElementById("srilankaOption");
-        const voteCountDisplay = document.getElementById("voteCount");
-        const voteHistoryList = document.getElementById("voteHistoryList");
+        const userStatus = document.getElementById("userStatus");
+        const inactiveMessage = document.getElementById("inactiveMessage");
+        const pollView = document.getElementById("pollView");
+        const resultsView = document.getElementById("resultsView");
         
-        // All votes array - stores every vote with timestamp
-        let allVotes = [];
-        
-        // Initialize on page load
+        // State
+        let pollStarted = false;
+        let userVote = null;
+        let responses = [];
+
+        // Initialize poll on page load
         function initPoll() {
-            loadVotesFromStorage();
+            loadFromLocalStorage();
             updateDisplay();
+            startCountdown();
             
-            // Add click listeners to vote
-            pakistanOption.addEventListener("click", () => addVote("pakistan"));
-            srilankaOption.addEventListener("click", () => addVote("srilanka"));
+            // Add event listeners - assign country class to options
+            pakistanOption.addEventListener("click", () => handleVote("pakistan"));
+            srilankaOption.addEventListener("click", () => handleVote("srilanka"));
         }
-        
-        // Load votes from localStorage
-        function loadVotesFromStorage() {
-            const saved = localStorage.getItem("poll_all_votes");
-            if (saved) {
-                try {
-                    allVotes = JSON.parse(saved);
-                } catch (e) {
-                    allVotes = [];
+
+        // Load data from localStorage
+        function loadFromLocalStorage() {
+            const savedResponses = localStorage.getItem("poll_responses");
+            const savedUserVote = localStorage.getItem("user_vote");
+            
+            if (savedResponses) {
+                responses = JSON.parse(savedResponses);
+            }
+            
+            if (savedUserVote) {
+                userVote = savedUserVote;
+            }
+        }
+
+        // Save data to localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem("poll_responses", JSON.stringify(responses));
+            localStorage.setItem("user_vote", userVote);
+        }
+
+        // Handle vote
+        function handleVote(vote) {
+            if (!pollStarted) return;
+
+            // Check if user has already voted
+            if (userVote) {
+                // If user already voted for this option, do nothing
+                if (userVote === vote) return;
+                
+                // Remove previous vote
+                const userIndex = responses.findIndex(r => r.userId === getUserId() && r.vote === userVote);
+                if (userIndex !== -1) {
+                    responses.splice(userIndex, 1);
                 }
             }
-        }
-        
-        // Save votes to localStorage
-        function saveVotesToStorage() {
-            localStorage.setItem("poll_all_votes", JSON.stringify(allVotes));
-        }
-        
-        // Add new vote
-        function addVote(option) {
-            allVotes.push({
-                vote: option,
-                timestamp: new Date().toISOString()
+            
+            // Add new vote
+            responses.push({
+                vote: vote,
+                timestamp: new Date().toISOString(),
+                userId: getUserId()
             });
             
-            saveVotesToStorage();
+            userVote = vote;
+
+            saveToLocalStorage();
             updateDisplay();
         }
-        
-        // Calculate vote statistics
-        function calculateStats() {
-            const pakistanCount = allVotes.filter(v => v.vote === "pakistan").length;
-            const srilankaCount = allVotes.filter(v => v.vote === "srilanka").length;
-            const totalVotes = allVotes.length;
+
+        // Generate a unique user ID
+        function getUserId() {
+            let userId = localStorage.getItem("user_id");
+            if (!userId) {
+                userId = 'user_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem("user_id", userId);
+            }
+            return userId;
+        }
+
+        // Calculate and update vote counts
+        function calculateVotes() {
+            const pakistanVotes = responses.filter(r => r.vote === "pakistan").length;
+            const srilankaVotes = responses.filter(r => r.vote === "srilanka").length;
+            const totalVotes = pakistanVotes + srilankaVotes;
             
-            const pakistanPercent = totalVotes > 0 ? Math.round((pakistanCount / totalVotes) * 100) : 0;
-            const srilankaPercent = totalVotes > 0 ? Math.round((srilankaCount / totalVotes) * 100) : 0;
+            const pakistanPercentage = totalVotes > 0 ? Math.round((pakistanVotes / totalVotes) * 100) : 0;
+            const srilankaPercentage = totalVotes > 0 ? Math.round((srilankaVotes / totalVotes) * 100) : 0;
             
             return {
-                pakistanCount,
-                srilankaCount,
+                pakistanVotes,
+                srilankaVotes,
                 totalVotes,
-                pakistanPercent,
-                srilankaPercent
+                pakistanPercentage,
+                srilankaPercentage
             };
         }
-        
-        // Update all displays
+
+        // Update display
         function updateDisplay() {
-            const stats = calculateStats();
+            const votes = calculateVotes();
+            const now = new Date().getTime();
             
             // Update vote counts
-            document.getElementById("totalVotes").textContent = stats.totalVotes;
-            document.getElementById("pakistanVoteCount").textContent = `${stats.pakistanCount} votes`;
-            document.getElementById("srilankaVoteCount").textContent = `${stats.srilankaCount} votes`;
-            document.getElementById("pakistanPercentage").textContent = `${stats.pakistanPercent}%`;
-            document.getElementById("srilankaPercentage").textContent = `${stats.srilankaPercent}%`;
+            document.getElementById("totalVotes").textContent = votes.totalVotes;
+            document.getElementById("pakistanVoteCount").textContent = `${votes.pakistanVotes} votes`;
+            document.getElementById("srilankaVoteCount").textContent = `${votes.srilankaVotes} votes`;
+            document.getElementById("pakistanPercentage").textContent = `${votes.pakistanPercentage}%`;
+            document.getElementById("srilankaPercentage").textContent = `${votes.srilankaPercentage}%`;
             
             // Update progress bars
-            document.getElementById("pakistanProgressFill").style.width = `${stats.pakistanPercent}%`;
-            document.getElementById("srilankaProgressFill").style.width = `${stats.srilankaPercent}%`;
+            document.getElementById("pakistanProgressFill").style.width = `${votes.pakistanPercentage}%`;
+            document.getElementById("srilankaProgressFill").style.width = `${votes.srilankaPercentage}%`;
             
-            // Update user vote count
-            voteCountDisplay.textContent = stats.totalVotes;
+            pakistanOption.classList.remove("selected");
+            srilankaOption.classList.remove("selected");
             
-            // Update vote history
-            updateVoteHistory();
-        }
-        
-        // Update vote history display
-        function updateVoteHistory() {
-            voteHistoryList.innerHTML = "";
+            if (userVote === "pakistan") {
+                pakistanOption.classList.add("selected");
+            } else if (userVote === "srilanka") {
+                srilankaOption.classList.add("selected");
+            }
             
-            // Show last 5 votes
-            const recentVotes = allVotes.slice(-5).reverse();
+            // Update user status message
+            if (userVote && pollStarted) {
+                userStatus.classList.add("active");
+                const voteName = userVote === "pakistan" ? "Pakistan" : "Sri Lanka";
+                document.getElementById("userVoteText").textContent = voteName;
+            } else {
+                userStatus.classList.remove("active");
+            }
             
-            recentVotes.forEach((v, index) => {
-                const time = new Date(v.timestamp).toLocaleTimeString('en-US', { 
-                    hour: '2-digit', 
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
-                
-                const teamName = v.vote === "pakistan" ? "🟢 Pakistan" : "🔵 Sri Lanka";
-                
-                const div = document.createElement("div");
-                div.className = `vote-item ${v.vote}`;
-                div.textContent = `${recentVotes.length - index}. ${teamName} - ${time}`;
-                voteHistoryList.appendChild(div);
-            });
-            
-            if (allVotes.length === 0) {
-                voteHistoryList.innerHTML = '<div style="color: #999; font-size: 0.8rem;">තවම vote නැත</div>';
+            // Update inactive message
+            if (!pollStarted) {
+                inactiveMessage.classList.add("active");
+                pakistanOption.classList.add("disabled");
+                srilankaOption.classList.add("disabled");
+            } else {
+                inactiveMessage.classList.remove("active");
+                pakistanOption.classList.remove("disabled");
+                srilankaOption.classList.remove("disabled");
+            }
+
+            if (now >= POLL_END_TIME) {
+                pollView.classList.add("hidden");
+                resultsView.classList.add("active");
+                updateResultsView();
+            } else {
+                pollView.classList.remove("hidden");
+                resultsView.classList.remove("active");
             }
         }
-        
-        // Initialize when page loads
+
+        function updateResultsView() {
+            const votes = calculateVotes();
+            document.getElementById("resultPakistanPercentage").textContent = `${votes.pakistanPercentage}%`;
+            document.getElementById("resultSrilankaPercentage").textContent = `${votes.srilankaPercentage}%`;
+            document.getElementById("resultPakistanFill").style.width = `${votes.pakistanPercentage}%`;
+            document.getElementById("resultSrilankaFill").style.width = `${votes.srilankaPercentage}%`;
+        }
+
+        // Start countdown timer
+        function startCountdown() {
+            function updateTimer() {
+                const now = new Date().getTime();
+                
+                if (now >= POLL_START_TIME) {
+                    pollStarted = true;
+                    pollStatus.classList.remove("active");
+                    updateDisplay();
+                    return;
+                }
+                
+                const diff = POLL_START_TIME - now;
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                pollStatus.classList.add("active");
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // Initialize on page load
         window.addEventListener("DOMContentLoaded", initPoll);
     </script>
 </body>
