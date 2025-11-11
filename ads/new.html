@@ -3,655 +3,1062 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sri Lanka vs Pakistan Poll - Preview</title>
+    <title>Welcome to Claire - Premium Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+/* ============================================
+   PREMIUM UI DESIGN - CLAIRE (Inlined)
+   ============================================ */
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #001a4d 0%, #003d0f 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
+:root {
+    /* Black / White / Red Palette */
+    --color-primary: #000000;              /* black */
+    --color-secondary: #111111;            /* near-black */
+    --color-accent-red: #e50914;           /* premium red */
+    --color-accent-red-dark: #b20710;
+    --color-accent-red-soft: #ff4d59;
+    
+    /* Text Colors */
+    --text-primary: #000000;               /* black */
+    --text-secondary: #333333;             /* dark gray */
+    --text-light: #666666;                  /* mid gray */
+    --text-white: #ffffff;                  /* white */
+    
+    /* Background Colors */
+    --bg-primary: #ffffff;                  /* white */
+    --bg-secondary: #ffffff;
+    --bg-gradient-start: #ffffff;
+    --bg-gradient-end: #f5f5f5;             /* light gray */
+    
+    /* Shadows - Premium Depth */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.20);
+    --shadow-glow: 0 0 30px rgba(229, 9, 20, 0.35); /* red glow */
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
 
-        .container {
-            width: 100%;
-            max-width: 56rem;
-        }
+/* Body Styles */
+html {
+    scroll-behavior: smooth;
+}
 
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background:
+        /* Darker overlay for better contrast over the image (50% more than before) */
+        linear-gradient(135deg, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.80) 100%),
+        /* Proxy fallback first (handles hotlink restrictions), then original URL */
+        url('https://images.weserv.nl/?url=www.cartoontime.online/cartoon/images/home.jpg'),
+        url('https://www.cartoontime.online/cartoon/images/home.jpg');
+    background-position: center center, center center, center center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: cover, cover, cover;
+    background-attachment: fixed, fixed, fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+    line-height: 1.7;
+    color: var(--text-primary);
+    position: relative;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-        .header h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
+/* Background Decoration - Animated Orbs */
+.background-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.875rem;
-            }
-        }
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: float 20s infinite ease-in-out;
+}
 
-        .header p {
-            font-size: 1.25rem;
-            color: #fbbf24;
-        }
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--color-accent-red) 0%, transparent 70%);
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
 
-        .header-image {
-            margin-top: 1.5rem;
-            width: 100%;
-            max-width: 1270px;
-            height: auto;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--color-accent-red-dark) 0%, transparent 70%);
+    bottom: -50px;
+    right: -50px;
+    animation-delay: 7s;
+}
 
-        .header-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 1270 / 720;
-            object-fit: cover;
-        }
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--color-accent-red-soft) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 14s;
+}
 
-        @media (max-width: 768px) {
-            .header-image img {
-                aspect-ratio: 16 / 9;
-            }
-        }
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
 
-        .poll-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
+/* Container */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 20px;
+    animation: fadeInUp 1s ease-out;
+}
 
-        @media (max-width: 768px) {
-            .poll-card {
-                padding: 1.5rem;
-            }
-        }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .poll-title {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
+/* Welcome Section */
+.welcome-section {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+}
 
-        .poll-title h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.5rem;
-        }
+.welcome-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--color-accent-red) 0%, var(--color-accent-red-dark) 100%);
+    color: var(--text-white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+    animation: pulse 2s infinite;
+}
 
-        .poll-title .vote-count {
-            color: #6b7280;
-            font-size: 1.125rem;
-        }
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(212, 175, 55, 0.5);
+    }
+}
 
-        .vote-count-number {
-            font-weight: 700;
-            color: #fbbf24;
-        }
+.welcome-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
-        .option {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.75rem;
-            background-color: #f9fafb;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.welcome-line {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 0.4em;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+}
 
-        .option:hover:not(.disabled) {
-            border-color: #d1d5db;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+.welcome-name {
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-accent-red) 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 5s ease infinite;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+}
 
-        /* Pakistan team colors - green and white */
-        .option.pakistan.selected {
-            border-color: #059669;
-            background-color: #ecfdf5;
-        }
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
 
-        .option.pakistan:hover:not(.disabled) {
-            border-color: #10b981;
-        }
+.welcome-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+}
 
-        /* Sri Lanka team colors - blue and gold */
-        .option.srilanka.selected {
-            border-color: #1e40af;
-            background-color: #eff6ff;
-        }
+.divider-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent-red), transparent);
+}
 
-        .option.srilanka:hover:not(.disabled) {
-            border-color: #3b82f6;
-        }
+.divider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent-red);
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
 
-        .option.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+/* Description Text */
+.description {
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: #f5f5f5;
+    text-align: center;
+    padding: 0 20px;
+    line-height: 1.8;
+    max-width: 700px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
 
-        .option-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-        }
+/* Buttons Container */
+.buttons-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 20px;
+}
 
-        .option-label {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
+/* Premium CTA Buttons */
+.cta-button {
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(0);
+    text-decoration: none; /* support anchor as button */
+    display: block;        /* ensure anchors behave like block buttons */
+}
 
-        .option-badge {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.125rem;
-        }
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+    z-index: 3;
+    pointer-events: none;
+}
 
-        /* Pakistan badge - green */
-        .option.pakistan.selected .option-badge {
-            background-color: #10b981;
-        }
+.cta-button:hover::before {
+    left: 100%;
+}
 
-        /* Sri Lanka badge - blue */
-        .option.srilanka.selected .option-badge {
-            background-color: #2563eb;
-        }
+.button-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
 
-        .option:not(.selected) .option-badge {
-            background-color: #9ca3af;
-        }
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 1000 / 300;
+}
 
-        .option h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #111827;
-        }
+.button-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+    display: block;
+}
 
-        .checkmark {
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: none;
-        }
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(26, 26, 46, 0.4) 0%,
+        rgba(26, 26, 46, 0.1) 50%,
+        rgba(26, 26, 46, 0.3) 100%
+    );
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
 
-        /* Pakistan checkmark - green */
-        .option.pakistan.selected .checkmark {
-            color: #10b981;
-            display: block;
-        }
+.image-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    transition: var(--transition-smooth);
+    opacity: 0;
+}
 
-        /* Sri Lanka checkmark - blue */
-        .option.srilanka.selected .checkmark {
-            color: #2563eb;
-            display: block;
-        }
+.cta-button:hover .button-image {
+    transform: scale(1.08);
+}
 
-        .progress-bar {
-            width: 100%;
-            height: 0.75rem;
-            background-color: #e5e7eb;
-            border-radius: 9999px;
-            overflow: hidden;
-            margin-bottom: 0.75rem;
-        }
+.cta-button:hover .image-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(26, 26, 46, 0.2) 0%,
+        rgba(26, 26, 46, 0.05) 50%,
+        rgba(26, 26, 46, 0.2) 100%
+    );
+}
 
-        .progress-fill {
-            height: 100%;
-            transition: width 0.5s ease;
-        }
+.cta-button:hover .image-shine {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out;
+}
 
-        /* Pakistan progress bar - green */
-        .option.pakistan .progress-fill {
-            background-color: #10b981;
-        }
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
 
-        /* Sri Lanka progress bar - blue */
-        .option.srilanka .progress-fill {
-            background-color: #2563eb;
-        }
+.button-text-wrapper {
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+}
 
-        .option:not(.selected) .progress-fill {
-            background-color: #9ca3af;
-        }
+.button-icon {
+    font-size: 20px;
+    color: #ffffff;
+    transition: var(--transition-smooth);
+    filter: drop-shadow(0 0 8px rgba(229, 9, 20, 0.6));
+}
 
-        .vote-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.button-text {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-white);
+    transition: var(--transition-smooth);
+    font-family: 'Inter', sans-serif;
+}
 
-        .vote-count-text {
-            color: #4b5563;
-            font-weight: 600;
-        }
+.button-arrow {
+    font-size: 24px;
+    color: var(--text-white);
+    transition: var(--transition-smooth);
+    opacity: 0.6;
+    transform: translateX(0);
+}
 
-        .percentage {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
+.cta-button:hover .button-icon {
+    transform: rotate(180deg) scale(1.2);
+    filter: drop-shadow(0 0 12px rgba(229, 9, 20, 1));
+}
 
-        /* Pakistan percentage - green */
-        .option.pakistan .percentage {
-            color: #10b981;
-        }
+.cta-button:hover .button-arrow {
+    transform: translateX(8px);
+    opacity: 1;
+}
 
-        /* Sri Lanka percentage - blue */
-        .option.srilanka .percentage {
-            color: #2563eb;
-        }
+.button-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.35), transparent);
+    transition: var(--transition-smooth);
+    pointer-events: none;
+    z-index: 1;
+}
 
-        .option:not(.selected) .percentage {
-            color: #9ca3af;
-        }
+.cta-button:hover .button-glow {
+    width: 200%;
+    height: 200%;
+    animation: glowPulse 2s infinite;
+}
 
-        .user-status {
-            margin-top: 2rem;
-            padding: 1rem;
-            border: 2px solid #fbbf24;
-            background-color: #fffbeb;
-            border-radius: 0.5rem;
-            text-align: center;
-            display: none;
-        }
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
 
-        .user-status.active {
-            display: block;
-        }
+@keyframes premiumRipple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
 
-        .user-status p {
-            color: #78350f;
-        }
+.cta-button:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
 
-        .user-vote-value {
-            font-weight: 700;
-            color: #f59e0b;
-        }
+.cta-button:active {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
 
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
+/* Unified Button Style - All buttons identical */
+.cta-button .button-text-wrapper {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.96) 0%, rgba(178, 7, 16, 0.96) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+/* Hover/Focus states consistent */
+.cta-button:hover .button-text-wrapper,
+.cta-button:focus-visible .button-text-wrapper {
+    filter: brightness(1.05);
+}
 
-        .btn-primary {
-            background-color: #fbbf24;
-            color: #78350f;
-        }
+/* Accessibility: clear keyboard focus */
+.cta-button:focus-visible {
+    outline: 3px solid var(--color-accent-red-soft);
+    outline-offset: 4px;
+}
 
-        .btn-primary:hover {
-            background-color: #f59e0b;
-        }
+/* Responsive Design - Mobile First */
+@media (max-width: 480px) {
+    .container {
+        padding: 40px 15px;
+        gap: 40px;
+    }
 
-        .btn-secondary {
-            background-color: #e5e7eb;
-            color: #4b5563;
-        }
+    .welcome-badge {
+        font-size: 9px;
+        padding: 6px 16px;
+        letter-spacing: 2px;
+    }
 
-        .btn-secondary:hover {
-            background-color: #d1d5db;
-        }
+    .welcome-text {
+        font-size: clamp(32px, 10vw, 48px);
+    }
 
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            color: #e5e7eb;
-            font-size: 0.875rem;
-        }
+    .welcome-line {
+        font-size: 0.35em;
+        letter-spacing: 4px;
+    }
 
-        .footer p {
-            margin-bottom: 0.5rem;
-        }
+    .description {
+        font-size: 15px;
+        padding: 0 10px;
+    }
 
-        .preview-notice {
-            background-color: #fef3c7;
-            border: 2px solid #fbbf24;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
+    .buttons-container {
+        gap: 16px;
+        padding: 0 10px;
+    }
 
-        .preview-notice p {
-            color: #92400e;
-            font-weight: 600;
-        }
+    .button-text-wrapper {
+        padding: 20px 24px;
+        gap: 12px;
+    }
+
+    .button-text {
+        font-size: 16px;
+    }
+
+    .button-icon {
+        font-size: 18px;
+    }
+
+    .button-arrow {
+        font-size: 20px;
+    }
+
+    .cta-button {
+        border-radius: var(--radius-md);
+    }
+
+    .button-content {
+        border-radius: var(--radius-md);
+    }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 60px 20px;
+        gap: 50px;
+    }
+
+    .buttons-container {
+        gap: 20px;
+    }
+
+    .button-text-wrapper {
+        padding: 24px 28px;
+    }
+}
+
+/* Desktop - Small */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 70px 30px;
+        gap: 55px;
+    }
+
+    .buttons-container {
+        gap: 22px;
+    }
+}
+
+/* Desktop - Large */
+@media (min-width: 1025px) {
+    .container {
+        padding: 100px 40px;
+        gap: 70px;
+    }
+
+    .buttons-container {
+        gap: 28px;
+    }
+
+    .button-text-wrapper {
+        padding: 32px 40px;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-12px);
+    }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+        padding: 120px 60px;
+    }
+
+    .welcome-text {
+        font-size: 108px;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .container {
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .welcome-text {
+        font-size: clamp(28px, 6vw, 40px);
+    }
+
+    .buttons-container {
+        gap: 14px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .background-decoration {
+        display: none;
+    }
+
+    .cta-button {
+        break-inside: avoid;
+        box-shadow: none;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .gradient-orb {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+        --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-button {
+        border: 2px solid var(--text-primary);
+    }
+}
     </style>
 </head>
 <body>
+    <div class="background-decoration">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+    
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>🏏 It's Poll Time!</h1>
-            <p>Sri Lanka Vs Pakistan</p>
-            <!-- Cricket banner image below header -->
-            <div class="header-image">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pandv-Py3xDGEDo4nfyTs4v3q6JSmyyz7p3c.jpg" alt="Sri Lanka vs Pakistan Cricket Teams" />
+        <!-- Welcome Message -->
+        <div class="welcome-section">
+            <div class="welcome-badge">PREMIUM</div>
+            <h1 class="welcome-text">
+                <span class="welcome-line">Welcome to</span>
+                <span class="welcome-name">Claire</span>
+            </h1>
+            <div class="welcome-divider">
+                <span class="divider-line"></span>
+                <span class="divider-dot"></span>
+                <span class="divider-line"></span>
             </div>
         </div>
 
-        <!-- Preview Notice -->
-        <div class="preview-notice">
-            <p>🔍 Poll Preview Mode - Users can vote and see real-time results</p>
-        </div>
+        <!-- Descriptive Text -->
+        <p class="description">
+            Discover a world of elegance and refinement. Experience premium quality in every detail, crafted with passion and dedication to excellence.
+        </p>
 
-        <!-- Poll Card -->
-        <div class="poll-card">
-            <div class="poll-title">
-                <h2>Who will win the match?</h2>
-                <div class="vote-count">
-                    Total Votes: <span class="vote-count-number" id="totalVotes">12</span>
-                </div>
-            </div>
-
-            <!-- Pakistan Option -->
-            <div class="option pakistan" id="pakistanOption">
-                <div class="option-header">
-                    <div class="option-label">
-                        <div class="option-badge">A</div>
-                        <h3>Pakistan Wins</h3>
+        <!-- Call-to-Action Buttons -->
+        <div class="buttons-container">
+            <a class="cta-button button-1" href="classes.html" role="button" aria-label="View Classes">
+                <div class="button-content">
+                    <div class="image-wrapper">
+                        <img src="https://cdn.wallpapersafari.com/3/9/01kT8N.jpg" alt="View Classes" class="button-image" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="image-shine"></div>
                     </div>
-                    <div class="checkmark">✓</div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="pakistanProgressFill" style="width: 58%"></div>
-                </div>
-                <div class="vote-stats">
-                    <span class="vote-count-text" id="pakistanVoteCount">7 votes</span>
-                    <span class="percentage" id="pakistanPercentage">58%</span>
-                </div>
-            </div>
-
-            <!-- Sri Lanka Option -->
-            <div class="option srilanka" id="srilankaOption">
-                <div class="option-header">
-                    <div class="option-label">
-                        <div class="option-badge">B</div>
-                        <h3>Sri Lanka Wins</h3>
+                    <div class="button-text-wrapper">
+                        <div class="button-icon">✦</div>
+                        <span class="button-text">Cartoons</span>
+                        <div class="button-arrow">→</div>
                     </div>
-                    <div class="checkmark">✓</div>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="srilankaProgressFill" style="width: 42%"></div>
+                <div class="button-glow"></div>
+            </a>
+
+            <a class="cta-button button-2" href="shop.html" role="button" aria-label="Shop Merch">
+                <div class="button-content">
+                    <div class="image-wrapper">
+                        <img src="https://source.unsplash.com/1000x300/?luxury,shop,boutique,fashion" alt="Shop Merch" class="button-image" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="image-shine"></div>
+                    </div>
+                    <div class="button-text-wrapper">
+                        <div class="button-icon">✦</div>
+                        <span class="button-text">Movies</span>
+                        <div class="button-arrow">→</div>
+                    </div>
                 </div>
-                <div class="vote-stats">
-                    <span class="vote-count-text" id="srilankaVoteCount">5 votes</span>
-                    <span class="percentage" id="srilankaPercentage">42%</span>
+                <div class="button-glow"></div>
+            </a>
+
+            <a class="cta-button button-3" href="studio.html" role="button" aria-label="Studio Info">
+                <div class="button-content">
+                    <div class="image-wrapper">
+                        <img src="https://source.unsplash.com/1000x300/?premium,studio,workspace,interior" alt="Studio Info" class="button-image" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="image-shine"></div>
+                    </div>
+                    <div class="button-text-wrapper">
+                        <div class="button-icon">✦</div>
+                        <span class="button-text">🔞 Videos</span>
+                        <div class="button-arrow">→</div>
+                    </div>
                 </div>
-            </div>
+                <div class="button-glow"></div>
+            </a>
 
-            <!-- User Status -->
-            <div class="user-status" id="userStatus">
-                <p>✓ <span>Your vote is recorded:</span> You voted for <span class="user-vote-value" id="userVoteText"></span></p>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <button class="btn btn-primary" id="resetVote">Change My Vote</button>
-                <button class="btn btn-secondary" id="sharePoll">Share This Poll</button>
-            </div>
-        </div>
-
-        <!-- Footer Info -->
-        <div class="footer">
-            <p>This is a preview of the poll. Users can vote and see results in real-time.</p>
-            <p>Votes are saved locally in your browser.</p>
+            <a class="cta-button button-4" href="courses.html" role="button" aria-label="Courses">
+                <div class="button-content">
+                    <div class="image-wrapper">
+                        <img src="https://source.unsplash.com/1000x300/?education,premium,learning,excellence" alt="Courses" class="button-image" loading="lazy">
+                        <div class="image-overlay"></div>
+                        <div class="image-shine"></div>
+                    </div>
+                    <div class="button-text-wrapper">
+                        <div class="button-icon">✦</div>
+                        <span class="button-text">Cricket</span>
+                        <div class="button-arrow">→</div>
+                    </div>
+                </div>
+                <div class="button-glow"></div>
+            </a>
         </div>
     </div>
 
     <script>
-        // DOM elements
-        const pakistanOption = document.getElementById("pakistanOption");
-        const srilankaOption = document.getElementById("srilankaOption");
-        const userStatus = document.getElementById("userStatus");
-        const resetVoteBtn = document.getElementById("resetVote");
-        const sharePollBtn = document.getElementById("sharePoll");
-
-        // State
-        let userVote = null;
-        let responses = [
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "pakistan", timestamp: new Date().toISOString() },
-            { vote: "srilanka", timestamp: new Date().toISOString() },
-            { vote: "srilanka", timestamp: new Date().toISOString() },
-            { vote: "srilanka", timestamp: new Date().toISOString() },
-            { vote: "srilanka", timestamp: new Date().toISOString() },
-            { vote: "srilanka", timestamp: new Date().toISOString() }
-        ];
-
-        // Initialize poll on page load
-        function initPoll() {
-            loadFromLocalStorage();
-            updateDisplay();
+// Premium Button Click Handler
+function handleButtonClick(buttonName) {
+    console.log(`${buttonName} button clicked!`);
+    
+    // Find the clicked button
+    const buttons = document.querySelectorAll('.cta-button');
+    buttons.forEach(button => {
+        const buttonText = button.querySelector('.button-text');
+        if (buttonText && buttonText.textContent.trim().includes(buttonName)) {
+            // Premium click animation
+            button.style.transform = 'scale(0.98) translateY(-4px)';
             
-            // Add event listeners
-            pakistanOption.addEventListener("click", () => handleVote("pakistan"));
-            srilankaOption.addEventListener("click", () => handleVote("srilanka"));
-            resetVoteBtn.addEventListener("click", resetVote);
-            sharePollBtn.addEventListener("click", sharePoll);
-        }
-
-        // Load data from localStorage
-        function loadFromLocalStorage() {
-            const savedResponses = localStorage.getItem("poll_responses_preview");
-            const savedUserVote = localStorage.getItem("user_vote_preview");
+            // Create premium ripple effect
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = rect.width / 2;
+            const y = rect.height / 2;
             
-            if (savedResponses) {
-                responses = JSON.parse(savedResponses);
-            }
-            
-            if (savedUserVote) {
-                userVote = savedUserVote;
-            }
-        }
-
-        // Save data to localStorage
-        function saveToLocalStorage() {
-            localStorage.setItem("poll_responses_preview", JSON.stringify(responses));
-            localStorage.setItem("user_vote_preview", userVote);
-        }
-
-        // Handle vote
-        function handleVote(vote) {
-            // If user already voted for this option, do nothing
-            if (userVote === vote) return;
-            
-            // If user has a different vote, remove it first
-            if (userVote) {
-                const userIndex = responses.findIndex(r => r.vote === userVote);
-                if (userIndex !== -1) {
-                    responses.splice(userIndex, 1);
-                }
-            }
-            
-            // Add new vote
-            responses.push({
-                vote: vote,
-                timestamp: new Date().toISOString()
-            });
-            
-            userVote = vote;
-
-            saveToLocalStorage();
-            updateDisplay();
-            
-            // Show confirmation message
-            showVoteConfirmation(vote);
-        }
-
-        // Reset user's vote
-        function resetVote() {
-            if (userVote) {
-                const userIndex = responses.findIndex(r => r.vote === userVote);
-                if (userIndex !== -1) {
-                    responses.splice(userIndex, 1);
-                }
-                userVote = null;
-                saveToLocalStorage();
-                updateDisplay();
-                
-                // Show reset confirmation
-                userStatus.classList.remove("active");
-                alert("Your vote has been reset. You can vote again!");
-            } else {
-                alert("You haven't voted yet!");
-            }
-        }
-
-        // Share poll
-        function sharePoll() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Sri Lanka vs Pakistan Poll',
-                    text: 'Vote for who will win the Sri Lanka vs Pakistan cricket match!',
-                    url: window.location.href
-                });
-            } else {
-                // Fallback for browsers that don't support Web Share API
-                alert("Share this poll with your friends!\n\nURL: " + window.location.href);
-            }
-        }
-
-        // Show vote confirmation
-        function showVoteConfirmation(vote) {
-            const voteName = vote === "pakistan" ? "Pakistan" : "Sri Lanka";
-            const message = `Thank you for voting! You selected ${voteName}.`;
-            
-            // Create a temporary confirmation message
-            const confirmation = document.createElement('div');
-            confirmation.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #10b981;
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 0.5rem;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-                animation: slideIn 0.3s ease;
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
+                top: ${y - size / 2}px;
+                left: ${x - size / 2}px;
+                transform: scale(0);
+                animation: premiumRipple 0.8s ease-out;
+                pointer-events: none;
+                z-index: 10;
             `;
-            confirmation.textContent = message;
-            document.body.appendChild(confirmation);
             
-            // Remove after 3 seconds
+            button.style.position = 'relative';
+            button.appendChild(ripple);
+            
+            // Add CSS animation if not exists
+            if (!document.getElementById('premium-ripple-animation')) {
+                const style = document.createElement('style');
+                style.id = 'premium-ripple-animation';
+                style.textContent = `
+                    @keyframes premiumRipple {
+                        to {
+                            transform: scale(2);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            // Reset animation
             setTimeout(() => {
-                confirmation.style.animation = 'slideOut 0.3s ease';
+                button.style.transform = '';
+                ripple.remove();
+            }, 300);
+        }
+    });
+
+    // You can add navigation or other functionality here
+    // Example:
+    // window.location.href = `/${buttonName.toLowerCase().replace(/\s+/g, '-')}`;
+    
+    // Or show a premium notification
+    // showPremiumNotification(buttonName);
+}
+
+// Premium Page Load Animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (!prefersReducedMotion) {
+        // Staggered fade-in animation for buttons
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 150);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Animate welcome section
+        const welcomeSection = document.querySelector('.welcome-section');
+        if (welcomeSection) {
+            welcomeSection.style.opacity = '0';
+            welcomeSection.style.transform = 'translateY(-20px)';
+            welcomeSection.style.transition = 'opacity 1s ease-out 0.2s, transform 1s ease-out 0.2s';
+            setTimeout(() => {
+                welcomeSection.style.opacity = '1';
+                welcomeSection.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Animate description
+        const description = document.querySelector('.description');
+        if (description) {
+            description.style.opacity = '0';
+            description.style.transform = 'translateY(20px)';
+            description.style.transition = 'opacity 0.8s ease-out 0.4s, transform 0.8s ease-out 0.4s';
+            setTimeout(() => {
+                description.style.opacity = '1';
+                description.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        // Animate buttons with stagger
+        const buttons = document.querySelectorAll('.cta-button');
+        buttons.forEach((button, index) => {
+            button.style.opacity = '0';
+            button.style.transform = 'translateY(40px) scale(0.95)';
+            button.style.transition = `opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${0.6 + index * 0.1}s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${0.6 + index * 0.1}s`;
+            observer.observe(button);
+        });
+    }
+
+    // Premium image loading with error handling
+    const images = document.querySelectorAll('.button-image');
+    images.forEach((img, index) => {
+        // Add loading state
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.6s ease-out';
+        
+        img.addEventListener('load', function() {
+            this.style.opacity = '1';
+        });
+        
+        img.addEventListener('error', function() {
+            // Fallback to premium placeholder
+            this.src = `https://via.placeholder.com/1000x300/1a1a2e/ffffff?text=${encodeURIComponent(this.alt)}`;
+            this.style.opacity = '1';
+        });
+        
+        // Force load if already cached
+        if (img.complete) {
+            img.style.opacity = '1';
+        }
+    });
+
+    // Premium touch feedback for mobile
+    if ('ontouchstart' in window) {
+        const buttons = document.querySelectorAll('.cta-button');
+        buttons.forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98) translateY(-4px)';
+            }, { passive: true });
+            
+            button.addEventListener('touchend', function() {
                 setTimeout(() => {
-                    document.body.removeChild(confirmation);
-                }, 300);
-            }, 3000);
-        }
+                    this.style.transform = '';
+                }, 150);
+            }, { passive: true });
+        });
+    }
 
-        // Calculate and update vote counts
-        function calculateVotes() {
-            const pakistanVotes = responses.filter(r => r.vote === "pakistan").length;
-            const srilankaVotes = responses.filter(r => r.vote === "srilanka").length;
-            const totalVotes = pakistanVotes + srilankaVotes;
+    // Add parallax effect to background orbs on scroll
+    let lastScrollY = window.scrollY;
+    const orbs = document.querySelectorAll('.gradient-orb');
+    
+    function updateOrbParallax() {
+        const scrollY = window.scrollY;
+        const scrollDelta = scrollY - lastScrollY;
+        
+        orbs.forEach((orb, index) => {
+            const speed = 0.1 + (index * 0.05);
+            const currentTransform = orb.style.transform || '';
+            const currentY = parseFloat(currentTransform.match(/translateY\(([^)]+)\)/)?.[1] || 0);
+            const newY = currentY + (scrollDelta * speed);
             
-            const pakistanPercentage = totalVotes > 0 ? Math.round((pakistanVotes / totalVotes) * 100) : 0;
-            const srilankaPercentage = totalVotes > 0 ? Math.round((srilankaVotes / totalVotes) * 100) : 0;
-            
-            return {
-                pakistanVotes,
-                srilankaVotes,
-                totalVotes,
-                pakistanPercentage,
-                srilankaPercentage
-            };
-        }
+            orb.style.transform = `translate(${orb.style.transform.match(/translateX\(([^)]+)\)/)?.[1] || 0}, ${newY}px)`;
+        });
+        
+        lastScrollY = scrollY;
+    }
+    
+    if (!prefersReducedMotion && orbs.length > 0) {
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    updateOrbParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
 
-        // Update display
-        function updateDisplay() {
-            const votes = calculateVotes();
+    // Add mouse move parallax effect to buttons
+    const buttons = document.querySelectorAll('.cta-button');
+    buttons.forEach(button => {
+        button.addEventListener('mousemove', function(e) {
+            if (prefersReducedMotion) return;
             
-            // Update vote counts
-            document.getElementById("totalVotes").textContent = votes.totalVotes;
-            document.getElementById("pakistanVoteCount").textContent = `${votes.pakistanVotes} votes`;
-            document.getElementById("srilankaVoteCount").textContent = `${votes.srilankaVotes} votes`;
-            document.getElementById("pakistanPercentage").textContent = `${votes.pakistanPercentage}%`;
-            document.getElementById("srilankaPercentage").textContent = `${votes.srilankaPercentage}%`;
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            // Update progress bars
-            document.getElementById("pakistanProgressFill").style.width = `${votes.pakistanPercentage}%`;
-            document.getElementById("srilankaProgressFill").style.width = `${votes.srilankaPercentage}%`;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
             
-            pakistanOption.classList.remove("selected");
-            srilankaOption.classList.remove("selected");
+            const moveX = (x - centerX) / 20;
+            const moveY = (y - centerY) / 20;
             
-            if (userVote === "pakistan") {
-                pakistanOption.classList.add("selected");
-            } else if (userVote === "srilanka") {
-                srilankaOption.classList.add("selected");
+            const image = this.querySelector('.button-image');
+            if (image) {
+                image.style.transform = `scale(1.08) translate(${moveX}px, ${moveY}px)`;
             }
-            
-            // Update user status message
-            if (userVote) {
-                userStatus.classList.add("active");
-                const voteName = userVote === "pakistan" ? "Pakistan" : "Sri Lanka";
-                document.getElementById("userVoteText").textContent = voteName;
-            } else {
-                userStatus.classList.remove("active");
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            const image = this.querySelector('.button-image');
+            if (image) {
+                image.style.transform = 'scale(1.08)';
             }
-        }
+        });
+    });
 
-        // Add CSS animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+});
 
-        // Initialize on page load
-        window.addEventListener("DOMContentLoaded", initPoll);
+// Premium notification function (optional)
+function showPremiumNotification(message) {
+    // Create a premium notification toast
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #d4af37;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+    `;
+    notification.textContent = `✨ ${message}`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => notification.remove(), 400);
+    }, 3000);
+}
     </script>
 </body>
 </html>
