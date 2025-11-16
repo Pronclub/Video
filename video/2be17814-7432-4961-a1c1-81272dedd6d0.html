@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SL Video Club - Premium Content</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #0a192f;
+      --secondary: #172a45;
+      --accent: #ff8a00;
+      --text: #ccd6f6;
+      --text-light: #e6f1ff;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--primary);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    iframe, img, video {
+      pointer-events: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+      user-drag: none;
+    }
+
+    .header {
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(10, 25, 47, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: var(--secondary);
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      padding: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .video-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 1rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .video-wrapper:hover {
+      transform: scale(1.01);
+    }
+
+    .video-wrapper iframe {
+      border: 0;
+      width: 100%;
+      height: 500px;
+      aspect-ratio: 16/9;
+      pointer-events: none;
+    }
+
+    .video-wrapper.active iframe {
+      pointer-events: auto;
+    }
+
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .video-wrapper.active .video-overlay {
+      display: none;
+    }
+
+    .content-info {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .content-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .content-description {
+      background-color: var(--secondary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .footer {
+      background-color: var(--secondary);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Ad Blocker Overlay */
+    .ad-blocker-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 25, 47, 0.95);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .ad-blocker-overlay.active {
+      display: flex;
+      pointer-events: auto;
+    }
+
+    .ad-blocker-overlay.hidden {
+      display: none;
+      pointer-events: none;
+    }
+
+    .ad-blocker-content {
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .ad-blocker-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .ad-blocker-title {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .ad-blocker-message {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .ad-blocker-message strong {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .refresh-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    .refresh-btn:hover {
+      background: #e67a00;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .video-wrapper iframe {
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .video-wrapper iframe {
+        height: 200px;
+      }
+
+      .content-title {
+        fontSize: 1.5rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false">
+
+  <header class="header">
+    <a href="#" class="logo">SL VIDEO <span>CLUB</span></a>
+    <div class="nav-links">
+      <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+    </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="https://slvideo.club/"><i class="fas fa-film"></i> Home</a>
+      <a href="https://t.me/+2B9zo9j83i0wOGVl"><i class="fas fa-film"></i> Story</a>
+      <a href="https://t.me/+GS33WIajk4hmNjg1"><i class="fas fa-tv"></i> Foreign</a>
+      <a href="https://example.com/premium"><i class="fas fa-crown"></i> WhatsApp</a>
+      <a href="https://whatsapp.com/channel/0029Vb3nA6oAojYn7CULwL3W"><i class="fas fa-user-tie"></i> Number</a>
+    </div>
+  </header>
+
+  <!-- Ad Blocker Overlay -->
+  <div class="ad-blocker-overlay hidden" id="adBlockerOverlay">
+    <div class="ad-blocker-content">
+      <div class="ad-blocker-icon">🔒</div>
+      <h2 class="ad-blocker-title">Ad Blocker අනාවරණය විය</h2>
+      <p class="ad-blocker-message">
+        වීඩියෝ නරඹීමට Ad Blocker එක disable කරන්න<br><br>
+        කරුණාකර ඔබේ browser extension settings වලින් Ad Blocker disable කර නැවත පිටුව refresh කරන්න.
+      </p>
+      <button class="refresh-btn" onclick="window.location.reload()">Refresh Page</button>
+    </div>
+  </div>
+
+  <div class="video-container" id="videoContainer">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="video-overlay" id="videoOverlay"></div>
+
+ <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/379390/2be17814-7432-4961-a1c1-81272dedd6d0?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+
+    </div>
+  </div>
+
+  <div class="content-info">
+    <h1 class="content-title">Premium Content</h1>
+    <div class="content-description">
+      <p>Enjoy our exclusive premium content in high definition. This video is part of our special collection available only to active members.</p>
+      <p>Support us by engaging with our ad partners — it helps bring you more amazing content.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2023 SL Video Club. All rights reserved.</p>
+    <div class="social-links">
+      <a href="https://slvideo.club/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://whatsapp.com/channel/0029VamO2hBJJhzdF5qWOe25" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/+JRj_3jh9zb5mMjY1" target="_blank"><i class="fab fa-telegram"></i></a>
+    </div>
+  </div>
+
+  <script src="https://www.slvideo.club/adss/newads.js"></script>
+
+<script>
+  // Mobile menu functionality
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  });
+
+  // Video interaction
+  document.getElementById('videoOverlay').addEventListener('click', function() {
+    const videoWrapper = document.getElementById('videoWrapper');
+    const videoFrame = document.getElementById('videoFrame');
+    
+    videoWrapper.classList.add('active');
+    videoFrame.style.pointerEvents = 'auto';
+  });
+</script>
+
+<script>
+  // SIMPLE AND RELIABLE Ad Blocker Detection
+  (function() {
+    let adBlockerDetected = false;
+    
+    function checkAdBlocker() {
+      return new Promise((resolve) => {
+        // Method 1: Try to create a fake ad element
+        const fakeAd = document.createElement('div');
+        fakeAd.className = 'ad-unit ad-space text-ad banner-ad';
+        fakeAd.style.height = '1px';
+        fakeAd.style.width = '1px';
+        fakeAd.style.position = 'absolute';
+        fakeAd.style.left = '-9999px';
+        fakeAd.style.top = '-9999px';
+        
+        document.body.appendChild(fakeAd);
+        
+        setTimeout(() => {
+          const rect = fakeAd.getBoundingClientRect();
+          const styles = window.getComputedStyle(fakeAd);
+          
+          // Check if ad is hidden/removed by ad blocker
+          const isHidden = rect.height === 0 || 
+                          rect.width === 0 || 
+                          styles.display === 'none' || 
+                          styles.visibility === 'hidden' ||
+                          fakeAd.offsetHeight === 0;
+          
+          document.body.removeChild(fakeAd);
+          
+          // Method 2: Try to load Google Ads script
+          const script = document.createElement('script');
+          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+          script.onerror = () => {
+            // Script failed to load - likely due to ad blocker
+            resolve(true);
+          };
+          script.onload = () => {
+            // Script loaded successfully - no ad blocker
+            resolve(false);
+          };
+          
+          document.head.appendChild(script);
+          
+          // Fallback - if both methods indicate blocking
+          setTimeout(() => {
+            resolve(isHidden);
+          }, 500);
+          
+        }, 100);
+      });
+    }
+    
+    function showAdBlockerWarning() {
+      const overlay = document.getElementById('adBlockerOverlay');
+      const videoFrame = document.getElementById('videoFrame');
+      const videoWrapper = document.getElementById('videoWrapper');
+      
+      if (overlay) {
+        overlay.classList.add('active');
+        overlay.classList.remove('hidden');
+      }
+      
+      // Block video
+      if (videoFrame) {
+        videoFrame.style.pointerEvents = 'none';
+        videoFrame.style.opacity = '0.3';
+        videoFrame.style.filter = 'blur(5px)';
+      }
+      if (videoWrapper) {
+        videoWrapper.style.pointerEvents = 'none';
+        videoWrapper.style.opacity = '0.5';
+      }
+    }
+    
+    function hideAdBlockerWarning() {
+      const overlay = document.getElementById('adBlockerOverlay');
+      const videoFrame = document.getElementById('videoFrame');
+      const videoWrapper = document.getElementById('videoWrapper');
+      
+      if (overlay) {
+        overlay.classList.remove('active');
+        overlay.classList.add('hidden');
+      }
+      
+      // Restore video
+      if (videoFrame) {
+        videoFrame.style.pointerEvents = 'auto';
+        videoFrame.style.opacity = '1';
+        videoFrame.style.filter = 'none';
+      }
+      if (videoWrapper) {
+        videoWrapper.style.pointerEvents = 'auto';
+        videoWrapper.style.opacity = '1';
+      }
+    }
+    
+    // Main detection function
+    async function detectAdBlocker() {
+      try {
+        const detected = await checkAdBlocker();
+        
+        if (detected) {
+          console.log('Ad blocker detected');
+          adBlockerDetected = true;
+          showAdBlockerWarning();
+        } else {
+          console.log('No ad blocker detected');
+          adBlockerDetected = false;
+          hideAdBlockerWarning();
+        }
+      } catch (error) {
+        console.log('Error detecting ad blocker:', error);
+        // On error, assume no ad blocker to avoid false positives
+        adBlockerDetected = false;
+        hideAdBlockerWarning();
+      }
+    }
+    
+    // Run detection after page load
+    window.addEventListener('load', function() {
+      setTimeout(detectAdBlocker, 1000);
+    });
+    
+    // Optional: Re-check if user might have disabled ad blocker
+    window.addEventListener('focus', function() {
+      if (adBlockerDetected) {
+        setTimeout(detectAdBlocker, 500);
+      }
+    });
+    
+  })();
+</script>
+
+</body>
+</html>
