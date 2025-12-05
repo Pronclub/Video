@@ -202,9 +202,81 @@
       color: var(--accent);
     }
 
-    /* Hidden ad counter */
-    .ad-counter {
+    /* Ad Blocker Overlay */
+    .ad-blocker-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 25, 47, 0.95);
+      z-index: 10000;
       display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .ad-blocker-overlay.active {
+      display: flex;
+      pointer-events: auto;
+    }
+
+    .ad-blocker-overlay.hidden {
+      display: none;
+      pointer-events: none;
+    }
+
+    .ad-blocker-content {
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .ad-blocker-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .ad-blocker-title {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .ad-blocker-message {
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .ad-blocker-message strong {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .refresh-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.3s;
+    }
+
+    .refresh-btn:hover {
+      background: #e67a00;
     }
 
     @media (max-width: 768px) {
@@ -231,7 +303,7 @@
       }
 
       .content-title {
-        font-size: 1.5rem;
+        fontSize: 1.5rem;
       }
 
       .logo {
@@ -240,8 +312,6 @@
     }
   </style>
 </head>
-
-<script type='text/javascript' src='//eminencehillsidenutrition.com/1a/0d/a4/1a0da4edd63f1b537186d46163ed2769.js'></script>
 
 <body oncontextmenu="return false">
 
@@ -264,19 +334,26 @@
     </div>
   </header>
 
-  <div class="video-container">
-    <div class="video-wrapper" id="videoWrapper">
-      <div class="video-overlay" id="videoOverlay"></div>
-
-
-  <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382076/f211fd0b-ab12-46a2-a2d8-d772950daba0?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
-
+  <!-- Ad Blocker Overlay -->
+  <div class="ad-blocker-overlay hidden" id="adBlockerOverlay">
+    <div class="ad-blocker-content">
+      <div class="ad-blocker-icon">🔒</div>
+      <h2 class="ad-blocker-title">Ad Blocker අනාවරණය විය</h2>
+      <p class="ad-blocker-message">
+        වීඩියෝ නරඹීමට Ad Blocker එක disable කරන්න<br><br>
+        කරුණාකර ඔබේ browser extension settings වලින් Ad Blocker disable කර නැවත පිටුව refresh කරන්න.
+      </p>
+      <button class="refresh-btn" onclick="window.location.reload()">Refresh Page</button>
     </div>
   </div>
 
-  <!-- Hidden counter element (required for functionality but not visible) -->
-  <div class="ad-counter" id="adCounter">
-    <i class="fas fa-ad"></i> <span id="counterText">Click the video to continue</span>
+  <div class="video-container" id="videoContainer">
+    <div class="video-wrapper" id="videoWrapper">
+      <div class="video-overlay" id="videoOverlay"></div>
+
+ <iframe id="videoFrame" src="https://iframe.mediadelivery.net/embed/382076/f211fd0b-ab12-46a2-a2d8-d772950daba0?autoplay=false&loop=false&muted=false&preload=true&responsive=true" allowfullscreen="true" allow="autoplay; encrypted-media" disablepictureinpicture></iframe>
+
+    </div>
   </div>
 
   <div class="content-info">
@@ -296,139 +373,157 @@
     </div>
   </div>
 
+  <script src="https://www.slvideo.club/adss/newads.js"></script>
+
 <script>
-    // Enhanced ad system
-    const adLinks = [
-      "https://eminencehillsidenutrition.com/h8junpek?key=26fe0739e1e80a8ffa5ecfab44189a38",
-      "https://eminencehillsidenutrition.com/dv4carz8?key=ace1ef81105d316bb3ea53f6c9904802", 
-      "https://eminencehillsidenutrition.com/dabv4vpeaq?key=294273aeee606532cbb51ebf7be9f12d",
-      "https://eminencehillsidenutrition.com/tbgd13znp?key=6dec7eb3759c8d7c11bff98636a4e1bb",
-      "https://www.revenuecpmgate.com/uccum8g1j?key=dbdc91a1494138cc50a17be31032ce44"
-    ];
-    
-    const popunderLinks = [
-      "https://eminencehillsidenutrition.com/i3n96tga?key=f93645dad9fc187d70a8de04c113d742",
-      "https://www.revenuecpmgate.com/s4xxhk66f?key=67dae9b7dd0680cc6d72a8bfa1aad8a5",
-      "https://otieu.com/4/8724675"
-    ];
+  // Mobile menu functionality
+  document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  });
 
-    let clickCount = 0;
-    let requiredClicks = Math.floor(Math.random() * 2) + 4; // 4 or 5
-    let adsEnabled = true;
-    let hasTriggeredPopunder = false;
-
+  // Video interaction
+  document.getElementById('videoOverlay').addEventListener('click', function() {
     const videoWrapper = document.getElementById('videoWrapper');
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const counterText = document.getElementById('counterText');
-
-    function getRandomAd() {
-      const randomIndex = Math.floor(Math.random() * adLinks.length);
-      return adLinks[randomIndex];
-    }
+    const videoFrame = document.getElementById('videoFrame');
     
-    function getRandomPopunder() {
-      const randomIndex = Math.floor(Math.random() * popunderLinks.length);
-      return popunderLinks[randomIndex];
-    }
+    videoWrapper.classList.add('active');
+    videoFrame.style.pointerEvents = 'auto';
+  });
+</script>
+
+<script>
+  // SIMPLE AND RELIABLE Ad Blocker Detection
+  (function() {
+    let adBlockerDetected = false;
     
-    function triggerPopunder() {
-      if (hasTriggeredPopunder) return;
-      
-      const popunderUrl = getRandomPopunder();
-      const popunder = window.open(popunderUrl, '_blank', 'width=1,height=1,left=10000,top=10000');
-      
-      if (popunder) {
-        try {
-          popunder.blur();
-          window.focus();
-          setTimeout(() => {
-            try { popunder.close(); } catch(e) {}
-          }, 100);
-        } catch(e) {}
-      }
-      
-      hasTriggeredPopunder = true;
-    }
-
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!mobileMenu.contains(event.target) && event.target !== mobileMenuBtn) {
-        mobileMenu.classList.remove('active');
-      }
-    });
-
-    videoWrapper.addEventListener('click', () => {
-      if (!adsEnabled) return;
-      
-      clickCount++;
-      const randomAd = getRandomAd();
-      const adWindow = window.open(randomAd, '_blank');
-      
-      // Try to focus back on main window
-      setTimeout(() => {
-        try {
-          if (adWindow) {
-            adWindow.blur();
-          }
-          window.focus();
-        } catch(e) {}
-      }, 100);
-
-      if (clickCount >= requiredClicks) {
-        adsEnabled = false;
-        videoWrapper.classList.add('active');
+    function checkAdBlocker() {
+      return new Promise((resolve) => {
+        // Method 1: Try to create a fake ad element
+        const fakeAd = document.createElement('div');
+        fakeAd.className = 'ad-unit ad-space text-ad banner-ad';
+        fakeAd.style.height = '1px';
+        fakeAd.style.width = '1px';
+        fakeAd.style.position = 'absolute';
+        fakeAd.style.left = '-9999px';
+        fakeAd.style.top = '-9999px';
         
-        // Trigger popunder when ads are completed
-        triggerPopunder();
+        document.body.appendChild(fakeAd);
         
-        // Reset after 60 seconds
         setTimeout(() => {
-          adsEnabled = true;
-          clickCount = 0;
-          requiredClicks = Math.floor(Math.random() * 2) + 4; // reset to 4 or 5
-          videoWrapper.classList.remove('active');
-          hasTriggeredPopunder = false;
-        }, 60000);
-      }
-    });
-
-    // Initial popup after 30 seconds
-    setTimeout(() => {
-      const randomAd = getRandomAd();
-      const adWindow = window.open(randomAd, '_blank');
+          const rect = fakeAd.getBoundingClientRect();
+          const styles = window.getComputedStyle(fakeAd);
+          
+          // Check if ad is hidden/removed by ad blocker
+          const isHidden = rect.height === 0 || 
+                          rect.width === 0 || 
+                          styles.display === 'none' || 
+                          styles.visibility === 'hidden' ||
+                          fakeAd.offsetHeight === 0;
+          
+          document.body.removeChild(fakeAd);
+          
+          // Method 2: Try to load Google Ads script
+          const script = document.createElement('script');
+          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+          script.onerror = () => {
+            // Script failed to load - likely due to ad blocker
+            resolve(true);
+          };
+          script.onload = () => {
+            // Script loaded successfully - no ad blocker
+            resolve(false);
+          };
+          
+          document.head.appendChild(script);
+          
+          // Fallback - if both methods indicate blocking
+          setTimeout(() => {
+            resolve(isHidden);
+          }, 500);
+          
+        }, 100);
+      });
+    }
+    
+    function showAdBlockerWarning() {
+      const overlay = document.getElementById('adBlockerOverlay');
+      const videoFrame = document.getElementById('videoFrame');
+      const videoWrapper = document.getElementById('videoWrapper');
       
-      // Try to focus back on main window
-      setTimeout(() => {
-        try {
-          if (adWindow) {
-            adWindow.blur();
-          }
-          window.focus();
-        } catch(e) {}
-      }, 100);
-    }, 30000);
-
-    // Disable right-click context menu
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      return false;
+      if (overlay) {
+        overlay.classList.add('active');
+        overlay.classList.remove('hidden');
+      }
+      
+      // Block video
+      if (videoFrame) {
+        videoFrame.style.pointerEvents = 'none';
+        videoFrame.style.opacity = '0.3';
+        videoFrame.style.filter = 'blur(5px)';
+      }
+      if (videoWrapper) {
+        videoWrapper.style.pointerEvents = 'none';
+        videoWrapper.style.opacity = '0.5';
+      }
+    }
+    
+    function hideAdBlockerWarning() {
+      const overlay = document.getElementById('adBlockerOverlay');
+      const videoFrame = document.getElementById('videoFrame');
+      const videoWrapper = document.getElementById('videoWrapper');
+      
+      if (overlay) {
+        overlay.classList.remove('active');
+        overlay.classList.add('hidden');
+      }
+      
+      // Restore video
+      if (videoFrame) {
+        videoFrame.style.pointerEvents = 'auto';
+        videoFrame.style.opacity = '1';
+        videoFrame.style.filter = 'none';
+      }
+      if (videoWrapper) {
+        videoWrapper.style.pointerEvents = 'auto';
+        videoWrapper.style.opacity = '1';
+      }
+    }
+    
+    // Main detection function
+    async function detectAdBlocker() {
+      try {
+        const detected = await checkAdBlocker();
+        
+        if (detected) {
+          console.log('Ad blocker detected');
+          adBlockerDetected = true;
+          showAdBlockerWarning();
+        } else {
+          console.log('No ad blocker detected');
+          adBlockerDetected = false;
+          hideAdBlockerWarning();
+        }
+      } catch (error) {
+        console.log('Error detecting ad blocker:', error);
+        // On error, assume no ad blocker to avoid false positives
+        adBlockerDetected = false;
+        hideAdBlockerWarning();
+      }
+    }
+    
+    // Run detection after page load
+    window.addEventListener('load', function() {
+      setTimeout(detectAdBlocker, 1000);
     });
-
-    // Disable key shortcuts for right-click menu
-    document.addEventListener('keydown', (e) => {
-      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+U
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) ||
-        (e.ctrlKey && e.key === 'U')
-      ) {
-        e.preventDefault();
+    
+    // Optional: Re-check if user might have disabled ad blocker
+    window.addEventListener('focus', function() {
+      if (adBlockerDetected) {
+        setTimeout(detectAdBlocker, 500);
       }
     });
+    
+  })();
 </script>
 
 </body>
